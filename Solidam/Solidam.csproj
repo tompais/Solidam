@@ -816,7 +816,23 @@
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="Scripts\jquery-mousewheel\bower.json" />
+    <Content Include="Scripts\jquery-mousewheel\ChangeLog.md" />
+    <Content Include="Scripts\jquery-mousewheel\package-lock.json" />
+    <Content Include="Scripts\jquery-mousewheel\package.json" />
+    <Content Include="Scripts\jquery-mousewheel\README.md" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-mousewheel\.eslintrc.js" />
+    <Content Include="Scripts\jquery-mousewheel\.gitignore" />
+    <Content Include="Scripts\jquery-mousewheel\jquery.mousewheel.js" />
+    <Content Include="Scripts\jquery-mousewheel\jquery.mousewheel.min.js" />
+    <Content Include="Scripts\jquery-mousewheel\LICENSE.txt" />
+    <Content Include="Scripts\jquery-mousewheel\test\.eslintrc.js" />
+    <Content Include="Scripts\jquery-mousewheel\test\index.html" />
+    <Content Include="Scripts\jquery-mousewheel\test\karma.conf.js" />
+    <Content Include="Scripts\jquery-mousewheel\test\manual.html" />
+    <Content Include="Scripts\jquery-mousewheel\test\scroll.html" />
+    <Content Include="Scripts\jquery-mousewheel\test\unit.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
     <Content Include="Scripts\jquery.maskedinput.js" />
@@ -828,6 +844,19 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\js-base64\.gitignore" />
+    <Content Include="Scripts\js-base64\1x1.png" />
+    <Content Include="Scripts\js-base64\base64.html" />
+    <Content Include="Scripts\js-base64\base64.js" />
+    <Content Include="Scripts\js-base64\base64.min.js" />
+    <Content Include="Scripts\js-base64\package.js" />
+    <Content Include="Scripts\js-base64\test\atob.js" />
+    <Content Include="Scripts\js-base64\test\dankogai.js" />
+    <Content Include="Scripts\js-base64\test\es5.js" />
+    <Content Include="Scripts\js-base64\test\es6.js" />
+    <Content Include="Scripts\js-base64\test\index.html" />
+    <Content Include="Scripts\js-base64\test\large.js" />
+    <Content Include="Scripts\js-base64\test\yoshinoya.js" />
     <Content Include="Scripts\locales\bootstrap-datepicker-en-CA.min.js" />
     <Content Include="Scripts\locales\bootstrap-datepicker.ar-tn.min.js" />
     <Content Include="Scripts\locales\bootstrap-datepicker.ar.min.js" />
@@ -946,6 +975,13 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Scripts\js-base64\.babelrc" />
+    <Content Include="Scripts\js-base64\.npmignore" />
+    <Content Include="Scripts\js-base64\.travis.yml" />
+    <Content Include="Scripts\js-base64\bower.json" />
+    <Content Include="Scripts\js-base64\LICENSE.md" />
+    <Content Include="Scripts\js-base64\package.json" />
+    <Content Include="Scripts\js-base64\README.md" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
