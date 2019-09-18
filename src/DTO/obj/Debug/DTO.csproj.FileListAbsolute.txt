@@ -1,0 +1,5 @@
+C:\Proyectos\PROGRA WEB 3\solidam\src\DTO\bin\Debug\DTO.dll
+C:\Proyectos\PROGRA WEB 3\solidam\src\DTO\bin\Debug\DTO.pdb
+C:\Proyectos\PROGRA WEB 3\solidam\src\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+C:\Proyectos\PROGRA WEB 3\solidam\src\DTO\obj\Debug\DTO.dll
+C:\Proyectos\PROGRA WEB 3\solidam\src\DTO\obj\Debug\DTO.pdb
