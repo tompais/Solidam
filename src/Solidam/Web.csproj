@@ -985,6 +985,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\layouts\" />
     <Folder Include="Content\views\" />
+    <Folder Include="Exceptions\" />
+    <Folder Include="Handlers\" />
     <Folder Include="Scripts\layouts\" />
     <Folder Include="Scripts\views\" />
   </ItemGroup>
