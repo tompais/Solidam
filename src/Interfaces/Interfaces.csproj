@@ -41,6 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IDeleteService.cs" />
+    <Compile Include="IGetService.cs" />
+    <Compile Include="IPostService.cs" />
+    <Compile Include="IPutService.cs" />
+    <Compile Include="IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
