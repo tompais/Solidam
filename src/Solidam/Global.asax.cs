@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Castle.Core.Logging;
+using Filters;
 using Helpers;
 using ILogger = NLog.ILogger;
 
@@ -11,7 +12,6 @@ namespace Solidam
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-        private static log4net.ILog Logger { get; } = LoggingHelper.GetLogger<MvcApplication>();
         public override void Init()
         {
             base.Init();
@@ -24,29 +24,44 @@ namespace Solidam
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            LoggingHelper.Configure(typeof(MvcApplication));
             ConfigureFirstChanceExceptionsHandler();
+            ConfigureUnhandledExceptionsHandler();
         }
 
         private static void ConfigureFirstChanceExceptionsHandler()
         {
             AppDomain.CurrentDomain.FirstChanceException += (sender, eventArgs) =>
             {
-                Logger.Error(eventArgs.Exception);
+                LoggingHelper.LogException(eventArgs.Exception);
             };
+        }
+
+        private static void ConfigureUnhandledExceptionsHandler()
+        {
+            AppDomain.CurrentDomain.UnhandledException += AppDomain_CurrentDomain_UnhandledException;
+        }
+
+        private static void AppDomain_CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            // use logger here to log the events exception object
+            // before the application quits
+            LoggingHelper.LogException((Exception) e.ExceptionObject);
         }
 
         private void MvcApplication_Error(object sender, EventArgs e)
         {
-            var exception = Server.GetLastError();
-            if (exception != null)
-                Logger.Error(exception);
+            LoggingHelper.LogException(Server.GetLastError());
         }
 
         protected void Application_Error(object sender, EventArgs e)
         {
-            var exception = Server.GetLastError();
-            if (exception != null)
-                Logger.Error(exception);
+            LoggingHelper.LogException(Server.GetLastError());
+        }
+
+        public static void RegisterGlobalFilters(GlobalFilterCollection filters)
+        {
+            filters.Add(new GlobalExceptionHandlerAttribute());
         }
     }
 }

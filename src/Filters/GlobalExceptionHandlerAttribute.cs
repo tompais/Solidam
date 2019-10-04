@@ -1,13 +1,13 @@
-﻿using System.Net;
-using System.Web.Mvc;
-using Exceptions;
+﻿using Exceptions;
 using Helpers;
+using System.Net;
+using System.Web.Mvc;
 
-namespace Solidam.Controllers
+namespace Filters
 {
-    public class BaseController : Controller
+    public class GlobalExceptionHandlerAttribute : HandleErrorAttribute
     {
-        protected override void OnException(ExceptionContext filterContext)
+        public override void OnException(ExceptionContext filterContext)
         {
             var exception = filterContext.Exception;
             if (filterContext.HttpContext.Request.IsAjaxRequest() && exception != null)

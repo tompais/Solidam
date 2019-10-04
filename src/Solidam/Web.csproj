@@ -1018,6 +1018,14 @@
     <Analyzer Include="packages\Microsoft.CodeAnalysis.Analyzers.2.9.5\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Exceptions\Exceptions.csproj">
+      <Project>{F9F6175D-CF2D-47EF-AE88-1E1D164BDC98}</Project>
+      <Name>Exceptions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Filters\Filters.csproj">
+      <Project>{8C47878B-BED1-4BC3-BE4A-584F682CA659}</Project>
+      <Name>Filters</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Helpers\Helpers.csproj">
       <Project>{2BFFF573-9581-4016-941C-CC78BD5784B4}</Project>
       <Name>Helpers</Name>

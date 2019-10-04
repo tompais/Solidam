@@ -19,3 +19,7 @@
 /src/Services/bin
 /src/ViewModels/obj
 /src/ViewModels/bin
+/src/Handlers/obj
+/src/Handlers/bin
+/src/Filters/obj
+/src/Filters/bin
