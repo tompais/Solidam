@@ -31,9 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <HintPath>..\Solidam\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
-    </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\Solidam\packages\NLog.4.6.7\lib\net45\NLog.dll</HintPath>
     </Reference>
@@ -59,6 +56,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Enums\Enums.csproj">
+      <Project>{37AE37B0-3F43-45DF-B0A7-4ADCF6B18E48}</Project>
+      <Name>Enums</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Exceptions\Exceptions.csproj">
       <Project>{F9F6175D-CF2D-47EF-AE88-1E1D164BDC98}</Project>
       <Name>Exceptions</Name>

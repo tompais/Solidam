@@ -1,7 +1,7 @@
-﻿using System.Net;
-using System.Web.Mvc;
-using Exceptions;
+﻿using Exceptions;
 using Helpers;
+using System.Net;
+using System.Web.Mvc;
 
 namespace Solidam.Controllers
 {
@@ -16,7 +16,7 @@ namespace Solidam.Controllers
                 filterContext.Result = new JsonResult
                 {
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet,
-                    Data = exception is SolidamException e ? e : exception
+                    Data = exception is SolidamException solidamException ? solidamException : exception
                 };
                 filterContext.ExceptionHandled = true;
             }

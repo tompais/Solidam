@@ -16,7 +16,7 @@ namespace Filters
                 filterContext.Result = new JsonResult
                 {
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet,
-                    Data = exception is SolidamException e ? e : exception
+                    Data = exception is SolidamException solidamException ? solidamException : exception
                 };
                 filterContext.ExceptionHandled = true;
             }

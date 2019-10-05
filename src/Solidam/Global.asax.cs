@@ -1,21 +1,25 @@
-﻿using System;
-using System.Diagnostics;
+﻿using Filters;
+using Helpers;
+using System;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using Castle.Core.Logging;
-using Filters;
-using Helpers;
-using ILogger = NLog.ILogger;
 
 namespace Solidam
 {
-    public class MvcApplication : System.Web.HttpApplication
+    public class MvcApplication : HttpApplication
     {
         public override void Init()
         {
             base.Init();
             Error += MvcApplication_Error;
+        }
+
+        public override void Dispose()
+        {
+            base.Dispose();
+            LoggingHelper.FlushLogger();
         }
 
         protected void Application_Start()
@@ -46,7 +50,7 @@ namespace Solidam
         {
             // use logger here to log the events exception object
             // before the application quits
-            LoggingHelper.LogException((Exception) e.ExceptionObject);
+            LoggingHelper.LogException((Exception)e.ExceptionObject);
         }
 
         private void MvcApplication_Error(object sender, EventArgs e)
