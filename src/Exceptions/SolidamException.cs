@@ -1,15 +1,13 @@
 ﻿using Enums;
 using System;
-using System.Diagnostics;
-using System.Globalization;
+using System.Net;
 using System.Runtime.Serialization;
 
 namespace Exceptions
 {
+    [Serializable]
     public class SolidamException : Exception
     {
-        public ErrorCode ErrorCode { get; set; }
-
         public SolidamException(ErrorCode errorCode)
         {
             ErrorCode = errorCode;
@@ -20,14 +18,19 @@ namespace Exceptions
             ErrorCode = errorCode;
         }
 
-        public SolidamException(string message, Exception innerException, ErrorCode errorCode) : base(message, innerException)
+        public SolidamException(string message, Exception innerException, ErrorCode errorCode) : base(message,
+            innerException)
         {
             ErrorCode = errorCode;
         }
 
-        protected SolidamException(SerializationInfo info, StreamingContext context, ErrorCode errorCode) : base(info, context)
+        protected SolidamException(SerializationInfo info, StreamingContext context, ErrorCode errorCode) : base(info,
+            context)
         {
             ErrorCode = errorCode;
         }
+
+        public ErrorCode ErrorCode { get; set; }
+        public HttpStatusCode HttpStatusCode { get; } = HttpStatusCode.InternalServerError;
     }
 }
