@@ -22,7 +22,7 @@ namespace Solidam.Controllers
             filterContext.ExceptionHandled = true;
             filterContext.HttpContext.Response.Headers.Clear();
             var response = filterContext.HttpContext.Response;
-            response.ContentType = "application/json; charset=utf-8";
+            response.ContentType = Constant.ApplicationJsonUtf8ContentType;
             filterContext.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             filterContext.Result = new JsonResult
             {
