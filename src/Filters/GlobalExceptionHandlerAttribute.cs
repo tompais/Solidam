@@ -11,6 +11,7 @@ namespace Filters
     {
         public override void OnException(ExceptionContext filterContext)
         {
+            if (filterContext.Exception == null) return;
             HandleCustomException(filterContext);
             base.OnException(filterContext);
             LoggingHelper.LogException(filterContext.Exception);
@@ -20,15 +21,18 @@ namespace Filters
         {
             var exception = filterContext.Exception;
             filterContext.ExceptionHandled = true;
-            filterContext.HttpContext.Response.Headers.Clear();
             var response = filterContext.HttpContext.Response;
+            response.Headers.Clear();
             response.ContentType = Constant.ApplicationJsonUtf8ContentType;
-            filterContext.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-            filterContext.Result = new JsonResult
+            response.StatusCode = (int)HttpStatusCode.InternalServerError;
+            if (filterContext.HttpContext.Request.IsAjaxRequest())
             {
-                JsonRequestBehavior = JsonRequestBehavior.AllowGet,
-                Data = new ExceptionResponse(exception)
-            };
+                filterContext.Result = new JsonResult
+                {
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet,
+                    Data = new ExceptionResponse(exception)
+                };
+            }
             var jsonResponse = JsonConvert.SerializeObject(new ExceptionResponse(exception),
                 new JsonSerializerSettings
                 {
