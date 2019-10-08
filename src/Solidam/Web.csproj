@@ -328,8 +328,9 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Content\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\InicioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -526,9 +527,11 @@
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
     <Content Include="Content\daterangepicker.css" />
-    <Content Include="Content\font-awesome.css" />
-    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\font-awesome\font-awesome.css" />
+    <Content Include="Content\font-awesome\font-awesome.min.css" />
     <Content Include="Content\jquery.mCustomScrollbar.css" />
+    <Content Include="Content\owl-carousel\owl.carousel.css" />
+    <Content Include="Content\owl-carousel\owl.theme.default.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -570,9 +573,39 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Content\Views\Inicio\inicio.css" />
+    <Content Include="Content\Views\Inicio\inicioResponsive.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\Views\Inicio\about.jpg" />
+    <Content Include="Images\Views\Inicio\avatar-1.jpg" />
+    <Content Include="Images\Views\Inicio\avatar-2.jpg" />
+    <Content Include="Images\Views\Inicio\background-1.jpg" />
+    <Content Include="Images\Views\Inicio\background-2.jpg" />
+    <Content Include="Images\Views\Inicio\event-1.jpg" />
+    <Content Include="Images\Views\Inicio\event-2.jpg" />
+    <Content Include="Images\Views\Inicio\event-3.jpg" />
+    <Content Include="Images\Views\Inicio\event-4.jpg" />
+    <Content Include="Images\Views\Inicio\galery-1.jpg" />
+    <Content Include="Images\Views\Inicio\galery-2.jpg" />
+    <Content Include="Images\Views\Inicio\galery-3.jpg" />
+    <Content Include="Images\Views\Inicio\galery-4.jpg" />
+    <Content Include="Images\Views\Inicio\galery-5.jpg" />
+    <Content Include="Images\Views\Inicio\galery-6.jpg" />
+    <Content Include="Images\Views\Inicio\logo.png" />
+    <Content Include="Images\Views\Inicio\LogoAlt.png" />
+    <Content Include="Images\Views\Inicio\LogoAlt2.png" />
+    <Content Include="Images\Views\Inicio\post-1.jpg" />
+    <Content Include="Images\Views\Inicio\post-2.jpg" />
+    <Content Include="Images\Views\Inicio\post-3.jpg" />
+    <Content Include="Images\Views\Inicio\post-4.jpg" />
+    <Content Include="Images\Views\Inicio\post-5.jpg" />
+    <Content Include="Images\Views\Inicio\post-6.jpg" />
+    <Content Include="Images\Views\Inicio\post-img.jpg" />
+    <Content Include="Images\Views\Inicio\widget-1.jpg" />
+    <Content Include="Images\Views\Inicio\widget-2.jpg" />
+    <Content Include="Images\Views\Inicio\widget-3.jpg" />
     <Content Include="Scripts\alertify.js" />
     <Content Include="Scripts\alertify.min.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
@@ -951,6 +984,7 @@
     <Content Include="Scripts\moment-with-locales.min.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\owl.carousel.min.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -959,6 +993,7 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Scripts\Views\Inicio\inicio.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -988,13 +1023,12 @@
     <Content Include="Views\Shared\_BaseLayout.cshtml" />
     <Content Include="Views\Shared\_AnonimoLayout.cshtml" />
     <Content Include="Views\Shared\_UsuarioLayout.cshtml" />
+    <Content Include="Views\Inicio\Inicio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\layouts\" />
-    <Folder Include="Content\views\" />
     <Folder Include="Scripts\layouts\" />
-    <Folder Include="Scripts\views\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
