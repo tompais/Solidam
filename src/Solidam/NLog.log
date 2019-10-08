@@ -3183,3 +3183,91 @@ StackTrace:    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFull
 StackTrace:    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
 
 
+2019-10-08 12:06:39.1183|ERROR|Helpers.LoggingHelper|[10/08/2019 12:06:39] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-08 12:06:39.1522|ERROR|Helpers.LoggingHelper|[10/08/2019 12:06:39] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-08 12:09:03.9539|ERROR|Helpers.LoggingHelper|[10/08/2019 12:09:03] Error Desconocido: 'Access to the path 'C:\Users\Globons\AppData\Local\Temp\Temporary ASP.NET Files\vs\2531bbda\eeb7328\App_Web_lkfd0vuq.dll' is denied.' en el archivo '' en la clase '__Error' en el método 'WinIOError' en la línea 0
+StackTrace:    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+
+
+2019-10-08 12:09:03.9539|ERROR|Helpers.LoggingHelper|[10/08/2019 12:09:03] Error Desconocido: 'Access to the path 'C:\Users\Globons\AppData\Local\Temp\Temporary ASP.NET Files\vs\2531bbda\eeb7328\App_Web_lkfd0vuq.pdb' is denied.' en el archivo '' en la clase '__Error' en el método 'WinIOError' en la línea 0
+StackTrace:    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+
+
+2019-10-08 12:10:02.3995|ERROR|Helpers.LoggingHelper|[10/08/2019 12:10:02] Error Desconocido: 'Access to the path 'C:\Users\Globons\AppData\Local\Temp\Temporary ASP.NET Files\vs\2531bbda\eeb7328\App_Web_lkfd0vuq.dll' is denied.' en el archivo '' en la clase '__Error' en el método 'WinIOError' en la línea 0
+StackTrace:    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+
+
+2019-10-08 12:10:02.3995|ERROR|Helpers.LoggingHelper|[10/08/2019 12:10:02] Error Desconocido: 'Access to the path 'App_Web_lkfd0vuq.pdb' is denied.' en el archivo '' en la clase '__Error' en el método 'WinIOError' en la línea 0
+StackTrace:    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+
+
+2019-10-08 12:10:02.3995|ERROR|Helpers.LoggingHelper|[10/08/2019 12:10:02] Error Desconocido: 'Access to the path 'C:\Users\Globons\AppData\Local\Temp\Temporary ASP.NET Files\vs\2531bbda\eeb7328\App_Web_lkfd0vuq.pdb' is denied.' en el archivo '' en la clase '__Error' en el método 'WinIOError' en la línea 0
+StackTrace:    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+
+
+2019-10-08 12:11:40.9408|ERROR|Helpers.LoggingHelper|[10/08/2019 12:11:40] Error Desconocido: 'Access to the path 'C:\Users\Globons\AppData\Local\Temp\Temporary ASP.NET Files\vs\2531bbda\eeb7328\App_Web_rqeqdou5.dll' is denied.' en el archivo '' en la clase '__Error' en el método 'WinIOError' en la línea 0
+StackTrace:    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+
+
+2019-10-08 12:11:40.9408|ERROR|Helpers.LoggingHelper|[10/08/2019 12:11:40] Error Desconocido: 'Access to the path 'C:\Users\Globons\AppData\Local\Temp\Temporary ASP.NET Files\vs\2531bbda\eeb7328\App_Web_rqeqdou5.pdb' is denied.' en el archivo '' en la clase '__Error' en el método 'WinIOError' en la línea 0
+StackTrace:    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+
+
+2019-10-08 12:12:11.0286|ERROR|Helpers.LoggingHelper|[10/08/2019 12:12:11] Error Desconocido: 'Access to the path 'C:\Users\Globons\AppData\Local\Temp\Temporary ASP.NET Files\vs\2531bbda\eeb7328\App_Web_rqeqdou5.dll' is denied.' en el archivo '' en la clase '__Error' en el método 'WinIOError' en la línea 0
+StackTrace:    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+
+
+2019-10-08 12:12:11.0286|ERROR|Helpers.LoggingHelper|[10/08/2019 12:12:11] Error Desconocido: 'Access to the path 'App_Web_rqeqdou5.pdb' is denied.' en el archivo '' en la clase '__Error' en el método 'WinIOError' en la línea 0
+StackTrace:    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+
+
+2019-10-08 12:12:11.0316|ERROR|Helpers.LoggingHelper|[10/08/2019 12:12:11] Error Desconocido: 'Access to the path 'C:\Users\Globons\AppData\Local\Temp\Temporary ASP.NET Files\vs\2531bbda\eeb7328\App_Web_rqeqdou5.pdb' is denied.' en el archivo '' en la clase '__Error' en el método 'WinIOError' en la línea 0
+StackTrace:    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+
+
+2019-10-08 12:12:18.7436|ERROR|Helpers.LoggingHelper|[10/08/2019 12:12:18] Error Desconocido: 'Access to the path 'C:\Users\Globons\AppData\Local\Temp\Temporary ASP.NET Files\vs\2531bbda\eeb7328\App_Web_gyjlmq0l.dll' is denied.' en el archivo '' en la clase '__Error' en el método 'WinIOError' en la línea 0
+StackTrace:    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+
+
+2019-10-08 12:12:18.7436|ERROR|Helpers.LoggingHelper|[10/08/2019 12:12:18] Error Desconocido: 'Access to the path 'C:\Users\Globons\AppData\Local\Temp\Temporary ASP.NET Files\vs\2531bbda\eeb7328\App_Web_gyjlmq0l.pdb' is denied.' en el archivo '' en la clase '__Error' en el método 'WinIOError' en la línea 0
+StackTrace:    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+
+
+2019-10-08 12:12:40.4946|ERROR|Helpers.LoggingHelper|[10/08/2019 12:12:40] Error Desconocido: 'Access to the path 'C:\Users\Globons\AppData\Local\Temp\Temporary ASP.NET Files\vs\2531bbda\eeb7328\App_Web_gyjlmq0l.dll' is denied.' en el archivo '' en la clase '__Error' en el método 'WinIOError' en la línea 0
+StackTrace:    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+
+
+2019-10-08 12:12:40.4946|ERROR|Helpers.LoggingHelper|[10/08/2019 12:12:40] Error Desconocido: 'Access to the path 'App_Web_gyjlmq0l.pdb' is denied.' en el archivo '' en la clase '__Error' en el método 'WinIOError' en la línea 0
+StackTrace:    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+
+
+2019-10-08 12:12:40.4946|ERROR|Helpers.LoggingHelper|[10/08/2019 12:12:40] Error Desconocido: 'Access to the path 'C:\Users\Globons\AppData\Local\Temp\Temporary ASP.NET Files\vs\2531bbda\eeb7328\App_Web_gyjlmq0l.pdb' is denied.' en el archivo '' en la clase '__Error' en el método 'WinIOError' en la línea 0
+StackTrace:    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+
+
+2019-10-08 12:13:27.8704|ERROR|Helpers.LoggingHelper|[10/08/2019 12:13:27] Error Desconocido: 'Access to the path 'C:\Users\Globons\AppData\Local\Temp\Temporary ASP.NET Files\vs\2531bbda\eeb7328\App_Web_yaa0fzp0.dll' is denied.' en el archivo '' en la clase '__Error' en el método 'WinIOError' en la línea 0
+StackTrace:    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+
+
+2019-10-08 12:13:27.8704|ERROR|Helpers.LoggingHelper|[10/08/2019 12:13:27] Error Desconocido: 'Access to the path 'C:\Users\Globons\AppData\Local\Temp\Temporary ASP.NET Files\vs\2531bbda\eeb7328\App_Web_yaa0fzp0.pdb' is denied.' en el archivo '' en la clase '__Error' en el método 'WinIOError' en la línea 0
+StackTrace:    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+
+
+2019-10-08 12:13:46.3668|ERROR|Helpers.LoggingHelper|[10/08/2019 12:13:46] Error Desconocido: 'Access to the path 'C:\Users\Globons\AppData\Local\Temp\Temporary ASP.NET Files\vs\2531bbda\eeb7328\App_Web_yaa0fzp0.dll' is denied.' en el archivo '' en la clase '__Error' en el método 'WinIOError' en la línea 0
+StackTrace:    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+
+
+2019-10-08 12:13:46.3668|ERROR|Helpers.LoggingHelper|[10/08/2019 12:13:46] Error Desconocido: 'Access to the path 'App_Web_yaa0fzp0.pdb' is denied.' en el archivo '' en la clase '__Error' en el método 'WinIOError' en la línea 0
+StackTrace:    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+
+
+2019-10-08 12:13:46.3668|ERROR|Helpers.LoggingHelper|[10/08/2019 12:13:46] Error Desconocido: 'Access to the path 'C:\Users\Globons\AppData\Local\Temp\Temporary ASP.NET Files\vs\2531bbda\eeb7328\App_Web_yaa0fzp0.pdb' is denied.' en el archivo '' en la clase '__Error' en el método 'WinIOError' en la línea 0
+StackTrace:    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+
+
