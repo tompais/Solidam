@@ -594,6 +594,8 @@
     <Content Include="Images\Views\Inicio\galery-5.jpg" />
     <Content Include="Images\Views\Inicio\galery-6.jpg" />
     <Content Include="Images\Views\Inicio\logo.png" />
+    <Content Include="Images\Views\Inicio\LogoAlt.png" />
+    <Content Include="Images\Views\Inicio\LogoAlt2.png" />
     <Content Include="Images\Views\Inicio\post-1.jpg" />
     <Content Include="Images\Views\Inicio\post-2.jpg" />
     <Content Include="Images\Views\Inicio\post-3.jpg" />
