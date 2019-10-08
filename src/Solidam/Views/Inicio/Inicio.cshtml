@@ -2,6 +2,10 @@
 @Styles.Render("~/Content/Views/Inicio/inicioResponsive.css")
 @Scripts.Render("~/Scripts/Views/Inicio/inicio.js")
 
+@{
+    ViewBag.Title = "Inicio";
+}
+
 
 <!--================Header Menu Area =================-->
 <header class="header_area">
@@ -67,6 +71,13 @@
         <!-- row -->
         <div class="row">
 
+            <div class="col-md-12 col-md-offset-2 mb-5">
+                <div class="section-title text-center">
+                    <h2 class="title">Causas mas Populares</h2>
+                    <p class="sub-title">Aca se muestran las ultimas causas mas valoradas por los usuarios del sitio.</p>
+                </div>
+            </div>
+
             <!-- causes -->
             <div class="col-md-4">
                 <div class="causes">
@@ -82,14 +93,14 @@
                             </div>
                         </div>
                         <div>
-                            <span class="causes-raised">Raised: <strong>52.000$</strong></span>
-                            <span class="causes-goal">Goal: <strong>90.000$</strong></span>
+                            <span class="causes-raised">Obtenido: <strong>52.000$</strong></span>
+                            <span class="causes-goal">Meta: <strong>90.000$</strong></span>
                         </div>
                     </div>
                     <div class="causes-content">
                         <h3><a href="single-cause.html">Possit nostro aeterno eu vis, ut cum quem reque</a></h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <a href="single-cause.html" class="primary-button causes-donate">Donate Now</a>
+                        <a href="single-cause.html" class="primary-button causes-donate">Donar ahora</a>
                     </div>
                 </div>
             </div>
@@ -109,14 +120,14 @@
                             </div>
                         </div>
                         <div>
-                            <span class="causes-raised">Raised: <strong>52.000$</strong></span>
-                            <span class="causes-goal">Goal: <strong>90.000$</strong></span>
+                            <span class="causes-raised">Obtenido: <strong>52.000$</strong></span>
+                            <span class="causes-goal">Meta: <strong>90.000$</strong></span>
                         </div>
                     </div>
                     <div class="causes-content">
                         <h3><a href="single-cause.html">Vix fuisset tibique facilisis cu. Justo accusata ius at</a></h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <a href="single-cause.html" class="primary-button causes-donate">Donate Now</a>
+                        <a href="single-cause.html" class="primary-button causes-donate">Donar ahora</a>
                     </div>
                 </div>
             </div>
@@ -136,18 +147,91 @@
                             </div>
                         </div>
                         <div>
-                            <span class="causes-raised">Raised: <strong>52.000$</strong></span>
-                            <span class="causes-goal">Goal: <strong>90.000$</strong></span>
+                            <span class="causes-raised">Obtenido: <strong>52.000$</strong></span>
+                            <span class="causes-goal">Meta: <strong>90.000$</strong></span>
                         </div>
                     </div>
                     <div class="causes-content">
                         <h3><a href="single-cause.html">Possit nostro aeterno eu vis, ut cum quem reque</a></h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <a href="single-cause.html" class="primary-button causes-donate">Donate Now</a>
+                        <a href="single-cause.html" class="primary-button causes-donate">Donar ahora</a>
                     </div>
                 </div>
             </div>
             <!-- /causes -->
+            <div class="col-md-4">
+                <div class="causes">
+                    <div class="causes-img">
+                        <a href="single-cause.html">
+                            <img src="@Url.Content("~/Images/Views/Inicio/post-6.jpg")" alt="">
+                        </a>
+                    </div>
+                    <div class="causes-progress">
+                        <div class="causes-progress-bar">
+                            <div style="width: 72%;">
+                                <span>72%</span>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="causes-raised">Obtenido: <strong>52.000$</strong></span>
+                            <span class="causes-goal">Meta: <strong>90.000$</strong></span>
+                        </div>
+                    </div>
+                    <div class="causes-content">
+                        <h3><a href="single-cause.html">Vix fuisset tibique facilisis cu. Justo accusata ius at</a></h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <a href="single-cause.html" class="primary-button causes-donate">Donar ahora</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="causes">
+                    <div class="causes-img">
+                        <a href="single-cause.html">
+                            <img src="@Url.Content("~/Images/Views/Inicio/post-5.jpg")" alt="">
+                        </a>
+                    </div>
+                    <div class="causes-progress">
+                        <div class="causes-progress-bar">
+                            <div style="width: 100%;">
+                            </div>
+                        </div>
+                        <div>
+                            <span class="causes-raised">Objetivo: <strong>Mano de Obra</strong></span>
+                        </div>
+                    </div>
+                    <div class="causes-content">
+                        <h3><a href="single-cause.html">Vix fuisset tibique facilisis cu. Justo accusata ius at</a></h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <a href="single-cause.html" class="primary-button causes-donate">Donar ahora</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="causes">
+                    <div class="causes-img">
+                        <a href="single-cause.html">
+                            <img src="@Url.Content("~/Images/Views/Inicio/post-4.jpg")" alt="">
+                        </a>
+                    </div>
+                    <div class="causes-progress">
+                        <div class="causes-progress-bar">
+                            <div style="width: 72%;">
+                                <span>72%</span>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="causes-raised">Objetivo: <strong>52.000$</strong></span>
+                            <span class="causes-goal">Meta: <strong>90.000$</strong></span>
+                        </div>
+                    </div>
+                    <div class="causes-content">
+                        <h3><a href="single-cause.html">Vix fuisset tibique facilisis cu. Justo accusata ius at</a></h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <a href="single-cause.html" class="primary-button causes-donate">Donar ahora</a>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- /row -->
     </div>
@@ -160,7 +244,7 @@
         <div class="row">
             <div class="col-lg-10">
                 <p class="copyright">
-                   Programacion Web 3 2019 2C - Grupo 5 - Martinez Alejo - Allio Ezequiel - Crescenzo Ignacio - Pais Tomas
+                    Programacion Web 3 2019 2C - Grupo 5 - Martinez Alejo - Allio Ezequiel - Crescenzo Ignacio - Pais Tomas
                 </p>
             </div>
         </div>

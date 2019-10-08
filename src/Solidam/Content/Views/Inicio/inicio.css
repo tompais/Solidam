@@ -4486,13 +4486,19 @@ h6 {
         margin-top: 15px;
     }
 
+    .causes-content a {
+        color: black;
+    }
+
 .causes-details .causes-progress {
     width: 75%;
     float: left;
     margin-top: 45px;
+    background: #028817;
 }
 
 .causes-details .causes-donate {
     float: right;
     margin-top: 30px;
+
 }
