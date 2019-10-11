@@ -575,6 +575,8 @@
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="Content\Views\Inicio\inicio.css" />
     <Content Include="Content\Views\Inicio\inicioResponsive.css" />
+    <Content Include="Content\Views\Shared\pv_Footer.css" />
+    <Content Include="Content\Views\Shared\pv_Header.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
@@ -1025,6 +1027,8 @@
     <Content Include="Views\Shared\_AnonimoLayout.cshtml" />
     <Content Include="Views\Shared\_PropuestasLayout.cshtml" />
     <Content Include="Views\Inicio\Inicio.cshtml" />
+    <Content Include="Views\Shared\pv_Footer.cshtml" />
+    <Content Include="Views\Shared\pv_Header.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

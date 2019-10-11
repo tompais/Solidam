@@ -1,0 +1,11 @@
+﻿.footer-area {
+    background: #000000;
+}
+
+    .footer-area .copyright {
+        margin-bottom: 0;
+    }
+
+        .footer-area .copyright a {
+            color: #ea2c58;
+        }

@@ -4104,3 +4104,216 @@ StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitE
 StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
 
 
+2019-10-08 19:18:06.5253|ERROR|Helpers.LoggingHelper|[10/08/2019 19:18:06] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-08 19:18:06.5533|ERROR|Helpers.LoggingHelper|[10/08/2019 19:18:06] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-08 19:18:07.7894|ERROR|Helpers.LoggingHelper|[10/08/2019 19:18:07] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-08 19:18:07.8163|ERROR|Helpers.LoggingHelper|[10/08/2019 19:18:07] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-08 19:18:07.8732|ERROR|Helpers.LoggingHelper|[10/08/2019 19:18:07] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-08 19:18:07.8751|ERROR|Helpers.LoggingHelper|[10/08/2019 19:18:07] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-11 11:21:00.8236|ERROR|Helpers.LoggingHelper|[10/11/2019 11:21:00] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-11 11:21:00.8843|ERROR|Helpers.LoggingHelper|[10/11/2019 11:21:00] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-11 11:21:01.8782|ERROR|Helpers.LoggingHelper|[10/11/2019 11:21:01] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-11 11:21:01.8782|ERROR|Helpers.LoggingHelper|[10/11/2019 11:21:01] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-11 11:21:01.9948|ERROR|Helpers.LoggingHelper|[10/11/2019 11:21:01] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-11 11:21:01.9948|ERROR|Helpers.LoggingHelper|[10/11/2019 11:21:01] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-11 11:25:11.2309|ERROR|Helpers.LoggingHelper|[10/11/2019 11:25:11] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-11 11:25:11.2977|ERROR|Helpers.LoggingHelper|[10/11/2019 11:25:11] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-11 11:25:12.0901|ERROR|Helpers.LoggingHelper|[10/11/2019 11:25:12] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-11 11:25:12.1010|ERROR|Helpers.LoggingHelper|[10/11/2019 11:25:12] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-11 11:25:12.2276|ERROR|Helpers.LoggingHelper|[10/11/2019 11:25:12] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-11 11:25:12.2276|ERROR|Helpers.LoggingHelper|[10/11/2019 11:25:12] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-11 11:28:38.4629|ERROR|Helpers.LoggingHelper|[10/11/2019 11:28:38] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-11 11:28:38.5249|ERROR|Helpers.LoggingHelper|[10/11/2019 11:28:38] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-11 11:28:39.3184|ERROR|Helpers.LoggingHelper|[10/11/2019 11:28:39] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-11 11:28:39.3184|ERROR|Helpers.LoggingHelper|[10/11/2019 11:28:39] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-11 11:28:39.4620|ERROR|Helpers.LoggingHelper|[10/11/2019 11:28:39] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-11 11:28:39.4620|ERROR|Helpers.LoggingHelper|[10/11/2019 11:28:39] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-11 11:28:54.9539|ERROR|Helpers.LoggingHelper|[10/11/2019 11:28:54] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-11 11:28:54.9782|ERROR|Helpers.LoggingHelper|[10/11/2019 11:28:54] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-11 11:28:55.0526|ERROR|Helpers.LoggingHelper|[10/11/2019 11:28:55] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-11 11:28:55.0526|ERROR|Helpers.LoggingHelper|[10/11/2019 11:28:55] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-11 11:28:55.1242|ERROR|Helpers.LoggingHelper|[10/11/2019 11:28:55] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-11 11:28:55.1242|ERROR|Helpers.LoggingHelper|[10/11/2019 11:28:55] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-11 11:33:39.2008|ERROR|Helpers.LoggingHelper|[10/11/2019 11:33:39] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-11 11:33:39.2659|ERROR|Helpers.LoggingHelper|[10/11/2019 11:33:39] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-11 11:33:40.0761|ERROR|Helpers.LoggingHelper|[10/11/2019 11:33:40] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-11 11:33:40.0843|ERROR|Helpers.LoggingHelper|[10/11/2019 11:33:40] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-11 11:33:40.2348|ERROR|Helpers.LoggingHelper|[10/11/2019 11:33:40] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-11 11:33:40.2348|ERROR|Helpers.LoggingHelper|[10/11/2019 11:33:40] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-11 11:38:10.6808|ERROR|Helpers.LoggingHelper|[10/11/2019 11:38:10] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-11 11:38:10.7531|ERROR|Helpers.LoggingHelper|[10/11/2019 11:38:10] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-11 11:38:10.9247|ERROR|Helpers.LoggingHelper|[10/11/2019 11:38:10] Error Desconocido: 'Could not load file or assembly 'App_Web_ipjbpu20' or one of its dependencies. The system cannot find the file specified.' en el archivo '' en la clase 'RuntimeAssembly' en el método '_nLoad' en la línea 0
+StackTrace:    at System.Reflection.RuntimeAssembly._nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+
+
+2019-10-11 11:38:10.9297|ERROR|Helpers.LoggingHelper|[10/11/2019 11:38:10] Error Desconocido: 'Could not load file or assembly 'App_Web_ipjbpu20' or one of its dependencies. The system cannot find the file specified.' en el archivo '' en la clase 'RuntimeAssembly' en el método '_nLoad' en la línea 0
+StackTrace:    at System.Reflection.RuntimeAssembly._nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoadAssemblyName(AssemblyName assemblyRef, Evidence assemblySecurity, RuntimeAssembly reqAssembly, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoad(String assemblyString, Evidence assemblySecurity, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean forIntrospection)
+   at System.Reflection.RuntimeAssembly.InternalLoad(String assemblyString, Evidence assemblySecurity, StackCrawlMark& stackMark, Boolean forIntrospection)
+   at System.Reflection.Assembly.Load(String assemblyString)
+   at System.Web.Compilation.BuildResultCompiledAssemblyBase.GetPreservedAssembly(PreservationFileReader pfr)
+
+
+2019-10-11 11:38:10.9496|ERROR|Helpers.LoggingHelper|[10/11/2019 11:38:10] Error Desconocido: 'Could not load file or assembly 'App_Web_ipjbpu20' or one of its dependencies. The system cannot find the file specified.' en el archivo '' en la clase 'RuntimeAssembly' en el método '_nLoad' en la línea 0
+StackTrace:    at System.Reflection.RuntimeAssembly._nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+
+
+2019-10-11 11:38:10.9496|ERROR|Helpers.LoggingHelper|[10/11/2019 11:38:10] Error Desconocido: 'Could not load file or assembly 'App_Web_ipjbpu20' or one of its dependencies. The system cannot find the file specified.' en el archivo '' en la clase 'RuntimeAssembly' en el método '_nLoad' en la línea 0
+StackTrace:    at System.Reflection.RuntimeAssembly._nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoadAssemblyName(AssemblyName assemblyRef, Evidence assemblySecurity, RuntimeAssembly reqAssembly, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoad(String assemblyString, Evidence assemblySecurity, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean forIntrospection)
+   at System.Reflection.RuntimeAssembly.InternalLoad(String assemblyString, Evidence assemblySecurity, StackCrawlMark& stackMark, Boolean forIntrospection)
+   at System.Reflection.Assembly.Load(String assemblyString)
+   at System.Web.Compilation.BuildResultCompiledAssemblyBase.GetPreservedAssembly(PreservationFileReader pfr)
+
+
+2019-10-11 11:38:10.9661|ERROR|Helpers.LoggingHelper|[10/11/2019 11:38:10] Error Desconocido: 'Could not load file or assembly 'App_Web_ipjbpu20' or one of its dependencies. The system cannot find the file specified.' en el archivo '' en la clase 'RuntimeAssembly' en el método '_nLoad' en la línea 0
+StackTrace:    at System.Reflection.RuntimeAssembly._nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+
+
+2019-10-11 11:38:10.9661|ERROR|Helpers.LoggingHelper|[10/11/2019 11:38:10] Error Desconocido: 'Could not load file or assembly 'App_Web_ipjbpu20' or one of its dependencies. The system cannot find the file specified.' en el archivo '' en la clase 'RuntimeAssembly' en el método '_nLoad' en la línea 0
+StackTrace:    at System.Reflection.RuntimeAssembly._nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoadAssemblyName(AssemblyName assemblyRef, Evidence assemblySecurity, RuntimeAssembly reqAssembly, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoad(String assemblyString, Evidence assemblySecurity, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean forIntrospection)
+   at System.Reflection.RuntimeAssembly.InternalLoad(String assemblyString, Evidence assemblySecurity, StackCrawlMark& stackMark, Boolean forIntrospection)
+   at System.Reflection.Assembly.Load(String assemblyString)
+   at System.Web.Compilation.BuildResultCompiledAssemblyBase.GetPreservedAssembly(PreservationFileReader pfr)
+
+
+2019-10-11 11:38:11.6705|ERROR|Helpers.LoggingHelper|[10/11/2019 11:38:11] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-11 11:38:11.6764|ERROR|Helpers.LoggingHelper|[10/11/2019 11:38:11] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-11 11:38:11.8235|ERROR|Helpers.LoggingHelper|[10/11/2019 11:38:11] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+
+2019-10-11 11:38:11.8235|ERROR|Helpers.LoggingHelper|[10/11/2019 11:38:11] Error Desconocido: ''System.Dynamic.DynamicObject' does not contain a definition for 'Title'' en el archivo '' en la clase 'RuntimeBinderController' en el método 'SubmitError' en la línea 0
+StackTrace:    at Microsoft.CSharp.RuntimeBinder.RuntimeBinderController.SubmitError(CError pError)
+
+

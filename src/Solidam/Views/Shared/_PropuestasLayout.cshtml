@@ -10,8 +10,12 @@
     <title>@ViewBag.Title</title>
 </head>
 <body>
+    @RenderPage("pv_Header.cshtml")
+
     <div>
         @RenderBody()
     </div>
+
+    @RenderPage("~/Views/Shared/pv_Footer.cshtml")
 </body>
 </html>
