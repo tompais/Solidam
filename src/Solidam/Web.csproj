@@ -1065,6 +1065,14 @@
       <Project>{2BFFF573-9581-4016-941C-CC78BD5784B4}</Project>
       <Name>Helpers</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{1FF4A6BF-D3AB-4713-A221-20D664737687}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services\Services.csproj">
+      <Project>{50c94cae-f78c-451c-98ff-5aa55ca619a8}</Project>
+      <Name>Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
