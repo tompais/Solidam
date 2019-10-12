@@ -24,3 +24,5 @@
 /src/Filters/obj
 /src/Filters/bin
 /src/Solidam/ConnectionStrings.config
+/.vs
+/src/Solidam/packages
