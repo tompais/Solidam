@@ -26,3 +26,4 @@
 /src/Solidam/ConnectionStrings.config
 /.vs
 /src/Solidam/packages
+/src/Solidam/NLog.log
