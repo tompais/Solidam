@@ -7,7 +7,7 @@ INSERT [dbo].[MotivoDenuncia] ([IdMotivoDenuncia], [Descripcion]) VALUES (3, N'V
 GO
 INSERT [dbo].[MotivoDenuncia] ([IdMotivoDenuncia], [Descripcion]) VALUES (4, N'Contiene informacion politica')
 GO
-INSERT INTO [dbo].[Usuarios]
+INSERT INTO [dbo].[Usuario]
            ([Nombre]
            ,[Apellido]
            ,[FechaNacimiento]
