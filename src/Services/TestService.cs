@@ -14,12 +14,12 @@ namespace Services
         {
             var usuario = new Usuario
             {
-                Nombre = "MARCOS",
-                Apellido = "PEREZ",
+                Nombre = "Test",
+                Apellido = "Test",
                 FechaNacimiento = new DateTime(1978, 2, 1),
                 UserName = "admin",
-                Email = "admin@test.com",
-                Password = "12121212",
+                Email = "test@test.com",
+                Password = "123456",
                 Foto = string.Empty,
                 TipoUsuario = 1,
                 FechaCracion = DateTime.Now,
@@ -28,7 +28,7 @@ namespace Services
             };
 
             Db.Usuario.Add(usuario);
-
+            Db.SaveChanges();
             return usuario;
         }
     }

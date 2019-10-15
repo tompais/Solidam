@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using Services;
 
 namespace Solidam.Controllers
 {
@@ -7,6 +8,7 @@ namespace Solidam.Controllers
         // GET: Inicio
         public ActionResult Inicio()
         {
+            //TestService.Instance.Post(null);
             return View();
         }
     }
