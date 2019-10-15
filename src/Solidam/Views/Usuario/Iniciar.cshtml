@@ -1,0 +1,51 @@
+﻿@Styles.Render("~/Content/Views/Usuario/Iniciar.css");
+
+@{
+    ViewBag.Title = "Iniciar Sesion";
+    Layout = "~/Views/Shared/_AnonimoLayout.cshtml";
+}
+
+<body class="my-login-page">
+    <div class="container">
+            <div class="row justify-content-md-center h-100">
+                <div class="card-wrapper">
+                    <div class="brand">
+                        <a href="@Url.Action("Inicio","Inicio")"><img src="@Url.Content("~/Images/Views/Usuario/logoBordeBlanco.png")" alt="logo"></a>
+                    </div>
+                    <div class="card fat">
+                        <div class="card-body">
+                            <h4 class="card-title">Iniciar Sesion</h4>
+                            <form method="POST" class="my-login-validation" novalidate="">
+
+                                <div class="form-group">
+                                    <label for="email">Correo</label>
+                                    <input id="email" type="email" class="form-control" name="email" placeholder="Ingrese su correo" required autofocus>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="password">
+                                        Contrasena
+                                    </label>
+                                    <input id="password" type="password" class="form-control" name="password" required data-eye>
+                                    <div class="invalid-feedback">
+                                        Password is required
+                                    </div>
+                                </div>
+
+                                <div class="form-group m-0">
+                                    <button type="submit" class="btn btn-primary btn-block">
+                                        Ingresar
+                                    </button>
+                                </div>
+                                
+                                <div class="mt-4 text-center">
+                                    No tienes una cuenta? <a href="@Url.Action("Registrar","Usuario")">Registrate</a>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
