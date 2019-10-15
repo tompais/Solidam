@@ -50,85 +50,88 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseModel.cs" />
-    <Compile Include="Denuncias.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="Denuncia.cs">
+      <DependentUpon>SolidamEntityDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DonacionesHorasTrabajo.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="DonacionHorasTrabajo.cs">
+      <DependentUpon>SolidamEntityDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DonacionesInsumos.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="DonacionInsumo.cs">
+      <DependentUpon>SolidamEntityDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DonacionesMonetarias.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="MotivoDenuncia.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="DonacionMonetaria.cs">
+      <DependentUpon>SolidamEntityDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Propuestas.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="Propuesta.cs">
+      <DependentUpon>SolidamEntityDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PropuestasDonacionesHorasTrabajo.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="PropuestaDonacionHorasTrabajo.cs">
+      <DependentUpon>SolidamEntityDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PropuestasDonacionesInsumos.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="PropuestaDonacionInsumo.cs">
+      <DependentUpon>SolidamEntityDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PropuestasDonacionesMonetarias.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="PropuestaDonacionMonetaria.cs">
+      <DependentUpon>SolidamEntityDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PropuestasReferencias.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="PropuestaReferencia.cs">
+      <DependentUpon>SolidamEntityDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PropuestasValoraciones.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="PropuestaValoracion.cs">
+      <DependentUpon>SolidamEntityDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Usuarios.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="SolidamEntityDataModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SolidamEntityDataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SolidamEntityDataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SolidamEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SolidamEntityDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SolidamEntityDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario.cs">
+      <DependentUpon>SolidamEntityDataModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <EntityDeploy Include="Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </None>
+    <None Include="connections.config" />
     <None Include="packages.config" />
+    <EntityDeploy Include="SolidamEntityDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SolidamEntityDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="SolidamEntityDataModel.edmx.diagram">
+      <DependentUpon>SolidamEntityDataModel.edmx</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model1.Context.tt">
+    <Content Include="SolidamEntityDataModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+      <DependentUpon>SolidamEntityDataModel.edmx</DependentUpon>
+      <LastGenOutput>SolidamEntityDataModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model1.tt">
+    <Content Include="SolidamEntityDataModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
+      <DependentUpon>SolidamEntityDataModel.edmx</DependentUpon>
+      <LastGenOutput>SolidamEntityDataModel.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Abstractions\Abstractions.csproj">
+      <Project>{94405298-E0A8-4DAF-91B7-661789CB4ED3}</Project>
+      <Name>Abstractions</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

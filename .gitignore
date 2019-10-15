@@ -27,3 +27,4 @@
 /.vs
 /src/Solidam/packages
 /src/Solidam/NLog.log
+/src/Models/connections.config

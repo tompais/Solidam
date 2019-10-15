@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Services;
+﻿using System.Web.Mvc;
 
 namespace Solidam.Controllers
 {
-    public class InicioController : Controller
+    public class InicioController : BaseController
     {
         // GET: Inicio
         public ActionResult Inicio()

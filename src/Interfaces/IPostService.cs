@@ -1,7 +1,7 @@
 ﻿namespace Interfaces
 {
-    public interface IPostService<T>
+    public interface IPostService<T> where T : class
     {
-        void Post();
+        T Post(T model);
     }
 }

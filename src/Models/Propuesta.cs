@@ -12,17 +12,17 @@ namespace Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Propuestas
+    public partial class Propuesta
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Propuestas()
+        public Propuesta()
         {
-            this.Denuncias = new HashSet<Denuncias>();
-            this.PropuestasDonacionesHorasTrabajo = new HashSet<PropuestasDonacionesHorasTrabajo>();
-            this.PropuestasDonacionesInsumos = new HashSet<PropuestasDonacionesInsumos>();
-            this.PropuestasDonacionesMonetarias = new HashSet<PropuestasDonacionesMonetarias>();
-            this.PropuestasReferencias = new HashSet<PropuestasReferencias>();
-            this.PropuestasValoraciones = new HashSet<PropuestasValoraciones>();
+            this.Denuncia = new HashSet<Denuncia>();
+            this.PropuestaDonacionHorasTrabajo = new HashSet<PropuestaDonacionHorasTrabajo>();
+            this.PropuestaDonacionInsumo = new HashSet<PropuestaDonacionInsumo>();
+            this.PropuestaDonacionMonetaria = new HashSet<PropuestaDonacionMonetaria>();
+            this.PropuestaReferencia = new HashSet<PropuestaReferencia>();
+            this.PropuestaValoracion = new HashSet<PropuestaValoracion>();
         }
     
         public int IdPropuesta { get; set; }
@@ -38,17 +38,17 @@ namespace Models
         public Nullable<decimal> Valoracion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Denuncias> Denuncias { get; set; }
-        public virtual Usuarios Usuarios { get; set; }
+        public virtual ICollection<Denuncia> Denuncia { get; set; }
+        public virtual Usuario Usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PropuestasDonacionesHorasTrabajo> PropuestasDonacionesHorasTrabajo { get; set; }
+        public virtual ICollection<PropuestaDonacionHorasTrabajo> PropuestaDonacionHorasTrabajo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PropuestasDonacionesInsumos> PropuestasDonacionesInsumos { get; set; }
+        public virtual ICollection<PropuestaDonacionInsumo> PropuestaDonacionInsumo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PropuestasDonacionesMonetarias> PropuestasDonacionesMonetarias { get; set; }
+        public virtual ICollection<PropuestaDonacionMonetaria> PropuestaDonacionMonetaria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PropuestasReferencias> PropuestasReferencias { get; set; }
+        public virtual ICollection<PropuestaReferencia> PropuestaReferencia { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PropuestasValoraciones> PropuestasValoraciones { get; set; }
+        public virtual ICollection<PropuestaValoracion> PropuestaValoracion { get; set; }
     }
 }

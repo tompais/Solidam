@@ -1,7 +1,7 @@
-﻿using Enums;
-using System;
+﻿using System;
 using System.Net;
 using System.Runtime.Serialization;
+using Enums;
 
 namespace Exceptions
 {

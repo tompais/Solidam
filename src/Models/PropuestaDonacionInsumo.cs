@@ -12,12 +12,12 @@ namespace Models
     using System;
     using System.Collections.Generic;
     
-    public partial class PropuestasDonacionesInsumos
+    public partial class PropuestaDonacionInsumo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PropuestasDonacionesInsumos()
+        public PropuestaDonacionInsumo()
         {
-            this.DonacionesInsumos = new HashSet<DonacionesInsumos>();
+            this.DonacionInsumo = new HashSet<DonacionInsumo>();
         }
     
         public int IdPropuestaDonacionInsumo { get; set; }
@@ -26,7 +26,7 @@ namespace Models
         public int Cantidad { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DonacionesInsumos> DonacionesInsumos { get; set; }
-        public virtual Propuestas Propuestas { get; set; }
+        public virtual ICollection<DonacionInsumo> DonacionInsumo { get; set; }
+        public virtual Propuesta Propuesta { get; set; }
     }
 }

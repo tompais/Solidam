@@ -1,9 +1,9 @@
 ﻿using Exceptions;
 using Helpers;
-using System.Net;
-using System.Web.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using System.Net;
+using System.Web.Mvc;
 
 namespace Solidam.Controllers
 {
@@ -23,7 +23,7 @@ namespace Solidam.Controllers
             filterContext.HttpContext.Response.Headers.Clear();
             var response = filterContext.HttpContext.Response;
             response.ContentType = Constant.ApplicationJsonUtf8ContentType;
-            filterContext.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+            if (filterContext.Exception is SolidamException) filterContext.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             filterContext.Result = new JsonResult
             {
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet,

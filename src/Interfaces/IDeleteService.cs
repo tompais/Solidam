@@ -1,6 +1,6 @@
 ﻿namespace Interfaces
 {
-    public interface IDeleteService<T>
+    public interface IDeleteService<T> where T : class
     {
     }
 }

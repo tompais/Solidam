@@ -12,16 +12,14 @@ namespace Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DonacionesMonetarias
+    public partial class DonacionHorasTrabajo
     {
-        public int IdDonacionMonetaria { get; set; }
-        public int IdPropuestaDonacionMonetaria { get; set; }
+        public int IdDonacionHorasTrabajo { get; set; }
+        public int IdPropuestaDonacionHorasTrabajo { get; set; }
         public int IdUsuario { get; set; }
-        public decimal Dinero { get; set; }
-        public string ArchivoTransferencia { get; set; }
-        public System.DateTime FechaCreacion { get; set; }
+        public int Cantidad { get; set; }
     
-        public virtual PropuestasDonacionesMonetarias PropuestasDonacionesMonetarias { get; set; }
-        public virtual Usuarios Usuarios { get; set; }
+        public virtual PropuestaDonacionHorasTrabajo PropuestaDonacionHorasTrabajo { get; set; }
+        public virtual Usuario Usuario { get; set; }
     }
 }

@@ -1,7 +1,7 @@
-﻿using Exceptions;
-using Helpers;
-using System.Net;
+﻿using System.Net;
 using System.Web.Mvc;
+using Exceptions;
+using Helpers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
@@ -24,15 +24,13 @@ namespace Filters
             var response = filterContext.HttpContext.Response;
             response.Headers.Clear();
             response.ContentType = Constant.ApplicationJsonUtf8ContentType;
-            response.StatusCode = (int)HttpStatusCode.InternalServerError;
+            if(filterContext.Exception is SolidamException) response.StatusCode = (int) HttpStatusCode.InternalServerError;
             if (filterContext.HttpContext.Request.IsAjaxRequest())
-            {
                 filterContext.Result = new JsonResult
                 {
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet,
                     Data = new ExceptionResponse(exception)
                 };
-            }
             var jsonResponse = JsonConvert.SerializeObject(new ExceptionResponse(exception),
                 new JsonSerializerSettings
                 {

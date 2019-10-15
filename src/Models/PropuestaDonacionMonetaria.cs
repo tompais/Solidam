@@ -12,21 +12,21 @@ namespace Models
     using System;
     using System.Collections.Generic;
     
-    public partial class PropuestasDonacionesHorasTrabajo
+    public partial class PropuestaDonacionMonetaria
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PropuestasDonacionesHorasTrabajo()
+        public PropuestaDonacionMonetaria()
         {
-            this.DonacionesHorasTrabajo = new HashSet<DonacionesHorasTrabajo>();
+            this.DonacionMonetaria = new HashSet<DonacionMonetaria>();
         }
     
-        public int IdPropuestaDonacionHorasTrabajo { get; set; }
+        public int IdPropuestaDonacionMonetaria { get; set; }
         public int IdPropuesta { get; set; }
-        public int CantidadHoras { get; set; }
-        public string Profesion { get; set; }
+        public decimal Dinero { get; set; }
+        public string CBU { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DonacionesHorasTrabajo> DonacionesHorasTrabajo { get; set; }
-        public virtual Propuestas Propuestas { get; set; }
+        public virtual ICollection<DonacionMonetaria> DonacionMonetaria { get; set; }
+        public virtual Propuesta Propuesta { get; set; }
     }
 }

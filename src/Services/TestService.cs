@@ -1,19 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Interfaces;
 using Models;
 
 namespace Services
 {
-    public class TestService
+    public class TestService : BaseService<TestService>, IPostService<Usuario>
     {
-        static Entities db = new Entities();
-
-        public static List<MotivoDenuncia> Listar()
+        private TestService()
         {
-            return db.MotivoDenuncia.ToList();
+        }
+
+        public Usuario Post(Usuario model)
+        {
+            var usuario = new Usuario
+            {
+                Nombre = "MARCOS",
+                Apellido = "PEREZ",
+                FechaNacimiento = new DateTime(1978, 2, 1),
+                UserName = "admin",
+                Email = "admin@test.com",
+                Password = "12121212",
+                Foto = string.Empty,
+                TipoUsuario = 1,
+                FechaCracion = DateTime.Now,
+                Activo = true,
+                Token = "19E41C31E74A4526"
+            };
+
+            Db.Usuario.Add(usuario);
+
+            return usuario;
         }
     }
 }
