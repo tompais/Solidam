@@ -8,6 +8,7 @@ namespace Solidam.Controllers
         // GET: Inicio
         public ActionResult Inicio()
         {
+            //Dejo comentado para probar la conexion a la bdd
             //TestService.Instance.Post(null);
             return View();
         }
