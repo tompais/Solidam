@@ -578,7 +578,7 @@
     <Content Include="Content\Views\Inicio\inicioResponsive.css" />
     <Content Include="Content\Views\Shared\pv_Footer.css" />
     <Content Include="Content\Views\Shared\pv_Header.css" />
-    <Content Include="Content\Views\Usuario\Iniciar.css" />
+    <Content Include="Content\Views\Usuario\IniciarRegistrar.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
@@ -1005,6 +1005,7 @@
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Scripts\Views\Inicio\inicio.js" />
     <Content Include="Images\Views\Usuario\logoBordeBlanco.png" />
+    <Content Include="Scripts\Views\Usuario\Registrar.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
