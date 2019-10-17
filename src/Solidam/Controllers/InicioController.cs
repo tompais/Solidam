@@ -12,5 +12,11 @@ namespace Solidam.Controllers
             //TestService.Instance.Post(null);
             return View();
         }
+
+        public ActionResult IniciarSesion()
+        {
+            
+            return View("Inicio");
+        }
     }
 }

@@ -528,8 +528,9 @@
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
     <Content Include="Content\daterangepicker.css" />
-    <Content Include="Content\font-awesome\font-awesome.css" />
-    <Content Include="Content\font-awesome\font-awesome.min.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\fontawesome.min.css" />
     <Content Include="Content\jquery.mCustomScrollbar.css" />
     <Content Include="Content\owl-carousel\owl.carousel.css" />
     <Content Include="Content\owl-carousel\owl.theme.default.css" />
@@ -1040,6 +1041,7 @@
     <Content Include="Views\Shared\pv_Header.cshtml" />
     <Content Include="Views\Usuario\Iniciar.cshtml" />
     <Content Include="Views\Usuario\Registrar.cshtml" />
+    <Content Include="Views\Shared\pv_HeaderUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

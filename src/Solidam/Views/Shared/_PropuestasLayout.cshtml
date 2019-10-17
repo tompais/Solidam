@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Helpers
+<!DOCTYPE html>
 
 @{
     Layout = "_BaseLayout.cshtml";
@@ -10,7 +11,19 @@
     <title>@ViewBag.Title</title>
 </head>
 <body>
-    @RenderPage("pv_Header.cshtml")
+
+
+
+    @if (SessionHelper.Usuario == null)
+    {
+        @RenderPage("pv_Header.cshtml")
+    }
+    else
+    {
+        @RenderPage("pv_HeaderUsuario.cshtml")
+
+    }
+
 
     <div>
         @RenderBody()
