@@ -19,7 +19,7 @@ namespace Services
 
         }
 
-        public void BuscarUsuario(Usuario usuario)
+        public Usuario BuscarUsuario(Usuario usuario)
         {
 
             Usuario usuarioBuscado = SolidamEntities.Instance.Usuario.FirstOrDefault(u => u.Email == usuario.Email && u.Password == usuario.Password);
@@ -29,6 +29,7 @@ namespace Services
                 SessionHelper.Usuario = usuarioBuscado;
             }
 
+            return usuarioBuscado;
         }
     }
 }
