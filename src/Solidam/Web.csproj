@@ -331,6 +331,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -577,6 +578,7 @@
     <Content Include="Content\Views\Inicio\inicioResponsive.css" />
     <Content Include="Content\Views\Shared\pv_Footer.css" />
     <Content Include="Content\Views\Shared\pv_Header.css" />
+    <Content Include="Content\Views\Usuario\IniciarRegistrar.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
@@ -599,6 +601,7 @@
     <Content Include="Images\Views\Inicio\logo.png" />
     <Content Include="Images\Views\Inicio\LogoAlt.png" />
     <Content Include="Images\Views\Inicio\LogoAlt2.png" />
+    <Content Include="Images\Views\Inicio\Logotipo.png" />
     <Content Include="Images\Views\Inicio\post-1.jpg" />
     <Content Include="Images\Views\Inicio\post-2.jpg" />
     <Content Include="Images\Views\Inicio\post-3.jpg" />
@@ -609,6 +612,10 @@
     <Content Include="Images\Views\Inicio\widget-1.jpg" />
     <Content Include="Images\Views\Inicio\widget-2.jpg" />
     <Content Include="Images\Views\Inicio\widget-3.jpg" />
+    <Content Include="Images\Views\Usuario\login3.jpg" />
+    <Content Include="Images\Views\Usuario\loginWall.jpg" />
+    <Content Include="Images\Views\Usuario\loginwall2.jpg" />
+    <Content Include="Images\Views\Usuario\LoginWall3.jpg" />
     <Content Include="Scripts\alertify.js" />
     <Content Include="Scripts\alertify.min.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
@@ -997,6 +1004,8 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Scripts\Views\Inicio\inicio.js" />
+    <Content Include="Images\Views\Usuario\logoBordeBlanco.png" />
+    <Content Include="Scripts\Views\Usuario\Registrar.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1029,6 +1038,8 @@
     <Content Include="Views\Inicio\Inicio.cshtml" />
     <Content Include="Views\Shared\pv_Footer.cshtml" />
     <Content Include="Views\Shared\pv_Header.cshtml" />
+    <Content Include="Views\Usuario\Iniciar.cshtml" />
+    <Content Include="Views\Usuario\Registrar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
