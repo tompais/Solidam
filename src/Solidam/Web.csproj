@@ -1007,6 +1007,7 @@
     <Content Include="Scripts\Views\Inicio\inicio.js" />
     <Content Include="Images\Views\Usuario\logoBordeBlanco.png" />
     <Content Include="Scripts\Views\Usuario\Registrar.js" />
+    <Content Include="Scripts\Views\Usuario\RegistroExitoso.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1042,6 +1043,7 @@
     <Content Include="Views\Usuario\Iniciar.cshtml" />
     <Content Include="Views\Usuario\Registrar.cshtml" />
     <Content Include="Views\Shared\pv_HeaderUsuario.cshtml" />
+    <Content Include="Views\Usuario\RegistroExitoso.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

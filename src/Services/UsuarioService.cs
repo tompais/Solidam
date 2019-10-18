@@ -25,6 +25,7 @@ namespace Services
 
         public Usuario BuscarUsuario(Usuario usuario)
         {
+            usuario.Password = Sha1.GetSHA1(usuario.Password);
 
             Usuario usuarioBuscado = SolidamEntities.Instance.Usuario.FirstOrDefault(u => u.Email == usuario.Email && u.Password == usuario.Password);
 

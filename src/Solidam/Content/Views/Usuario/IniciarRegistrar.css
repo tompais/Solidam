@@ -83,3 +83,9 @@
     margin-top: 10px;
     text-align: center;
 }
+
+#btnContinuar {
+    background: #028817;
+    color: white !important;
+    border-color: black;    
+}
