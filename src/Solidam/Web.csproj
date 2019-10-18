@@ -1090,6 +1090,10 @@
       <Project>{50c94cae-f78c-451c-98ff-5aa55ca619a8}</Project>
       <Name>Services</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Utils\Utils.csproj">
+      <Project>{0fd79276-c521-4c8f-9d68-c83cce59399c}</Project>
+      <Name>Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

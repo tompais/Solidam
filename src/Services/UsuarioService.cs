@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using Helpers;
 using Interfaces;
 using Models;
+using Utils;
+
 
 namespace Services
 {
@@ -34,14 +38,17 @@ namespace Services
 
         public void RegistrarUsuario(Usuario usuario)
         {
+
             usuario.Activo = false;
             usuario.FechaCracion = DateTime.Now;
             usuario.TipoUsuario = 2;
-            usuario.Token = "19E41C31E74A4526";
+            usuario.Token = Guid.NewGuid().ToString();
+            usuario.Password = Sha1.GetSHA1(usuario.Password);
 
             SolidamEntities.Instance.Usuario.Add(usuario);
 
             SolidamEntities.Instance.SaveChanges();
+
         }
     }
 }
