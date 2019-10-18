@@ -46,7 +46,20 @@ namespace Solidam.Controllers
 
             UsuarioService.RegistrarUsuario(usuario);
 
-            return View("Iniciar");
+            return View("RegistroExitoso");
+        }
+
+        public ActionResult RegistroExitoso()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Activar(string token)
+        {
+            UsuarioService.ActivarUsuario(token);
+
+            return View("ActivacionExitosa");
         }
 
         public ActionResult CerrarSession()

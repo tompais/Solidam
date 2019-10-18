@@ -5,10 +5,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self"
-              xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator"
-              xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation"
-              xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Denuncia">
           <Key>
             <PropertyRef Name="IdDenuncia" />
@@ -121,12 +118,12 @@
           <Property Name="FechaNacimiento" Type="datetime" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="20" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Foto" Type="nvarchar" MaxLength="100" />
           <Property Name="TipoUsuario" Type="int" Nullable="false" />
           <Property Name="FechaCracion" Type="datetime" Nullable="false" />
           <Property Name="Activo" Type="bit" Nullable="false" />
-          <Property Name="Token" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Token" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_Denuncia_Propuesta">
           <End Role="Propuesta" Type="Self.Propuesta" Multiplicity="1" />
@@ -310,17 +307,13 @@
         </Association>
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="Denuncia" EntityType="Self.Denuncia" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DonacionHorasTrabajo" EntityType="Self.DonacionHorasTrabajo" Schema="dbo"
-                     store:Type="Tables" />
+          <EntitySet Name="DonacionHorasTrabajo" EntityType="Self.DonacionHorasTrabajo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DonacionInsumo" EntityType="Self.DonacionInsumo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DonacionMonetaria" EntityType="Self.DonacionMonetaria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Propuesta" EntityType="Self.Propuesta" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PropuestaDonacionHorasTrabajo" EntityType="Self.PropuestaDonacionHorasTrabajo" Schema="dbo"
-                     store:Type="Tables" />
-          <EntitySet Name="PropuestaDonacionInsumo" EntityType="Self.PropuestaDonacionInsumo" Schema="dbo"
-                     store:Type="Tables" />
-          <EntitySet Name="PropuestaDonacionMonetaria" EntityType="Self.PropuestaDonacionMonetaria" Schema="dbo"
-                     store:Type="Tables" />
+          <EntitySet Name="PropuestaDonacionHorasTrabajo" EntityType="Self.PropuestaDonacionHorasTrabajo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropuestaDonacionInsumo" EntityType="Self.PropuestaDonacionInsumo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropuestaDonacionMonetaria" EntityType="Self.PropuestaDonacionMonetaria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PropuestaReferencia" EntityType="Self.PropuestaReferencia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PropuestaValoracion" EntityType="Self.PropuestaValoracion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
@@ -332,8 +325,7 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Denuncia" EntitySet="Denuncia" />
           </AssociationSet>
-          <AssociationSet Name="FK_DonacionHorasTrabajo_PropuestaDonacionHorasTrabajo"
-                          Association="Self.FK_DonacionHorasTrabajo_PropuestaDonacionHorasTrabajo">
+          <AssociationSet Name="FK_DonacionHorasTrabajo_PropuestaDonacionHorasTrabajo" Association="Self.FK_DonacionHorasTrabajo_PropuestaDonacionHorasTrabajo">
             <End Role="PropuestaDonacionHorasTrabajo" EntitySet="PropuestaDonacionHorasTrabajo" />
             <End Role="DonacionHorasTrabajo" EntitySet="DonacionHorasTrabajo" />
           </AssociationSet>
@@ -341,8 +333,7 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="DonacionHorasTrabajo" EntitySet="DonacionHorasTrabajo" />
           </AssociationSet>
-          <AssociationSet Name="FK_DonacionInsumo_PropuestaDonacionInsumo"
-                          Association="Self.FK_DonacionInsumo_PropuestaDonacionInsumo">
+          <AssociationSet Name="FK_DonacionInsumo_PropuestaDonacionInsumo" Association="Self.FK_DonacionInsumo_PropuestaDonacionInsumo">
             <End Role="PropuestaDonacionInsumo" EntitySet="PropuestaDonacionInsumo" />
             <End Role="DonacionInsumo" EntitySet="DonacionInsumo" />
           </AssociationSet>
@@ -350,8 +341,7 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="DonacionInsumo" EntitySet="DonacionInsumo" />
           </AssociationSet>
-          <AssociationSet Name="FK_DonacionMonetaria_PropuestaDonacionMonetaria"
-                          Association="Self.FK_DonacionMonetaria_PropuestaDonacionMonetaria">
+          <AssociationSet Name="FK_DonacionMonetaria_PropuestaDonacionMonetaria" Association="Self.FK_DonacionMonetaria_PropuestaDonacionMonetaria">
             <End Role="PropuestaDonacionMonetaria" EntitySet="PropuestaDonacionMonetaria" />
             <End Role="DonacionMonetaria" EntitySet="DonacionMonetaria" />
           </AssociationSet>
@@ -363,18 +353,15 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Propuesta" EntitySet="Propuesta" />
           </AssociationSet>
-          <AssociationSet Name="FK_PropuestaDonacionHorasTrabajo_Propuesta"
-                          Association="Self.FK_PropuestaDonacionHorasTrabajo_Propuesta">
+          <AssociationSet Name="FK_PropuestaDonacionHorasTrabajo_Propuesta" Association="Self.FK_PropuestaDonacionHorasTrabajo_Propuesta">
             <End Role="Propuesta" EntitySet="Propuesta" />
             <End Role="PropuestaDonacionHorasTrabajo" EntitySet="PropuestaDonacionHorasTrabajo" />
           </AssociationSet>
-          <AssociationSet Name="FK_PropuestaDonacionInsumo_Propuesta"
-                          Association="Self.FK_PropuestaDonacionInsumo_Propuesta">
+          <AssociationSet Name="FK_PropuestaDonacionInsumo_Propuesta" Association="Self.FK_PropuestaDonacionInsumo_Propuesta">
             <End Role="Propuesta" EntitySet="Propuesta" />
             <End Role="PropuestaDonacionInsumo" EntitySet="PropuestaDonacionInsumo" />
           </AssociationSet>
-          <AssociationSet Name="FK_PropuestaDonacionMonetaria_Propuesta"
-                          Association="Self.FK_PropuestaDonacionMonetaria_Propuesta">
+          <AssociationSet Name="FK_PropuestaDonacionMonetaria_Propuesta" Association="Self.FK_PropuestaDonacionMonetaria_Propuesta">
             <End Role="Propuesta" EntitySet="Propuesta" />
             <End Role="PropuestaDonacionMonetaria" EntitySet="PropuestaDonacionMonetaria" />
           </AssociationSet>
@@ -391,8 +378,7 @@
             <End Role="PropuestaValoracion" EntitySet="PropuestaValoracion" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false"
@@ -575,12 +561,12 @@
           <Property Name="FechaNacimiento" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Foto" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="TipoUsuario" Type="Int32" Nullable="false" />
           <Property Name="FechaCracion" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Activo" Type="Boolean" Nullable="false" />
-          <Property Name="Token" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Token" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Denuncia" Relationship="Self.FK_Denuncia_Usuario" FromRole="Usuario"
                               ToRole="Denuncia" />
           <NavigationProperty Name="DonacionHorasTrabajo" Relationship="Self.FK_DonacionHorasTrabajo_Usuario"
