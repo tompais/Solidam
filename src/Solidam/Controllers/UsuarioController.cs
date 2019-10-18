@@ -54,6 +54,14 @@ namespace Solidam.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult Activar(string token)
+        {
+            UsuarioService.ActivarUsuario(token);
+
+            return View("ActivacionExitosa");
+        }
+
         public ActionResult CerrarSession()
         {
             SessionHelper.Usuario = null;

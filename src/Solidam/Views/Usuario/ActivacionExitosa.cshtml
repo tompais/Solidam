@@ -1,8 +1,7 @@
 ﻿@Styles.Render("~/Content/Views/Usuario/IniciarRegistrar.css")
-@Scripts.Render("~/Scripts/Views/Usuario/RegistroExitoso.js");
 
 @{
-    ViewBag.Title = "Registro Exitoso";
+    ViewBag.Title = "Activacion Exitosa";
     Layout = "~/Views/Shared/_AnonimoLayout.cshtml";
 }
 
@@ -17,13 +16,13 @@
 
             <div class="text-center ">
 
-                <h2 class="mx-0 mt-3"> Gracias por registrarse en Solidam</h2>
-                <p class="lead"><strong>Por favor revisa tu Email</strong> alli recibiras un mensaje para poder activar tu cuenta. </p>
+                <h2 class="mx-0 mt-3">Activacion de la cuenta exitosamente</h2>
+                <p class="lead">Ya puedes iniciar sesion en Solidam.</p>
                 <hr>
 
-                <span>
-                    Espera unos segundos, se te redireccionara automaticamente para inciar tu cuenta.
-                </span>
+                <p class="lead mt-3">
+                    <a class="btn btn-primary btn-sm" id="btnContinuar" href="@Url.Action("Iniciar","Usuario")">Iniciar Sesion</a>
+                </p>
 
             </div>
         </div>
