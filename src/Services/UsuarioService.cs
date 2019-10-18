@@ -1,10 +1,12 @@
 ﻿using System;
 using System.IO;
+using System.IO.Ports;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
+using System.Web;
 using Helpers;
 using Interfaces;
 using Models;
@@ -65,11 +67,13 @@ namespace Services
             msg.Subject = "Activar cuenta en Solidam";
             msg.SubjectEncoding = Encoding.UTF8;
 
-            string linkActivar = string.Format("localhost:23371/Usuario/Activar?token=" + token);
+            string link = "http://localhost:" + HttpContext.Current.Request.Url.Port + "/Usuario/Activar?token=" + token;
 
-            msg.Body = CrearCuerpoCorreo(linkActivar);
+            string etiquita = $"<a href=\"{link}\" style='font-size: 20px; font-family: Helvetica, Arial, sans-serif; text-decoration: none; border-radius: 4.8px; line-height: 30px; display: inline-block; font-weight: normal; white-space: nowrap; background-color: #028817; color: #ffffff; padding: 8px 16px; border: white;'>Activar ahora</a>";
+
+            msg.Body = CrearCuerpoCorreo(etiquita);
             msg.IsBodyHtml = true;
-            msg.BodyEncoding = Encoding.UTF8;
+            msg.BodyEncoding = Encoding.Default;
 
             var correo = "solidam.unlam@gmail.com";
             var password = "solidam2019";
@@ -99,12 +103,12 @@ namespace Services
         {
             string cuerpo = string.Empty;
 
-            using (StreamReader reader = new StreamReader(Path.GetFullPath("C:/solidam/src/Solidam/Views/Usuario/Email.html")))
+            using (StreamReader reader = new StreamReader(AppContext.BaseDirectory + "Views\\Usuario\\Email.html"))
             {
                 cuerpo = reader.ReadToEnd();
             }
 
-            cuerpo = cuerpo.Replace("{Link}",  link);
+            cuerpo = cuerpo.Replace("{Link}", link);
 
             return cuerpo;
         }
