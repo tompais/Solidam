@@ -18,22 +18,35 @@ namespace Solidam.Controllers
         public ActionResult IniciarSesion(Usuario usuario)
         {
 
-           Usuario usuarioIniciar = UsuarioService.BuscarUsuario(usuario);
+            Usuario usuarioIniciar = UsuarioService.BuscarUsuario(usuario);
 
-           if (usuarioIniciar == null)
-           {
-               usuarioIniciar = new Usuario() {ErorrLogueo = "Usuario/Contraseña incorrecto" };
-               return View("Iniciar", usuarioIniciar);
-           }
-           else
-           {
-               return RedirectToAction("Inicio", "Inicio");
-           }
+            if (usuarioIniciar == null)
+            {
+                usuarioIniciar = new Usuario() { ErorrLogueo = "Email y/o Contraseña inválidos" };
+                return View("Iniciar", usuarioIniciar);
+            }
+            if (usuarioIniciar.Activo.ToString().Equals("False"))
+            {
+                usuarioIniciar = new Usuario() { ErorrLogueo = "Su usuario está inactivo. Actívelo desde el email recibido" };
+                return View("Iniciar", usuarioIniciar);
+            }
+            else
+            {
+                return RedirectToAction("Inicio", "Inicio");
+            }
         }
 
         public ActionResult Registrar()
         {
             return View();
+        }
+
+        public ActionResult RegistrarUsuario(Usuario usuario)
+        {
+
+            UsuarioService.RegistrarUsuario(usuario);
+
+            return View("Iniciar");
         }
 
         public ActionResult CerrarSession()

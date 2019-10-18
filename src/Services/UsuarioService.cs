@@ -31,5 +31,17 @@ namespace Services
 
             return usuarioBuscado;
         }
+
+        public void RegistrarUsuario(Usuario usuario)
+        {
+            usuario.Activo = false;
+            usuario.FechaCracion = DateTime.Now;
+            usuario.TipoUsuario = 2;
+            usuario.Token = "19E41C31E74A4526";
+
+            SolidamEntities.Instance.Usuario.Add(usuario);
+
+            SolidamEntities.Instance.SaveChanges();
+        }
     }
 }

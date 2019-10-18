@@ -73,13 +73,11 @@
     }
 }
 
-.error {
-    -moz-box-shadow: 0 0 6px #929292;
-    -webkit-box-shadow: 0 0 6px #929292;
-    box-shadow: 0 0 6px #929292;
-    background: #ffbc37;
-    color: #000000;
+.errorSolidam {
+    background: transparent;
+    color: red;
     font-size: 14px;
+    display: none;
     padding: 5px;
     position: relative;
     margin-top: 10px;
