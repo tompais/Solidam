@@ -2,7 +2,6 @@
 @Scripts.Render("~/Scripts/bootstrap-datepicker.min.js");
 
 @Styles.Render("~/Content/Views/Usuario/IniciarRegistrar.css");
-@Scripts.Render("~/Scripts/Views/Usuario/Registrar.js");
 
 @{
     ViewBag.Title = "Registrarse";
@@ -19,43 +18,54 @@
                 <div class="card fat">
                     <div class="card-body">
                         <h4 class="card-title">Registrar Usuario</h4>
-                        <form method="POST" class="my-login-validation" novalidate="">
+                        <form method="POST" action="@Url.Action("RegistrarUsuario","Usuario")" id="formularioRegistro">
 
                             <div class="form-group">
-                                <label for="email">Correo Electronico</label>
-                                <input id="email" type="email" class="form-control" name="email" required placeholder="Ingrese su Email">
+                                <label for="inputEmail">Correo Electronico</label>
+                                <input id="inputEmail" type="text" class="form-control" name="Email" placeholder="Ingrese su Email" autofocus>
+
+                                <div id="errorEmail" class="errorSolidam"><i class="fa fa-exclamation-triangle mr-2"></i><b><span></span></b></div>
+
                             </div>
 
                             <div class="form-group">
-                                <label for="password">Contrasena</label>
-                                <input id="password" type="password" class="form-control" name="password" required data-eye>
+                                <label for="password">Contraseña</label>
+                                <input id="inputPassword" type="password" class="form-control" name="Password">
+
+                                <div id="errorPass" class="errorSolidam"><i class="fa fa-exclamation-triangle mr-2"></i><b><span></span></b></div>
+
                             </div>
 
                             <div class="form-group">
-                                <label for="repassword">Confirmar Contrasena</label>
-                                <input id="repassword" type="password" class="form-control" name="password" required data-eye>
+                                <label for="repassword">Confirmar Contraseña</label>
+                                <input id="inputRePassword" type="password" class="form-control">
+
+                                <div id="errorRePass" class="errorSolidam"><i class="fa fa-exclamation-triangle mr-2"></i><b><span></span></b></div>
+
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="fechaDeNacimiento">Feche de Nacimiento</label>
                                 <div class="input-group date" data-provide="datepicker">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" id="inputFechaNacimiento" name="FechaNacimiento">
                                     <div class="input-group-addon">
                                         <span class="fa"></span>
                                     </div>
                                 </div>
+
+                                <div id="errorFechaNacimiento" class="errorSolidam"><i class="fa fa-exclamation-triangle mr-2"></i><b><span></span></b></div>
+
                             </div>
-                            
+
 
                             <div class="form-group m-0">
-                                <button type="submit" class="btn btn-primary btn-block">
-                                    <i class="far fa-calendar-alt"></i>
-                                </button>
+                                <button type="button" class="btn btn-primary btn-block" id="btnRegistrar">Registrar</button>
                             </div>
 
                             <div class="mt-4 text-center">
                                 Ya tienes una cuenta? <a href="@Url.Action("Iniciar","Usuario")">Inicia Sesion</a>
                             </div>
+
                         </form>
                     </div>
                 </div>
@@ -63,4 +73,6 @@
         </div>
     </div>
 </body>
+@Scripts.Render("~/Scripts/Views/Usuario/Registrar.js");
+
 
