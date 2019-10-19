@@ -30,3 +30,5 @@
 /src/Models/connections.config
 /src/connections.config
 /src/Solidam/connections.config
+/src/Utils/obj
+/src/Utils/bin
