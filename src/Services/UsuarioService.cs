@@ -29,10 +29,17 @@ namespace Services
 
         public Usuario Post(Usuario model)
         {
+            model.Activo = false;
+            model.FechaCracion = DateTime.Now;
+            model.TipoUsuario = 2;
+            model.Token = Guid.NewGuid().ToString();
+
             ValidarUsuario(model);
 
+            model.Password = Sha1.GetSHA1(model.Password);
+
             Db.Usuario.Add(model);
-            Db.SaveChanges();
+            Db.SaveChanges();   
 
             return model;
         }
@@ -77,19 +84,43 @@ namespace Services
 
         public void ValidarUsuario(Usuario model)
         {
+            if (string.IsNullOrEmpty(model.FechaNacimiento.ToString()))
+            {
+                throw new UsuarioException("La fecha de nacimiento no puede se vacia o nula.", ErrorCode.FechaNacimientoInvalida);
+            }
+
+            if ((DateTime.Now.Year - model.FechaNacimiento.Year) < 18)
+            {
+                throw new UsuarioException("El usuario no puede ser menor a 18 años", ErrorCode.FechaNacimientoInvalida);
+            }
 
             EmailAddressAttribute email = new EmailAddressAttribute();
 
-            if (!email.IsValid(model.Email))
+            if (string.IsNullOrEmpty(model.Email) || !email.IsValid(model.Email))
             {
-                throw  new UsuarioException("Formato de email Incorrecto", ErrorCode.EmailInvalidoUsuario);
+                throw new UsuarioException("Formato de email incorrecto.", ErrorCode.EmailInvalido);
             }
 
-            Regex regexPass = new Regex("/^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/");
+            var poseeNumeros = new Regex(@"[0-9]+");
+            var poseeLetraMayus = new Regex(@"[A-Z]+");
+            var posee8Caracteres = new Regex(@".{8,}");
 
-            if (!regexPass.IsMatch(model.Password))
+            var regexPassValidacion = poseeNumeros.IsMatch(model.Password) && poseeLetraMayus.IsMatch(model.Password) && posee8Caracteres.IsMatch(model.Password);
+
+
+            if (string.IsNullOrEmpty(model.Password) || !regexPassValidacion)
             {
-                throw new UsuarioException("Formato de password Incorrecto", ErrorCode.PassInvalidaUsuario);
+                throw new UsuarioException("Formato de password incorrecto.", ErrorCode.PasswordInvalida);
+            }
+
+            if (model.TipoUsuario != 2)
+            {
+                throw new UsuarioException("La cuenta no puede ser de otro tipo que no sea usario", ErrorCode.TipoUsuarioInvalido);
+            }
+
+            if (string.IsNullOrEmpty(model.Token))
+            {
+                throw new UsuarioException("La cuenta debe poseer un token obligatoriamente", ErrorCode.TokenInvalido);
             }
 
         }
