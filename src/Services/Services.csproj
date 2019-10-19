@@ -62,6 +62,14 @@
       <Project>{94405298-E0A8-4DAF-91B7-661789CB4ED3}</Project>
       <Name>Abstractions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Enums\Enums.csproj">
+      <Project>{37ae37b0-3f43-45df-b0a7-4adcf6b18e48}</Project>
+      <Name>Enums</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Exceptions\Exceptions.csproj">
+      <Project>{f9f6175d-cf2d-47ef-ae88-1e1d164bdc98}</Project>
+      <Name>Exceptions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Helpers\Helpers.csproj">
       <Project>{2BFFF573-9581-4016-941C-CC78BD5784B4}</Project>
       <Name>Helpers</Name>

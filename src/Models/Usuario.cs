@@ -37,7 +37,8 @@ namespace Models
         public System.DateTime FechaCracion { get; set; }
         public bool Activo { get; set; }
         public string Token { get; set; }
-    
+        public string Error { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Denuncia> Denuncia { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

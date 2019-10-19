@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.IO.Ports;
 using System.Linq;
@@ -7,8 +8,11 @@ using System.Net;
 using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
+using Enums;
+using Exceptions;
 using Helpers;
 using Interfaces;
 using Models;
@@ -25,19 +29,12 @@ namespace Services
 
         public Usuario Post(Usuario model)
         {
-            model.Activo = false;
-            model.FechaCracion = DateTime.Now;
-            model.TipoUsuario = 2;
-            model.Token = Guid.NewGuid().ToString();
-            model.Password = Sha1.GetSHA1(model.Password);
+            ValidarUsuario(model);
 
             Db.Usuario.Add(model);
             Db.SaveChanges();
 
-            EnviarCorreo(model.Token, model.Email);
-
             return model;
-
         }
 
         public List<Usuario> Get(Usuario model)
@@ -78,6 +75,25 @@ namespace Services
             return usuarioAModificar;
         }
 
+        public void ValidarUsuario(Usuario model)
+        {
+
+            EmailAddressAttribute email = new EmailAddressAttribute();
+
+            if (!email.IsValid(model.Email))
+            {
+                throw  new UsuarioException("Formato de email Incorrecto", ErrorCode.EmailInvalidoUsuario);
+            }
+
+            Regex regexPass = new Regex("/^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/");
+
+            if (!regexPass.IsMatch(model.Password))
+            {
+                throw new UsuarioException("Formato de password Incorrecto", ErrorCode.PassInvalidaUsuario);
+            }
+
+        }
+
 
         public void EnviarCorreo(string token, string email)
         {
@@ -107,8 +123,6 @@ namespace Services
                 EnableSsl = true,
                 Host = "smtp.gmail.com"
             };
-
-
 
             try
             {

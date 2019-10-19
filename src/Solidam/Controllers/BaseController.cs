@@ -20,7 +20,6 @@ namespace Solidam.Controllers
         {
             var exception = filterContext.Exception;
             filterContext.ExceptionHandled = true;
-            filterContext.HttpContext.Response.Headers.Clear();
             var response = filterContext.HttpContext.Response;
             response.ContentType = Constant.ApplicationJsonUtf8ContentType;
             if (filterContext.Exception is SolidamException) filterContext.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;

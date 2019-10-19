@@ -22,9 +22,8 @@ namespace Filters
             var exception = filterContext.Exception;
             filterContext.ExceptionHandled = true;
             var response = filterContext.HttpContext.Response;
-            response.Headers.Clear();
             response.ContentType = Constant.ApplicationJsonUtf8ContentType;
-            if(filterContext.Exception is SolidamException) response.StatusCode = (int) HttpStatusCode.InternalServerError;
+            if (filterContext.Exception is SolidamException) response.StatusCode = (int)HttpStatusCode.InternalServerError;
             if (filterContext.HttpContext.Request.IsAjaxRequest())
                 filterContext.Result = new JsonResult
                 {

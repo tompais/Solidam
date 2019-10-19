@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Helpers;
 using Models;
 using Services;
@@ -24,12 +25,12 @@ namespace Solidam.Controllers
 
             if (usuarioIniciar == null)
             {
-                //usuarioIniciar = new Usuario() { ErorrLogueo = "Email y/o Contraseña inválidos" };
+                usuarioIniciar = new Usuario() { Error = "Email y/o Contraseña inválidos" };
                 return View("Iniciar", usuarioIniciar);
             }
             if (usuarioIniciar.Activo.ToString().Equals("False"))
             {
-                //usuarioIniciar = new Usuario() { ErorrLogueo = "Su usuario está inactivo. Actívelo desde el email recibido" };
+                usuarioIniciar = new Usuario() { Error = "Su usuario está inactivo. Actívelo desde el email recibido" };
                 return View("Iniciar", usuarioIniciar);
             }
 
@@ -46,7 +47,15 @@ namespace Solidam.Controllers
         public ActionResult RegistrarUsuario(Usuario usuario)
         {
 
-            UsuarioService.Instance.Post(usuario);
+            usuario.Activo = false;
+            usuario.FechaCracion = DateTime.Now;
+            usuario.TipoUsuario = 2;
+            usuario.Token = Guid.NewGuid().ToString();
+            usuario.Password = Sha1.GetSHA1(usuario.Password);
+
+            Usuario usuarioEvaluado = UsuarioService.Instance.Post(usuario);
+
+            UsuarioService.Instance.EnviarCorreo(usuarioEvaluado.Token,usuarioEvaluado.Email);
 
             return View("RegistroExitoso");
         }
