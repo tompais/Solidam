@@ -62,6 +62,9 @@
     <Compile Include="DonacionMonetaria.cs">
       <DependentUpon>SolidamEntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="MotivoDenuncia.cs">
+      <DependentUpon>SolidamEntityDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Propuesta.cs">
       <DependentUpon>SolidamEntityDataModel.tt</DependentUpon>

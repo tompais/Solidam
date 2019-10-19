@@ -47,6 +47,13 @@
           <Property Name="ArchivoTransferencia" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="MotivoDenuncia">
+          <Key>
+            <PropertyRef Name="IdMotivoDenuncia" />
+          </Key>
+          <Property Name="IdMotivoDenuncia" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
         <EntityType Name="Propuesta">
           <Key>
             <PropertyRef Name="IdPropuesta" />
@@ -310,6 +317,7 @@
           <EntitySet Name="DonacionHorasTrabajo" EntityType="Self.DonacionHorasTrabajo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DonacionInsumo" EntityType="Self.DonacionInsumo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DonacionMonetaria" EntityType="Self.DonacionMonetaria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MotivoDenuncia" EntityType="Self.MotivoDenuncia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Propuesta" EntityType="Self.Propuesta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PropuestaDonacionHorasTrabajo" EntityType="Self.PropuestaDonacionHorasTrabajo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PropuestaDonacionInsumo" EntityType="Self.PropuestaDonacionInsumo" Schema="dbo" store:Type="Tables" />
@@ -838,7 +846,15 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="PropuestaValoracion" EntitySet="PropuestaValoracion" />
           </AssociationSet>
+          <EntitySet Name="MotivoDenuncia" EntityType="Model.MotivoDenuncia" />
         </EntityContainer>
+        <EntityType Name="MotivoDenuncia">
+          <Key>
+            <PropertyRef Name="IdMotivoDenuncia" />
+          </Key>
+          <Property Name="IdMotivoDenuncia" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -972,6 +988,14 @@
                 <ScalarProperty Name="FechaCracion" ColumnName="FechaCracion" />
                 <ScalarProperty Name="Activo" ColumnName="Activo" />
                 <ScalarProperty Name="Token" ColumnName="Token" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MotivoDenuncia">
+            <EntityTypeMapping TypeName="Model.MotivoDenuncia">
+              <MappingFragment StoreEntitySet="MotivoDenuncia">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdMotivoDenuncia" ColumnName="IdMotivoDenuncia" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

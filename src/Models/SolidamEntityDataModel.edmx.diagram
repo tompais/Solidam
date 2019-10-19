@@ -31,6 +31,7 @@
         <AssociationConnector Association="Model.FK_PropuestaReferencia_Propuesta" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_PropuestaValoracion_Propuesta" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_PropuestaValoracion_Usuario" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Model.MotivoDenuncia" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
