@@ -15,49 +15,54 @@ using Utils;
 
 namespace Services
 {
-    public class UsuarioService : BaseService<TestService>, IPostService<Usuario>
+    public class UsuarioService : BaseService<UsuarioService>, IPostService<Usuario>, IGetService<Usuario> , IPutService<Usuario>
     {
-        public UsuarioService()
+        private UsuarioService()
         {
-
         }
 
         public Usuario Post(Usuario model)
         {
-            return null;
+            model.Activo = false;
+            model.FechaCracion = DateTime.Now;
+            model.TipoUsuario = 2;
+            model.Token = Guid.NewGuid().ToString();
+            model.Password = Sha1.GetSHA1(model.Password);
+
+            Db.Usuario.Add(model);
+            Db.SaveChanges();
+
+            EnviarCorreo(model.Token, model.Email);
+
+            return model;
 
         }
 
-        public Usuario BuscarUsuario(Usuario usuario)
+        public Usuario Get(Usuario model)
         {
-            usuario.Password = Sha1.GetSHA1(usuario.Password);
+            model.Password = Sha1.GetSHA1(model.Password);
 
-            Usuario usuarioBuscado = SolidamEntities.Instance.Usuario.FirstOrDefault(u => u.Email == usuario.Email && u.Password == usuario.Password);
+            Usuario usuario = Db.Usuario.FirstOrDefault(u => u.Email == model.Email && u.Password == model.Password);
 
-            if (usuarioBuscado != null)
+            if (usuario != null)
             {
-                SessionHelper.Usuario = usuarioBuscado;
+                SessionHelper.Usuario = usuario;
             }
 
-            return usuarioBuscado;
+            return usuario;
         }
 
-        public void RegistrarUsuario(Usuario usuario)
+        public Usuario Put(Usuario model)
         {
+            Usuario usuario = SolidamEntities.Instance.Usuario.FirstOrDefault(u => u.Token == model.Token);
 
-            usuario.Activo = false;
-            usuario.FechaCracion = DateTime.Now;
-            usuario.TipoUsuario = 2;
-            usuario.Token = Guid.NewGuid().ToString();
-            usuario.Password = Sha1.GetSHA1(usuario.Password);
-
-            SolidamEntities.Instance.Usuario.Add(usuario);
+            usuario.Activo = true;
 
             SolidamEntities.Instance.SaveChanges();
 
-            EnviarCorreo(usuario.Token, usuario.Email);
-
+            return usuario;
         }
+
 
         public void EnviarCorreo(string token, string email)
         {
@@ -113,15 +118,5 @@ namespace Services
             return cuerpo;
         }
 
-        public void ActivarUsuario(String token)
-        {
-
-            Usuario usuario = SolidamEntities.Instance.Usuario.FirstOrDefault(u => u.Token == token);
-
-            usuario.Activo = true;
-
-            SolidamEntities.Instance.SaveChanges();
-
-        }
     }
 }

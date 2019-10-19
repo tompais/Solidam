@@ -8,17 +8,16 @@ namespace Solidam.Controllers
     public class UsuarioController : BaseController
     {
 
-        UsuarioService UsuarioService = new UsuarioService();
-
         public ActionResult Iniciar()
         {
             return View();
         }
 
+        [HttpGet]
         public ActionResult IniciarSesion(Usuario usuario)
         {
 
-            Usuario usuarioIniciar = UsuarioService.BuscarUsuario(usuario);
+            Usuario usuarioIniciar = UsuarioService.Instance.Get(usuario);
 
             if (usuarioIniciar == null)
             {
@@ -41,10 +40,11 @@ namespace Solidam.Controllers
             return View();
         }
 
+        [HttpPost]
         public ActionResult RegistrarUsuario(Usuario usuario)
         {
 
-            UsuarioService.RegistrarUsuario(usuario);
+            UsuarioService.Instance.Post(usuario);
 
             return View("RegistroExitoso");
         }
@@ -57,7 +57,7 @@ namespace Solidam.Controllers
         [HttpGet]
         public ActionResult Activar(string token)
         {
-            UsuarioService.ActivarUsuario(token);
+            UsuarioService.Instance.Put(new Usuario() {Token = token});
 
             return View("ActivacionExitosa");
         }
