@@ -85,7 +85,7 @@ namespace Services
                 throw  new UsuarioException("Formato de email Incorrecto", ErrorCode.EmailInvalidoUsuario);
             }
 
-            Regex regexPass = new Regex("/^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/");
+            Regex regexPass = new Regex(@"/^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/");
 
             if (!regexPass.IsMatch(model.Password))
             {
