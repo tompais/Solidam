@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.IO.Ports;
 using System.Linq;
@@ -11,11 +12,13 @@ using Helpers;
 using Interfaces;
 using Models;
 using Utils;
+using Exceptions;
+using Enums;
 
 
 namespace Services
 {
-    public class UsuarioService : BaseService<UsuarioService>, IPostService<Usuario>, IGetService<Usuario> , IPutService<Usuario>
+    public class UsuarioService : BaseService<UsuarioService>, IPostService<Usuario>, IGetService<Usuario>, IPutService<Usuario>
     {
         private UsuarioService()
         {
@@ -29,10 +32,17 @@ namespace Services
             model.Token = Guid.NewGuid().ToString();
             model.Password = Sha1.GetSHA1(model.Password);
 
-            Db.Usuario.Add(model);
-            Db.SaveChanges();
+            EmailAddressAttribute e = new EmailAddressAttribute();
 
-            EnviarCorreo(model.Token, model.Email);
+            if (!e.IsValid(model.Email))
+            {
+                throw new UsuarioException("Formato de Email incorrecto", ErrorCode.EmailInvalidoUsuario);
+            }
+
+            //Db.Usuario.Add(model);
+            //Db.SaveChanges();
+
+            //EnviarCorreo(model.Token, model.Email); 
 
             return model;
 
