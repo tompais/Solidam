@@ -11,11 +11,10 @@ namespace Models
 {
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
+    
     public partial class SolidamEntities : DbContext
     {
         public static SolidamEntities Instance { get; } = new SolidamEntities();
-
         private SolidamEntities()
             : base("name=SolidamEntities")
         {
@@ -37,5 +36,6 @@ namespace Models
         public virtual DbSet<PropuestaReferencia> PropuestaReferencia { get; set; }
         public virtual DbSet<PropuestaValoracion> PropuestaValoracion { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
+        public virtual DbSet<MotivoDenuncia> MotivoDenuncia { get; set; }
     }
 }
