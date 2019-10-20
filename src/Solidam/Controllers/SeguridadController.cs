@@ -7,7 +7,7 @@ using Utils;
 
 namespace Solidam.Controllers
 {
-    public class SeguridadController : BaseController
+    public class SeguridadController : Controller
     {
         public ActionResult Iniciar()
         {
