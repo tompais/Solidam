@@ -19,11 +19,18 @@ namespace Solidam
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
+                      "~/Scripts/bootstrap.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/bootstrap.min.css", "~/Content/font-awesome.css", "~/Content/alertifyjs/alertify.min.css", "~/Content/alertifyjs/themes/bootstrap.min.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/moment").Include("~/Scripts/moment.min.js", "~/Scripts/moment-timezone-with-data.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/popper").Include("~/Scripts/umd/popper.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jquery.mousewheel").Include("~/Scripts/jquery-mousewheel/jquery.mousewheel.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/base64").Include("~/Scripts/js-base64/base64.min.js"));
         }
     }
 }

@@ -10,21 +10,21 @@
     <title>Solidam | @ViewBag.Title</title>
 
     @Styles.Render("~/Content/css")
-    @Styles.Render("~/Content/font-awesome.css")
-
-
-    @Scripts.Render("~/Scripts/jquery-3.4.1.min.js")
-    @Scripts.Render("~/Scripts/bootstrap.min.js")
-    @Scripts.Render("~/Scripts/moment.min.js")
-
-
-    <link rel="icon" href="@Url.Content("../../favicon.ico")"/>
+    <link rel="icon" href="@Url.Content("~/favicon.ico")" />
 </head>
 <body>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/popper")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jquery.mousewheel")
+    @Scripts.Render("~/bundles/moment")
+    @Scripts.Render("~/bundles/base64")
 
     <div>
         @RenderBody()
     </div>
-
 </body>
 </html>

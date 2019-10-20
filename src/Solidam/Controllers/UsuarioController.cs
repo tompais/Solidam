@@ -1,8 +1,7 @@
-﻿using System;
-using System.Linq;
-using Helpers;
+﻿using Helpers;
 using Models;
 using Services;
+using System.Linq;
 using System.Web.Mvc;
 using Utils;
 
@@ -10,7 +9,6 @@ namespace Solidam.Controllers
 {
     public class UsuarioController : BaseController
     {
-
         public ActionResult Iniciar()
         {
             return View();
@@ -25,12 +23,13 @@ namespace Solidam.Controllers
 
             if (usuarioIniciar == null)
             {
-                usuarioIniciar = new Usuario() { Error = "Email y/o Contraseña inválidos" };
+                usuarioIniciar = new Usuario { Error = "Email y/o Contraseña inválidos" };
                 return View("Iniciar", usuarioIniciar);
             }
+
             if (usuarioIniciar.Activo.ToString().Equals("False"))
             {
-                usuarioIniciar = new Usuario() { Error = "Su usuario está inactivo. Actívelo desde el email recibido" };
+                usuarioIniciar = new Usuario { Error = "Su usuario está inactivo. Actívelo desde el email recibido" };
                 return View("Iniciar", usuarioIniciar);
             }
 
@@ -47,17 +46,11 @@ namespace Solidam.Controllers
         [HttpPost]
         public ActionResult RegistrarUsuario(Usuario usuario)
         {
+            var usuarioEvaluado = UsuarioService.Instance.Post(usuario);
 
-            Usuario usuarioEvaluado = UsuarioService.Instance.Post(usuario);
-
-            if (usuarioEvaluado != null)
-            {
-                UsuarioService.Instance.EnviarCorreo(usuarioEvaluado.Token, usuarioEvaluado.Email);
-                return View("RegistroExitoso");
-            }
-            
-            return View("Registrar", usuarioEvaluado);
-
+            if (usuarioEvaluado == null) return View("Registrar", usuarioEvaluado);
+            UsuarioService.Instance.EnviarCorreo(usuarioEvaluado.Token, usuarioEvaluado.Email);
+            return View("RegistroExitoso");
         }
 
         public ActionResult RegistroExitoso()
@@ -78,6 +71,5 @@ namespace Solidam.Controllers
             SessionHelper.Usuario = null;
             return RedirectToAction("Inicio", "Inicio");
         }
-
     }
 }
