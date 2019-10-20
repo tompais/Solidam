@@ -18,7 +18,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Solidam</RootNamespace>
     <AssemblyName>Solidam</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -30,6 +30,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TypeScriptToolsVersion>3.5</TypeScriptToolsVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -142,6 +143,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Diagnostics.FileVersionInfo, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Diagnostics.FileVersionInfo.4.3.0\lib\net46\System.Diagnostics.FileVersionInfo.dll</HintPath>
       <Private>True</Private>
@@ -265,8 +267,7 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
@@ -288,9 +289,7 @@
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
@@ -301,6 +300,7 @@
     </Reference>
     <Reference Include="System.Net.Http.WebRequest">
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml.ReaderWriter, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Xml.ReaderWriter.4.3.1\lib\net46\System.Xml.ReaderWriter.dll</HintPath>
       <Private>True</Private>
@@ -331,8 +331,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
+<<<<<<< HEAD
+    <Compile Include="Controllers\PropuestaController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
+=======
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\SeguridadController.cs" />
+>>>>>>> 0e9ff61b08fa1396ec81c02fb746abcd51055fab
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1010,11 +1015,20 @@
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Scripts\utils.js" />
     <Content Include="Scripts\Views\Inicio\inicio.js" />
+<<<<<<< HEAD
+    <Content Include="Images\Views\Usuario\logoBordeBlanco.png" />
+    <Content Include="Scripts\Views\Propuesta\Crear.js" />
+    <Content Include="Scripts\Views\Usuario\Iniciar.js" />
+    <Content Include="Scripts\Views\Usuario\Registrar.js" />
+    <Content Include="Scripts\Views\Usuario\RegistroExitoso.js" />
+    <Content Include="Views\Usuario\Email.html" />
+=======
     <Content Include="Images\Views\Seguridad\logoBordeBlanco.png" />
     <Content Include="Scripts\Views\Seguridad\Iniciar.js" />
     <Content Include="Scripts\Views\Seguridad\Registrar.js" />
     <Content Include="Scripts\Views\Seguridad\RegistroExitoso.js" />
     <Content Include="Views\Seguridad\Email.html" />
+>>>>>>> 0e9ff61b08fa1396ec81c02fb746abcd51055fab
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1050,9 +1064,15 @@
     <Content Include="Views\Seguridad\Iniciar.cshtml" />
     <Content Include="Views\Seguridad\Registrar.cshtml" />
     <Content Include="Views\Shared\pv_HeaderUsuario.cshtml" />
+<<<<<<< HEAD
+    <Content Include="Views\Usuario\RegistroExitoso.cshtml" />
+    <Content Include="Views\Usuario\ActivacionExitosa.cshtml" />
+    <Content Include="Views\Propuesta\CrearPropuesta.cshtml" />
+=======
     <Content Include="Views\Seguridad\RegistroExitoso.cshtml" />
     <Content Include="Views\Seguridad\ActivacionExitosa.cshtml" />
     <Content Include="Views\Perfil\MiPerfil.cshtml" />
+>>>>>>> 0e9ff61b08fa1396ec81c02fb746abcd51055fab
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
