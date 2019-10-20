@@ -902,6 +902,7 @@
     <Content Include="Scripts\js-base64\test\index.html" />
     <Content Include="Scripts\js-base64\test\large.js" />
     <Content Include="Scripts\js-base64\test\yoshinoya.js" />
+    <Content Include="Scripts\Layouts\BaseLayout.js" />
     <Content Include="Scripts\locales\bootstrap-datepicker-en-CA.min.js" />
     <Content Include="Scripts\locales\bootstrap-datepicker.ar-tn.min.js" />
     <Content Include="Scripts\locales\bootstrap-datepicker.ar.min.js" />
@@ -1052,7 +1053,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\layouts\" />
-    <Folder Include="Scripts\layouts\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
