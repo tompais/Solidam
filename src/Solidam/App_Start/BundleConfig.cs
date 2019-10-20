@@ -31,6 +31,12 @@ namespace Solidam
             bundles.Add(new ScriptBundle("~/bundles/jquery.mousewheel").Include("~/Scripts/jquery-mousewheel/jquery.mousewheel.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/base64").Include("~/Scripts/js-base64/base64.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/consts").Include("~/Scripts/consts.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/utils").Include("~/Scripts/utils.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/baseLayout").Include("~/Scripts/Layouts/BaseLayout.js"));
         }
     }
 }

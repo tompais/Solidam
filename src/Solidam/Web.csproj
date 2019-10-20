@@ -331,8 +331,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
+<<<<<<< HEAD
     <Compile Include="Controllers\PropuestaController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
+=======
+    <Compile Include="Controllers\PerfilController.cs" />
+    <Compile Include="Controllers\SeguridadController.cs" />
+>>>>>>> 0e9ff61b08fa1396ec81c02fb746abcd51055fab
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -580,7 +585,7 @@
     <Content Include="Content\Views\Inicio\inicioResponsive.css" />
     <Content Include="Content\Views\Shared\pv_Footer.css" />
     <Content Include="Content\Views\Shared\pv_Header.css" />
-    <Content Include="Content\Views\Usuario\IniciarRegistrar.css" />
+    <Content Include="Content\Views\Seguridad\IniciarRegistrar.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
@@ -614,10 +619,10 @@
     <Content Include="Images\Views\Inicio\widget-1.jpg" />
     <Content Include="Images\Views\Inicio\widget-2.jpg" />
     <Content Include="Images\Views\Inicio\widget-3.jpg" />
-    <Content Include="Images\Views\Usuario\login3.jpg" />
-    <Content Include="Images\Views\Usuario\loginWall.jpg" />
-    <Content Include="Images\Views\Usuario\loginwall2.jpg" />
-    <Content Include="Images\Views\Usuario\LoginWall3.jpg" />
+    <Content Include="Images\Views\Seguridad\login3.jpg" />
+    <Content Include="Images\Views\Seguridad\loginWall.jpg" />
+    <Content Include="Images\Views\Seguridad\loginwall2.jpg" />
+    <Content Include="Images\Views\Seguridad\LoginWall3.jpg" />
     <Content Include="Scripts\alertify.js" />
     <Content Include="Scripts\alertify.min.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
@@ -628,6 +633,7 @@
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\consts.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap4.js" />
@@ -903,6 +909,7 @@
     <Content Include="Scripts\js-base64\test\index.html" />
     <Content Include="Scripts\js-base64\test\large.js" />
     <Content Include="Scripts\js-base64\test\yoshinoya.js" />
+    <Content Include="Scripts\Layouts\BaseLayout.js" />
     <Content Include="Scripts\locales\bootstrap-datepicker-en-CA.min.js" />
     <Content Include="Scripts\locales\bootstrap-datepicker.ar-tn.min.js" />
     <Content Include="Scripts\locales\bootstrap-datepicker.ar.min.js" />
@@ -1006,13 +1013,22 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Scripts\utils.js" />
     <Content Include="Scripts\Views\Inicio\inicio.js" />
+<<<<<<< HEAD
     <Content Include="Images\Views\Usuario\logoBordeBlanco.png" />
     <Content Include="Scripts\Views\Propuesta\Crear.js" />
     <Content Include="Scripts\Views\Usuario\Iniciar.js" />
     <Content Include="Scripts\Views\Usuario\Registrar.js" />
     <Content Include="Scripts\Views\Usuario\RegistroExitoso.js" />
     <Content Include="Views\Usuario\Email.html" />
+=======
+    <Content Include="Images\Views\Seguridad\logoBordeBlanco.png" />
+    <Content Include="Scripts\Views\Seguridad\Iniciar.js" />
+    <Content Include="Scripts\Views\Seguridad\Registrar.js" />
+    <Content Include="Scripts\Views\Seguridad\RegistroExitoso.js" />
+    <Content Include="Views\Seguridad\Email.html" />
+>>>>>>> 0e9ff61b08fa1396ec81c02fb746abcd51055fab
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1045,17 +1061,22 @@
     <Content Include="Views\Inicio\Inicio.cshtml" />
     <Content Include="Views\Shared\pv_Footer.cshtml" />
     <Content Include="Views\Shared\pv_Header.cshtml" />
-    <Content Include="Views\Usuario\Iniciar.cshtml" />
-    <Content Include="Views\Usuario\Registrar.cshtml" />
+    <Content Include="Views\Seguridad\Iniciar.cshtml" />
+    <Content Include="Views\Seguridad\Registrar.cshtml" />
     <Content Include="Views\Shared\pv_HeaderUsuario.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Usuario\RegistroExitoso.cshtml" />
     <Content Include="Views\Usuario\ActivacionExitosa.cshtml" />
     <Content Include="Views\Propuesta\CrearPropuesta.cshtml" />
+=======
+    <Content Include="Views\Seguridad\RegistroExitoso.cshtml" />
+    <Content Include="Views\Seguridad\ActivacionExitosa.cshtml" />
+    <Content Include="Views\Perfil\MiPerfil.cshtml" />
+>>>>>>> 0e9ff61b08fa1396ec81c02fb746abcd51055fab
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\layouts\" />
-    <Folder Include="Scripts\layouts\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

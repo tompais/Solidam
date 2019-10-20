@@ -1,34 +1,21 @@
 ﻿@using Helpers
-<!DOCTYPE html>
 
 @{
     Layout = "_BaseLayout.cshtml";
 }
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-</head>
-<body>
+@if (SessionHelper.Usuario == null)
+{
+    @RenderPage("pv_Header.cshtml")
+}
+else
+{
+    @RenderPage("pv_HeaderUsuario.cshtml")
 
+}
 
+<div>
+    @RenderBody()
+</div>
 
-    @if (SessionHelper.Usuario == null)
-    {
-        @RenderPage("pv_Header.cshtml")
-    }
-    else
-    {
-        @RenderPage("pv_HeaderUsuario.cshtml")
-
-    }
-
-
-    <div>
-        @RenderBody()
-    </div>
-
-    @RenderPage("~/Views/Shared/pv_Footer.cshtml")
-</body>
-</html>
+@RenderPage("~/Views/Shared/pv_Footer.cshtml")

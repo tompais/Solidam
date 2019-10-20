@@ -1,4 +1,4 @@
-﻿@Styles.Render("~/Content/Views/Usuario/IniciarRegistrar.css")
+﻿@Styles.Render("~/Content/Views/Seguridad/IniciarRegistrar.css")
 
 @{
     ViewBag.Title = "Activacion Exitosa";
@@ -11,7 +11,7 @@
         <div class="jumbotron pt-3 bg-white">
 
             <div class="text-center my-0">
-                <img alt="" src="../../Images/Views/Inicio/Logotipo.png">
+                <img alt="" src="@Url.Content("~/Images/Views/Inicio/Logotipo.png")">
             </div>
 
             <div class="text-center ">
@@ -21,7 +21,7 @@
                 <hr>
 
                 <p class="lead mt-3">
-                    <a class="btn btn-primary btn-sm" id="btnContinuar" href="@Url.Action("Iniciar","Usuario")">Iniciar Sesion</a>
+                    <a class="btn btn-primary btn-sm" id="btnContinuar" href="@Url.Action("Iniciar","Seguridad")">Iniciar Sesion</a>
                 </p>
 
             </div>

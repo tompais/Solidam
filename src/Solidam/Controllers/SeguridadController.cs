@@ -7,7 +7,7 @@ using Utils;
 
 namespace Solidam.Controllers
 {
-    public class UsuarioController : BaseController
+    public class SeguridadController : Controller
     {
         public ActionResult Iniciar()
         {
@@ -19,7 +19,7 @@ namespace Solidam.Controllers
         {
             usuario.Password = Sha1.GetSHA1(usuario.Password);
 
-            var usuarioIniciar = UsuarioService.Instance.Get(usuario).FirstOrDefault();
+            var usuarioIniciar = SeguridadService.Instance.Get(usuario).FirstOrDefault();
 
             if (usuarioIniciar == null)
             {
@@ -46,10 +46,10 @@ namespace Solidam.Controllers
         [HttpPost]
         public ActionResult RegistrarUsuario(Usuario usuario)
         {
-            var usuarioEvaluado = UsuarioService.Instance.Post(usuario);
+            var usuarioEvaluado = SeguridadService.Instance.Post(usuario);
 
             if (usuarioEvaluado == null) return View("Registrar", usuarioEvaluado);
-            UsuarioService.Instance.EnviarCorreo(usuarioEvaluado.Token, usuarioEvaluado.Email);
+            SeguridadService.Instance.EnviarCorreo(usuarioEvaluado.Token, usuarioEvaluado.Email);
             return View("RegistroExitoso");
         }
 
@@ -61,7 +61,7 @@ namespace Solidam.Controllers
         [HttpGet]
         public ActionResult Activar(string token)
         {
-            UsuarioService.Instance.Put(new Usuario { Token = token, Activo = true });
+            SeguridadService.Instance.Put(new Usuario { Token = token, Activo = true });
 
             return View("ActivacionExitosa");
         }
