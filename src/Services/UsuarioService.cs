@@ -21,7 +21,7 @@ using Utils;
 
 namespace Services
 {
-    public class UsuarioService : BaseService<UsuarioService>, IPostService<Usuario>, IGetService<Usuario> , IPutService<Usuario>
+    public class UsuarioService : BaseService<UsuarioService>, IPostService<Usuario>, IGetService<Usuario>, IPutService<Usuario>
     {
         private UsuarioService()
         {
@@ -29,12 +29,32 @@ namespace Services
 
         public Usuario Post(Usuario model)
         {
-            ValidarUsuario(model);
+            model.Activo = false;
+            model.FechaCracion = DateTime.Now;
+            model.TipoUsuario = 2;
+            model.Token = Guid.NewGuid().ToString();
 
-            Db.Usuario.Add(model);
-            Db.SaveChanges();
+            var emailExitente = Db.Usuario.FirstOrDefault(u => u.Email == model.Email);
 
-            return model;
+            Usuario retorno = null;
+
+            if (emailExitente == null)
+            {
+                ValidarUsuario(model);
+
+                model.Password = Sha1.GetSHA1(model.Password);
+
+                Db.Usuario.Add(model);
+                Db.SaveChanges();
+
+                retorno = model;
+            }
+            else
+            {
+                retorno = new Usuario() { Error = "Ya existe un usuario registrado con este correo" };
+            }
+
+            return retorno;
         }
 
         public List<Usuario> Get(Usuario model)
@@ -42,6 +62,7 @@ namespace Services
             var usuarios = Db.Usuario.AsQueryable();
 
             if (model == null) return usuarios.ToList();
+
             if (!string.IsNullOrEmpty(model.Email))
                 usuarios = usuarios.Where(u => u.Email.Equals(model.Email));
 
@@ -57,18 +78,25 @@ namespace Services
         public Usuario Put(Usuario model)
         {
             var usuarioAModificar = Get(model).FirstOrDefault();
-            
-            if(!string.IsNullOrEmpty(model.Nombre))
-                usuarioAModificar.Nombre = model.Nombre;
-            
-            if(!string.IsNullOrEmpty(model.Apellido))
-                usuarioAModificar.Apellido = model.Apellido;
 
-            if (!string.IsNullOrEmpty(model.UserName))
-                usuarioAModificar.UserName = model.UserName;
+            if (usuarioAModificar != null)
+            {
+                if (!string.IsNullOrEmpty(model.Nombre))
+                    usuarioAModificar.Nombre = model.Nombre;
 
-            if (model.Activo)
-                usuarioAModificar.Activo = model.Activo;
+                if (!string.IsNullOrEmpty(model.Apellido))
+                    usuarioAModificar.Apellido = model.Apellido;
+
+                if (!string.IsNullOrEmpty(model.UserName))
+                    usuarioAModificar.UserName = model.UserName;
+
+                if (model.Activo)
+                    usuarioAModificar.Activo = model.Activo;
+            }
+            else
+            {
+                throw new UsuarioException("El usuario buscado no existe.", ErrorCode.UsurioInexistente);
+            }
 
             Db.SaveChanges();
 
@@ -77,19 +105,43 @@ namespace Services
 
         public void ValidarUsuario(Usuario model)
         {
+            if (string.IsNullOrEmpty(model.FechaNacimiento.ToString()))
+            {
+                throw new UsuarioException("La fecha de nacimiento no puede se vacia o nula.", ErrorCode.FechaNacimientoInvalida);
+            }
+
+            if ((DateTime.Now.Year - model.FechaNacimiento.Year) < 18)
+            {
+                throw new UsuarioException("El usuario no puede ser menor a 18 años", ErrorCode.FechaNacimientoInvalida);
+            }
 
             EmailAddressAttribute email = new EmailAddressAttribute();
 
-            if (!email.IsValid(model.Email))
+            if (string.IsNullOrEmpty(model.Email) || !email.IsValid(model.Email))
             {
-                throw  new UsuarioException("Formato de email Incorrecto", ErrorCode.EmailInvalidoUsuario);
+                throw new UsuarioException("Formato de email incorrecto.", ErrorCode.EmailInvalido);
             }
 
-            Regex regexPass = new Regex(@"/^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/");
+            var poseeNumeros = new Regex(@"[0-9]+");
+            var poseeLetraMayus = new Regex(@"[A-Z]+");
+            var posee8Caracteres = new Regex(@".{8,}");
 
-            if (!regexPass.IsMatch(model.Password))
+            var regexPassValidacion = poseeNumeros.IsMatch(model.Password) && poseeLetraMayus.IsMatch(model.Password) && posee8Caracteres.IsMatch(model.Password);
+            
+
+            if (string.IsNullOrEmpty(model.Password) || !regexPassValidacion)
             {
-                throw new UsuarioException("Formato de password Incorrecto", ErrorCode.PassInvalidaUsuario);
+                throw new UsuarioException("Formato de password incorrecto.", ErrorCode.PasswordInvalida);
+            }
+
+            if (model.TipoUsuario != 2)
+            {
+                throw new UsuarioException("La cuenta no puede ser de otro tipo que no sea usario", ErrorCode.TipoUsuarioInvalido);
+            }
+
+            if (string.IsNullOrEmpty(model.Token))
+            {
+                throw new UsuarioException("La cuenta debe poseer un token obligatoriamente", ErrorCode.TokenInvalido);
             }
 
         }

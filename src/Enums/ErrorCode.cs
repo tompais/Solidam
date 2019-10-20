@@ -2,9 +2,11 @@
 {
     public enum ErrorCode
     {
-        EmailInvalidoUsuario = 1,
-        PassInvalidaUsuario,
-
-
+        EmailInvalido = 1,
+        PasswordInvalida,
+        FechaNacimientoInvalida,
+        TipoUsuarioInvalido,
+        TokenInvalido,
+        UsurioInexistente
     }
 }

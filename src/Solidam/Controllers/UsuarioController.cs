@@ -35,6 +35,7 @@ namespace Solidam.Controllers
             }
 
             SessionHelper.Usuario = usuarioIniciar;
+
             return RedirectToAction("Inicio", "Inicio");
         }
 
@@ -47,17 +48,16 @@ namespace Solidam.Controllers
         public ActionResult RegistrarUsuario(Usuario usuario)
         {
 
-            usuario.Activo = false;
-            usuario.FechaCracion = DateTime.Now;
-            usuario.TipoUsuario = 2;
-            usuario.Token = Guid.NewGuid().ToString();
-            usuario.Password = Sha1.GetSHA1(usuario.Password);
-
             Usuario usuarioEvaluado = UsuarioService.Instance.Post(usuario);
 
-            UsuarioService.Instance.EnviarCorreo(usuarioEvaluado.Token,usuarioEvaluado.Email);
+            if (usuarioEvaluado != null)
+            {
+                UsuarioService.Instance.EnviarCorreo(usuarioEvaluado.Token, usuarioEvaluado.Email);
+                return View("RegistroExitoso");
+            }
+            
+            return View("Registrar", usuarioEvaluado);
 
-            return View("RegistroExitoso");
         }
 
         public ActionResult RegistroExitoso()

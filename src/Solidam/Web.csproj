@@ -1007,6 +1007,7 @@
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Scripts\Views\Inicio\inicio.js" />
     <Content Include="Images\Views\Usuario\logoBordeBlanco.png" />
+    <Content Include="Scripts\Views\Usuario\Iniciar.js" />
     <Content Include="Scripts\Views\Usuario\Registrar.js" />
     <Content Include="Scripts\Views\Usuario\RegistroExitoso.js" />
     <Content Include="Views\Usuario\Email.html" />

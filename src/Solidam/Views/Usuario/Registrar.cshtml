@@ -8,70 +8,75 @@
     Layout = "~/Views/Shared/_AnonimoLayout.cshtml";
 }
 
+@using Castle.Core.Internal
+@model Models.Usuario
+
 <body class="my-login-page">
-<div class="container h-100">
-    <div class="row justify-content-md-center h-100">
-        <div class="card-wrapper">
-            <div class="brand">
-                <a href="@Url.Action("Inicio","Inicio")"><img src="@Url.Content("~/Images/Views/Usuario/logoBordeBlanco.png")" alt="logo"></a>
-            </div>
-            <div class="card fat">
-                <div class="card-body">
-                    <h4 class="card-title">Registrar Usuario</h4>
-                    <form method="POST" action="@Url.Action("RegistrarUsuario","Usuario")" id="formularioRegistro">
+    <div class="container h-100">
+        <div class="row justify-content-md-center h-100">
+            <div class="card-wrapper">
+                <div class="brand">
+                    <a href="@Url.Action("Inicio","Inicio")"><img src="@Url.Content("~/Images/Views/Usuario/logoBordeBlanco.png")" alt="logo"></a>
+                </div>
+                <div class="card fat">
+                    <div class="card-body">
+                        <h4 class="card-title">Registrar Usuario</h4>
+                        <form method="POST" action="@Url.Action("RegistrarUsuario","Usuario")" id="formularioRegistro">
 
-                        <div class="form-group">
-                            <label for="inputEmail">Correo Electronico</label>
-                            <input id="inputEmail" type="text" class="form-control" name="Email" placeholder="Ingrese su Email" autofocus>
+                            <div class="form-group">
+                                <label for="inputEmail">Correo Electronico</label>
+                                <input id="inputEmail" type="text" class="form-control" name="Email" placeholder="ejemplo@gmail.com" autofocus>
 
-                            <div id="errorEmail" class="errorSolidam"><i class="fa fa-exclamation-triangle mr-2"></i><b><span></span></b></div>
+                                <div id="errorEmail" class="errorSolidam"><i class="fa fa-exclamation-triangle mr-2"></i><b><span></span></b></div>
 
-                        </div>
+                                <div class="my-3"><span class="text-danger"><b>@Html.DisplayFor(model => model.Error)</b></span></div>
 
-                        <div class="form-group">
-                            <label for="password">Contraseña</label>
-                            <input id="inputPassword" type="password" class="form-control" name="Password">
-
-                            <div id="errorPass" class="errorSolidam"><i class="fa fa-exclamation-triangle mr-2"></i><b><span></span></b></div>
-
-                        </div>
-
-                        <div class="form-group">
-                            <label for="repassword">Confirmar Contraseña</label>
-                            <input id="inputRePassword" type="password" class="form-control">
-
-                            <div id="errorRePass" class="errorSolidam"><i class="fa fa-exclamation-triangle mr-2"></i><b><span></span></b></div>
-
-                        </div>
-
-                        <div class="form-group">
-                            <label for="fechaDeNacimiento">Feche de Nacimiento</label>
-                            <div class="input-group date" data-provide="datepicker">
-                                <input type="text" class="form-control" id="inputFechaNacimiento" name="FechaNacimiento">
-                                <div class="input-group-addon">
-                                    <span class="fa"></span>
-                                </div>
                             </div>
 
-                            <div id="errorFechaNacimiento" class="errorSolidam"><i class="fa fa-exclamation-triangle mr-2"></i><b><span></span></b></div>
+                            <div class="form-group">
+                                <label for="password">Contraseña</label>
+                                <input id="inputPassword" type="password" class="form-control" name="Password" placeholder="Ej: Pass1234">
 
-                        </div>
+                                <div id="errorPass" class="errorSolidam"><i class="fa fa-exclamation-triangle mr-2"></i><b><span></span></b></div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="repassword">Confirmar Contraseña</label>
+                                <input id="inputRePassword" type="password" class="form-control" placeholder="Ej: Pass1234">
+
+                                <div id="errorRePass" class="errorSolidam"><i class="fa fa-exclamation-triangle mr-2"></i><b><span></span></b></div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="fechaDeNacimiento">Feche de Nacimiento</label>
+                                <div class="input-group date" data-provide="datepicker">
+                                    <input type="text" class="form-control" id="inputFechaNacimiento" name="FechaNacimiento" placeholder="Ej: 06/15/1999">
+                                    <div class="input-group-addon">
+                                        <span class="fa"></span>
+                                    </div>
+                                </div>
+
+                                <div id="errorFechaNacimiento" class="errorSolidam"><i class="fa fa-exclamation-triangle mr-2"></i><b><span></span></b></div>
+
+                            </div>
 
 
-                        <div class="form-group m-0">
-                            <button type="button" class="btn btn-primary btn-block" id="btnRegistrar">Registrar</button>
-                        </div>
+                            <div class="form-group m-0">
+                                <button type="button" class="btn btn-primary btn-block" id="btnRegistrar">Registrar</button>
+                            </div>
 
-                        <div class="mt-4 text-center">
-                            Ya tienes una cuenta? <a href="@Url.Action("Iniciar","Usuario")">Inicia Sesion</a>
-                        </div>
+                            <div class="mt-4 text-center">
+                                Ya tienes una cuenta? <a href="@Url.Action("Iniciar","Usuario")">Inicia Sesion</a>
+                            </div>
 
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </body>
 
 @Scripts.Render("~/Scripts/Views/Usuario/Registrar.js");
