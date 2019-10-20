@@ -1,0 +1,54 @@
+﻿@Styles.Render("~/Content/bootstrap-datepicker3.min.css");
+@Scripts.Render("~/Scripts/bootstrap-datepicker.min.js");
+
+@{
+    ViewBag.Title = "CrearPropuesta";
+}
+
+<h2>Crear Propuesta</h2>
+
+@model Models.Propuesta
+
+<form action="/Propuesta/Crear" method="post">
+    <div class="form-group">
+        <label for="nombrePropuesta">Nombre de la propuesta</label>
+        <input type="text" class="form-control" id="nombrePropuesta" name="Nombre" />
+    </div>
+    <div class="form-group">
+        <label for="descripcionPropuesta">Descripción de la propuesta</label>
+        <textarea class="form-control" id="descripcionPropuesta" rows="5" name="Descripcion" />
+    </div>
+    <div class="form-group">
+        <label for="fechaFin">Fecha de finalización</label>
+        <div class="input-group date" data-provide="datepicker" id="fechaFin">
+            <input type="text" class="form-control" name="FechaFin">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="telefonoCont">Teléfono de contacto</label>
+        <input type="text" class="form-control" id="telefonoCont" name="TelefonoContacto" />
+    </div>
+    <div class="form-group">
+        <label for="tipoDonacion">Tipo de donación</label>
+        <select class="form-control" id="tipoDonacion" name="TipoDonacion">
+            <option disabled selected value="0">Seleccionar</option>
+            <option value="1">Monetaria</option>
+            <option value="2">Insumos</option>
+            <option value="3">Horas de trabajo</option>
+        </select>
+    </div>
+    <div id="datosDonacion" class="form-group"></div>
+    <div class="form-group">
+        <label for="fotoPropuesta">Foto</label>
+        <input type="file" class="form-control" id="fotoPropuesta" name="Foto" />
+    </div>
+    <div class="form-group">
+        <label for="nombreRef">Nombre</label>
+        <input type="text" class="form-control" id="nombreRef" name="" />
+        <label for="telefonoRef">Teléfono</label>
+        <input type="text" class="form-control" id="telefonoRef" name="" />
+    </div>
+    <input type="submit" class="btn btn-primary" value="Crear" />
+</form>
+
+@Scripts.Render("~/Scripts/Views/Propuesta/Crear.js");
