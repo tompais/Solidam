@@ -1,12 +1,10 @@
 ﻿@Styles.Render("~/Content/bootstrap-datepicker.min.css");
-@Styles.Render("~/Content/Views/Usuario/IniciarRegistrar.css");
+@Styles.Render("~/Content/Views/Seguridad/IniciarRegistrar.css");
 
 @{
     ViewBag.Title = "Registrarse";
     Layout = "~/Views/Shared/_AnonimoLayout.cshtml";
 }
-
-@using Castle.Core.Internal
 @model Models.Usuario
 
 <body class="my-login-page">
@@ -14,12 +12,12 @@
         <div class="row justify-content-md-center h-100">
             <div class="card-wrapper">
                 <div class="brand">
-                    <a href="@Url.Action("Inicio","Inicio")"><img src="@Url.Content("~/Images/Views/Usuario/logoBordeBlanco.png")" alt="logo"></a>
+                    <a href="@Url.Action("Inicio","Inicio")"><img src="@Url.Content("~/Images/Views/Seguridad/logoBordeBlanco.png")" alt="logo"></a>
                 </div>
                 <div class="card fat">
                     <div class="card-body">
                         <h4 class="card-title">Registrar Usuario</h4>
-                        <form method="POST" action="@Url.Action("RegistrarUsuario","Usuario")" id="formularioRegistro">
+                        <form method="POST" action="@Url.Action("RegistrarUsuario","Seguridad")" id="formularioRegistro">
 
                             <div class="form-group">
                                 <label for="inputEmail">Correo Electronico</label>
@@ -66,7 +64,7 @@
                             </div>
 
                             <div class="mt-4 text-center">
-                                Ya tienes una cuenta? <a href="@Url.Action("Iniciar","Usuario")">Inicia Sesion</a>
+                                Ya tienes una cuenta? <a href="@Url.Action("Iniciar","Seguridad")">Inicia Sesion</a>
                             </div>
 
                         </form>
@@ -79,6 +77,6 @@
 
 @Scripts.Render("~/Scripts/bootstrap-datepicker.min.js");
 @Scripts.Render("~/Scripts/locales/bootstrap-datepicker.es.min.js")
-@Scripts.Render("~/Scripts/Views/Usuario/Registrar.js");
+@Scripts.Render("~/Scripts/Views/Seguridad/Registrar.js");
 
 

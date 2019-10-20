@@ -14,14 +14,15 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
+using Helpers;
 using Utils;
 
 namespace Services
 {
-    public class UsuarioService : BaseService<UsuarioService>, IPostService<Usuario>, IGetService<Usuario>,
+    public class SeguridadService : BaseService<SeguridadService>, IPostService<Usuario>, IGetService<Usuario>,
         IPutService<Usuario>
     {
-        private UsuarioService()
+        private SeguridadService()
         {
         }
 
@@ -116,8 +117,8 @@ namespace Services
             if (string.IsNullOrEmpty(model.Email) || !email.IsValid(model.Email))
                 throw new UsuarioException("Formato de email incorrecto.", ErrorCode.EmailInvalido);
 
-            var poseeNumeros = new Regex(@"[0-9]+");
-            var poseeLetraMayus = new Regex(@"[A-Z]+");
+            var poseeNumeros = new Regex(RegexType.OnlyNumbers);
+            var poseeLetraMayus = new Regex(RegexType.OnlyLetters);
             var posee8Caracteres = new Regex(@".{8,}");
 
             var regexPassValidacion = poseeNumeros.IsMatch(model.Password) && poseeLetraMayus.IsMatch(model.Password) &&
@@ -142,7 +143,7 @@ namespace Services
             msg.Subject = "Activar cuenta en Solidam";
             msg.SubjectEncoding = Encoding.UTF8;
 
-            var link = "http://localhost:" + HttpContext.Current.Request.Url.Port + "/Usuario/Activar?token=" + token;
+            var link = "http://localhost:" + HttpContext.Current.Request.Url.Port + "/Seguridad/Activar?token=" + token;
 
             var etiquita =
                 $"<a href=\"{link}\" style='font-size: 20px; font-family: Helvetica, Arial, sans-serif; text-decoration: none; border-radius: 4.8px; line-height: 30px; display: inline-block; font-weight: normal; white-space: nowrap; background-color: #028817; color: #ffffff; padding: 8px 16px; border: white;'>Activar ahora</a>";
@@ -179,7 +180,7 @@ namespace Services
         {
             var cuerpo = string.Empty;
 
-            using (var reader = new StreamReader(AppContext.BaseDirectory + "Views\\Usuario\\Email.html"))
+            using (var reader = new StreamReader(AppContext.BaseDirectory + "Views\\Seguridad\\Email.html"))
             {
                 cuerpo = reader.ReadToEnd();
             }

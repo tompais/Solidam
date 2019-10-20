@@ -1,5 +1,4 @@
-﻿@Styles.Render("~/Content/Views/Usuario/IniciarRegistrar.css")
-@Scripts.Render("~/Scripts/Views/Usuario/RegistroExitoso.js");
+﻿@Styles.Render("~/Content/Views/Seguridad/IniciarRegistrar.css")
 
 @{
     ViewBag.Title = "Registro Exitoso";
@@ -12,7 +11,7 @@
         <div class="jumbotron pt-3 bg-white">
 
             <div class="text-center my-0">
-                <img alt="" src="../../Images/Views/Inicio/Logotipo.png">
+                <img alt="" src="@Url.Content("~/Images/Views/Inicio/Logotipo.png")">
             </div>
 
             <div class="text-center ">
@@ -30,3 +29,5 @@
 
     </div>
 </body>
+
+@Scripts.Render("~/Scripts/Views/Seguridad/RegistroExitoso.js");
