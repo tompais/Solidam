@@ -1,7 +1,9 @@
-﻿$('.datepicker').datepicker({
-    format: 'dd/mm/yyyy',
-    language: 'es',
-    startDate: '-3d'
+﻿$(function() {
+    inputFechaNacimiento.parent().datepicker({
+        format: 'dd/mm/yyyy',
+        language: 'es',
+        autoclose: true
+    });
 });
 
 const regexEmail = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
