@@ -6,6 +6,7 @@
         PasswordInvalida,
         FechaNacimientoInvalida,
         TipoUsuarioInvalido,
-        TokenInvalido
+        TokenInvalido,
+        UsurioInexistente
     }
 }

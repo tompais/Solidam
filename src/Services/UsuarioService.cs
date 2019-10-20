@@ -21,7 +21,7 @@ using Utils;
 
 namespace Services
 {
-    public class UsuarioService : BaseService<UsuarioService>, IPostService<Usuario>, IGetService<Usuario> , IPutService<Usuario>
+    public class UsuarioService : BaseService<UsuarioService>, IPostService<Usuario>, IGetService<Usuario>, IPutService<Usuario>
     {
         private UsuarioService()
         {
@@ -34,14 +34,27 @@ namespace Services
             model.TipoUsuario = 2;
             model.Token = Guid.NewGuid().ToString();
 
-            ValidarUsuario(model);
+            var emailExitente = Db.Usuario.FirstOrDefault(u => u.Email == model.Email);
 
-            model.Password = Sha1.GetSHA1(model.Password);
+            Usuario retorno = null;
 
-            Db.Usuario.Add(model);
-            Db.SaveChanges();   
+            if (emailExitente == null)
+            {
+                ValidarUsuario(model);
 
-            return model;
+                model.Password = Sha1.GetSHA1(model.Password);
+
+                Db.Usuario.Add(model);
+                Db.SaveChanges();
+
+                retorno = model;
+            }
+            else
+            {
+                retorno = new Usuario() { Error = "Ya existe un usuario registrado con este correo" };
+            }
+
+            return retorno;
         }
 
         public List<Usuario> Get(Usuario model)
@@ -49,6 +62,7 @@ namespace Services
             var usuarios = Db.Usuario.AsQueryable();
 
             if (model == null) return usuarios.ToList();
+
             if (!string.IsNullOrEmpty(model.Email))
                 usuarios = usuarios.Where(u => u.Email.Equals(model.Email));
 
@@ -64,18 +78,25 @@ namespace Services
         public Usuario Put(Usuario model)
         {
             var usuarioAModificar = Get(model).FirstOrDefault();
-            
-            if(!string.IsNullOrEmpty(model.Nombre))
-                usuarioAModificar.Nombre = model.Nombre;
-            
-            if(!string.IsNullOrEmpty(model.Apellido))
-                usuarioAModificar.Apellido = model.Apellido;
 
-            if (!string.IsNullOrEmpty(model.UserName))
-                usuarioAModificar.UserName = model.UserName;
+            if (usuarioAModificar != null)
+            {
+                if (!string.IsNullOrEmpty(model.Nombre))
+                    usuarioAModificar.Nombre = model.Nombre;
 
-            if (model.Activo)
-                usuarioAModificar.Activo = model.Activo;
+                if (!string.IsNullOrEmpty(model.Apellido))
+                    usuarioAModificar.Apellido = model.Apellido;
+
+                if (!string.IsNullOrEmpty(model.UserName))
+                    usuarioAModificar.UserName = model.UserName;
+
+                if (model.Activo)
+                    usuarioAModificar.Activo = model.Activo;
+            }
+            else
+            {
+                throw new UsuarioException("El usuario buscado no existe.", ErrorCode.UsurioInexistente);
+            }
 
             Db.SaveChanges();
 
