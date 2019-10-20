@@ -127,7 +127,7 @@ namespace Services
             var posee8Caracteres = new Regex(@".{8,}");
 
             var regexPassValidacion = poseeNumeros.IsMatch(model.Password) && poseeLetraMayus.IsMatch(model.Password) && posee8Caracteres.IsMatch(model.Password);
-
+            
 
             if (string.IsNullOrEmpty(model.Password) || !regexPassValidacion)
             {
