@@ -6,9 +6,9 @@ using System.Web.Mvc;
 
 namespace Solidam.Controllers
 {
-    public class PerfilController : Controller
+    public class UsuarioController : BaseController
     {
-        [Route("/perfil")]
+        [Route("perfil")]
         public ActionResult MiPerfil()
         {
             return View();
