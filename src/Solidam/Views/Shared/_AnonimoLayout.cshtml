@@ -1,18 +1,11 @@
-﻿<!DOCTYPE html>
-
-@{
+﻿@{
     Layout = "_BaseLayout.cshtml";
 }
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/Views/Seguridad/IniciarRegistrar.css")
-</head>
-<body class="my-login-page">
+@Styles.Render("~/Content/Views/Seguridad/IniciarRegistrar.css")
+
+<div class="my-login-page h-100">
 
     @RenderBody()
 
-</body>
-</html>
+</div>
