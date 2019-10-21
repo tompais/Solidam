@@ -94,7 +94,7 @@ namespace Services
             }
             else
             {
-                throw new UsuarioException("El usuario buscado no existe.", ErrorCode.UsurioInexistente);
+                throw new UsuarioException("El usuario buscado no existe.", ErrorCode.UsuarioInexistente);
             }
 
             Db.SaveChanges();

@@ -1,17 +1,20 @@
 ﻿
 using System.Collections.Generic;
 using System.Web;
+using System.Web.SessionState;
 using Models;
 
 namespace Helpers
 {
-    public class SessionHelper
+    public static class SessionHelper
     {
+        private static HttpSessionState CurrentSession => HttpContext.Current.Session;
+
         public static Usuario Usuario
         {
-            get => HttpContext.Current.Session["usuario"] as Usuario;
+            get => CurrentSession["usuario"] as Usuario;
 
-            set => HttpContext.Current.Session["usuario"] = value;
+            set => CurrentSession["usuario"] = value;
         }
 
     }

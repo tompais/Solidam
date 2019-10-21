@@ -331,7 +331,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
-    <Compile Include="Controllers\PerfilController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\SeguridadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1014,6 +1014,7 @@
     <Content Include="Scripts\Views\Seguridad\Iniciar.js" />
     <Content Include="Scripts\Views\Seguridad\Registrar.js" />
     <Content Include="Scripts\Views\Seguridad\RegistroExitoso.js" />
+    <Content Include="Scripts\Views\Usuario\MiPerfil.js" />
     <Content Include="Views\Seguridad\Email.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -1052,7 +1053,7 @@
     <Content Include="Views\Shared\pv_HeaderUsuario.cshtml" />
     <Content Include="Views\Seguridad\RegistroExitoso.cshtml" />
     <Content Include="Views\Seguridad\ActivacionExitosa.cshtml" />
-    <Content Include="Views\Perfil\MiPerfil.cshtml" />
+    <Content Include="Views\Usuario\MiPerfil.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1075,6 +1076,10 @@
     <ProjectReference Include="..\Abstractions\Abstractions.csproj">
       <Project>{94405298-E0A8-4DAF-91B7-661789CB4ED3}</Project>
       <Name>Abstractions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Enums\Enums.csproj">
+      <Project>{37AE37B0-3F43-45DF-B0A7-4ADCF6B18E48}</Project>
+      <Name>Enums</Name>
     </ProjectReference>
     <ProjectReference Include="..\Exceptions\Exceptions.csproj">
       <Project>{F9F6175D-CF2D-47EF-AE88-1E1D164BDC98}</Project>
