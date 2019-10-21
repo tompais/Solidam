@@ -331,13 +331,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
-<<<<<<< HEAD
     <Compile Include="Controllers\PropuestaController.cs" />
-    <Compile Include="Controllers\UsuarioController.cs" />
-=======
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\SeguridadController.cs" />
->>>>>>> 0e9ff61b08fa1396ec81c02fb746abcd51055fab
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1015,20 +1011,12 @@
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Scripts\utils.js" />
     <Content Include="Scripts\Views\Inicio\inicio.js" />
-<<<<<<< HEAD
-    <Content Include="Images\Views\Usuario\logoBordeBlanco.png" />
     <Content Include="Scripts\Views\Propuesta\Crear.js" />
-    <Content Include="Scripts\Views\Usuario\Iniciar.js" />
-    <Content Include="Scripts\Views\Usuario\Registrar.js" />
-    <Content Include="Scripts\Views\Usuario\RegistroExitoso.js" />
-    <Content Include="Views\Usuario\Email.html" />
-=======
     <Content Include="Images\Views\Seguridad\logoBordeBlanco.png" />
     <Content Include="Scripts\Views\Seguridad\Iniciar.js" />
     <Content Include="Scripts\Views\Seguridad\Registrar.js" />
     <Content Include="Scripts\Views\Seguridad\RegistroExitoso.js" />
     <Content Include="Views\Seguridad\Email.html" />
->>>>>>> 0e9ff61b08fa1396ec81c02fb746abcd51055fab
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1064,15 +1052,10 @@
     <Content Include="Views\Seguridad\Iniciar.cshtml" />
     <Content Include="Views\Seguridad\Registrar.cshtml" />
     <Content Include="Views\Shared\pv_HeaderUsuario.cshtml" />
-<<<<<<< HEAD
-    <Content Include="Views\Usuario\RegistroExitoso.cshtml" />
-    <Content Include="Views\Usuario\ActivacionExitosa.cshtml" />
-    <Content Include="Views\Propuesta\CrearPropuesta.cshtml" />
-=======
     <Content Include="Views\Seguridad\RegistroExitoso.cshtml" />
     <Content Include="Views\Seguridad\ActivacionExitosa.cshtml" />
     <Content Include="Views\Perfil\MiPerfil.cshtml" />
->>>>>>> 0e9ff61b08fa1396ec81c02fb746abcd51055fab
+    <Content Include="Views\Propuesta\CrearPropuesta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
