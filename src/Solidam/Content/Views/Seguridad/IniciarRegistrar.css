@@ -1,8 +1,10 @@
-﻿.my-login-page {
+﻿body, html {
+    height: 100%;
+}
+
+.my-login-page {
     font-size: 14px;
     background: url(../../../Images/Views/Seguridad/login3.jpg) no-repeat;
-    height: 758px !important;
-
 }
 
     .my-login-page .brand {
