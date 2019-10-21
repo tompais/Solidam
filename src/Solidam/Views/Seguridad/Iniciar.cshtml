@@ -1,59 +1,54 @@
-﻿@Styles.Render("~/Content/Views/Seguridad/IniciarRegistrar.css");
-
-@{
+﻿@{
     ViewBag.Title = "Iniciar Sesion";
     Layout = "~/Views/Shared/_AnonimoLayout.cshtml";
 }
 @model Models.Usuario
 
-<body class="my-login-page">
-    <div class="container">
-        <div class="row justify-content-md-center h-100">
-            <div class="card-wrapper">
-                <div class="brand">
-                    <a href="@Url.Action("Inicio","Inicio")"><img src="@Url.Content("~/Images/Views/Seguridad/logoBordeBlanco.png")" alt="logo"></a>
-                </div>
-                <div class="card fat">
-                    <div class="card-body">
-                        <h4 class="card-title">Iniciar Sesion</h4>
-                        <form method="GET" class="my-login-validation" action="@Url.Action("IniciarSesion","Seguridad")" id="formularioIniciar">
 
-                            <div class="form-group">
-                                <label for="inputEmail">Correo Electronico</label>
-                                <input id="inputEmail" type="text" class="form-control" name="Email" placeholder="Ingrese su Email" autofocus>
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="card-wrapper">
+            <div class="brand">
+                <a href="@Url.Action("Inicio","Inicio")"><img src="@Url.Content("~/Images/Views/Seguridad/logoBordeBlanco.png")" alt="logo"></a>
+            </div>
+            <div class="card fat">
+                <div class="card-body">
+                    <h4 class="card-title">Iniciar Sesion</h4>
+                    <form method="GET" class="my-login-validation" action="@Url.Action("IniciarSesion","Seguridad")" id="formularioIniciar">
 
-                                <div id="errorEmail" class="errorSolidam"><b><span></span></b></div>
+                        <div class="form-group">
+                            <label for="inputEmail">Correo Electronico</label>
+                            <input id="inputEmail" type="text" class="form-control" name="Email" placeholder="Ingrese su Email" autofocus>
 
-                            </div>
+                            <div id="errorEmail" class="errorSolidam"><i class="fa fa-exclamation-triangle mr-2"></i><b><span></span></b></div>
 
-                            <div class="form-group">
-                                <label for="inputPassword">Contraseña</label>
-                                <input id="inputPassword" type="password" class="form-control" name="Password" placeholder="Ingrese su Contraseña">
+                        </div>
 
-                                <div id="errorPass" class="errorSolidam"><i class="fa fa-exclamation-triangle mr-2"></i><b><span></span></b></div>
+                        <div class="form-group">
+                            <label for="inputPassword">Contraseña</label>
+                            <input id="inputPassword" type="password" class="form-control" name="Password" placeholder="Ingrese su Contraseña" data-eye>
+                            <div id="errorPass" class="errorSolidam"><i class="fa fa-exclamation-triangle mr-2"></i><b><span></span></b></div>
 
-                            </div>
+                        </div>
 
+                        <div class="my-3"><span class="text-danger"><b>@Html.DisplayFor(model => model.Error)</b></span></div>
 
-                            <div class="my-3"><span class="text-danger"><b>@Html.DisplayFor(model => model.Error)</b></span></div>
+                        <div class="form-group m-0">
+                            <button type="button" class="btn btn-primary btn-block" id="btnIniciar">
+                                Ingresar
+                            </button>
+                        </div>
 
+                        <div class="mt-4 text-center">
+                            No tienes una cuenta? <a href="@Url.Action("Registrar","Seguridad")">Registrate</a>
+                        </div>
 
-                            <div class="form-group m-0">
-                                <button type="button" class="btn btn-primary btn-block" id="btnIniciar">
-                                    Ingresar
-                                </button>
-                            </div>
-
-                            <div class="mt-4 text-center">
-                                No tienes una cuenta? <a href="@Url.Action("Registrar","Seguridad")">Registrate</a>
-                            </div>
-
-                        </form>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-</body>
+</div>
 
-@Scripts.Render("~/Scripts/Views/Seguridad/Iniciar.js");
+
+@Scripts.Render("~/Scripts/Views/Seguridad/Iniciar.js")
