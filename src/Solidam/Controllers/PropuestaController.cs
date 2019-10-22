@@ -4,6 +4,7 @@ using Services;
 using System.Linq;
 using System.Web.Mvc;
 using Utils;
+using Enums;
 
 namespace Solidam.Controllers
 {
@@ -11,12 +12,14 @@ namespace Solidam.Controllers
     {
         public ActionResult CrearPropuesta()
         {
+            ViewBag.total = PropuestaService.TotalPropuestasActivas();
             return View();
         }
 
         [HttpPost]
         public ActionResult Crear(Propuesta p)
         {
+            PropuestaService.AgregarPropuesta(p);
             return View();
         }
     }

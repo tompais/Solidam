@@ -1060,6 +1060,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\layouts\" />
+    <Folder Include="Images\Views\Propuesta\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -1078,6 +1079,10 @@
     <ProjectReference Include="..\Abstractions\Abstractions.csproj">
       <Project>{94405298-E0A8-4DAF-91B7-661789CB4ED3}</Project>
       <Name>Abstractions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Enums\Enums.csproj">
+      <Project>{37ae37b0-3f43-45df-b0a7-4adcf6b18e48}</Project>
+      <Name>Enums</Name>
     </ProjectReference>
     <ProjectReference Include="..\Exceptions\Exceptions.csproj">
       <Project>{F9F6175D-CF2D-47EF-AE88-1E1D164BDC98}</Project>
