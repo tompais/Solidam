@@ -26,8 +26,17 @@ namespace Services
 
         public static Propuestas GetById(int id)
         {
-            return Db.Propuestas.FirstOrDefault(p => p.IdPropuesta == id);
+            return Db.Propuestas.Include("PropuestasDonacionesHorasTrabajo")
+                .Include("PropuestasDonacionesInsumos")
+                .Include("PropuestasDonacionesMonetarias")
+                .FirstOrDefault(p => p.IdPropuesta == id);
         }
+
+        //public static Propuestas GetPropuestaCompletaById(int id)
+        //{
+
+            
+        //}
         public static int TotalPropuestasActivas()
         {
             return Db.Propuestas.Count(x => x.Estado == 0 && x.IdUsuarioCreador == Helpers.SessionHelper.Usuario.IdUsuario);
@@ -38,6 +47,7 @@ namespace Services
             return Db.Propuestas.Include("PropuestasDonacionesHorasTrabajo")
                 .Include("PropuestasDonacionesInsumos")
                 .Include("PropuestasDonacionesMonetarias")
+                .Include("Usuarios")
                 .Where(p => p.Estado == (int)PropuestaEstado.Abierta).OrderByDescending(p => p.Valoracion).Take(5).ToList();
         }
 

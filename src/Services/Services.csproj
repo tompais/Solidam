@@ -54,7 +54,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseService.cs" />
+    <Compile Include="DenunciasService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MotivoDenunciaService.cs" />
     <Compile Include="PropuestasValoracionesService.cs" />
     <Compile Include="PropuestaService.cs" />
     <Compile Include="TestService.cs" />

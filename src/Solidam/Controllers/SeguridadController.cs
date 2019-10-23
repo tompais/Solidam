@@ -10,6 +10,7 @@ namespace Solidam.Controllers
 {
     public class SeguridadController : Controller
     {
+        [Route("/login")]
         public ActionResult Iniciar()
         {
             return View();
@@ -39,6 +40,12 @@ namespace Solidam.Controllers
 
             SessionHelper.Usuario = usuarioIniciar;
 
+            if (TempData["pendingRoute"] != null)
+            {
+                var rutaPendiente = TempData["pendingRoute"].ToString();
+                TempData["pendingRoute"] = null;
+                return Redirect(rutaPendiente);
+            }
             return RedirectToAction("Inicio", "Inicio");
         }
 

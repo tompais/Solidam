@@ -32,6 +32,7 @@
         <AssociationConnector Association="Model.FK_PropuestasReferencias_Propuestas" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_PropuestasValoraciones_Propuestas" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_PropuestasValoraciones_Usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Denuncia_MotivoDenuncia" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
