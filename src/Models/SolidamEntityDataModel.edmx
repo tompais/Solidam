@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Denuncias">
           <Key>
             <PropertyRef Name="IdDenuncia" />
@@ -131,6 +131,18 @@
           <Property Name="Activo" Type="bit" Nullable="false" />
           <Property Name="Token" Type="nvarchar" MaxLength="30" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Denuncia_MotivoDenuncia">
+          <End Role="MotivoDenuncia" Type="Self.MotivoDenuncia" Multiplicity="1" />
+          <End Role="Denuncias" Type="Self.Denuncias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MotivoDenuncia">
+              <PropertyRef Name="IdMotivoDenuncia" />
+            </Principal>
+            <Dependent Role="Denuncias">
+              <PropertyRef Name="IdMotivo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Denuncias_Propuestas">
           <End Role="Propuestas" Type="Self.Propuestas" Multiplicity="1" />
           <End Role="Denuncias" Type="Self.Denuncias" Multiplicity="*" />
@@ -324,6 +336,10 @@
           <EntitySet Name="PropuestasReferencias" EntityType="Self.PropuestasReferencias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PropuestasValoraciones" EntityType="Self.PropuestasValoraciones" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Denuncia_MotivoDenuncia" Association="Self.FK_Denuncia_MotivoDenuncia">
+            <End Role="MotivoDenuncia" EntitySet="MotivoDenuncia" />
+            <End Role="Denuncias" EntitySet="Denuncias" />
+          </AssociationSet>
           <AssociationSet Name="FK_Denuncias_Propuestas" Association="Self.FK_Denuncias_Propuestas">
             <End Role="Propuestas" EntitySet="Propuestas" />
             <End Role="Denuncias" EntitySet="Denuncias" />
@@ -385,8 +401,7 @@
             <End Role="PropuestasValoraciones" EntitySet="PropuestasValoraciones" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -403,6 +418,7 @@
           <Property Name="Estado" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Propuestas" Relationship="Self.FK_Denuncias_Propuestas" FromRole="Denuncias" ToRole="Propuestas" />
           <NavigationProperty Name="Usuarios" Relationship="Self.FK_Denuncias_Usuarios" FromRole="Denuncias" ToRole="Usuarios" />
+          <NavigationProperty Name="MotivoDenuncia" Relationship="Model.FK_Denuncia_MotivoDenuncia" FromRole="Denuncias" ToRole="MotivoDenuncia" />
         </EntityType>
         <EntityType Name="DonacionesHorasTrabajo">
           <Key>
@@ -445,6 +461,7 @@
           </Key>
           <Property Name="IdMotivoDenuncia" Type="Int32" Nullable="false" />
           <Property Name="Descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Denuncias" Relationship="Model.FK_Denuncia_MotivoDenuncia" FromRole="MotivoDenuncia" ToRole="Denuncias" />
         </EntityType>
         <EntityType Name="Propuestas">
           <Key>
@@ -799,7 +816,23 @@
             <End Role="Usuarios" EntitySet="Usuarios" />
             <End Role="PropuestasValoraciones" EntitySet="PropuestasValoraciones" />
           </AssociationSet>
+          <AssociationSet Name="FK_Denuncia_MotivoDenuncia" Association="Model.FK_Denuncia_MotivoDenuncia">
+            <End Role="MotivoDenuncia" EntitySet="MotivoDenuncia" />
+            <End Role="Denuncias" EntitySet="Denuncias" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Denuncia_MotivoDenuncia">
+          <End Type="Model.MotivoDenuncia" Role="MotivoDenuncia" Multiplicity="1" />
+          <End Type="Model.Denuncias" Role="Denuncias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MotivoDenuncia">
+              <PropertyRef Name="IdMotivoDenuncia" />
+            </Principal>
+            <Dependent Role="Denuncias">
+              <PropertyRef Name="IdMotivo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

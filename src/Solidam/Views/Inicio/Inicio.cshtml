@@ -1,4 +1,5 @@
-﻿@using System.Runtime.InteropServices
+﻿@using System.Globalization
+@using System.Runtime.InteropServices
 @using Enums
 @using Helpers
 @using Models
@@ -48,277 +49,26 @@
             </div>
             @foreach (Propuestas propuesta in Model.Propuestas)
             {
-                PropuestasValoraciones valoracion = PropuestasValoracionesService.Valore(propuesta.IdPropuesta);
-                switch (propuesta.TipoDonacion)
-                {
-                    case (int)TipoDonacion.Monetaria:
-                        var obtenido = PropuestaService.GetDineroDonadoByPropuestaId(propuesta.IdPropuesta);
-                        var meta = propuesta.PropuestasDonacionesMonetarias.FirstOrDefault(pdm => pdm.IdPropuesta == propuesta.IdPropuesta)?.Dinero;
-                        <div class="col-md-4">
-                            <div class="causes">
-                                <div class="causes-img">
-                                    <a href="single-cause.html">
-                                        <img src="@Url.Content("~/Images/Views/Inicio/post-1.jpg")" alt="">
-                                    </a>
-                                </div>
-                                <div class="causes-progress">
-                                    <div class="causes-progress-bar">
-                                        <div style="width: @(obtenido * 100 / meta)%;">
-                                            <span>%@(obtenido * 100 / meta)</span>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <span class="causes-raised">Obtenido: <strong>$@(obtenido)</strong></span>
-                                        <span class="causes-goal">Meta: <strong>$@(meta)</strong></span>
-                                    </div>
-                                </div>
-                                <div class="causes-content">
-                                    <span class="mr-3">Valoración: (@propuesta.Valoracion%)</span><h3>@propuesta.Nombre</h3>
-                                    <p>@propuesta.Descripcion</p>
-                                    <div class="d-flex justify-content-between">
-                                        <div>
-                                            <a href="single-cause.html" class="primary-button causes-donate">Donar ahora</a>
-                                        </div>
-                                        <form action="@Url.Action("Valorar","Propuesta")" method="post">
-                                            <input type="hidden" name="IdPropuesta" value="@propuesta.IdPropuesta"/>
-                                            <div class="d-flex justify-content-center align-items-center">
-                                                    <div class="mr-4">
-                                                        <button type="submit" name="mg">
-                                                            <i class="fa fa-thumbs-up @(valoracion == null ? "" : (valoracion.Valoracion ? "text-success" : ""))" aria-hidden="true"></i>
-                                                        </button>
-                                                    </div>
-                                                    <div>
-                                                        <button type="submit" name="nmg">
-                                                            <i class="fa fa-thumbs-down @(valoracion == null ? "" : (!valoracion.Valoracion ? "text-danger" : ""))" aria-hidden="true"></i>
-                                                        </button>
-                                                    </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
+                <div class="col-md-4">
+                    <div class="card p-4 causes">
+                        <div class="causes-img">
+                            <a href="javascript:void(0);">
+                                <img src="@Url.Content("~/Images/Views/Inicio/post-1.jpg")" alt="">
+                            </a>
                         </div>
-                        break;
-                        case (int)TipoDonacion.HorasDeTrabajo:
-                            <div class="col-md-4">
-                                <div class="causes">
-                                    <div class="causes-img">
-                                        <a href="single-cause.html">
-                                            <img src="@Url.Content("~/Images/Views/Inicio/post-5.jpg")" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="causes-progress">
-                                        <div class="causes-progress-bar">
-                                            <div style="width: 100%;">
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <span class="causes-raised">Objetivo: <strong>Mano de Obra</strong></span>
-                                        </div>
-                                    </div>
-                                    <div class="causes-content">
-                                        <span class="mr-3">Valoración: (@propuesta.Valoracion%)</span><h3>@propuesta.Nombre</h3>
-                                        <p>@propuesta.Descripcion</p>
-                                        <div class="d-flex justify-content-between">
-                                            <div>
-                                                <a href="single-cause.html" class="primary-button causes-donate">Donar ahora</a>
-                                            </div>
-                                            <form action="@Url.Action("Valorar","Propuesta")" method="post">
-                                                <input type="hidden" name="IdPropuesta" value="@propuesta.IdPropuesta"/>
-                                                <div class="d-flex justify-content-center align-items-center">
-                                                    <div class="mr-4">
-                                                        <button type="submit" name="mg">
-                                                            <i class="fa fa-thumbs-up @(valoracion == null ? "" : (valoracion.Valoracion ? "text-success" : ""))" aria-hidden="true"></i>
-                                                        </button>
-                                                    </div>
-                                                    <div>
-                                                        <button type="submit" name="nmg">
-                                                            <i class="fa fa-thumbs-down @(valoracion == null ? "" : (!valoracion.Valoracion ? "text-danger" : ""))" aria-hidden="true"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            break;
-                            case (int)TipoDonacion.Insumos:
-                                <div class="col-md-4">
-                                    <div class="causes">
-                                        <div class="causes-img">
-                                            <a href="single-cause.html">
-                                                <img src="@Url.Content("~/Images/Views/Inicio/post-2.jpg")" alt="">
-                                            </a>
-                                        </div>
-                                        <div class="causes-progress">
-                                            @*<div class="causes-progress-bar">
-                                                <div style="width: 72%;">
-                                                    <span>72%</span>
-                                                </div>
-                                            </div>*@
-                                            <div>
-                                                <span class="causes-raised">Objetivo: <strong>Insumos</strong></span>
-                                            </div>
-                                        </div>
-                                        <div class="causes-content">
-                                            <span class="mr-3">Valoración: (@propuesta.Valoracion%)</span><h3>@propuesta.Nombre</h3>
-                                            <p>@propuesta.Descripcion</p>
-                                            <div class="d-flex justify-content-between">
-                                                <div>
-                                                    <a href="single-cause.html" class="primary-button causes-donate">Donar ahora</a>
-                                                </div>
-                                                <form action="@Url.Action("Valorar","Propuesta")" method="post">
-                                                    <input type="hidden" name="IdPropuesta" value="@propuesta.IdPropuesta"/>
-                                                    <div class="d-flex justify-content-center align-items-center">
-                                                        <div class="mr-4">
-                                                            <button type="submit" name="mg">
-                                                                <i class="fa fa-thumbs-up @(valoracion == null ? "" : (valoracion.Valoracion ? "text-success" : ""))" aria-hidden="true"></i>
-                                                            </button>
-                                                        </div>
-                                                        <div>
-                                                            <button type="submit" name="nmg">
-                                                                <i class="fa fa-thumbs-down @(valoracion == null ? "" : (!valoracion.Valoracion ? "text-danger" : ""))" aria-hidden="true"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                break;
+                        <div class="causes-content">
+                            <h3>@propuesta.Nombre</h3>
+                            <span class="mr-3">Usuario: </span><span>@propuesta.Usuarios.Apellido, @propuesta.Usuarios.Nombre</span><br />
+                            <span class="mr-3">Aceptacion: (@propuesta.Valoracion%)</span><br />
+                            <span class="mr-3"> Disponible hasta: <strong>@propuesta.FechaFin.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</strong></span>
+                        </div>
+                        <div class="d-flex justify-content-between mt-3">
+                            <a class="btn btn-primary text-white" href="@Url.Action("Detalle","Propuesta",new {id = @propuesta.IdPropuesta })">Ver detalle</a>
+                        </div>
+                    </div>
+                </div>
 
-                } 
-                
             }
-            @*<div class="col-md-4">
-                <div class="causes">
-                    <div class="causes-img">
-                        <a href="single-cause.html">
-                            <img src="@Url.Content("~/Images/Views/Inicio/post-2.jpg")" alt="">
-                        </a>
-                    </div>
-                    <div class="causes-progress">
-                        <div class="causes-progress-bar">
-                            <div style="width: 72%;">
-                                <span>72%</span>
-                            </div>
-                        </div>
-                        <div>
-                            <span class="causes-raised">Obtenido: <strong>52.000$</strong></span>
-                            <span class="causes-goal">Meta: <strong>90.000$</strong></span>
-                        </div>
-                    </div>
-                    <div class="causes-content">
-                        <h3><a href="single-cause.html">Vix fuisset tibique facilisis cu. Justo accusata ius at</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <a href="single-cause.html" class="primary-button causes-donate">Donar ahora</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="causes">
-                    <div class="causes-img">
-                        <a href="single-cause.html">
-                            <img src="@Url.Content("~/Images/Views/Inicio/post-3.jpg")" alt="">
-                        </a>
-                    </div>
-                    <div class="causes-progress">
-                        <div class="causes-progress-bar">
-                            <div style="width: 53%;">
-                                <span>53%</span>
-                            </div>
-                        </div>
-                        <div>
-                            <span class="causes-raised">Obtenido: <strong>52.000$</strong></span>
-                            <span class="causes-goal">Meta: <strong>90.000$</strong></span>
-                        </div>
-                    </div>
-                    <div class="causes-content">
-                        <h3><a href="single-cause.html">Possit nostro aeterno eu vis, ut cum quem reque</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <a href="single-cause.html" class="primary-button causes-donate">Donar ahora</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="causes">
-                    <div class="causes-img">
-                        <a href="single-cause.html">
-                            <img src="@Url.Content("~/Images/Views/Inicio/post-6.jpg")" alt="">
-                        </a>
-                    </div>
-                    <div class="causes-progress">
-                        <div class="causes-progress-bar">
-                            <div style="width: 72%;">
-                                <span>72%</span>
-                            </div>
-                        </div>
-                        <div>
-                            <span class="causes-raised">Obtenido: <strong>52.000$</strong></span>
-                            <span class="causes-goal">Meta: <strong>90.000$</strong></span>
-                        </div>
-                    </div>
-                    <div class="causes-content">
-                        <h3><a href="single-cause.html">Vix fuisset tibique facilisis cu. Justo accusata ius at</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <a href="single-cause.html" class="primary-button causes-donate">Donar ahora</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="causes">
-                    <div class="causes-img">
-                        <a href="single-cause.html">
-                            <img src="@Url.Content("~/Images/Views/Inicio/post-5.jpg")" alt="">
-                        </a>
-                    </div>
-                    <div class="causes-progress">
-                        <div class="causes-progress-bar">
-                            <div style="width: 100%;">
-                            </div>
-                        </div>
-                        <div>
-                            <span class="causes-raised">Objetivo: <strong>Mano de Obra</strong></span>
-                        </div>
-                    </div>
-                    <div class="causes-content">
-                        <h3><a href="single-cause.html">Vix fuisset tibique facilisis cu. Justo accusata ius at</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <a href="single-cause.html" class="primary-button causes-donate">Donar ahora</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="causes">
-                    <div class="causes-img">
-                        <a href="single-cause.html">
-                            <img src="@Url.Content("~/Images/Views/Inicio/post-4.jpg")" alt="">
-                        </a>
-                    </div>
-                    <div class="causes-progress">
-                        <div class="causes-progress-bar">
-                            <div style="width: 72%;">
-                                <span>72%</span>
-                            </div>
-                        </div>
-                        <div>
-                            <span class="causes-raised">Objetivo: <strong>52.000$</strong></span>
-                            <span class="causes-goal">Meta: <strong>90.000$</strong></span>
-                        </div>
-                    </div>
-                    <div class="causes-content">
-                        <h3><a href="single-cause.html">Vix fuisset tibique facilisis cu. Justo accusata ius at</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <a href="single-cause.html" class="primary-button causes-donate">Donar ahora</a>
-                    </div>
-                </div>
-            </div>*@
         </div>
     </div>
 </div>

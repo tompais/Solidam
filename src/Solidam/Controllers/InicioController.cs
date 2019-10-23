@@ -7,6 +7,7 @@ namespace Solidam.Controllers
     public class InicioController : BaseController
     {
         // GET: Inicio
+        [Route("/inicio")]
         public ActionResult Inicio()
         {
             //var a = TestService.Get();
