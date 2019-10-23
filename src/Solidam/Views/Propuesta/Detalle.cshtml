@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "Detalle";
+    Layout = "~/Views/Shared/_PropuestasLayout.cshtml";
+}
+@using Models
+@using Services
+@model Models.Propuestas
+@{
+    PropuestasValoraciones valoracion = PropuestasValoracionesService.Valore(Model.IdPropuesta);
+}
+    <div class="container">
+        <h2>Detalle propuesta</h2>
+        <div class="card" style="width: 18rem;">
+            <img src="" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">@Model.Nombre</h5>
+                <p class="card-text">@Model.Descripcion</p>
+                <a href="#" class="btn btn-primary">Donar</a>
+                <form action="@Url.Action("Valorar","Propuesta")" method="post">
+                    <input type="hidden" name="IdPropuesta" value="@Model.IdPropuesta" />
+                    <div class="d-flex justify-content-center align-items-center">
+                        <div class="mr-4">
+                            <button type="submit" name="mg">
+                                <i class="fa fa-thumbs-up @(valoracion == null ? "" : (valoracion.Valoracion ? "text-success" : ""))" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <div>
+                            <button type="submit" name="nmg">
+                                <i class="fa fa-thumbs-down @(valoracion == null ? "" : (!valoracion.Valoracion ? "text-danger" : ""))" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

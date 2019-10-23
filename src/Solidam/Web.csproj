@@ -1056,6 +1056,7 @@
     <Content Include="Views\Seguridad\ActivacionExitosa.cshtml" />
     <Content Include="Views\Perfil\MiPerfil.cshtml" />
     <Content Include="Views\Propuesta\CrearPropuesta.cshtml" />
+    <Content Include="Views\Propuesta\Detalle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

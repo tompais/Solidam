@@ -10,6 +10,7 @@ namespace Solidam.Controllers
 {
     public class SeguridadController : Controller
     {
+        [Route("/login")]
         public ActionResult Iniciar()
         {
             return View();

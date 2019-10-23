@@ -34,7 +34,14 @@ namespace Solidam.Controllers
             };
             PropuestasValoracionesService.Crear(propuestasValoraciones);
             PropuestaService.PutPorcentajeAceptacion(pv.IdPropuesta);
-            return RedirectToAction("Inicio", "Inicio");
+            return RedirectToAction("Detalle", "Propuesta",new {id = pv.IdPropuesta });
+        }
+
+        public ActionResult Detalle(int id)
+        {
+            if (SessionHelper.Usuario == null) return RedirectToAction("Iniciar", "Seguridad");
+            var propuesta = PropuestaService.GetById(id);
+            return View(propuesta);
         }
     }
 }
