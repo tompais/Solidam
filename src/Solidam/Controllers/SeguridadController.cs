@@ -15,7 +15,7 @@ namespace Solidam.Controllers
         }
 
         [HttpGet]
-        public ActionResult IniciarSesion(Usuario usuario)
+        public ActionResult IniciarSesion(Usuarios usuario)
         {
             usuario.Password = Sha1.GetSHA1(usuario.Password);
 
@@ -23,13 +23,13 @@ namespace Solidam.Controllers
 
             if (usuarioIniciar == null)
             {
-                usuarioIniciar = new Usuario { Error = "Email y/o Contraseña inválidos" };
+                usuarioIniciar = new Usuarios { Error = "Email y/o Contraseña inválidos" };
                 return View("Iniciar", usuarioIniciar);
             }
 
             if (usuarioIniciar.Activo.ToString().Equals("False"))
             {
-                usuarioIniciar = new Usuario { Error = "Su usuario está inactivo. Actívelo desde el email recibido" };
+                usuarioIniciar = new Usuarios { Error = "Su usuario está inactivo. Actívelo desde el email recibido" };
                 return View("Iniciar", usuarioIniciar);
             }
 
@@ -44,7 +44,7 @@ namespace Solidam.Controllers
         }
 
         [HttpPost]
-        public ActionResult RegistrarUsuario(Usuario usuario)
+        public ActionResult RegistrarUsuario(Usuarios usuario)
         {
             var usuarioEvaluado = SeguridadService.Instance.Post(usuario);
 
@@ -61,7 +61,7 @@ namespace Solidam.Controllers
         [HttpGet]
         public ActionResult Activar(string token)
         {
-            SeguridadService.Instance.Put(new Usuario { Token = token, Activo = true });
+            SeguridadService.Instance.Put(new Usuarios { Token = token, Activo = true });
 
             return View("ActivacionExitosa");
         }

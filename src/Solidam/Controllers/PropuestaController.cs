@@ -17,7 +17,7 @@ namespace Solidam.Controllers
         }
 
         [HttpPost]
-        public ActionResult Crear(Propuesta p)
+        public ActionResult Crear(Propuestas p)
         {
             PropuestaService.AgregarPropuesta(p);
             return View();

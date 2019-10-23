@@ -9,7 +9,7 @@ namespace Services
 {
     public class PropuestaService : BaseService<PropuestaService>
     {
-        public static void AgregarPropuesta(Propuesta p)
+        public static void AgregarPropuesta(Propuestas p)
         {
             p.IdUsuarioCreador = Helpers.SessionHelper.Usuario.IdUsuario;
             p.Estado = 0;
@@ -17,13 +17,13 @@ namespace Services
 
             
 
-            Db.Propuesta.Add(p);
+            Db.Propuestas.Add(p);
             Db.SaveChanges();
         }
 
         public static int TotalPropuestasActivas()
         {
-            return Db.Propuesta.Count(x => x.Estado == 0 && x.IdUsuarioCreador == Helpers.SessionHelper.Usuario.IdUsuario);
+            return Db.Propuestas.Count(x => x.Estado == 0 && x.IdUsuarioCreador == Helpers.SessionHelper.Usuario.IdUsuario);
         }
     }
 }

@@ -7,15 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Security.Policy;
+
 namespace Models
 {
+    using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
     public partial class SolidamEntities : DbContext
     {
         public static SolidamEntities Instance { get; } = new SolidamEntities();
-        private SolidamEntities()
+        public SolidamEntities()
             : base("name=SolidamEntities")
         {
         }
@@ -25,17 +28,17 @@ namespace Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Denuncia> Denuncia { get; set; }
-        public virtual DbSet<DonacionHorasTrabajo> DonacionHorasTrabajo { get; set; }
-        public virtual DbSet<DonacionInsumo> DonacionInsumo { get; set; }
-        public virtual DbSet<DonacionMonetaria> DonacionMonetaria { get; set; }
-        public virtual DbSet<Propuesta> Propuesta { get; set; }
-        public virtual DbSet<PropuestaDonacionHorasTrabajo> PropuestaDonacionHorasTrabajo { get; set; }
-        public virtual DbSet<PropuestaDonacionInsumo> PropuestaDonacionInsumo { get; set; }
-        public virtual DbSet<PropuestaDonacionMonetaria> PropuestaDonacionMonetaria { get; set; }
-        public virtual DbSet<PropuestaReferencia> PropuestaReferencia { get; set; }
-        public virtual DbSet<PropuestaValoracion> PropuestaValoracion { get; set; }
-        public virtual DbSet<Usuario> Usuario { get; set; }
+        public virtual DbSet<Denuncias> Denuncias { get; set; }
+        public virtual DbSet<DonacionesHorasTrabajo> DonacionesHorasTrabajo { get; set; }
+        public virtual DbSet<DonacionesInsumos> DonacionesInsumos { get; set; }
+        public virtual DbSet<DonacionesMonetarias> DonacionesMonetarias { get; set; }
         public virtual DbSet<MotivoDenuncia> MotivoDenuncia { get; set; }
+        public virtual DbSet<Propuestas> Propuestas { get; set; }
+        public virtual DbSet<PropuestasDonacionesHorasTrabajo> PropuestasDonacionesHorasTrabajo { get; set; }
+        public virtual DbSet<PropuestasDonacionesInsumos> PropuestasDonacionesInsumos { get; set; }
+        public virtual DbSet<PropuestasDonacionesMonetarias> PropuestasDonacionesMonetarias { get; set; }
+        public virtual DbSet<PropuestasReferencias> PropuestasReferencias { get; set; }
+        public virtual DbSet<PropuestasValoraciones> PropuestasValoraciones { get; set; }
+        public virtual DbSet<Usuarios> Usuarios { get; set; }
     }
 }

@@ -7,9 +7,9 @@ namespace Helpers
 {
     public class SessionHelper
     {
-        public static Usuario Usuario
+        public static Usuarios Usuario
         {
-            get => HttpContext.Current.Session["usuario"] as Usuario;
+            get => HttpContext.Current.Session["usuario"] as Usuarios;
 
             set => HttpContext.Current.Session["usuario"] = value;
         }

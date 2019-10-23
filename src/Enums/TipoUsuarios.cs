@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Enums
 {
-    enum TipoUsuario
+    enum TipoUsuarios
     {
         Administrador = 1,
         UsuarioComun
