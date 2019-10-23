@@ -12,17 +12,17 @@ namespace Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Usuario
+    public partial class Usuarios
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Usuario()
+        public Usuarios()
         {
-            this.Denuncia = new HashSet<Denuncia>();
-            this.DonacionHorasTrabajo = new HashSet<DonacionHorasTrabajo>();
-            this.DonacionInsumo = new HashSet<DonacionInsumo>();
-            this.DonacionMonetaria = new HashSet<DonacionMonetaria>();
-            this.Propuesta = new HashSet<Propuesta>();
-            this.PropuestaValoracion = new HashSet<PropuestaValoracion>();
+            this.Denuncias = new HashSet<Denuncias>();
+            this.DonacionesHorasTrabajo = new HashSet<DonacionesHorasTrabajo>();
+            this.DonacionesInsumos = new HashSet<DonacionesInsumos>();
+            this.DonacionesMonetarias = new HashSet<DonacionesMonetarias>();
+            this.Propuestas = new HashSet<Propuestas>();
+            this.PropuestasValoraciones = new HashSet<PropuestasValoraciones>();
         }
     
         public int IdUsuario { get; set; }
@@ -38,18 +38,18 @@ namespace Models
         public bool Activo { get; set; }
         public string Token { get; set; }
         public string Error { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Denuncia> Denuncia { get; set; }
+        public virtual ICollection<Denuncias> Denuncias { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DonacionHorasTrabajo> DonacionHorasTrabajo { get; set; }
+        public virtual ICollection<DonacionesHorasTrabajo> DonacionesHorasTrabajo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DonacionInsumo> DonacionInsumo { get; set; }
+        public virtual ICollection<DonacionesInsumos> DonacionesInsumos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DonacionMonetaria> DonacionMonetaria { get; set; }
+        public virtual ICollection<DonacionesMonetarias> DonacionesMonetarias { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Propuesta> Propuesta { get; set; }
+        public virtual ICollection<Propuestas> Propuestas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PropuestaValoracion> PropuestaValoracion { get; set; }
+        public virtual ICollection<PropuestasValoraciones> PropuestasValoraciones { get; set; }
     }
 }

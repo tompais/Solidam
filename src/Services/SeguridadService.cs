@@ -19,16 +19,16 @@ using Utils;
 
 namespace Services
 {
-    public class SeguridadService : BaseService<SeguridadService>, IPostService<Usuario>, IGetService<Usuario>,
-        IPutService<Usuario>
+    public class SeguridadService : BaseService<SeguridadService>, IPostService<Usuarios>, IGetService<Usuarios>,
+        IPutService<Usuarios>
     {
         private SeguridadService()
         {
         }
 
-        public List<Usuario> Get(Usuario model)
+        public List<Usuarios> Get(Usuarios model)
         {
-            var usuarios = Db.Usuario.AsQueryable();
+            var usuarios = Db.Usuarios.AsQueryable();
 
             if (model == null) return usuarios.ToList();
 
@@ -44,37 +44,37 @@ namespace Services
             return usuarios.ToList();
         }
 
-        public Usuario Post(Usuario model)
+        public Usuarios Post(Usuarios model)
         {
             model.Activo = false;
             model.FechaCracion = DateTime.Now;
             model.TipoUsuario = 2;
-            model.Token = Guid.NewGuid().ToString();
+            model.Token = Guid.NewGuid().ToString().Substring(0,29);
 
-            var emailExitente = Db.Usuario.FirstOrDefault(u => u.Email == model.Email);
+            var emailExitente = Db.Usuarios.FirstOrDefault(u => u.Email == model.Email);
 
-            Usuario retorno;
+            Usuarios retorno;
 
             if (emailExitente == null)
             {
-                ValidarUsuario(model);
+                ValidarUsuarios(model);
 
                 model.Password = Sha1.GetSHA1(model.Password);
 
-                Db.Usuario.Add(model);
+                Db.Usuarios.Add(model);
                 Db.SaveChanges();
 
                 retorno = model;
             }
             else
             {
-                retorno = new Usuario { Error = "Ya existe un usuario registrado con este correo" };
+                retorno = new Usuarios { Error = "Ya existe un usuario registrado con este correo" };
             }
 
             return retorno;
         }
 
-        public Usuario Put(Usuario model)
+        public Usuarios Put(Usuarios model)
         {
             var usuarioAModificar = Get(model).FirstOrDefault();
 
@@ -94,7 +94,7 @@ namespace Services
             }
             else
             {
-                throw new UsuarioException("El usuario buscado no existe.", ErrorCode.UsurioInexistente);
+                throw new UsuariosException("El usuario buscado no existe.", ErrorCode.UsurioInexistente);
             }
 
             Db.SaveChanges();
@@ -102,20 +102,20 @@ namespace Services
             return usuarioAModificar;
         }
 
-        public void ValidarUsuario(Usuario model)
+        public void ValidarUsuarios(Usuarios model)
         {
             if (string.IsNullOrEmpty(model.FechaNacimiento.ToString(CultureInfo.InvariantCulture)))
-                throw new UsuarioException("La fecha de nacimiento no puede se vacia o nula.",
+                throw new UsuariosException("La fecha de nacimiento no puede se vacia o nula.",
                     ErrorCode.FechaNacimientoInvalida);
 
             if (DateTime.Now.Year - model.FechaNacimiento.Year < 18)
-                throw new UsuarioException("El usuario no puede ser menor a 18 años",
+                throw new UsuariosException("El usuario no puede ser menor a 18 años",
                     ErrorCode.FechaNacimientoInvalida);
 
             var email = new EmailAddressAttribute();
 
             if (string.IsNullOrEmpty(model.Email) || !email.IsValid(model.Email))
-                throw new UsuarioException("Formato de email incorrecto.", ErrorCode.EmailInvalido);
+                throw new UsuariosException("Formato de email incorrecto.", ErrorCode.EmailInvalido);
 
             var poseeNumeros = new Regex(RegexType.OnlyNumbers);
             var poseeLetraMayus = new Regex(RegexType.OnlyLetters);
@@ -125,14 +125,14 @@ namespace Services
                                       posee8Caracteres.IsMatch(model.Password);
 
             if (string.IsNullOrEmpty(model.Password) || !regexPassValidacion)
-                throw new UsuarioException("Formato de password incorrecto.", ErrorCode.PasswordInvalida);
+                throw new UsuariosException("Formato de password incorrecto.", ErrorCode.PasswordInvalida);
 
             if (model.TipoUsuario != 2)
-                throw new UsuarioException("La cuenta no puede ser de otro tipo que no sea usario",
+                throw new UsuariosException("La cuenta no puede ser de otro tipo que no sea usario",
                     ErrorCode.TipoUsuarioInvalido);
 
             if (string.IsNullOrEmpty(model.Token))
-                throw new UsuarioException("La cuenta debe poseer un token obligatoriamente", ErrorCode.TokenInvalido);
+                throw new UsuariosException("La cuenta debe poseer un token obligatoriamente", ErrorCode.TokenInvalido);
         }
 
         public void EnviarCorreo(string token, string email)

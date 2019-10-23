@@ -1,4 +1,6 @@
 ﻿using System.Web.Mvc;
+using Services;
+using Solidam.ViewModel;
 
 namespace Solidam.Controllers
 {
@@ -7,7 +9,10 @@ namespace Solidam.Controllers
         // GET: Inicio
         public ActionResult Inicio()
         {
-            return View();
+            //var a = TestService.Get();
+            InicioViewModel inicioViewModel = new InicioViewModel();
+            inicioViewModel.Propuestas = PropuestaService.GetPropuestasMasValoradas();
+            return View(inicioViewModel);
         }
 
         public ActionResult IniciarSesion()

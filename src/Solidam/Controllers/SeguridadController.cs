@@ -3,6 +3,7 @@ using Models;
 using Services;
 using System.Linq;
 using System.Web.Mvc;
+using Solidam.ViewModel;
 using Utils;
 
 namespace Solidam.Controllers
@@ -15,21 +16,24 @@ namespace Solidam.Controllers
         }
 
         [HttpGet]
-        public ActionResult IniciarSesion(Usuario usuario)
+        public ActionResult IniciarSesion(Usuarios usuario)
         {
+            var inicioViewModel = new InicioViewModel();
             usuario.Password = Sha1.GetSHA1(usuario.Password);
 
             var usuarioIniciar = SeguridadService.Instance.Get(usuario).FirstOrDefault();
 
             if (usuarioIniciar == null)
             {
-                usuarioIniciar = new Usuario { Error = "Email y/o Contraseña inválidos" };
+                usuarioIniciar = new Usuarios { Error = "Email y/o Contraseña inválidos" };
+                //inicioViewModel.Usuario = usuarioIniciar;
                 return View("Iniciar", usuarioIniciar);
             }
 
             if (usuarioIniciar.Activo.ToString().Equals("False"))
             {
-                usuarioIniciar = new Usuario { Error = "Su usuario está inactivo. Actívelo desde el email recibido" };
+                usuarioIniciar = new Usuarios { Error = "Su usuario está inactivo. Actívelo desde el email recibido" };
+                //inicioViewModel.Usuario = usuarioIniciar;
                 return View("Iniciar", usuarioIniciar);
             }
 
@@ -44,7 +48,7 @@ namespace Solidam.Controllers
         }
 
         [HttpPost]
-        public ActionResult RegistrarUsuario(Usuario usuario)
+        public ActionResult RegistrarUsuario(Usuarios usuario)
         {
             var usuarioEvaluado = SeguridadService.Instance.Post(usuario);
 
@@ -61,7 +65,7 @@ namespace Solidam.Controllers
         [HttpGet]
         public ActionResult Activar(string token)
         {
-            SeguridadService.Instance.Put(new Usuario { Token = token, Activo = true });
+            SeguridadService.Instance.Put(new Usuarios { Token = token, Activo = true });
 
             return View("ActivacionExitosa");
         }

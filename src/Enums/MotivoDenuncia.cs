@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Enums
 {
-    enum MotivoDenuncia
+    public enum MotivoDenuncia
     {
         Fraude = 1,
         Indebida,
