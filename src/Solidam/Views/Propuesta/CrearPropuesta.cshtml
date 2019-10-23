@@ -6,27 +6,19 @@
 }
 
 
-@model Models.Propuesta
+@model Models.Propuestas
 
-<div class="container col-xl-7 col-sm-5 mt-5">
+<div class="container col-xl-7 col-sm-5 mt-5 pt-4">
     <h2 class="mt-5">Crear Propuesta</h2>
-    <form action="/Propuesta/Crear" method="post" class="mx-auto" enctype="multipart/form-data">
+    <form action="/Propuesta/Crear" method="post" class="mt-4 mx-auto" enctype="multipart/form-data">
         <div class="form-group">
             <label for="nombrePropuesta">Nombre de la propuesta</label>
             <input type="text" class="form-control" id="nombrePropuesta" name="Nombre" />
-            <div id="errorNombre" class="error">
-                <i class="fas fa-exclamation-triangle mr-2"></i><span></span>
-            </div>
-
         </div>
 
         <div class="form-group">
             <label for="descripcionPropuesta">Descripción de la propuesta</label>
             <textarea class="form-control" id="descripcionPropuesta" rows="3" name="Descripcion"></textarea>
-            <div id="errorDescripcion" class="error">
-                <i class="fas fa-exclamation-triangle mr-2"></i><span></span>
-            </div>
-
         </div>
 
         <div class="form-group">
@@ -36,20 +28,12 @@
                 <div class="input-group-addon">
                     <span class="fa"></span>
                 </div>
-                <div id="errorFechaFin" class="error">
-                    <i class="fas fa-exclamation-triangle mr-2"></i><span></span>
-                </div>
-
             </div>
         </div>
 
         <div class="form-group">
             <label for="telefonoCont">Teléfono de contacto</label>
             <input type="text" class="form-control" id="telefonoCont" name="TelefonoContacto" />
-            <div id="errorTelContacto" class="error">
-                <i class="fas fa-exclamation-triangle mr-2"></i><span></span>
-            </div>
-
         </div>
 
         <div class="form-group">
@@ -60,51 +44,31 @@
                 <option value="2">Insumos</option>
                 <option value="3">Horas de trabajo</option>
             </select>
-            <div id="errorTipo" class="error">
-                <i class="fas fa-exclamation-triangle mr-2"></i><span></span>
-            </div>
-
         </div>
 
         <div id="datosDonacion" class="form-group"></div>
 
         <div class="form-group">
             <label for="fotoPropuesta">Foto</label>
-            <input type="file" class="form-control" id="fotoPropuesta" name="Foto" />
-            <div id="errorFoto" class="error">
-                <i class="fas fa-exclamation-triangle mr-2"></i><span></span>
-            </div>
-
+            <input type="file" class="form-control" id="fotoPropuesta" name="foto" />
         </div>
 
         <div class="form-group">
             <label for="nombreRef1">Referencia 1</label>
-            <input type="text" class="form-control" id="nombreRef1" name="PropuestaReferencia[0].Nombre" />
-            <div id="errorRef1" class="error">
-                <i class="fas fa-exclamation-triangle mr-2"></i><span></span>
-            </div>
+            <input type="text" class="form-control" id="nombreRef1" name="PropuestasReferencias[0].Nombre" />
 
             <label for="telefonoRef1">Teléfono</label>
-            <input type="text" class="form-control" id="telefonoRef1" name="PropuestaReferencia[0].Telefono" />
-            <div id="errorTel1" class="error">
-                <i class="fas fa-exclamation-triangle mr-2"></i><span></span>
-            </div>
+            <input type="text" class="form-control" id="telefonoRef1" name="PropuestasReferencias[0].Telefono" />
 
             <label for="nombreRef2">Referencia 2</label>
-            <input type="text" class="form-control" id="nombreRef2" name="PropuestaReferencia[1].Nombre" />
-            <div id="errorRef2" class="error">
-                <i class="fas fa-exclamation-triangle mr-2"></i><span></span>
-            </div>
+            <input type="text" class="form-control" id="nombreRef2" name="PropuestasReferencias[1].Nombre" />
 
             <label for="telefonoRef2">Teléfono</label>
-            <input type="text" class="form-control" id="telefonoRef2" name="PropuestaReferencia[1].Telefono" />
-            <div id="errorTel2" class="error">
-                <i class="fas fa-exclamation-triangle mr-2"></i><span></span>
-            </div>
-
+            <input type="text" class="form-control" id="telefonoRef2" name="PropuestasReferencias[1].Telefono" />
         </div>
 
-        <input type="submit" class="btn btn-primary" value="Crear" />
+        <input type="submit" class="btn btn-primary justify-content-end" value="Crear" />
     </form>
 </div>
-    @Scripts.Render("~/Scripts/Views/Propuesta/Crear.js")
+   
+@Scripts.Render("~/Scripts/Views/Propuesta/Crear.js")
