@@ -1,4 +1,5 @@
-﻿using Helpers;
+﻿using System;
+using Helpers;
 using Models;
 using Services;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Web.Mvc;
 using Utils;
 using Enums;
 using Solidam.ViewModel;
+using MotivoDenuncia = Models.MotivoDenuncia;
 
 namespace Solidam.Controllers
 {
@@ -59,6 +61,16 @@ namespace Solidam.Controllers
                 NombrePropuesta = PropuestaService.GetById(id).Nombre
             };
             return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Denunciar(Denuncias denuncia)
+        {
+            denuncia.FechaCreacion = DateTime.Now;
+            denuncia.IdUsuario = SessionHelper.Usuario.IdUsuario;
+            denuncia.Estado = (int) DenunciaEstado.EnRevision;
+            DenunciasService.Crear(denuncia);
+            return RedirectToAction("Inicio", "Inicio");
         }
     }
 }
