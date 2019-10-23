@@ -49,98 +49,24 @@
             </div>
             @foreach (Propuestas propuesta in Model.Propuestas)
             {
-                PropuestasValoraciones valoracion = PropuestasValoracionesService.Valore(propuesta.IdPropuesta);
-                switch (propuesta.TipoDonacion)
-                {
-                    case (int)TipoDonacion.Monetaria:
-                        var obtenido = PropuestaService.GetDineroDonadoByPropuestaId(propuesta.IdPropuesta);
-                        var meta = propuesta.PropuestasDonacionesMonetarias.FirstOrDefault(pdm => pdm.IdPropuesta == propuesta.IdPropuesta)?.Dinero;
-                        <div class="col-md-4">
-                            <div class="card p-4 causes">
-                                <div class="causes-img">
-                                    <a href="javascript:void(0);">
-                                        <img src="@Url.Content("~/Images/Views/Inicio/post-1.jpg")" alt="">
-                                    </a>
-                                </div>
-                                <div class="causes-progress">
-                                    <div class="causes-progress-bar">
-                                        <div style="width: @(obtenido * 100 / meta)%;">
-                                            <span>%@(obtenido * 100 / meta)</span>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <span class="causes-raised">Obtenido: <strong>$@(obtenido)</strong></span>
-                                        <span class="causes-goal">Meta: <strong>$@(meta)</strong></span>
-                                    </div>
-                                </div>
-                                <div class="causes-content">
-                                    <h3>@propuesta.Nombre</h3>
-                                    <span class="mr-3">Usuario: </span><span>@propuesta.Usuarios.Apellido, @propuesta.Usuarios.Nombre</span><br />
-                                    <span class="mr-3">Aceptacion: (@propuesta.Valoracion%)</span><br />
-                                    <span class="mr-3"> Disponible hasta: <strong>@propuesta.FechaFin.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</strong></span>
-                                </div>
-                                <div class="d-flex justify-content-between mt-3">
-                                    <a class="btn btn-primary text-white" href="@Url.Action("Detalle","Propuesta",new {id = @propuesta.IdPropuesta })">Ver detalle</a>
-                                </div>
-                            </div>
+                <div class="col-md-4">
+                    <div class="card p-4 causes">
+                        <div class="causes-img">
+                            <a href="javascript:void(0);">
+                                <img src="@Url.Content("~/Images/Views/Inicio/post-1.jpg")" alt="">
+                            </a>
                         </div>
-                        break;
-                    case (int)TipoDonacion.HorasDeTrabajo:
-                        <div class="col-md-4">
-                            <div class="card p-4 causes">
-                                <div class="causes-img">
-                                    <a href="javascript:void(0);">
-                                        <img src="@Url.Content("~/Images/Views/Inicio/post-5.jpg")" alt="">
-                                    </a>
-                                </div>
-                                <div class="causes-progress">
-                                    <div class="causes-progress-bar">
-                                        <div style="width: 100%;">
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <span class="causes-raised">Objetivo: <strong>Mano de Obra</strong></span>
-                                    </div>
-                                </div>
-                                <div class="causes-content">
-                                    <h3>@propuesta.Nombre</h3>
-                                    <span class="mr-3">Usuario: </span><span>@propuesta.Usuarios.Apellido, @propuesta.Usuarios.Nombre</span><br />
-                                    <span class="mr-3">Aceptacion: (@propuesta.Valoracion%)</span> <br />
-                                    <span class="mr-3"> Disponible hasta: <strong>@propuesta.FechaFin.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</strong></span>
-                                </div>
-                                <div class="d-flex justify-content-between mt-3">
-                                    <a class="btn btn-primary text-white" href="@Url.Action("Detalle","Propuesta",new {id = @propuesta.IdPropuesta })">Ver detalle</a>
-                                </div>
-                            </div>
+                        <div class="causes-content">
+                            <h3>@propuesta.Nombre</h3>
+                            <span class="mr-3">Usuario: </span><span>@propuesta.Usuarios.Apellido, @propuesta.Usuarios.Nombre</span><br />
+                            <span class="mr-3">Aceptacion: (@propuesta.Valoracion%)</span><br />
+                            <span class="mr-3"> Disponible hasta: <strong>@propuesta.FechaFin.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</strong></span>
                         </div>
-                        break;
-                    case (int)TipoDonacion.Insumos:
-                        <div class="col-md-4">
-                            <div class="card p-4 causes">
-                                <div class="causes-img">
-                                    <a href="javascript:void(0);">
-                                        <img src="@Url.Content("~/Images/Views/Inicio/post-2.jpg")" alt="">
-                                    </a>
-                                </div>
-                                <div class="causes-progress">
-                                    <div>
-                                        <span class="causes-raised">Objetivo: <strong>Insumos</strong></span>
-                                    </div>
-                                </div>
-                                <div class="causes-content">
-                                    <h3>@propuesta.Nombre</h3>
-                                    <span class="mr-3">Usuario: </span><span>@propuesta.Usuarios.Apellido, @propuesta.Usuarios.Nombre</span> <br />
-                                    <span class="mr-3">Aceptacion: (@propuesta.Valoracion%)</span><br />
-                                    <span class="mr-3"> Disponible hasta: <strong>@propuesta.FechaFin.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</strong></span>
-                                    <div class="d-flex justify-content-between mt-3">
-                                        <a class="btn btn-primary text-white" href="@Url.Action("Detalle", "Propuesta", new {id = @propuesta.IdPropuesta})">Ver detalle</a>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="d-flex justify-content-between mt-3">
+                            <a class="btn btn-primary text-white" href="@Url.Action("Detalle","Propuesta",new {id = @propuesta.IdPropuesta })">Ver detalle</a>
                         </div>
-                        break;
-
-                }
+                    </div>
+                </div>
 
             }
         </div>

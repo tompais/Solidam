@@ -3,35 +3,155 @@
     ViewBag.Title = "Detalle";
     Layout = "~/Views/Shared/_PropuestasLayout.cshtml";
 }
+@using System.Globalization
+@using Enums
 @using Models
 @using Services
 @model Models.Propuestas
 @{
     PropuestasValoraciones valoracion = PropuestasValoracionesService.Valore(Model.IdPropuesta);
 }
-    <div class="container">
-        <h2>Detalle propuesta</h2>
-        <div class="card" style="width: 18rem;">
-            <img src="" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">@Model.Nombre</h5>
-                <p class="card-text">@Model.Descripcion</p>
-                <a href="#" class="btn btn-primary">Donar</a>
-                <form action="@Url.Action("Valorar","Propuesta")" method="post">
-                    <input type="hidden" name="IdPropuesta" value="@Model.IdPropuesta" />
-                    <div class="d-flex justify-content-center align-items-center">
-                        <div class="mr-4">
-                            <button type="submit" name="mg">
-                                <i class="fa fa-thumbs-up @(valoracion == null ? "" : (valoracion.Valoracion ? "text-success" : ""))" aria-hidden="true"></i>
-                            </button>
+@Styles.Render("~/Content/Views/Inicio/inicio.css")
+@Styles.Render("~/Content/Views/Inicio/inicioResponsive.css")
+<div class="container">
+    <h2>Detalle propuesta</h2>
+    @switch (Model.TipoDonacion)
+    {
+        case (int)TipoDonacion.Monetaria:
+            var obtenido = PropuestaService.GetDineroDonadoByPropuestaId(Model.IdPropuesta);
+            var meta = Model.PropuestasDonacionesMonetarias.FirstOrDefault(pdm => pdm.IdPropuesta == Model.IdPropuesta)?.Dinero;
+            <div class="col-md-4">
+                <div class="card p-4 causes">
+                    <div class="causes-img">
+                        <a href="javascript:void(0);">
+                            <img src="@Url.Content("~/Images/Views/Inicio/post-1.jpg")" alt="">
+                        </a>
+                    </div>
+                    <div class="causes-progress">
+                        <div class="causes-progress-bar">
+                            <div style="width: @(obtenido * 100 / meta)%;">
+                                <span>%@(obtenido * 100 / meta)</span>
+                            </div>
                         </div>
                         <div>
-                            <button type="submit" name="nmg">
-                                <i class="fa fa-thumbs-down @(valoracion == null ? "" : (!valoracion.Valoracion ? "text-danger" : ""))" aria-hidden="true"></i>
-                            </button>
+                            <span class="causes-raised">Obtenido: <strong>$@(obtenido)</strong></span>
+                            <span class="causes-goal">Meta: <strong>$@(meta)</strong></span>
                         </div>
                     </div>
-                </form>
+                    <div class="causes-content">
+                        <h3>@Model.Nombre</h3>
+                        <p>@Model.Descripcion</p>
+                        <span class="mr-3">Usuario: </span><span>@Model.Usuarios.Apellido, @Model.Usuarios.Nombre</span> <br />
+                        <span class="mr-3">Aceptacion: (@Model.Valoracion%)</span><br />
+                        <span class="mr-3"> Disponible hasta: <strong>@Model.FechaFin.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</strong></span>
+                        <div class="d-flex justify-content-between mt-3">
+                        <a href="#" class="btn btn-primary text-white">Donar</a>
+                            <form action="@Url.Action("Valorar","Propuesta")" method="post">
+                                <input type="hidden" name="IdPropuesta" value="@Model.IdPropuesta" />
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <div class="mr-4">
+                                        <button type="submit" name="mg">
+                                            <i class="fa fa-thumbs-up @(valoracion == null ? "" : (valoracion.Valoracion ? "text-success" : ""))" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <button type="submit" name="nmg">
+                                            <i class="fa fa-thumbs-down @(valoracion == null ? "" : (!valoracion.Valoracion ? "text-danger" : ""))" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+            break;
+        case (int)TipoDonacion.HorasDeTrabajo:
+            <div class="col-md-4">
+                <div class="card p-4 causes">
+                    <div class="causes-img">
+                        <a href="javascript:void(0);">
+                            <img src="@Url.Content("~/Images/Views/Inicio/post-5.jpg")" alt="">
+                        </a>
+                    </div>
+                    <div class="causes-progress">
+                        <div class="causes-progress-bar">
+                            <div style="width: 100%;">
+                            </div>
+                        </div>
+                        <div>
+                            <span class="causes-raised">Objetivo: <strong>Mano de Obra</strong></span>
+                        </div>
+                    </div>
+                    <div class="causes-content">
+                        <h3>@Model.Nombre</h3>
+                        <p>@Model.Descripcion</p>
+                        <span class="mr-3">Usuario: </span><span>@Model.Usuarios.Apellido, @Model.Usuarios.Nombre</span> <br />
+                        <span class="mr-3">Aceptacion: (@Model.Valoracion%)</span><br />
+                        <span class="mr-3"> Disponible hasta: <strong>@Model.FechaFin.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</strong></span>
+                        <div class="d-flex justify-content-between mt-3">
+                            <a href="#" class="btn btn-primary text-white">Donar</a>
+                            <form action="@Url.Action("Valorar","Propuesta")" method="post">
+                                <input type="hidden" name="IdPropuesta" value="@Model.IdPropuesta" />
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <div class="mr-4">
+                                        <button type="submit" name="mg">
+                                            <i class="fa fa-thumbs-up @(valoracion == null ? "" : (valoracion.Valoracion ? "text-success" : ""))" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <button type="submit" name="nmg">
+                                            <i class="fa fa-thumbs-down @(valoracion == null ? "" : (!valoracion.Valoracion ? "text-danger" : ""))" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            break;
+        case (int)TipoDonacion.Insumos:
+            <div class="col-md-4">
+                <div class="card p-4 causes">
+                    <div class="causes-img">
+                        <a href="javascript:void(0);">
+                            <img src="@Url.Content("~/Images/Views/Inicio/post-2.jpg")" alt="">
+                        </a>
+                    </div>
+                    <div class="causes-progress">
+                        <div>
+                            <span class="causes-raised">Objetivo: <strong>Insumos</strong></span>
+                        </div>
+                    </div>
+                    <div class="causes-content">
+                        <h3>@Model.Nombre</h3>
+                        <p>@Model.Descripcion</p>
+                        <span class="mr-3">Usuario: </span><span>@Model.Usuarios.Apellido, @Model.Usuarios.Nombre</span> <br />
+                        <span class="mr-3">Aceptacion: (@Model.Valoracion%)</span><br />
+                        <span class="mr-3"> Disponible hasta: <strong>@Model.FechaFin.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</strong></span>
+                        <div class="d-flex justify-content-between mt-3">
+                            <a href="#" class="btn btn-primary text-white">Donar</a>
+                            <form action="@Url.Action("Valorar","Propuesta")" method="post">
+                                <input type="hidden" name="IdPropuesta" value="@Model.IdPropuesta" />
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <div class="mr-4">
+                                        <button type="submit" name="mg">
+                                            <i class="fa fa-thumbs-up @(valoracion == null ? "" : (valoracion.Valoracion ? "text-success" : ""))" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <button type="submit" name="nmg">
+                                            <i class="fa fa-thumbs-down @(valoracion == null ? "" : (!valoracion.Valoracion ? "text-danger" : ""))" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            break;
+
+    }
+</div>
