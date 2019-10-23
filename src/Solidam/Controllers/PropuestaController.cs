@@ -15,15 +15,21 @@ namespace Solidam.Controllers
     {
         public ActionResult CrearPropuesta()
         {
-            ViewBag.total = PropuestaService.TotalPropuestasActivas();
             return View();
         }
 
         [HttpPost]
-        public ActionResult Crear(Propuestas p)
+        public ActionResult Crear(Propuestas p, System.Web.HttpPostedFileBase foto)
         {
+            string path = Server.MapPath("~/Images/Views/Propuesta/");
+
+            p.Foto = path + System.IO.Path.GetFileName(foto.FileName);
+
             PropuestaService.AgregarPropuesta(p);
-            return View();
+
+            foto.SaveAs(path + System.IO.Path.GetFileName(foto.FileName));
+
+            return RedirectToAction("Inicio", "Inicio");
         }
 
         [HttpPost]
