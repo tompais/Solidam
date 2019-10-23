@@ -16,37 +16,27 @@ namespace Solidam.Controllers
             return View();
         }
 
-        [HttpGet]
-        public ActionResult IniciarSesion(Usuarios usuario)
+        [HttpPost]
+        public ActionResult Iniciar (Usuarios usuario)
         {
             var inicioViewModel = new InicioViewModel();
             usuario.Password = Sha1.GetSHA1(usuario.Password);
 
-            var usuarioIniciar = SeguridadService.Instance.Get(usuario).FirstOrDefault();
-
-            if (usuarioIniciar == null)
+            if (ModelState.IsValid)
             {
-                usuarioIniciar = new Usuarios { Error = "Email y/o Contraseña inválidos" };
-                //inicioViewModel.Usuario = usuarioIniciar;
-                return View("Iniciar", usuarioIniciar);
+                SessionHelper.Usuario = SeguridadService.Instance.Get(usuario).FirstOrDefault();
+
+                if (TempData["pendingRoute"] != null)
+                {
+                    var rutaPendiente = TempData["pendingRoute"].ToString();
+                    TempData["pendingRoute"] = null;
+                    return Redirect(rutaPendiente);
+                }
+
+                return RedirectToAction("Inicio", "Inicio");
             }
 
-            if (usuarioIniciar.Activo.ToString().Equals("False"))
-            {
-                usuarioIniciar = new Usuarios { Error = "Su usuario está inactivo. Actívelo desde el email recibido" };
-                //inicioViewModel.Usuario = usuarioIniciar;
-                return View("Iniciar", usuarioIniciar);
-            }
-
-            SessionHelper.Usuario = usuarioIniciar;
-
-            if (TempData["pendingRoute"] != null)
-            {
-                var rutaPendiente = TempData["pendingRoute"].ToString();
-                TempData["pendingRoute"] = null;
-                return Redirect(rutaPendiente);
-            }
-            return RedirectToAction("Inicio", "Inicio");
+            return View("Iniciar", usuario);
         }
 
         public ActionResult Registrar()

@@ -14,27 +14,22 @@
             <div class="card fat">
                 <div class="card-body">
                     <h4 class="card-title">Iniciar Sesion</h4>
-                    <form method="GET" class="my-login-validation" action="@Url.Action("IniciarSesion","Seguridad")" id="formularioIniciar">
+                    <form method="POST" class="my-login-validation" action="@Url.Action("Iniciar","Seguridad")" id="formularioIniciar">
 
                         <div class="form-group">
                             <label for="inputEmail">Correo Electronico</label>
-                            <input id="inputEmail" type="text" class="form-control" name="Email" placeholder="Ingrese su Email" autofocus>
-
-                            <div id="errorEmail" class="errorSolidam"><i class="fa fa-exclamation-triangle mr-2"></i><b><span></span></b></div>
-
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Ingrese su Email", @type = "email" } })
+                            <div class="errorSolidam"><b>@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })</b></div>
                         </div>
 
                         <div class="form-group">
                             <label for="inputPassword">Contraseña</label>
-                            <input id="inputPassword" type="password" class="form-control" name="Password" placeholder="Ingrese su Contraseña" data-eye>
-                            <div id="errorPass" class="errorSolidam"><i class="fa fa-exclamation-triangle mr-2"></i><b><span></span></b></div>
-
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Ingrese su contraseña", @type = "password" } })
+                            <div class="errorSolidam"><b>@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })</b></div>
                         </div>
 
-                        <div class="my-3"><span class="text-danger"><b>@Html.DisplayFor(model => model.Error)</b></span></div>
-
                         <div class="form-group m-0">
-                            <button type="button" class="btn btn-primary btn-block" id="btnIniciar">
+                            <button type="submit" value="Iniciar" class="btn btn-primary btn-block" id="btnIniciar">
                                 Ingresar
                             </button>
                         </div>
