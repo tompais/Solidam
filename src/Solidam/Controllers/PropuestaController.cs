@@ -39,7 +39,11 @@ namespace Solidam.Controllers
 
         public ActionResult Detalle(int id)
         {
-            if (SessionHelper.Usuario == null) return RedirectToAction("Iniciar", "Seguridad");
+            if (SessionHelper.Usuario == null)
+            {
+                TempData["pendingRoute"] = Url.Action("Detalle", "Propuesta",new { id = id });
+                return RedirectToAction("Iniciar", "Seguridad");
+            }
             var propuesta = PropuestaService.GetById(id);
             return View(propuesta);
         }
