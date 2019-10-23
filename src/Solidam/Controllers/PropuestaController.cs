@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Utils;
 using Enums;
+using Solidam.ViewModel;
 
 namespace Solidam.Controllers
 {
@@ -46,6 +47,18 @@ namespace Solidam.Controllers
             }
             var propuesta = PropuestaService.GetById(id);
             return View(propuesta);
+        }
+
+        [HttpGet]
+        public ActionResult Denunciar(int id)
+        {
+            DenunciaViewModel viewModel = new DenunciaViewModel
+            {
+                IdPropuesta = id,
+                MotivoDenuncia = MotivoDenunciaService.GetAll(),
+                NombrePropuesta = PropuestaService.GetById(id).Nombre
+            };
+            return View(viewModel);
         }
     }
 }

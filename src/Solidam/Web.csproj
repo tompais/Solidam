@@ -338,6 +338,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\DenunciaViewModel.cs" />
     <Compile Include="ViewModel\InicioViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1057,6 +1058,7 @@
     <Content Include="Views\Perfil\MiPerfil.cshtml" />
     <Content Include="Views\Propuesta\CrearPropuesta.cshtml" />
     <Content Include="Views\Propuesta\Detalle.cshtml" />
+    <Content Include="Views\Propuesta\Denunciar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
