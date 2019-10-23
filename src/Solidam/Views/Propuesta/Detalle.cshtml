@@ -41,7 +41,7 @@
                         <h3>@Model.Propuesta.Nombre</h3>
                         <p>@Model.Propuesta.Descripcion</p>
                         <span class="mr-3">Usuario: </span><span class="mr-3">@Model.Propuesta.Usuarios.Apellido, @Model.Propuesta.Usuarios.Nombre</span><i>(@(Model.Propuesta.Usuarios.UserName))</i> <br />
-                        <span class="mr-3">Aceptacion: (@Model.Valoracion%)</span><br />
+                        <span class="mr-3">Aceptacion: (@Model.Propuesta.Valoracion%)</span><br />
                         <span class="mr-3">Creada el: @Model.Propuesta.FechaCreacion.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</span><br />
                         <span class="mr-3"> Disponible hasta: <strong>@Model.Propuesta.FechaFin.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</strong></span>
                         @if (Model.Propuesta.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario)
@@ -91,7 +91,7 @@
                         <h3>@Model.Propuesta.Nombre</h3>
                         <p>@Model.Propuesta.Descripcion</p>
                         <span class="mr-3">Usuario: </span><span class="mr-3">@Model.Propuesta.Usuarios.Apellido, @Model.Propuesta.Usuarios.Nombre</span> <i>(@(Model.Propuesta.Usuarios.UserName))</i>  <br />
-                        <span class="mr-3">Aceptacion: (@Model.Valoracion%)</span><br />
+                        <span class="mr-3">Aceptacion: (@Model.Propuesta.Valoracion%)</span><br />
                         <span class="mr-3">Creada el: @Model.Propuesta.FechaCreacion.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</span><br />
                         <span class="mr-3"> Disponible hasta: <strong>@Model.Propuesta.FechaFin.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</strong></span>
                         @if (Model.Propuesta.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario)
@@ -137,7 +137,7 @@
                         <h3>@Model.Propuesta.Nombre</h3>
                         <p>@Model.Propuesta.Descripcion</p>
                         <span class="mr-3">Usuario: </span><span class="mr-3">@Model.Propuesta.Usuarios.Apellido, @Model.Propuesta.Usuarios.Nombre</span><i>(@(Model.Propuesta.Usuarios.UserName))</i>  <br />
-                        <span class="mr-3">Aceptacion: (@Model.Valoracion%)</span><br />
+                        <span class="mr-3">Aceptacion: (@Model.Propuesta.Valoracion%)</span><br />
                         <span class="mr-3">Creada el: @Model.Propuesta.FechaCreacion.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</span><br />
                         <span class="mr-3"> Disponible hasta: <strong>@Model.Propuesta.FechaFin.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</strong></span>
                         @if (Model.Propuesta.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario)
