@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
@@ -15,11 +16,9 @@ namespace Services
     {
         public static void AgregarPropuesta(Propuestas p)
         {
-            p.IdUsuarioCreador = Helpers.SessionHelper.Usuario.IdUsuario;
+            p.IdUsuarioCreador = 6;
             p.Estado = 0;
             p.FechaCreacion = System.DateTime.Today;
-
-            
 
             Db.Propuestas.Add(p);
             Db.SaveChanges();
