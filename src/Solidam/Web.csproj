@@ -340,6 +340,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\DenunciaViewModel.cs" />
     <Compile Include="ViewModel\InicioViewModel.cs" />
+    <Compile Include="ViewModel\PropuestaDetalleViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\alertifyjs\alertify.css" />
@@ -581,6 +582,7 @@
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="Content\Views\Inicio\inicio.css" />
     <Content Include="Content\Views\Inicio\inicioResponsive.css" />
+    <Content Include="Content\Views\Propuestas\Detalle.css" />
     <Content Include="Content\Views\Shared\pv_Footer.css" />
     <Content Include="Content\Views\Shared\pv_Header.css" />
     <Content Include="Content\Views\Seguridad\IniciarRegistrar.css" />

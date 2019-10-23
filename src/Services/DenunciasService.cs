@@ -22,5 +22,9 @@ namespace Services
             }
         }
 
+        public static bool Denuncie(int idPropuesta)
+        {
+            return Db.Denuncias.FirstOrDefault(d => d.IdPropuesta == idPropuesta && d.IdUsuario == SessionHelper.Usuario.IdUsuario) != null;
+        }
     }
 }

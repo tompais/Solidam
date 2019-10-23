@@ -8,19 +8,17 @@
 @using Helpers
 @using Models
 @using Services
-@model Models.Propuestas
-@{
-    PropuestasValoraciones valoracion = PropuestasValoracionesService.Valore(Model.IdPropuesta);
-}
+@model Solidam.ViewModel.PropuestaDetalleViewModel
 @Styles.Render("~/Content/Views/Inicio/inicio.css")
 @Styles.Render("~/Content/Views/Inicio/inicioResponsive.css")
+@Styles.Render("~/Content/Views/Propuestas/Detalle.css")
 <div class="container">
     <h2>Detalle propuesta</h2>
-    @switch (Model.TipoDonacion)
+    @switch (Model.Propuesta.TipoDonacion)
     {
         case (int)TipoDonacion.Monetaria:
-            var obtenido = PropuestaService.GetDineroDonadoByPropuestaId(Model.IdPropuesta);
-            var meta = Model.PropuestasDonacionesMonetarias.FirstOrDefault(pdm => pdm.IdPropuesta == Model.IdPropuesta)?.Dinero;
+            var obtenido = PropuestaService.GetDineroDonadoByPropuestaId(Model.Propuesta.IdPropuesta);
+            var meta = Model.Propuesta.PropuestasDonacionesMonetarias.FirstOrDefault(pdm => pdm.IdPropuesta == Model.Propuesta.IdPropuesta)?.Dinero;
             <div class="col-md-6 mx-auto">
                 <div class="card p-4 causes">
                     <div class="causes-img">
@@ -40,28 +38,28 @@
                         </div>
                     </div>
                     <div class="causes-content">
-                        <h3>@Model.Nombre</h3>
-                        <p>@Model.Descripcion</p>
-                        <span class="mr-3">Usuario: </span><span class="mr-3">@Model.Usuarios.Apellido, @Model.Usuarios.Nombre</span><i>(@(Model.Usuarios.UserName))</i> <br />
+                        <h3>@Model.Propuesta.Nombre</h3>
+                        <p>@Model.Propuesta.Descripcion</p>
+                        <span class="mr-3">Usuario: </span><span class="mr-3">@Model.Propuesta.Usuarios.Apellido, @Model.Propuesta.Usuarios.Nombre</span><i>(@(Model.Propuesta.Usuarios.UserName))</i> <br />
                         <span class="mr-3">Aceptacion: (@Model.Valoracion%)</span><br />
-                        <span class="mr-3">Creada el: @Model.FechaCreacion.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</span><br />
-                        <span class="mr-3"> Disponible hasta: <strong>@Model.FechaFin.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</strong></span>
-                        @if (Model.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario)
+                        <span class="mr-3">Creada el: @Model.Propuesta.FechaCreacion.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</span><br />
+                        <span class="mr-3"> Disponible hasta: <strong>@Model.Propuesta.FechaFin.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</strong></span>
+                        @if (Model.Propuesta.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario)
                         {
                             <div class="d-flex justify-content-between mt-3">
                                 <a href="#" class="btn btn-primary text-white">Donar</a>
-                                <a href="@Url.Action("Denunciar","Propuesta",new { id = @Model.IdPropuesta})" class="btn btn-danger text-white">Denunciar</a>
+                                <a href="@Url.Action("Denunciar","Propuesta",new { id = @Model.Propuesta.IdPropuesta})" class="btn btn-danger text-white @(Model.Denuncie ? "disabled" : "")">Denunciar</a>
                                 <form action="@Url.Action("Valorar", "Propuesta")" method="post">
-                                    <input type="hidden" name="IdPropuesta" value="@Model.IdPropuesta" />
+                                    <input type="hidden" name="IdPropuesta" value="@Model.Propuesta.IdPropuesta" />
                                     <div class="d-flex justify-content-center align-items-center">
                                         <div class="mr-1">
                                             <button type="submit" name="mg">
-                                                <i class="fa fa-thumbs-up @(valoracion == null ? "" : (valoracion.Valoracion ? "text-success" : ""))" aria-hidden="true"></i>
+                                                <i class="fa fa-thumbs-up @(Model.Valoracion == null ? "" : (Model.Valoracion.Valoracion ? "text-success" : ""))" aria-hidden="true"></i>
                                             </button>
                                         </div>
                                         <div>
                                             <button type="submit" name="nmg">
-                                                <i class="fa fa-thumbs-down @(valoracion == null ? "" : (!valoracion.Valoracion ? "text-danger" : ""))" aria-hidden="true"></i>
+                                                <i class="fa fa-thumbs-down @(Model.Valoracion == null ? "" : (!Model.Valoracion.Valoracion ? "text-danger" : ""))" aria-hidden="true"></i>
                                             </button>
                                         </div>
                                     </div>
@@ -90,28 +88,28 @@
                         </div>
                     </div>
                     <div class="causes-content">
-                        <h3>@Model.Nombre</h3>
-                        <p>@Model.Descripcion</p>
-                        <span class="mr-3">Usuario: </span><span class="mr-3">@Model.Usuarios.Apellido, @Model.Usuarios.Nombre</span> <i>(@(Model.Usuarios.UserName))</i>  <br />
+                        <h3>@Model.Propuesta.Nombre</h3>
+                        <p>@Model.Propuesta.Descripcion</p>
+                        <span class="mr-3">Usuario: </span><span class="mr-3">@Model.Propuesta.Usuarios.Apellido, @Model.Propuesta.Usuarios.Nombre</span> <i>(@(Model.Propuesta.Usuarios.UserName))</i>  <br />
                         <span class="mr-3">Aceptacion: (@Model.Valoracion%)</span><br />
-                        <span class="mr-3">Creada el: @Model.FechaCreacion.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</span><br />
-                        <span class="mr-3"> Disponible hasta: <strong>@Model.FechaFin.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</strong></span>
-                        @if (Model.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario)
+                        <span class="mr-3">Creada el: @Model.Propuesta.FechaCreacion.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</span><br />
+                        <span class="mr-3"> Disponible hasta: <strong>@Model.Propuesta.FechaFin.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</strong></span>
+                        @if (Model.Propuesta.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario)
                         {
                             <div class="d-flex justify-content-between mt-3">
                                 <a href="#" class="btn btn-primary text-white">Donar</a>
-                                <a href="@Url.Action("Denunciar","Propuesta",new { id = @Model.IdPropuesta})" class="btn btn-danger text-white">Denunciar</a>
+                                <a href="@Url.Action("Denunciar","Propuesta",new { id = @Model.Propuesta.IdPropuesta})" class="btn btn-danger text-white @(Model.Denuncie ? "disabled" : "")">Denunciar</a>
                                 <form action="@Url.Action("Valorar", "Propuesta")" method="post">
-                                    <input type="hidden" name="IdPropuesta" value="@Model.IdPropuesta" />
+                                    <input type="hidden" name="IdPropuesta" value="@Model.Propuesta.IdPropuesta" />
                                     <div class="d-flex justify-content-center align-items-center">
                                         <div class="mr-1">
                                             <button type="submit" name="mg">
-                                                <i class="fa fa-thumbs-up @(valoracion == null ? "" : (valoracion.Valoracion ? "text-success" : ""))" aria-hidden="true"></i>
+                                                <i class="fa fa-thumbs-up @(Model.Valoracion == null ? "" : (Model.Valoracion.Valoracion ? "text-success" : ""))" aria-hidden="true"></i>
                                             </button>
                                         </div>
                                         <div>
                                             <button type="submit" name="nmg">
-                                                <i class="fa fa-thumbs-down @(valoracion == null ? "" : (!valoracion.Valoracion ? "text-danger" : ""))" aria-hidden="true"></i>
+                                                <i class="fa fa-thumbs-down @(Model.Valoracion == null ? "" : (!Model.Valoracion.Valoracion ? "text-danger" : ""))" aria-hidden="true"></i>
                                             </button>
                                         </div>
                                     </div>
@@ -136,28 +134,28 @@
                         </div>
                     </div>
                     <div class="causes-content">
-                        <h3>@Model.Nombre</h3>
-                        <p>@Model.Descripcion</p>
-                        <span class="mr-3">Usuario: </span><span class="mr-3">@Model.Usuarios.Apellido, @Model.Usuarios.Nombre</span><i>(@(Model.Usuarios.UserName))</i>  <br />
+                        <h3>@Model.Propuesta.Nombre</h3>
+                        <p>@Model.Propuesta.Descripcion</p>
+                        <span class="mr-3">Usuario: </span><span class="mr-3">@Model.Propuesta.Usuarios.Apellido, @Model.Propuesta.Usuarios.Nombre</span><i>(@(Model.Propuesta.Usuarios.UserName))</i>  <br />
                         <span class="mr-3">Aceptacion: (@Model.Valoracion%)</span><br />
-                        <span class="mr-3">Creada el: @Model.FechaCreacion.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</span><br />
-                        <span class="mr-3"> Disponible hasta: <strong>@Model.FechaFin.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</strong></span>
-                        @if (Model.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario)
+                        <span class="mr-3">Creada el: @Model.Propuesta.FechaCreacion.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</span><br />
+                        <span class="mr-3"> Disponible hasta: <strong>@Model.Propuesta.FechaFin.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</strong></span>
+                        @if (Model.Propuesta.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario)
                         {
                             <div class="d-flex justify-content-between mt-3">
                                 <a href="#" class="btn btn-primary text-white">Donar</a>
-                                <a href="@Url.Action("Denunciar","Propuesta",new { id = @Model.IdPropuesta})" class="btn btn-danger text-white">Denunciar</a>
+                                <a href="@Url.Action("Denunciar","Propuesta",new { id = @Model.Propuesta.IdPropuesta})" class="btn btn-danger text-white @(Model.Denuncie ? "disabled" : "")">Denunciar</a>
                                 <form action="@Url.Action("Valorar", "Propuesta")" method="post">
-                                    <input type="hidden" name="IdPropuesta" value="@Model.IdPropuesta" />
+                                    <input type="hidden" name="IdPropuesta" value="@Model.Propuesta.IdPropuesta" />
                                     <div class="d-flex justify-content-center align-items-center">
                                         <div class="mr-1">
                                             <button type="submit" name="mg">
-                                                <i class="fa fa-thumbs-up @(valoracion == null ? "" : (valoracion.Valoracion ? "text-success" : ""))" aria-hidden="true"></i>
+                                                <i class="fa fa-thumbs-up @(Model.Valoracion == null ? "" : (Model.Valoracion.Valoracion ? "text-success" : ""))" aria-hidden="true"></i>
                                             </button>
                                         </div>
                                         <div>
                                             <button type="submit" name="nmg">
-                                                <i class="fa fa-thumbs-down @(valoracion == null ? "" : (!valoracion.Valoracion ? "text-danger" : ""))" aria-hidden="true"></i>
+                                                <i class="fa fa-thumbs-down @(Model.Valoracion == null ? "" : (!Model.Valoracion.Valoracion ? "text-danger" : ""))" aria-hidden="true"></i>
                                             </button>
                                         </div>
                                     </div>

@@ -37,18 +37,24 @@ namespace Solidam.Controllers
             };
             PropuestasValoracionesService.Crear(propuestasValoraciones);
             PropuestaService.PutPorcentajeAceptacion(pv.IdPropuesta);
-            return RedirectToAction("Detalle", "Propuesta",new {id = pv.IdPropuesta });
+            return RedirectToAction("Detalle", "Propuesta", new { id = pv.IdPropuesta });
         }
 
         public ActionResult Detalle(int id)
         {
             if (SessionHelper.Usuario == null)
             {
-                TempData["pendingRoute"] = Url.Action("Detalle", "Propuesta",new { id = id });
+                TempData["pendingRoute"] = Url.Action("Detalle", "Propuesta", new { id = id });
                 return RedirectToAction("Iniciar", "Seguridad");
             }
             var propuesta = PropuestaService.GetById(id);
-            return View(propuesta);
+            PropuestaDetalleViewModel propuestaDetalleViewModel = new PropuestaDetalleViewModel
+            {
+                Propuesta = propuesta,
+                Denuncie = DenunciasService.Denuncie(id),
+                Valoracion = PropuestasValoracionesService.Valore(id)
+            };
+            return View(propuestaDetalleViewModel);
         }
 
         [HttpGet]
@@ -58,7 +64,7 @@ namespace Solidam.Controllers
             {
                 IdPropuesta = id,
                 MotivoDenuncia = MotivoDenunciaService.GetAll(),
-                NombrePropuesta = PropuestaService.GetById(id).Nombre
+                NombrePropuesta = PropuestaService.GetById(id).Nombre,
             };
             return View(viewModel);
         }
@@ -68,7 +74,7 @@ namespace Solidam.Controllers
         {
             denuncia.FechaCreacion = DateTime.Now;
             denuncia.IdUsuario = SessionHelper.Usuario.IdUsuario;
-            denuncia.Estado = (int) DenunciaEstado.EnRevision;
+            denuncia.Estado = (int)DenunciaEstado.EnRevision;
             DenunciasService.Crear(denuncia);
             return RedirectToAction("Inicio", "Inicio");
         }
