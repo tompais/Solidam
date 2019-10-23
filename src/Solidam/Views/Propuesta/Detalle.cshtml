@@ -5,6 +5,7 @@
 }
 @using System.Globalization
 @using Enums
+@using Helpers
 @using Models
 @using Services
 @model Models.Propuestas
@@ -20,7 +21,7 @@
         case (int)TipoDonacion.Monetaria:
             var obtenido = PropuestaService.GetDineroDonadoByPropuestaId(Model.IdPropuesta);
             var meta = Model.PropuestasDonacionesMonetarias.FirstOrDefault(pdm => pdm.IdPropuesta == Model.IdPropuesta)?.Dinero;
-            <div class="col-md-4">
+            <div class="col-md-6 mx-auto">
                 <div class="card p-4 causes">
                     <div class="causes-img">
                         <a href="javascript:void(0);">
@@ -41,33 +42,38 @@
                     <div class="causes-content">
                         <h3>@Model.Nombre</h3>
                         <p>@Model.Descripcion</p>
-                        <span class="mr-3">Usuario: </span><span>@Model.Usuarios.Apellido, @Model.Usuarios.Nombre</span> <br />
+                        <span class="mr-3">Usuario: </span><span class="mr-3">@Model.Usuarios.Apellido, @Model.Usuarios.Nombre</span><i>(@(Model.Usuarios.UserName))</i> <br />
                         <span class="mr-3">Aceptacion: (@Model.Valoracion%)</span><br />
+                        <span class="mr-3">Creada el: @Model.FechaCreacion.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</span><br />
                         <span class="mr-3"> Disponible hasta: <strong>@Model.FechaFin.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</strong></span>
-                        <div class="d-flex justify-content-between mt-3">
-                        <a href="#" class="btn btn-primary text-white">Donar</a>
-                            <form action="@Url.Action("Valorar","Propuesta")" method="post">
-                                <input type="hidden" name="IdPropuesta" value="@Model.IdPropuesta" />
-                                <div class="d-flex justify-content-center align-items-center">
-                                    <div class="mr-4">
-                                        <button type="submit" name="mg">
-                                            <i class="fa fa-thumbs-up @(valoracion == null ? "" : (valoracion.Valoracion ? "text-success" : ""))" aria-hidden="true"></i>
-                                        </button>
+                        @if (Model.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario)
+                        {
+                            <div class="d-flex justify-content-between mt-3">
+                                <a href="#" class="btn btn-primary text-white">Donar</a>
+                                <a href="#" class="btn btn-danger text-white">Denunciar</a>
+                                <form action="@Url.Action("Valorar", "Propuesta")" method="post">
+                                    <input type="hidden" name="IdPropuesta" value="@Model.IdPropuesta" />
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <div class="mr-1">
+                                            <button type="submit" name="mg">
+                                                <i class="fa fa-thumbs-up @(valoracion == null ? "" : (valoracion.Valoracion ? "text-success" : ""))" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                        <div>
+                                            <button type="submit" name="nmg">
+                                                <i class="fa fa-thumbs-down @(valoracion == null ? "" : (!valoracion.Valoracion ? "text-danger" : ""))" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <button type="submit" name="nmg">
-                                            <i class="fa fa-thumbs-down @(valoracion == null ? "" : (!valoracion.Valoracion ? "text-danger" : ""))" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                                </form>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
             break;
         case (int)TipoDonacion.HorasDeTrabajo:
-            <div class="col-md-4">
+            <div class="col-md-6 mx-auto">
                 <div class="card p-4 causes">
                     <div class="causes-img">
                         <a href="javascript:void(0);">
@@ -86,33 +92,38 @@
                     <div class="causes-content">
                         <h3>@Model.Nombre</h3>
                         <p>@Model.Descripcion</p>
-                        <span class="mr-3">Usuario: </span><span>@Model.Usuarios.Apellido, @Model.Usuarios.Nombre</span> <br />
+                        <span class="mr-3">Usuario: </span><span class="mr-3">@Model.Usuarios.Apellido, @Model.Usuarios.Nombre</span> <i>(@(Model.Usuarios.UserName))</i>  <br />
                         <span class="mr-3">Aceptacion: (@Model.Valoracion%)</span><br />
+                        <span class="mr-3">Creada el: @Model.FechaCreacion.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</span><br />
                         <span class="mr-3"> Disponible hasta: <strong>@Model.FechaFin.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</strong></span>
-                        <div class="d-flex justify-content-between mt-3">
-                            <a href="#" class="btn btn-primary text-white">Donar</a>
-                            <form action="@Url.Action("Valorar","Propuesta")" method="post">
-                                <input type="hidden" name="IdPropuesta" value="@Model.IdPropuesta" />
-                                <div class="d-flex justify-content-center align-items-center">
-                                    <div class="mr-4">
-                                        <button type="submit" name="mg">
-                                            <i class="fa fa-thumbs-up @(valoracion == null ? "" : (valoracion.Valoracion ? "text-success" : ""))" aria-hidden="true"></i>
-                                        </button>
+                        @if (Model.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario)
+                        {
+                            <div class="d-flex justify-content-between mt-3">
+                                <a href="#" class="btn btn-primary text-white">Donar</a>
+                                <a href="#" class="btn btn-danger text-white">Denunciar</a>
+                                <form action="@Url.Action("Valorar", "Propuesta")" method="post">
+                                    <input type="hidden" name="IdPropuesta" value="@Model.IdPropuesta" />
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <div class="mr-1">
+                                            <button type="submit" name="mg">
+                                                <i class="fa fa-thumbs-up @(valoracion == null ? "" : (valoracion.Valoracion ? "text-success" : ""))" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                        <div>
+                                            <button type="submit" name="nmg">
+                                                <i class="fa fa-thumbs-down @(valoracion == null ? "" : (!valoracion.Valoracion ? "text-danger" : ""))" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <button type="submit" name="nmg">
-                                            <i class="fa fa-thumbs-down @(valoracion == null ? "" : (!valoracion.Valoracion ? "text-danger" : ""))" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                                </form>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
             break;
         case (int)TipoDonacion.Insumos:
-            <div class="col-md-4">
+            <div class="col-md-6 mx-auto">
                 <div class="card p-4 causes">
                     <div class="causes-img">
                         <a href="javascript:void(0);">
@@ -127,27 +138,32 @@
                     <div class="causes-content">
                         <h3>@Model.Nombre</h3>
                         <p>@Model.Descripcion</p>
-                        <span class="mr-3">Usuario: </span><span>@Model.Usuarios.Apellido, @Model.Usuarios.Nombre</span> <br />
+                        <span class="mr-3">Usuario: </span><span class="mr-3">@Model.Usuarios.Apellido, @Model.Usuarios.Nombre</span><i>(@(Model.Usuarios.UserName))</i>  <br />
                         <span class="mr-3">Aceptacion: (@Model.Valoracion%)</span><br />
+                        <span class="mr-3">Creada el: @Model.FechaCreacion.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</span><br />
                         <span class="mr-3"> Disponible hasta: <strong>@Model.FechaFin.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</strong></span>
-                        <div class="d-flex justify-content-between mt-3">
-                            <a href="#" class="btn btn-primary text-white">Donar</a>
-                            <form action="@Url.Action("Valorar","Propuesta")" method="post">
-                                <input type="hidden" name="IdPropuesta" value="@Model.IdPropuesta" />
-                                <div class="d-flex justify-content-center align-items-center">
-                                    <div class="mr-4">
-                                        <button type="submit" name="mg">
-                                            <i class="fa fa-thumbs-up @(valoracion == null ? "" : (valoracion.Valoracion ? "text-success" : ""))" aria-hidden="true"></i>
-                                        </button>
+                        @if (Model.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario)
+                        {
+                            <div class="d-flex justify-content-between mt-3">
+                                <a href="#" class="btn btn-primary text-white">Donar</a>
+                                <a href="#" class="btn btn-danger text-white">Denunciar</a>
+                                <form action="@Url.Action("Valorar", "Propuesta")" method="post">
+                                    <input type="hidden" name="IdPropuesta" value="@Model.IdPropuesta" />
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <div class="mr-1">
+                                            <button type="submit" name="mg">
+                                                <i class="fa fa-thumbs-up @(valoracion == null ? "" : (valoracion.Valoracion ? "text-success" : ""))" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                        <div>
+                                            <button type="submit" name="nmg">
+                                                <i class="fa fa-thumbs-down @(valoracion == null ? "" : (!valoracion.Valoracion ? "text-danger" : ""))" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <button type="submit" name="nmg">
-                                            <i class="fa fa-thumbs-down @(valoracion == null ? "" : (!valoracion.Valoracion ? "text-danger" : ""))" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                                </form>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
