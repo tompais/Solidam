@@ -3,6 +3,7 @@ using Models;
 using Services;
 using System.Linq;
 using System.Web.Mvc;
+using Solidam.ViewModel;
 using Utils;
 
 namespace Solidam.Controllers
@@ -17,6 +18,7 @@ namespace Solidam.Controllers
         [HttpGet]
         public ActionResult IniciarSesion(Usuarios usuario)
         {
+            var inicioViewModel = new InicioViewModel();
             usuario.Password = Sha1.GetSHA1(usuario.Password);
 
             var usuarioIniciar = SeguridadService.Instance.Get(usuario).FirstOrDefault();
@@ -24,12 +26,14 @@ namespace Solidam.Controllers
             if (usuarioIniciar == null)
             {
                 usuarioIniciar = new Usuarios { Error = "Email y/o Contraseña inválidos" };
+                //inicioViewModel.Usuario = usuarioIniciar;
                 return View("Iniciar", usuarioIniciar);
             }
 
             if (usuarioIniciar.Activo.ToString().Equals("False"))
             {
                 usuarioIniciar = new Usuarios { Error = "Su usuario está inactivo. Actívelo desde el email recibido" };
+                //inicioViewModel.Usuario = usuarioIniciar;
                 return View("Iniciar", usuarioIniciar);
             }
 

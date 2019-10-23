@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Enums
 {
-    enum PropuestaEstado
+    public enum PropuestaEstado
     {
         Abierta = 0,
         Cerrada
