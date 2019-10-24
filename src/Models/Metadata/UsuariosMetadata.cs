@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Models;
+using Utils;
 
 namespace Models
 {
@@ -26,15 +27,20 @@ namespace Models
         public string Password { get; set; }
 
         [NotMapped]
+        [Required(ErrorMessage = "Ingrese su Contraseña")]
+        [CustomValidation(typeof(UsuariosMetadata), "ValidarLogueoIncorrecto")]
+        public string PasswordLogin { get; set; }
+
+        [NotMapped]
         [Required(ErrorMessage = "Confirme su Contraseña")]
         [Compare(nameof(Password), ErrorMessage = "Sus contraseñas no coinciden")]
         public string Repassword { get; set; }
 
-        [Required(ErrorMessage = "Ingrese su fecha de nacimiento")]
+        //[Required(ErrorMessage = "Ingrese su fecha de nacimiento")]
         //[CustomValidation(typeof(UsuariosMetadata), "ValidarMayoriaEdad")]
         public DateTime FechaNacimiento { get; set; }
 
-        public static ValidationResult ValidarEmailUnico (object value, ValidationContext context)
+        public static ValidationResult ValidarEmailUnico(object value, ValidationContext context)
         {
             var usuario = context.ObjectInstance as Usuarios;
 
@@ -48,7 +54,7 @@ namespace Models
             return ValidationResult.Success;
         }
 
-        public static ValidationResult ValidarMayoriaEdad (object value, ValidationContext context)
+        public static ValidationResult ValidarMayoriaEdad(object value, ValidationContext context)
         {
             var usuario = context.ObjectInstance as Usuarios;
 
@@ -59,5 +65,23 @@ namespace Models
 
             return ValidationResult.Success;
         }
+
+        public static ValidationResult ValidarLogueoIncorrecto(object value, ValidationContext context)
+        {
+            var usuario = context.ObjectInstance as Usuarios;
+
+            usuario.PasswordLogin = Sha1.GetSHA1(usuario.PasswordLogin);
+
+            var usuarioCorrecto = SolidamEntities.Instance.Usuarios.FirstOrDefault(u =>
+                u.Email == usuario.EmailLogin && u.Password == usuario.PasswordLogin);
+
+            if (usuarioCorrecto == null)
+            {
+                return new ValidationResult(string.Format("Email/Contraña Incorrecto"));
+            }
+
+            return ValidationResult.Success;
+        }
+
     }
 }

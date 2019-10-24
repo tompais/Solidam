@@ -12,6 +12,8 @@ namespace Models
     {
         public string EmailLogin { get; set; }
 
+        public string PasswordLogin { get; set; }
+
         public string Repassword { get; set; }
     }
 }

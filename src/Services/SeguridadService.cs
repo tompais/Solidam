@@ -32,10 +32,10 @@ namespace Services
 
             if (model == null) return usuarios.ToList();
 
-            if (!string.IsNullOrEmpty(model.Email))
+            if (!string.IsNullOrEmpty(model.EmailLogin))
                 usuarios = usuarios.Where(u => u.Email.Equals(model.Email));
 
-            if (!string.IsNullOrEmpty(model.Password))
+            if (!string.IsNullOrEmpty(model.PasswordLogin))
                 usuarios = usuarios.Where(u => u.Password.Equals(model.Password));
 
             if (!string.IsNullOrEmpty(model.Token))
