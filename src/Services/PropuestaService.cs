@@ -68,5 +68,25 @@ namespace Services
             Db.SaveChanges();
         }
 
+        public static List<DonacionesMonetarias> GetDonacionesMonetariasById(int idPropuesta)
+        {
+            return Db.PropuestasDonacionesMonetarias.Include("DonacionesMonetarias").FirstOrDefault(pdm => pdm.IdPropuesta == idPropuesta)
+                ?.DonacionesMonetarias.ToList();
+        }
+        public static List<DonacionesHorasTrabajo> GetDonacionesHorasTrabajoById(int idPropuesta)
+        {
+            return Db.PropuestasDonacionesHorasTrabajo.Include("DonacionesHorasTrabajo").FirstOrDefault(dm => dm.IdPropuesta == idPropuesta)?.DonacionesHorasTrabajo.ToList();
+        }
+        public static List<DonacionesInsumos> GetDonacionesInsumosById(int idPropuesta)
+        {
+            var itemsNecesitados = Db.PropuestasDonacionesInsumos.Include("DonacionesInsumos").Where(dm => dm.IdPropuesta == idPropuesta).ToList();
+            List<DonacionesInsumos> donaciones = new List<DonacionesInsumos>();
+            foreach (PropuestasDonacionesInsumos item in itemsNecesitados)
+            {
+                donaciones.AddRange(item.DonacionesInsumos);
+            }
+
+            return donaciones;
+        }
     }
 }
