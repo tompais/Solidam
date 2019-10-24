@@ -2,47 +2,22 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Models;
 using Utils;
+using Models;
 
 namespace Models
 {
     public class UsuariosMetadata
     {
-        [Required(ErrorMessage = "Ingrese su Email")]
-        [EmailAddress(ErrorMessage = "Formato de Email Incorrecto")]
-        [CustomValidation(typeof(UsuariosMetadata), "ValidarEmailUnico")]
-        public string Email { get; set; }
-
-        [NotMapped]
-        [Required(ErrorMessage = "Ingrese su Email")]
-        [EmailAddress(ErrorMessage = "Formato de Email Incorrecto")]
-        public string EmailLogin { get; set; }
-
-        [Required(ErrorMessage = "Ingrese su Contraseña")]
-        //[RegularExpression(@"^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$", ErrorMessage = "Su contraseña debe tener letras, (minúsculas y mayúsculas) y números")]
-        public string Password { get; set; }
-
-        [NotMapped]
-        [Required(ErrorMessage = "Ingrese su Contraseña")]
-        [CustomValidation(typeof(UsuariosMetadata), "ValidarLogueoIncorrecto")]
-        public string PasswordLogin { get; set; }
-
-        [NotMapped]
-        [Required(ErrorMessage = "Confirme su Contraseña")]
-        [Compare(nameof(Password), ErrorMessage = "Sus contraseñas no coinciden")]
-        public string Repassword { get; set; }
-
-        //[Required(ErrorMessage = "Ingrese su fecha de nacimiento")]
-        //[CustomValidation(typeof(UsuariosMetadata), "ValidarMayoriaEdad")]
-        public DateTime FechaNacimiento { get; set; }
-
+        
         public static ValidationResult ValidarEmailUnico(object value, ValidationContext context)
         {
-            var usuario = context.ObjectInstance as Usuarios;
+            var usuario = context.ObjectInstance as UsuariosRegister;
 
             var existeEmail = SolidamEntities.Instance.Usuarios.Any(o => o.Email == usuario.Email);
 
@@ -56,9 +31,11 @@ namespace Models
 
         public static ValidationResult ValidarMayoriaEdad(object value, ValidationContext context)
         {
-            var usuario = context.ObjectInstance as Usuarios;
+            var usuario = context.ObjectInstance as UsuariosRegister;
 
-            if ((usuario.FechaNacimiento.Year - DateTime.Now.Year) > 18)
+            var edad = usuario.FechaNacimiento.Year - DateTime.Now.Year;
+
+            if (edad >= 18)
             {
                 return new ValidationResult(string.Format("Debe ser mayor a 18 "));
             }
@@ -66,22 +43,28 @@ namespace Models
             return ValidationResult.Success;
         }
 
-        public static ValidationResult ValidarLogueoIncorrecto(object value, ValidationContext context)
+        public static ValidationResult ValidarLogueo(object value, ValidationContext context)
         {
-            var usuario = context.ObjectInstance as Usuarios;
+            var usuario = context.ObjectInstance as UsuariosLogin;
 
-            usuario.PasswordLogin = Sha1.GetSHA1(usuario.PasswordLogin);
+            usuario.Password = Sha1.GetSHA1(usuario.Password);
 
             var usuarioCorrecto = SolidamEntities.Instance.Usuarios.FirstOrDefault(u =>
-                u.Email == usuario.EmailLogin && u.Password == usuario.PasswordLogin);
+                u.Email == usuario.Email && u.Password == usuario.Password);
 
             if (usuarioCorrecto == null)
             {
                 return new ValidationResult(string.Format("Email/Contraña Incorrecto"));
             }
 
+            if (usuarioCorrecto.Activo == false)
+            {
+                return new ValidationResult(string.Format("Su usuario está inactivo. Actívelo desde el email recibido"));
+            }
+
             return ValidationResult.Success;
         }
+
 
     }
 }

@@ -32,10 +32,10 @@ namespace Services
 
             if (model == null) return usuarios.ToList();
 
-            if (!string.IsNullOrEmpty(model.EmailLogin))
+            if (!string.IsNullOrEmpty(model.Email))
                 usuarios = usuarios.Where(u => u.Email.Equals(model.Email));
 
-            if (!string.IsNullOrEmpty(model.PasswordLogin))
+            if (!string.IsNullOrEmpty(model.Password))
                 usuarios = usuarios.Where(u => u.Password.Equals(model.Password));
 
             if (!string.IsNullOrEmpty(model.Token))
@@ -53,7 +53,6 @@ namespace Services
             model.Token = Guid.NewGuid().ToString().Substring(0, 29);
 
             model.Password = Sha1.GetSHA1(model.Password);
-            model.Repassword = Sha1.GetSHA1(model.Repassword);
 
             Db.Usuarios.Add(model);
             Db.SaveChanges();
@@ -78,8 +77,6 @@ namespace Services
 
                 if (model.Activo)
                     usuarioAModificar.Activo = model.Activo;
-
-                usuarioAModificar.Repassword = usuarioAModificar.Password;
             }
             
 

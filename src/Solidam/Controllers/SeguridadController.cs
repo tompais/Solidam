@@ -9,6 +9,8 @@ using Solidam.ViewModel;
 using Utils;
 using System.Collections.Generic;
 using Castle.Components.DictionaryAdapter.Xml;
+using System.Globalization;
+using Models;
 
 namespace Solidam.Controllers
 {
@@ -21,23 +23,18 @@ namespace Solidam.Controllers
         }
 
         [HttpPost]
-        public ActionResult Iniciar(Usuarios usuario)
+        public ActionResult Iniciar(UsuariosLogin model)
         {
             var inicioViewModel = new InicioViewModel();
 
-            usuario.PasswordLogin = Sha1.GetSHA1(usuario.PasswordLogin);
-            
-            ModelState.Remove("Email");
-            ModelState.Remove("FechaDeNacimiento");
-            ModelState.Remove("Repassword");
-            ModelState.Remove("Password");
-
             if (!ModelState.IsValid)
             {
-                return View("Iniciar", usuario);
+                return View("Iniciar", model);
             }
 
-            SessionHelper.Usuario = SeguridadService.Instance.Get(usuario).FirstOrDefault();
+            var usuarioLoguear = SeguridadService.Instance.Get(new Usuarios() { Email = model.Email, Password = model.Password }).FirstOrDefault();
+
+            SessionHelper.Usuario = usuarioLoguear;
 
             if (TempData["pendingRoute"] != null)
             {
@@ -56,16 +53,15 @@ namespace Solidam.Controllers
         }
 
         [HttpPost]
-        public ActionResult Registrar(Usuarios usuario)
+        public ActionResult Registrar(UsuariosRegister model)
         {
+
             if (!ModelState.IsValid)
             {
-                return View(usuario);
+                return View(model);
             }
 
-            var usuarioEvaluado = SeguridadService.Instance.Post(usuario);
-
-            if (usuarioEvaluado == null) return View("Registrar", usuarioEvaluado);
+            var usuarioEvaluado = SeguridadService.Instance.Post(new Usuarios() { Email = model.Email, Password = model.Password, FechaNacimiento = model.FechaNacimiento });
 
             SeguridadService.Instance.EnviarCorreo(usuarioEvaluado.Token, usuarioEvaluado.Email);
 
