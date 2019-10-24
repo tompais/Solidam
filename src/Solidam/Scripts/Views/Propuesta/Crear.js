@@ -25,12 +25,26 @@ $('#tipoDonacion').change(function () {
                 $("#datosDonacion").empty();
                 var label1 = "<label for='nombreInsumos'>Descripción</label>";
                 var input1 = "<input type='text' class='form-control' id='nombreInsumos' name='PropuestasDonacionesInsumos[" + i + "].Nombre' />";
-                var div1 = "<div class='col'>" + label1 + input1 + "</div>";
+                var div1 = "<div class='col-6'>" + label1 + input1 + "</div>";
                 var label2 = "<label for='cantInsumos'>Cantidad</label>";
                 var input2 = "<input type='number' class='form-control' id='cantInsumos' name='PropuestasDonacionesInsumos[" + i + "].Cantidad' />";
-                var div2 = "<div class='col'>" + label2 + input2 + "</div>";
-                $("#datosDonacion").append("<div class='row'>" + div1 + div2 + "<div id='masInsumos'></div>"
-                    + "<button type='button' class='row btn btn-link justify-content-end' id='agregarItem'>Agregar Item</button></div>");
+                var div2 = "<div class='col-6'>" + label2 + input2 + "</div>";
+
+                var botonAgregar = $("<button type='button' class='btn btn-link pl-0' id='agregarItem'>Agregar Item</button>");
+
+                botonAgregar.click(function () {
+                    var label1 = "<label for='nombreInsumos" + i + "'>Descripción</label>";
+                    var input1 = "<input type='text' class='form-control' id='nombreInsumos" + i + "' name='PropuestasDonacionesInsumos[" + i + "].Nombre' />";
+                    var div1 = "<div class='col-6'>" + label1 + input1 + "</div>";
+                    var label2 = "<label for='cantInsumos" + i + "'>Cantidad</label>";
+                    var input2 = "<input type='number' class='form-control' id='cantInsumos" + i + "' name='PropuestasDonacionesInsumos[" + i + "].Cantidad' />";
+                    var div2 = "<div class='col-6'>" + label2 + input2 + "</div>";
+                    $("#masInsumos").append("<div class='row'>" + div1 + div2 + "</div>");
+                    i++;
+                });
+
+                $("#datosDonacion").append("<div class='row'>" + div1 + div2 + "</div><div class='form-group' id='masInsumos'></div>");
+                $("#datosDonacion").append(botonAgregar);
                 i++;
             }
             else {
@@ -49,15 +63,4 @@ $('#tipoDonacion').change(function () {
 
                 $("#datosDonacion").append(select);
             }
-});
-
-$("#agregarItem").click(function () {
-    var label1 = "<label for='nombreInsumos" + i + "'>Descripción</label>";
-    var input1 = "<input type='text' class='form-control' id='nombreInsumos" + i + "' name='PropuestasDonacionesInsumos[" + i + "].Nombre' />";
-    var div1 = "<div class='col'>" + label1 + input1 + "</div>";
-    var label2 = "<label for='cantInsumos" + i + "'>Cantidad</label>";
-    var input2 = "<input type='number' class='form-control' id='cantInsumos" + i + "' name='PropuestasDonacionesInsumos[" + i + "].Cantidad' />";
-    var div2 = "<div class='col'>" + label2 + input2 + "</div>";
-    $("#masInsumos").append("<div class='row'>" + div1 + div2 + "</div>");
-    i++;
 });
