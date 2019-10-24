@@ -1,10 +1,12 @@
-﻿using Helpers;
+﻿using System.ComponentModel.DataAnnotations;
+using Helpers;
 using Models;
 using Services;
 using System.Linq;
 using System.Web.Mvc;
 using Solidam.ViewModel;
 using Utils;
+using System.Collections.Generic;
 
 namespace Solidam.Controllers
 {
@@ -17,14 +19,24 @@ namespace Solidam.Controllers
         }
 
         [HttpPost]
-        public ActionResult Iniciar (Usuarios usuario)
+        public ActionResult Iniciar(Usuarios usuario)
         {
             var inicioViewModel = new InicioViewModel();
-            usuario.Password = Sha1.GetSHA1(usuario.Password);
 
-            if (ModelState.IsValid)
+            usuario.Password = Sha1.GetSHA1(usuario.Password);
+            usuario.Email = usuario.EmailLogin;
+
+            var usuarioLoguear = SeguridadService.Instance.Get(usuario).FirstOrDefault();
+
+            usuarioLoguear.Repassword = usuario.Password;
+
+            var validationContext = new ValidationContext(usuarioLoguear, null, null);
+            var results = new List<ValidationResult>();
+
+            if (Validator.TryValidateObject(usuarioLoguear, validationContext, results,true))
             {
-                SessionHelper.Usuario = SeguridadService.Instance.Get(usuario).FirstOrDefault();
+
+                SessionHelper.Usuario = usuarioLoguear;
 
                 if (TempData["pendingRoute"] != null)
                 {
@@ -45,13 +57,18 @@ namespace Solidam.Controllers
         }
 
         [HttpPost]
-        public ActionResult RegistrarUsuario(Usuarios usuario)
+        public ActionResult Registrar(Usuarios usuario)
         {
-            var usuarioEvaluado = SeguridadService.Instance.Post(usuario);
+            if (ModelState.IsValid)
+            {
+                var usuarioEvaluado = SeguridadService.Instance.Post(usuario);
 
-            if (usuarioEvaluado == null) return View("Registrar", usuarioEvaluado);
-            SeguridadService.Instance.EnviarCorreo(usuarioEvaluado.Token, usuarioEvaluado.Email);
-            return View("RegistroExitoso");
+                if (usuarioEvaluado == null) return View("Registrar", usuarioEvaluado);
+                SeguridadService.Instance.EnviarCorreo(usuarioEvaluado.Token, usuarioEvaluado.Email);
+                return View("RegistroExitoso");
+            }
+
+            return View(usuario);
         }
 
         public ActionResult RegistroExitoso()

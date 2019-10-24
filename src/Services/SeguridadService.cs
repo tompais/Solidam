@@ -41,6 +41,7 @@ namespace Services
             if (!string.IsNullOrEmpty(model.Token))
                 usuarios = usuarios.Where(u => u.Token.Equals(model.Token));
 
+
             return usuarios.ToList();
         }
 
@@ -49,29 +50,15 @@ namespace Services
             model.Activo = false;
             model.FechaCracion = DateTime.Now;
             model.TipoUsuario = 2;
-            model.Token = Guid.NewGuid().ToString().Substring(0,29);
+            model.Token = Guid.NewGuid().ToString().Substring(0, 29);
 
-            var emailExitente = Db.Usuarios.FirstOrDefault(u => u.Email == model.Email);
+            model.Password = Sha1.GetSHA1(model.Password);
+            model.Repassword = Sha1.GetSHA1(model.Repassword);
 
-            Usuarios retorno;
+            Db.Usuarios.Add(model);
+            Db.SaveChanges();
 
-            if (emailExitente == null)
-            {
-                ValidarUsuarios(model);
-
-                model.Password = Sha1.GetSHA1(model.Password);
-
-                Db.Usuarios.Add(model);
-                Db.SaveChanges();
-
-                retorno = model;
-            }
-            else
-            {
-                retorno = new Usuarios { Error = "Ya existe un usuario registrado con este correo" };
-            }
-
-            return retorno;
+            return model;
         }
 
         public Usuarios Put(Usuarios model)
@@ -91,49 +78,16 @@ namespace Services
 
                 if (model.Activo)
                     usuarioAModificar.Activo = model.Activo;
+
+                usuarioAModificar.Repassword = usuarioAModificar.Password;
             }
-            else
-            {
-                throw new UsuariosException("El usuario buscado no existe.", ErrorCode.UsurioInexistente);
-            }
+            
 
             Db.SaveChanges();
 
             return usuarioAModificar;
         }
 
-        public void ValidarUsuarios(Usuarios model)
-        {
-            if (string.IsNullOrEmpty(model.FechaNacimiento.ToString(CultureInfo.InvariantCulture)))
-                throw new UsuariosException("La fecha de nacimiento no puede se vacia o nula.",
-                    ErrorCode.FechaNacimientoInvalida);
-
-            if (DateTime.Now.Year - model.FechaNacimiento.Year < 18)
-                throw new UsuariosException("El usuario no puede ser menor a 18 años",
-                    ErrorCode.FechaNacimientoInvalida);
-
-            var email = new EmailAddressAttribute();
-
-            if (string.IsNullOrEmpty(model.Email) || !email.IsValid(model.Email))
-                throw new UsuariosException("Formato de email incorrecto.", ErrorCode.EmailInvalido);
-
-            var poseeNumeros = new Regex(RegexType.OnlyNumbers);
-            var poseeLetraMayus = new Regex(RegexType.OnlyLetters);
-            var posee8Caracteres = new Regex(@".{8,}");
-
-            var regexPassValidacion = poseeNumeros.IsMatch(model.Password) && poseeLetraMayus.IsMatch(model.Password) &&
-                                      posee8Caracteres.IsMatch(model.Password);
-
-            if (string.IsNullOrEmpty(model.Password) || !regexPassValidacion)
-                throw new UsuariosException("Formato de password incorrecto.", ErrorCode.PasswordInvalida);
-
-            if (model.TipoUsuario != 2)
-                throw new UsuariosException("La cuenta no puede ser de otro tipo que no sea usario",
-                    ErrorCode.TipoUsuarioInvalido);
-
-            if (string.IsNullOrEmpty(model.Token))
-                throw new UsuariosException("La cuenta debe poseer un token obligatoriamente", ErrorCode.TokenInvalido);
-        }
 
         public void EnviarCorreo(string token, string email)
         {

@@ -1,6 +1,4 @@
-﻿const regexEmail = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
-
-$(function () {
+﻿$(function () {
 
     $("input[type='password'][data-eye]").each(function (i) {
         var $this = $(this),

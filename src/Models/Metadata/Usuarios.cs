@@ -10,5 +10,8 @@ namespace Models
     [MetadataType(typeof(UsuariosMetadata))]
     public partial class Usuarios
     {
+        public string EmailLogin { get; set; }
+
+        public string Repassword { get; set; }
     }
 }
