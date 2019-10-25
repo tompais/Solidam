@@ -330,6 +330,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\DonacionInsumoController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
     <Compile Include="Controllers\PropuestaController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
@@ -339,6 +340,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\DenunciaViewModel.cs" />
+    <Compile Include="ViewModel\DonarViewModel.cs" />
     <Compile Include="ViewModel\InicioViewModel.cs" />
     <Compile Include="ViewModel\PropuestaDetalleViewModel.cs" />
   </ItemGroup>
@@ -1017,6 +1019,7 @@
     <Content Include="Scripts\Views\Inicio\inicio.js" />
     <Content Include="Scripts\Views\Propuesta\Crear.js" />
     <Content Include="Images\Views\Seguridad\logoBordeBlanco.png" />
+    <Content Include="Scripts\Views\Propuesta\Donar.js" />
     <Content Include="Scripts\Views\Seguridad\Iniciar.js" />
     <Content Include="Scripts\Views\Seguridad\Registrar.js" />
     <Content Include="Scripts\Views\Seguridad\RegistroExitoso.js" />
@@ -1061,11 +1064,13 @@
     <Content Include="Views\Propuesta\CrearPropuesta.cshtml" />
     <Content Include="Views\Propuesta\Detalle.cshtml" />
     <Content Include="Views\Propuesta\Denunciar.cshtml" />
+    <Content Include="Views\Propuesta\Donar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\layouts\" />
     <Folder Include="Images\Views\Propuesta\" />
+    <Folder Include="Views\DonacionInsumo\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -1112,6 +1117,10 @@
     <ProjectReference Include="..\Utils\Utils.csproj">
       <Project>{0fd79276-c521-4c8f-9d68-c83cce59399c}</Project>
       <Name>Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ViewModels\ViewModels.csproj">
+      <Project>{bfb013a9-d0d5-4c03-a2a8-6d9cbd88d693}</Project>
+      <Name>ViewModels</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
