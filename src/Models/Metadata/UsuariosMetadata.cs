@@ -4,11 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Dynamic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Models;
 using Utils;
-using Models;
 
 namespace Models
 {
@@ -33,11 +29,11 @@ namespace Models
         {
             var usuario = context.ObjectInstance as UsuariosRegister;
 
-            var edad = usuario.FechaNacimiento.Year - DateTime.Now.Year;
+            var edad = DateTime.Now.Year - usuario.FechaNacimiento.Year;
 
-            if (edad >= 18)
+            if (edad < 18)
             {
-                return new ValidationResult(string.Format("Debe ser mayor a 18 "));
+                return new ValidationResult(string.Format("Debes tener mas de 18 años"));
             }
 
             return ValidationResult.Success;

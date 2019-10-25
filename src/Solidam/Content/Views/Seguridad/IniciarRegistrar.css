@@ -4,7 +4,7 @@
 
 .my-login-page {
     font-size: 14px;
-    background: url(../../../Images/Views/Seguridad/login3.jpg) no-repeat;
+    background: url(../../../Images/Views/Seguridad/login3.jpg)
 }
 
     .my-login-page .brand {
@@ -24,7 +24,7 @@
         }
 
     .my-login-page .card-wrapper {
-        width: 400px;
+        width: 50%;
     }
 
     .my-login-page .card {

@@ -1,5 +1,5 @@
 ﻿$(function () {
-    inputFechaNacimiento.parent().datepicker({
+    $('#inputFecha').datepicker({
         format: 'dd/mm/yyyy',
         language: 'es',
         autoclose: true
