@@ -33,6 +33,9 @@
                             </div>
                         </div>
                         <div>
+                            <span class="causes-raised">Tipo: <strong>Monetaria</strong></span>
+                        </div>
+                        <div>
                             <span class="causes-raised">Obtenido: <strong>$@(obtenido)</strong></span>
                             <span class="causes-goal">Meta: <strong>$@(meta)</strong></span>
                         </div>
@@ -79,13 +82,17 @@
                         </a>
                     </div>
                     <div class="causes-progress">
-                        <div class="causes-progress-bar">
-                            <div style="width: 100%;">
-                            </div>
-                        </div>
                         <div>
-                            <span class="causes-raised">Objetivo: <strong>Mano de Obra</strong></span>
+                            <span class="causes-raised">Tipo: <strong>Mano de Obra</strong></span>
                         </div>
+                        <ul>
+                            @foreach (PropuestasDonacionesHorasTrabajo prop in Model.Propuesta.PropuestasDonacionesHorasTrabajo)
+                            {
+                            <li class="mb-3">
+                                @prop.Profesion <strong class="ml-4">@prop.CantidadHoras hs</strong>
+                            </li>
+                            }
+                        </ul>
                     </div>
                     <div class="causes-content">
                         <h3>@Model.Propuesta.Nombre</h3>
@@ -130,8 +137,16 @@
                     </div>
                     <div class="causes-progress">
                         <div>
-                            <span class="causes-raised">Objetivo: <strong>Insumos</strong></span>
+                            <span class="causes-raised">Tipo: <strong>Insumos</strong></span>
                         </div>
+                        <ul>
+                            @foreach (PropuestasDonacionesInsumos prop in Model.Propuesta.PropuestasDonacionesInsumos)
+                            {
+                                <li>
+                                    @prop.Nombre <strong class="ml-4">@prop.Cantidad unidades restantes</strong>
+                                </li>
+                            }
+                        </ul>
                     </div>
                     <div class="causes-content">
                         <h3>@Model.Propuesta.Nombre</h3>
@@ -143,7 +158,7 @@
                         @if (Model.Propuesta.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario)
                         {
                             <div class="d-flex justify-content-between mt-3">
-                                <a href="#" class="btn btn-primary text-white">Donar</a>
+                                <a href="@Url.Action("Donar","Propuesta",new { id = @Model.Propuesta.IdPropuesta })" class="btn btn-primary text-white">Donar</a>
                                 <a href="@Url.Action("Denunciar","Propuesta",new { id = @Model.Propuesta.IdPropuesta})" class="btn btn-danger text-white @(Model.Denuncie ? "disabled" : "")">Denunciar</a>
                                 <form action="@Url.Action("Valorar", "Propuesta")" method="post">
                                     <input type="hidden" name="IdPropuesta" value="@Model.Propuesta.IdPropuesta" />

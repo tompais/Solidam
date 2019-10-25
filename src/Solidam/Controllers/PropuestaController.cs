@@ -84,5 +84,18 @@ namespace Solidam.Controllers
             DenunciasService.Crear(denuncia);
             return RedirectToAction("Inicio", "Inicio");
         }
+
+        public ActionResult Donar(int id)
+        {
+            var propuesta = PropuestaService.GetById(id);
+            DonarViewModel dvm = new DonarViewModel
+            {
+                Propuesta = propuesta,
+                DonacionesMonetarias = PropuestaService.GetDonacionesMonetariasById(id),
+                DonacionesHorasTrabajo = PropuestaService.GetDonacionesHorasTrabajoById(id),
+                DonacionesInsumos = PropuestaService.GetDonacionesInsumosById(id)
+            };
+            return View(dvm);
+        }
     }
 }
