@@ -3,9 +3,10 @@
 @{
     Layout = "_BaseLayout.cshtml";
 }
-    @RenderPage("pv_Header.cshtml")
-<div>
-    @RenderBody()
-</div>
+@RenderPage("pv_Header.cshtml")
 
-@RenderPage("~/Views/Shared/pv_Footer.cshtml")
+    <div class="h-100">
+        @RenderBody()
+        @RenderPage("~/Views/Shared/pv_Footer.cshtml")
+    </div>
+

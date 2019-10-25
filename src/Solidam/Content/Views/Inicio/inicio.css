@@ -4133,3 +4133,6 @@ h6 {
     margin-top: 30px;
 
 }
+body,html {
+    height: 100%;
+}
