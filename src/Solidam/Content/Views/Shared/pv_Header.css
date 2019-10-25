@@ -7,7 +7,7 @@
 }
 
     .header_area .main_menu {
-        background: #f8f8f8;
+        background: #ffffff;
     }
 
     .header_area .navbar {
@@ -16,6 +16,21 @@
         border-radius: 0px;
         border-top: 1px solid rgba(221, 221, 221, 0.38);
     }
+
+#btnBuscar {
+    background: #028817;
+}
+
+#btnBuscar i {
+    color: white;
+}
+
+@media (max-width: 400px) {
+    #divBuscar {
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+}
 
 @media (max-width: 992px) {
     .header_area .navbar .nav {
