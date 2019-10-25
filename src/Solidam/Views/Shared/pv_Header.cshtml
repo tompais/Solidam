@@ -19,6 +19,16 @@
                     <span class="icon-bar"></span>
                 </button>
 
+                <div class="col-12 col-lg-6 col-md-4" id="divBuscar">
+                    <div class="input-group">
+                        <input type="text" id="inputBuscar" class="form-control"
+                               placeholder="Buscar...">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" id="btnBuscar" type="button"><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                     <div class="row ml-0 w-100">
                         <div class="col-lg-12 pr-0">
@@ -40,14 +50,12 @@
                                     <li class="nav-item active">
                                         <a class="nav-link" href="@Url.Action("Inicio","Inicio")">Inicio</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="../Inicio/contact.html">Mis Propuestas</a>
-                                    </li>
+
                                     <li class="nav-item">
                                         <a class="nav-link" href="../Inicio/contact.html">Contacto</a>
                                     </li>
                                     <li class="nav-item submenu dropdown">
-                                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cuenta<i class="ml-3 fa fa-caret-down"></i></a>
+                                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user mr-2"></i> Cuenta <i class="ml-3 fa fa-caret-down"></i></a>
                                         <ul class="dropdown-menu">
                                             <li class="nav-item">
                                                 <a class="nav-link" href="blog.html"><i class="fa fa-user mr-1"></i> Mi Perfil</a>
