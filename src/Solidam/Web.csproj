@@ -1118,6 +1118,10 @@
       <Project>{0fd79276-c521-4c8f-9d68-c83cce59399c}</Project>
       <Name>Utils</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ViewModels\ViewModels.csproj">
+      <Project>{bfb013a9-d0d5-4c03-a2a8-6d9cbd88d693}</Project>
+      <Name>ViewModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="packages\Microsoft.CodeAnalysis.Analyzers.2.9.6\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />

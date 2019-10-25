@@ -63,6 +63,9 @@
     <Compile Include="DonacionesMonetarias.cs">
       <DependentUpon>SolidamEntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Metadata\UsuariosLogin.cs" />
+    <Compile Include="Metadata\UsuariosMetadata.cs" />
+    <Compile Include="Metadata\UsuariosRegister.cs" />
     <Compile Include="MotivoDenuncia.cs">
       <DependentUpon>SolidamEntityDataModel.tt</DependentUpon>
     </Compile>
@@ -134,6 +137,11 @@
       <Project>{94405298-E0A8-4DAF-91B7-661789CB4ED3}</Project>
       <Name>Abstractions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Utils\Utils.csproj">
+      <Project>{0FD79276-C521-4C8F-9D68-C83CCE59399C}</Project>
+      <Name>Utils</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
