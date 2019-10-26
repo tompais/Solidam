@@ -56,12 +56,12 @@
                                     <input type="hidden" name="IdPropuesta" value="@Model.Propuesta.IdPropuesta" />
                                     <div class="d-flex justify-content-center align-items-center">
                                         <div class="mr-1">
-                                            <button type="submit" name="mg">
+                                            <button type="submit" class="me-gusta" name="mg">
                                                 <i class="fa fa-thumbs-up @(Model.Valoracion == null ? "" : (Model.Valoracion.Valoracion ? "text-success" : ""))" aria-hidden="true"></i>
                                             </button>
                                         </div>
                                         <div>
-                                            <button type="submit" name="nmg">
+                                            <button type="submit" class="no-me-gusta" name="nmg">
                                                 <i class="fa fa-thumbs-down @(Model.Valoracion == null ? "" : (!Model.Valoracion.Valoracion ? "text-danger" : ""))" aria-hidden="true"></i>
                                             </button>
                                         </div>
@@ -110,12 +110,12 @@
                                     <input type="hidden" name="IdPropuesta" value="@Model.Propuesta.IdPropuesta" />
                                     <div class="d-flex justify-content-center align-items-center">
                                         <div class="mr-1">
-                                            <button type="submit" name="mg">
+                                            <button type="submit" class="me-gusta" name="mg">
                                                 <i class="fa fa-thumbs-up @(Model.Valoracion == null ? "" : (Model.Valoracion.Valoracion ? "text-success" : ""))" aria-hidden="true"></i>
                                             </button>
                                         </div>
                                         <div>
-                                            <button type="submit" name="nmg">
+                                            <button type="submit" class="no-me-gusta" name="nmg">
                                                 <i class="fa fa-thumbs-down @(Model.Valoracion == null ? "" : (!Model.Valoracion.Valoracion ? "text-danger" : ""))" aria-hidden="true"></i>
                                             </button>
                                         </div>
@@ -164,12 +164,12 @@
                                     <input type="hidden" name="IdPropuesta" value="@Model.Propuesta.IdPropuesta" />
                                     <div class="d-flex justify-content-center align-items-center">
                                         <div class="mr-1">
-                                            <button type="submit" name="mg">
+                                            <button type="submit" class="me-gusta" name="mg">
                                                 <i class="fa fa-thumbs-up @(Model.Valoracion == null ? "" : (Model.Valoracion.Valoracion ? "text-success" : ""))" aria-hidden="true"></i>
                                             </button>
                                         </div>
                                         <div>
-                                            <button type="submit" name="nmg">
+                                            <button type="submit" class="no-me-gusta"  name="nmg">
                                                 <i class="fa fa-thumbs-down @(Model.Valoracion == null ? "" : (!Model.Valoracion.Valoracion ? "text-danger" : ""))" aria-hidden="true"></i>
                                             </button>
                                         </div>
