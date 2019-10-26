@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Models;
 using Services;
+using Solidam.ViewModel;
 
 namespace Solidam.Controllers
 {
@@ -12,11 +13,22 @@ namespace Solidam.Controllers
     {
         // GET: DonacionInsumo
         [HttpPost]
-        public ActionResult Crear(DonacionesHorasTrabajo donacion)
+        public ActionResult Crear(DonarViewModel donacion)
         {
-            DonacionesHorasTrabajoService.Crear(donacion);
-            //PropuestasDonacionesHorasTrabajoService.Update(donacion);
-            return RedirectToAction("Donar","Propuesta",new {id = donacion.PropuestasDonacionesHorasTrabajo.IdPropuesta});
+            if (!ModelState.IsValid)
+            {
+                var propuesta = PropuestaService.GetById(donacion.Propuesta.IdPropuesta);
+                DonarViewModel dvm = new DonarViewModel
+                {
+                    Propuesta = propuesta,
+                    DonacionesMonetarias = DonacionesMonetariasService.GetById(donacion.Propuesta.IdPropuesta),
+                    DonacionesHorasTrabajo = DonacionesHorasTrabajoService.GetById(donacion.Propuesta.IdPropuesta),
+                    DonacionesInsumos = DonacionesInsumosService.GetById(donacion.Propuesta.IdPropuesta)
+                };
+                return View("~/Views/Propuesta/Donar.cshtml", dvm);
+            }
+            DonacionesHorasTrabajoService.Crear(donacion.DonacionHorasTrabajo);
+            return RedirectToAction("Donar","Propuesta",new {id = donacion.DonacionHorasTrabajo.PropuestasDonacionesHorasTrabajo.IdPropuesta});
         }
     }
 }

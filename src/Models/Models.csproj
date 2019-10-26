@@ -66,6 +66,8 @@
     </Compile>
     <Compile Include="Metadata\Denuncias.cs" />
     <Compile Include="Metadata\DenunciasMetadata.cs" />
+    <Compile Include="Metadata\DonacionesHorasTrabajo.cs" />
+    <Compile Include="Metadata\DonacionesHorasTrabajoMetadata.cs" />
     <Compile Include="Metadata\DonacionesMonetarias.cs" />
     <Compile Include="Metadata\DonacionesMonetariasMetadata.cs" />
     <Compile Include="Metadata\UsuariosLogin.cs" />
