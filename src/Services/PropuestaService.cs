@@ -16,7 +16,7 @@ namespace Services
     {
         public static void AgregarPropuesta(Propuestas p)
         {
-            p.IdUsuarioCreador = 6;
+            p.IdUsuarioCreador = Helpers.SessionHelper.Usuario.IdUsuario;
             p.Estado = 0;
             p.FechaCreacion = System.DateTime.Today;
 
@@ -54,6 +54,29 @@ namespace Services
             var propuesta = GetById(id);
             propuesta.Valoracion = cantValoraciones == 0 ? 0 : cantMg * 100 / cantValoraciones;
             Db.SaveChanges();
+        }
+
+        public static List<Propuestas> ObtenerPropuestasPorNombreYUsuario(string nombre)
+        {
+            var propuestas = Db.Propuestas.AsQueryable();
+
+            if (!string.IsNullOrEmpty(nombre))
+                propuestas = propuestas.Where(p => p.Nombre.Contains(nombre));
+
+            if (SessionHelper.Usuario != null)
+                propuestas = propuestas.Where(u => u.Usuarios.IdUsuario != SessionHelper.Usuario.IdUsuario);
+
+            return propuestas.ToList();
+        }
+
+        public static List<Propuestas> ObtenerPropuestasUsuario(int id)
+        {
+            var misPropuestas = Db.Propuestas.AsQueryable();
+
+            if (SessionHelper.Usuario != null)
+                misPropuestas = misPropuestas.Where(u => u.Usuarios.IdUsuario == SessionHelper.Usuario.IdUsuario);
+
+            return misPropuestas.ToList();
         }
 
     }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Utils;
 using Enums;
+using NUnit.Framework;
 using Solidam.ViewModel;
 using MotivoDenuncia = Models.MotivoDenuncia;
 
@@ -18,12 +19,29 @@ namespace Solidam.Controllers
             return View();
         }
 
+        public ActionResult Buscar(string nombre)
+        {
+            ViewBag.palabra = nombre;
+
+            var propuestaBuscadas =  PropuestaService.ObtenerPropuestasPorNombreYUsuario(nombre);
+
+            return View("PropuestasBuscadas", propuestaBuscadas);
+        }
+
+        public ActionResult MiPropuestas()
+        {
+
+            var misPropuestas = PropuestaService.ObtenerPropuestasUsuario(SessionHelper.Usuario.IdUsuario);
+
+            return View("MisPropuestas", misPropuestas);
+        }
+
         [HttpPost]
         public ActionResult Crear(Propuestas p, System.Web.HttpPostedFileBase foto)
         {
             string path = Server.MapPath("~/Images/Views/Propuesta/");
 
-            p.Foto = path + System.IO.Path.GetFileName(foto.FileName);
+            p.Foto = System.IO.Path.GetFileName(foto.FileName);
 
             PropuestaService.AgregarPropuesta(p);
 
@@ -66,10 +84,22 @@ namespace Solidam.Controllers
         [HttpGet]
         public ActionResult Denunciar(int id)
         {
+            var motivos = MotivoDenunciaService.GetAll().Select(m => new SelectListItem
+            {
+                Text = m.Descripcion,
+                Value = m.IdMotivoDenuncia.ToString(),
+            }).ToList();
+            motivos = motivos.Prepend(new SelectListItem
+            {
+                Value = "0",
+                Text = "Seleccione un motivo",
+                Disabled = true,
+                Selected = true
+            }).ToList();
             DenunciaViewModel viewModel = new DenunciaViewModel
             {
                 IdPropuesta = id,
-                MotivoDenuncia = MotivoDenunciaService.GetAll(),
+                MotivoDenuncia = motivos,
                 NombrePropuesta = PropuestaService.GetById(id).Nombre,
             };
             return View(viewModel);
@@ -81,6 +111,31 @@ namespace Solidam.Controllers
             denuncia.FechaCreacion = DateTime.Now;
             denuncia.IdUsuario = SessionHelper.Usuario.IdUsuario;
             denuncia.Estado = (int)DenunciaEstado.EnRevision;
+            if(DenunciasService.Denuncie(denuncia.IdPropuesta))
+                ModelState.AddModelError("","Ya existe una denuncia de esta persona para esta propuesta");
+            if (!ModelState.IsValid)
+            {
+                var motivos = MotivoDenunciaService.GetAll().Select(m => new SelectListItem
+                {
+                    Text = m.Descripcion,
+                    Value = m.IdMotivoDenuncia.ToString(),
+                }).ToList();
+                motivos = motivos.Prepend(new SelectListItem
+                {
+                    Value = "0",
+                    Text = "Seleccione un motivo",
+                    Disabled = true,
+                    Selected = true
+                }).ToList();
+                DenunciaViewModel viewModel = new DenunciaViewModel
+                {
+                    IdPropuesta = denuncia.IdPropuesta,
+                    MotivoDenuncia = motivos,
+                    NombrePropuesta = PropuestaService.GetById(denuncia.IdPropuesta).Nombre,
+                };
+                return View(viewModel);
+            }
+
             DenunciasService.Crear(denuncia);
             return RedirectToAction("Inicio", "Inicio");
         }
