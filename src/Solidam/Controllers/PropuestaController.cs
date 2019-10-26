@@ -40,7 +40,7 @@ namespace Solidam.Controllers
         {
             string path = Server.MapPath("~/Images/Views/Propuesta/");
 
-            p.Foto = path + System.IO.Path.GetFileName(foto.FileName);
+            p.Foto = System.IO.Path.GetFileName(foto.FileName);
 
             PropuestaService.AgregarPropuesta(p);
 

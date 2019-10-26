@@ -3,14 +3,16 @@
 
 @{
     ViewBag.Title = "CrearPropuesta";
+    Layout = "~/Views/Shared/_PropuestasLayout.cshtml";
 }
 
-
+@Styles.Render("~/Content/Views/Inicio/inicio.css")
+@Styles.Render("~/Content/Views/Inicio/inicioResponsive.css")
 @model Models.Propuestas
 
-<div class="container col-xl-7 col-sm-5 mt-5 pt-4">
-    <h2 class="mt-5">Crear Propuesta</h2>
-    <form action="/Propuesta/Crear" method="post" class="mt-4 mx-auto" enctype="multipart/form-data">
+<div class="container">
+    <h2>Crear Propuesta</h2>
+    <form action="/Propuesta/Crear" method="post" class="mt-4 mx-auto col-xl-7 col-sm-5" enctype="multipart/form-data">
         <div class="form-group">
             <label for="nombrePropuesta">Nombre de la propuesta</label>
             <input type="text" class="form-control" id="nombrePropuesta" name="Nombre" />
@@ -67,8 +69,10 @@
             <input type="text" class="form-control" id="telefonoRef2" name="PropuestasReferencias[1].Telefono" />
         </div>
 
-        <input type="submit" class="btn btn-primary justify-content-end" value="Crear" />
+        <div class="d-flex justify-content-center my-3">
+            <input type="submit" class="btn btn-primary col-3" value="Crear" />
+        </div>
     </form>
 </div>
-   
+
 @Scripts.Render("~/Scripts/Views/Propuesta/Crear.js")
