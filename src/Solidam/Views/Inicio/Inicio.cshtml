@@ -1,9 +1,6 @@
 ﻿@using System.Globalization
-@using System.Runtime.InteropServices
-@using Enums
 @using Helpers
 @using Models
-@using Services
 @Styles.Render("~/Content/Views/Inicio/inicio.css")
 @Styles.Render("~/Content/Views/Inicio/inicioResponsive.css")
 
@@ -28,7 +25,6 @@
                         <a class="main_btn mr-10" href=@Url.Action("Registrar","Seguridad")>Registrarme</a>
                         <a class="white_bg_btn" href=@Url.Action("Iniciar","Seguridad")>Iniciar Sesion</a>
                     }
-
                 </div>
             </div>
         </div>

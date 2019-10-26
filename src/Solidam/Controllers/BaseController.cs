@@ -14,7 +14,7 @@ namespace Solidam.Controllers
             var actionName = filterContext.ActionDescriptor.ActionName.ToLower();
 
             if (SessionHelper.Usuario == null && !controllerName.Equals(Constant.InicioControllerName.ToLower()) && !controllerName.Equals(Constant.SeguridadControllerName.ToLower()))
-                throw new AccesoNoAutorizadoException(filterContext.HttpContext.Request.Url?.AbsolutePath);
+                throw new AccesoNoAutorizadoException(filterContext.HttpContext.Request.Url?.AbsoluteUri);
         }
 
         protected override void OnException(ExceptionContext filterContext)
