@@ -13,5 +13,7 @@ namespace Solidam.ViewModel
         public List<DonacionesHorasTrabajo> DonacionesHorasTrabajo { get; set; }
         public List<DonacionesInsumos> DonacionesInsumos { get; set; }
         public DonacionesMonetarias DonacionMonetaria { get; set; }
+        public DonacionesHorasTrabajo DonacionHorasTrabajo { get; set; }
+        public DonacionesInsumos DonacionInsumos { get; set; }
     }
 }
