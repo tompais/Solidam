@@ -3990,3 +3990,8 @@ h6 {
 body,html {
     height: 100%;
 }
+
+.btnVerdeSolidam {
+    background-color: #028817;
+    border-color: white;
+}
