@@ -16,7 +16,7 @@ namespace Services
     {
         public static void AgregarPropuesta(Propuestas p)
         {
-            p.IdUsuarioCreador = 6;
+            p.IdUsuarioCreador = Helpers.SessionHelper.Usuario.IdUsuario;
             p.Estado = 0;
             p.FechaCreacion = System.DateTime.Today;
 
