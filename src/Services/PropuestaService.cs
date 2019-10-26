@@ -1,11 +1,6 @@
 ﻿using System;
-using System.IO;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
 using Enums;
 using Helpers;
 using Models;
@@ -16,9 +11,9 @@ namespace Services
     {
         public static void AgregarPropuesta(Propuestas p)
         {
-            p.IdUsuarioCreador = Helpers.SessionHelper.Usuario.IdUsuario;
+            p.IdUsuarioCreador = SessionHelper.Usuario.IdUsuario;
             p.Estado = 0;
-            p.FechaCreacion = System.DateTime.Today;
+            p.FechaCreacion = DateTime.Today;
 
             Db.Propuestas.Add(p);
             Db.SaveChanges();
@@ -34,7 +29,7 @@ namespace Services
 
         public static int TotalPropuestasActivas()
         {
-            return Db.Propuestas.Count(x => x.Estado == 0 && x.IdUsuarioCreador == Helpers.SessionHelper.Usuario.IdUsuario);
+            return Db.Propuestas.Count(x => x.Estado == 0 && x.IdUsuarioCreador == SessionHelper.Usuario.IdUsuario);
         }
 
         public static List<Propuestas> GetPropuestasMasValoradas()
