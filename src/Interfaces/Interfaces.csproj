@@ -42,7 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IDeleteByIdService.cs" />
     <Compile Include="IDeleteService.cs" />
+    <Compile Include="IFullDeleteService.cs" />
+    <Compile Include="IFullGetService.cs" />
+    <Compile Include="IGetByIdService.cs" />
     <Compile Include="IGetService.cs" />
     <Compile Include="IPostService.cs" />
     <Compile Include="IPutService.cs" />
