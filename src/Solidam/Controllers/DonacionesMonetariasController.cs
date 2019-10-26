@@ -14,6 +14,7 @@ namespace Solidam.Controllers
         [HttpPost]
         public ActionResult Crear(DonacionesMonetarias donacion)
         {
+
             DonacionesMonetariasService.Crear(donacion);
             //PropuestasDonacionesMonetariasService.Update(donacion);
             return RedirectToAction("Donar","Propuesta",new {id = donacion.PropuestasDonacionesMonetarias.IdPropuesta});
