@@ -1071,6 +1071,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\layouts\" />
+    <Folder Include="Content\UploadedFiles\" />
     <Folder Include="Images\Views\Propuesta\" />
     <Folder Include="Views\DonacionInsumo\" />
   </ItemGroup>

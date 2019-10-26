@@ -12,8 +12,8 @@ namespace Services
     {
         public static void Crear(DonacionesMonetarias model)
         {
-            FileHelper.GuardarArchivo(model.ArchivoTransferencia);
             model.IdUsuario = SessionHelper.Usuario.IdUsuario;
+            model.FechaCreacion = DateTime.Now;
             Db.DonacionesMonetarias.Add(model);
             Db.SaveChanges();
         }
