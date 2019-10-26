@@ -1067,6 +1067,8 @@
     <Content Include="Views\Propuesta\Detalle.cshtml" />
     <Content Include="Views\Propuesta\Denunciar.cshtml" />
     <Content Include="Views\Propuesta\Donar.cshtml" />
+    <Content Include="Views\Propuesta\PropuestasBuscadas.cshtml" />
+    <Content Include="Views\Propuesta\MisPropuestas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

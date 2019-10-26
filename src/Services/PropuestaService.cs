@@ -56,5 +56,28 @@ namespace Services
             Db.SaveChanges();
         }
 
+        public static List<Propuestas> ObtenerPropuestasPorNombreYUsuario(string nombre)
+        {
+            var propuestas = Db.Propuestas.AsQueryable();
+
+            if (!string.IsNullOrEmpty(nombre))
+                propuestas = propuestas.Where(p => p.Nombre.Contains(nombre));
+
+            if (SessionHelper.Usuario != null)
+                propuestas = propuestas.Where(u => u.Usuarios.IdUsuario != SessionHelper.Usuario.IdUsuario);
+
+            return propuestas.ToList();
+        }
+
+        public static List<Propuestas> ObtenerPropuestasUsuario(int id)
+        {
+            var misPropuestas = Db.Propuestas.AsQueryable();
+
+            if (SessionHelper.Usuario != null)
+                misPropuestas = misPropuestas.Where(u => u.Usuarios.IdUsuario == SessionHelper.Usuario.IdUsuario);
+
+            return misPropuestas.ToList();
+        }
+
     }
 }
