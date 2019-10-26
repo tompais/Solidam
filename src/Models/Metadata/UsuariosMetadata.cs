@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Dynamic;
 using System.Linq;
 using Utils;
 
@@ -15,14 +12,9 @@ namespace Models
         {
             var usuario = context.ObjectInstance as UsuariosRegister;
 
-            var existeEmail = SolidamEntities.Instance.Usuarios.Any(o => o.Email == usuario.Email);
+            var existeEmail = SolidamContext.Instance.Usuarios.Any(o => o.Email == usuario.Email);
 
-            if (existeEmail)
-            {
-                return new ValidationResult(string.Format("El Email {0} ya está siendo usado.", usuario.Email));
-            }
-
-            return ValidationResult.Success;
+            return existeEmail ? new ValidationResult($"El Email {usuario.Email} ya está siendo usado.") : ValidationResult.Success;
         }
 
         public static ValidationResult ValidarMayoriaEdad(object value, ValidationContext context)
@@ -31,12 +23,7 @@ namespace Models
 
             var edad = DateTime.Now.Year - usuario.FechaNacimiento.Year;
 
-            if (edad < 18)
-            {
-                return new ValidationResult(string.Format("Debes tener mas de 18 años"));
-            }
-
-            return ValidationResult.Success;
+            return edad < 18 ? new ValidationResult("Debes tener mas de 18 años") : ValidationResult.Success;
         }
 
         public static ValidationResult ValidarLogueo(object value, ValidationContext context)
@@ -45,20 +32,15 @@ namespace Models
 
             usuario.Password = Sha1.GetSHA1(usuario.Password);
 
-            var usuarioCorrecto = SolidamEntities.Instance.Usuarios.FirstOrDefault(u =>
+            var usuarioCorrecto = SolidamContext.Instance.Usuarios.FirstOrDefault(u =>
                 u.Email == usuario.Email && u.Password == usuario.Password);
 
             if (usuarioCorrecto == null)
             {
-                return new ValidationResult(string.Format("Email/Contraña Incorrecto"));
+                return new ValidationResult("Email/Contraña Incorrecto");
             }
 
-            if (usuarioCorrecto.Activo == false)
-            {
-                return new ValidationResult(string.Format("Su usuario está inactivo. Actívelo desde el email recibido"));
-            }
-
-            return ValidationResult.Success;
+            return usuarioCorrecto.Activo == false ? new ValidationResult("Su usuario está inactivo. Actívelo desde el email recibido") : ValidationResult.Success;
         }
 
 

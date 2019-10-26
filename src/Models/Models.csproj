@@ -92,6 +92,7 @@
     <Compile Include="PropuestasValoraciones.cs">
       <DependentUpon>SolidamEntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SolidamContext.cs" />
     <Compile Include="SolidamEntityDataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
