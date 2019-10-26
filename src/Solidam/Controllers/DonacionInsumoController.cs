@@ -17,7 +17,7 @@ namespace Solidam.Controllers
             foreach (var donacion in donaciones)
             {
                 DonacionesInsumosService.Crear(donacion);
-                PropuestasDonacionesInsumosService.Update(donacion);
+                //PropuestasDonacionesInsumosService.Update(donacion);
             }
             return Json("");
         }

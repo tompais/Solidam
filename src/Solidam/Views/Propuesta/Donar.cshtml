@@ -85,7 +85,7 @@
                                         <input type="checkbox" don-id="@itemRequerido.IdPropuestaDonacionInsumo" class="check" />
                                     </div>
                                     <div>
-                                        - @itemRequerido.Nombre <span class="ml-4">Restantes: <strong>@(itemRequerido.Cantidad)</strong> unidades</span>
+                                        <strong>(@itemRequerido.Cantidad)</strong> @itemRequerido.Nombre <span class="ml-4">Restantes: @(itemRequerido.Cantidad - cantidadObtenida) unidades</span>
                                     </div>
                                     <div class="ml-4">
                                         <input type="number" class="form-control d-none" />

@@ -15,7 +15,7 @@ namespace Solidam.Controllers
         public ActionResult Crear(DonacionesHorasTrabajo donacion)
         {
             DonacionesHorasTrabajoService.Crear(donacion);
-            PropuestasDonacionesHorasTrabajoService.Update(donacion);
+            //PropuestasDonacionesHorasTrabajoService.Update(donacion);
             return RedirectToAction("Donar","Propuesta",new {id = donacion.PropuestasDonacionesHorasTrabajo.IdPropuesta});
         }
     }
