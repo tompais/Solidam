@@ -5,14 +5,14 @@ using Utils;
 
 namespace Models
 {
-    public class UsuariosMetadata
+    public class UsuariosMetadata : BaseMetadata
     {
         
         public static ValidationResult ValidarEmailUnico(object value, ValidationContext context)
         {
             var usuario = context.ObjectInstance as UsuariosRegister;
 
-            var existeEmail = SolidamContext.Instance.Usuarios.Any(o => o.Email == usuario.Email);
+            var existeEmail = Db.Usuarios.Any(o => o.Email == usuario.Email);
 
             return existeEmail ? new ValidationResult($"El Email {usuario.Email} ya está siendo usado.") : ValidationResult.Success;
         }
@@ -32,7 +32,7 @@ namespace Models
 
             usuario.Password = Sha1.GetSHA1(usuario.Password);
 
-            var usuarioCorrecto = SolidamContext.Instance.Usuarios.FirstOrDefault(u =>
+            var usuarioCorrecto = Db.Usuarios.FirstOrDefault(u =>
                 u.Email == usuario.Email && u.Password == usuario.Password);
 
             if (usuarioCorrecto == null)
