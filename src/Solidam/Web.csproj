@@ -332,7 +332,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DonacionesMonetariasController.cs" />
     <Compile Include="Controllers\DonacionesHorasTrabajoController.cs" />
-    <Compile Include="Controllers\DonacionInsumoController.cs" />
+    <Compile Include="Controllers\DonacionesInsumoController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
     <Compile Include="Controllers\PropuestaController.cs" />
     <Compile Include="Controllers\SeguridadController.cs" />
