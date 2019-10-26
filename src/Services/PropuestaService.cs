@@ -32,11 +32,6 @@ namespace Services
                 .FirstOrDefault(p => p.IdPropuesta == id);
         }
 
-        //public static Propuestas GetPropuestaCompletaById(int id)
-        //{
-
-            
-        //}
         public static int TotalPropuestasActivas()
         {
             return Db.Propuestas.Count(x => x.Estado == 0 && x.IdUsuarioCreador == Helpers.SessionHelper.Usuario.IdUsuario);
@@ -51,13 +46,6 @@ namespace Services
                 .Where(p => p.Estado == (int)PropuestaEstado.Abierta).OrderByDescending(p => p.Valoracion).Take(5).ToList();
         }
 
-        public static decimal GetDineroDonadoByPropuestaId(int id)
-        {
-            var donaciones = Db.DonacionesMonetarias.Where(dm => dm.IdPropuestaDonacionMonetaria == id).ToList();
-            if (!donaciones.Any()) return 0;
-            return donaciones.Sum(dm => dm.Dinero);
-        }
-
         public static void PutPorcentajeAceptacion(int id)
         {
             var valoraciones = Db.PropuestasValoraciones.Where(pv => pv.IdPropuesta == id).ToList();
@@ -68,25 +56,5 @@ namespace Services
             Db.SaveChanges();
         }
 
-        public static List<DonacionesMonetarias> GetDonacionesMonetariasById(int idPropuesta)
-        {
-            return Db.PropuestasDonacionesMonetarias.Include("DonacionesMonetarias").FirstOrDefault(pdm => pdm.IdPropuesta == idPropuesta)
-                ?.DonacionesMonetarias.ToList();
-        }
-        public static List<DonacionesHorasTrabajo> GetDonacionesHorasTrabajoById(int idPropuesta)
-        {
-            return Db.PropuestasDonacionesHorasTrabajo.Include("DonacionesHorasTrabajo").FirstOrDefault(dm => dm.IdPropuesta == idPropuesta)?.DonacionesHorasTrabajo.ToList();
-        }
-        public static List<DonacionesInsumos> GetDonacionesInsumosById(int idPropuesta)
-        {
-            var itemsNecesitados = Db.PropuestasDonacionesInsumos.Include("DonacionesInsumos").Where(dm => dm.IdPropuesta == idPropuesta).ToList();
-            List<DonacionesInsumos> donaciones = new List<DonacionesInsumos>();
-            foreach (PropuestasDonacionesInsumos item in itemsNecesitados)
-            {
-                donaciones.AddRange(item.DonacionesInsumos);
-            }
-
-            return donaciones;
-        }
     }
 }

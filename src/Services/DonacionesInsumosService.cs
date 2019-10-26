@@ -16,5 +16,16 @@ namespace Services
             Db.DonacionesInsumos.Add(model);
             Db.SaveChanges();
         }
+        public static List<DonacionesInsumos> GetById(int idPropuesta)
+        {
+            var itemsNecesitados = Db.PropuestasDonacionesInsumos.Include("DonacionesInsumos").Where(dm => dm.IdPropuesta == idPropuesta).ToList();
+            List<DonacionesInsumos> donaciones = new List<DonacionesInsumos>();
+            foreach (PropuestasDonacionesInsumos item in itemsNecesitados)
+            {
+                donaciones.AddRange(item.DonacionesInsumos);
+            }
+
+            return donaciones;
+        }
     }
 }

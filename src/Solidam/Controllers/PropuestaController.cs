@@ -91,9 +91,9 @@ namespace Solidam.Controllers
             DonarViewModel dvm = new DonarViewModel
             {
                 Propuesta = propuesta,
-                DonacionesMonetarias = PropuestaService.GetDonacionesMonetariasById(id),
-                DonacionesHorasTrabajo = PropuestaService.GetDonacionesHorasTrabajoById(id),
-                DonacionesInsumos = PropuestaService.GetDonacionesInsumosById(id)
+                DonacionesMonetarias = DonacionesMonetariasService.GetById(id),
+                DonacionesHorasTrabajo = DonacionesHorasTrabajoService.GetById(id),
+                DonacionesInsumos = DonacionesInsumosService.GetById(id)
             };
             return View(dvm);
         }

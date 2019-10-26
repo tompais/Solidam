@@ -16,5 +16,10 @@ namespace Services
             Db.DonacionesHorasTrabajo.Add(model);
             Db.SaveChanges();
         }
+
+        public static List<DonacionesHorasTrabajo> GetById(int idPropuesta)
+        {
+            return Db.PropuestasDonacionesHorasTrabajo.Include("DonacionesHorasTrabajo").FirstOrDefault(dm => dm.IdPropuesta == idPropuesta)?.DonacionesHorasTrabajo.ToList();
+        }
     }
 }

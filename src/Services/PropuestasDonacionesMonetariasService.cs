@@ -34,5 +34,11 @@ namespace Services
         //    propuesta. -= donacion.Cantidad;
         //    Db.SaveChanges();
         //}
+        public static decimal GetDineroDonadoByPropuestaId(int id)
+        {
+            var donaciones = Db.DonacionesMonetarias.Where(dm => dm.IdPropuestaDonacionMonetaria == id).ToList();
+            if (!donaciones.Any()) return 0;
+            return donaciones.Sum(dm => dm.Dinero);
+        }
     }
 }

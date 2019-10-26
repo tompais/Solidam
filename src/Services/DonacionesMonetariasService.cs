@@ -17,5 +17,11 @@ namespace Services
             Db.DonacionesMonetarias.Add(model);
             Db.SaveChanges();
         }
+
+        public static List<DonacionesMonetarias> GetById(int idPropuesta)
+        {
+            return Db.PropuestasDonacionesMonetarias.Include("DonacionesMonetarias").FirstOrDefault(pdm => pdm.IdPropuesta == idPropuesta)
+                ?.DonacionesMonetarias.ToList();
+        }
     }
 }
