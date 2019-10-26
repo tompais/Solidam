@@ -1,14 +1,13 @@
 ﻿using System;
+using System.IO;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using Enums;
 using Helpers;
 using Models;
 using Services;
-using System.Linq;
-using System.Web.Mvc;
-using Utils;
-using Enums;
-using NUnit.Framework;
 using Solidam.ViewModel;
-using MotivoDenuncia = Models.MotivoDenuncia;
 
 namespace Solidam.Controllers
 {
@@ -28,24 +27,18 @@ namespace Solidam.Controllers
             return View("PropuestasBuscadas", propuestaBuscadas);
         }
 
-        public ActionResult MiPropuestas()
-        {
-
-            var misPropuestas = PropuestaService.ObtenerPropuestasUsuario(SessionHelper.Usuario.IdUsuario);
-
-            return View("MisPropuestas", misPropuestas);
-        }
+        public ActionResult MiPropuestas() => View("MisPropuestas", PropuestaService.ObtenerPropuestasUsuario(SessionHelper.Usuario.IdUsuario));
 
         [HttpPost]
-        public ActionResult Crear(Propuestas p, System.Web.HttpPostedFileBase foto)
+        public ActionResult Crear(Propuestas p, HttpPostedFileBase foto)
         {
-            string path = Server.MapPath("~/Images/Views/Propuesta/");
+            var path = Server.MapPath("~/Images/Views/Propuesta/");
 
-            p.Foto = System.IO.Path.GetFileName(foto.FileName);
+            p.Foto = Path.GetFileName(foto.FileName);
 
             PropuestaService.AgregarPropuesta(p);
 
-            foto.SaveAs(path + System.IO.Path.GetFileName(foto.FileName));
+            foto.SaveAs(path + Path.GetFileName(foto.FileName));
 
             return RedirectToAction("Inicio", "Inicio");
         }
@@ -53,7 +46,7 @@ namespace Solidam.Controllers
         [HttpPost]
         public ActionResult Valorar(string mg, string nmg, PropuestasValoraciones pv)
         {
-            PropuestasValoraciones propuestasValoraciones = new PropuestasValoraciones
+            var propuestasValoraciones = new PropuestasValoraciones
             {
                 IdPropuesta = pv.IdPropuesta,
                 IdUsuario = SessionHelper.Usuario.IdUsuario,
@@ -68,11 +61,11 @@ namespace Solidam.Controllers
         {
             if (SessionHelper.Usuario == null)
             {
-                TempData["pendingRoute"] = Url.Action("Detalle", "Propuesta", new { id = id });
+                TempData["pendingRoute"] = Url.Action("Detalle", "Propuesta", new {id });
                 return RedirectToAction("Iniciar", "Seguridad");
             }
             var propuesta = PropuestaService.GetById(id);
-            PropuestaDetalleViewModel propuestaDetalleViewModel = new PropuestaDetalleViewModel
+            var propuestaDetalleViewModel = new PropuestaDetalleViewModel
             {
                 Propuesta = propuesta,
                 Denuncie = DenunciasService.Denuncie(id),
@@ -87,7 +80,7 @@ namespace Solidam.Controllers
             var motivos = MotivoDenunciaService.GetAll().Select(m => new SelectListItem
             {
                 Text = m.Descripcion,
-                Value = m.IdMotivoDenuncia.ToString(),
+                Value = m.IdMotivoDenuncia.ToString()
             }).ToList();
             motivos = motivos.Prepend(new SelectListItem
             {
@@ -96,11 +89,11 @@ namespace Solidam.Controllers
                 Disabled = true,
                 Selected = true
             }).ToList();
-            DenunciaViewModel viewModel = new DenunciaViewModel
+            var viewModel = new DenunciaViewModel
             {
                 IdPropuesta = id,
                 MotivoDenuncia = motivos,
-                NombrePropuesta = PropuestaService.GetById(id).Nombre,
+                NombrePropuesta = PropuestaService.GetById(id).Nombre
             };
             return View(viewModel);
         }
@@ -118,7 +111,7 @@ namespace Solidam.Controllers
                 var motivos = MotivoDenunciaService.GetAll().Select(m => new SelectListItem
                 {
                     Text = m.Descripcion,
-                    Value = m.IdMotivoDenuncia.ToString(),
+                    Value = m.IdMotivoDenuncia.ToString()
                 }).ToList();
                 motivos = motivos.Prepend(new SelectListItem
                 {
@@ -127,11 +120,11 @@ namespace Solidam.Controllers
                     Disabled = true,
                     Selected = true
                 }).ToList();
-                DenunciaViewModel viewModel = new DenunciaViewModel
+                var viewModel = new DenunciaViewModel
                 {
                     IdPropuesta = denuncia.IdPropuesta,
                     MotivoDenuncia = motivos,
-                    NombrePropuesta = PropuestaService.GetById(denuncia.IdPropuesta).Nombre,
+                    NombrePropuesta = PropuestaService.GetById(denuncia.IdPropuesta).Nombre
                 };
                 return View(viewModel);
             }
@@ -143,7 +136,7 @@ namespace Solidam.Controllers
         public ActionResult Donar(int id)
         {
             var propuesta = PropuestaService.GetById(id);
-            DonarViewModel dvm = new DonarViewModel
+            var dvm = new DonarViewModel
             {
                 Propuesta = propuesta,
                 DonacionesMonetarias = DonacionesMonetariasService.GetById(id),

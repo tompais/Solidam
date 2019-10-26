@@ -15,7 +15,6 @@ namespace Models
     
     public partial class SolidamEntities : DbContext
     {
-        public static SolidamEntities Instance { get; } = new SolidamEntities();
         public SolidamEntities()
             : base("name=SolidamEntities")
         {
