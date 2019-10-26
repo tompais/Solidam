@@ -6,19 +6,32 @@ using System.Web.Mvc;
 using Helpers;
 using Models;
 using Services;
+using Solidam.ViewModel;
 
 namespace Solidam.Controllers
 {
-    public class DonacionesMonetariasController : Controller
+    public class DonacionesMonetariasController : BaseController
     {
         // GET: DonacionInsumo
         [HttpPost]
-        public ActionResult Crear(DonacionesMonetarias donacion)
+        public ActionResult Crear(DonarViewModel donacion)
         {
-            donacion.ArchivoTransferencia = donacion.File.FileName;
-            FileHelper.GuardarArchivo(donacion.File);
-            DonacionesMonetariasService.Crear(donacion);
-            return RedirectToAction("Donar","Propuesta",new {id = donacion.PropuestasDonacionesMonetarias.IdPropuesta});
+            if (!ModelState.IsValid)
+            {
+                var propuesta = PropuestaService.GetById(donacion.Propuesta.IdPropuesta);
+                DonarViewModel dvm = new DonarViewModel
+                {
+                    Propuesta = propuesta,
+                    DonacionesMonetarias = DonacionesMonetariasService.GetById(donacion.Propuesta.IdPropuesta),
+                    DonacionesHorasTrabajo = DonacionesHorasTrabajoService.GetById(donacion.Propuesta.IdPropuesta),
+                    DonacionesInsumos = DonacionesInsumosService.GetById(donacion.Propuesta.IdPropuesta)
+                };
+                return View("~/Views/Propuesta/Donar.cshtml",dvm);
+            }
+            donacion.DonacionMonetaria.ArchivoTransferencia = donacion.DonacionMonetaria.File.FileName;
+            FileHelper.GuardarArchivo(donacion.DonacionMonetaria.File);
+            DonacionesMonetariasService.Crear(donacion.DonacionMonetaria);
+            return RedirectToAction("Donar","Propuesta",new {id = donacion.DonacionMonetaria.PropuestasDonacionesMonetarias.IdPropuesta});
         }
     }
 }
