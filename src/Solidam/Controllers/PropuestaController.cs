@@ -19,12 +19,29 @@ namespace Solidam.Controllers
             return View();
         }
 
+        public ActionResult Buscar(string nombre)
+        {
+            ViewBag.palabra = nombre;
+
+            var propuestaBuscadas =  PropuestaService.ObtenerPropuestasPorNombreYUsuario(nombre);
+
+            return View("PropuestasBuscadas", propuestaBuscadas);
+        }
+
+        public ActionResult MiPropuestas()
+        {
+
+            var misPropuestas = PropuestaService.ObtenerPropuestasUsuario(SessionHelper.Usuario.IdUsuario);
+
+            return View("MisPropuestas", misPropuestas);
+        }
+
         [HttpPost]
         public ActionResult Crear(Propuestas p, System.Web.HttpPostedFileBase foto)
         {
             string path = Server.MapPath("~/Images/Views/Propuesta/");
 
-            p.Foto = path + System.IO.Path.GetFileName(foto.FileName);
+            p.Foto = System.IO.Path.GetFileName(foto.FileName);
 
             PropuestaService.AgregarPropuesta(p);
 
