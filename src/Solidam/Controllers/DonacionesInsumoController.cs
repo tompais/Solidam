@@ -5,18 +5,19 @@ using System.Web;
 using System.Web.Mvc;
 using Models;
 using Services;
+using Solidam.ViewModel;
 
 namespace Solidam.Controllers
 {
-    public class DonacionInsumoController : Controller
+    public class DonacionesInsumoController : Controller
     {
         // GET: DonacionInsumo
         [HttpPost]
-        public JsonResult Crear(List<DonacionesInsumos> donaciones)
+        public JsonResult Crear(List<DonarViewModel> donaciones)
         {
             foreach (var donacion in donaciones)
             {
-                DonacionesInsumosService.Crear(donacion);
+                DonacionesInsumosService.Crear(donacion.DonacionInsumos);
                 //PropuestasDonacionesInsumosService.Update(donacion);
             }
             return Json("");

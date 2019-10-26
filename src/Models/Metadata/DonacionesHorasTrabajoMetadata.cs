@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Models.Metadata
 {
-    public class DonacionesHorasTrabajoMetadata
+    public class DonacionesHorasTrabajoMetadata : BaseMetadata
     {
         [Required(ErrorMessage = "Debe ingresar la cantidad de horas")]
         [CustomValidation(typeof(DonacionesHorasTrabajoMetadata),"ValidarCantidadHoras")]
@@ -16,11 +16,11 @@ namespace Models.Metadata
         public static ValidationResult ValidarCantidadHoras(object value, ValidationContext context)
         {
             var donacion = context.ObjectInstance as DonacionesHorasTrabajo;
-            var obtenido  = SolidamEntities.Instance.DonacionesHorasTrabajo
+            var obtenido  = Db.DonacionesHorasTrabajo
                 .Where(d => d.IdPropuestaDonacionHorasTrabajo == donacion.IdPropuestaDonacionHorasTrabajo).ToList().Sum(d=> d.Cantidad);
 
 
-            var objetivo = SolidamEntities.Instance.PropuestasDonacionesHorasTrabajo.FirstOrDefault(p =>
+            var objetivo = Db.PropuestasDonacionesHorasTrabajo.FirstOrDefault(p =>
                 p.IdPropuestaDonacionHorasTrabajo == donacion.IdPropuestaDonacionHorasTrabajo)?.CantidadHoras;
             var restante = objetivo - obtenido;
             return donacion?.Cantidad > restante
