@@ -15,7 +15,15 @@
             <nav class="navbar navbar-light bg-light justify-content-between w-100 bg-white">
                 <h2>Mis Propuestas<i class="fa fa-piggy-bank ml-2"></i></h2>
 
-                <a href="@Url.Action("CrearPropuesta", "Propuesta")" class="btn btn-primary float-right"><i class="fa fa-plus mr-1"></i>Crear</a>
+                @if (@Model.Count >= 3)
+                {
+                    <span><i class="fa fa-exclamation-triangle mr-2"></i>No puedes poseer mas de 3 propuestas activas</span><a class="btn float-right disabled btnVerdeSolidam"><i class="fa fa-plus mr-1"></i>Crear</a>
+                }
+                else
+                {
+                    <a href="@Url.Action("CrearPropuesta", "Propuesta")" class="btn btn-primary float-right btnVerdeSolidam"><i class="fa fa-plus mr-1"></i>Crear</a>
+                }
+
 
             </nav>
 
@@ -23,7 +31,7 @@
             {
                 foreach (Propuestas propuesta in Model)
                 {
-                    <div class="col-md-4">
+                    <div class="col-md-4 mt-4">
                         <div class="card p-4 causes">
                             <div class="causes-img">
                                 <a href="javascript:void(0);">
@@ -37,7 +45,7 @@
                                 <span class="mr-3"> Disponible hasta: <strong>@propuesta.FechaFin.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</strong></span>
                             </div>
                             <div class="d-flex justify-content-between mt-3">
-                                <a class="btn btn-primary text-white" href="@Url.Action("Detalle", "Propuesta", new {id = @propuesta.IdPropuesta})">Ver detalle</a>
+                                <a class="btn text-white btnVerdeSolidam" href="@Url.Action("Detalle", "Propuesta", new {id = @propuesta.IdPropuesta})">Ver detalle</a>
                             </div>
                         </div>
                     </div>
@@ -48,7 +56,7 @@
                 <div class="col-md-12 mt-3">
                     <div class="text-center">
                         <h2 class="title">No posees ninguna propuesta</h2>
-                        <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <p class="">Si deseas crear una nueva propuesta presiona el boton de crear.</p>
                     </div>
                 </div>
             }
