@@ -866,6 +866,7 @@
     <Content Include="Scripts\bootstrap-select.min.js.map" />
     <Content Include="Scripts\bootstrap-select.js.map" />
     <Content Include="Content\bootstrap-select.css.map" />
+    <Content Include="NLog.log" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\i18n\defaults-zh_TW.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
