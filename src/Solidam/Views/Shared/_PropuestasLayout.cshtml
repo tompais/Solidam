@@ -3,19 +3,10 @@
 @{
     Layout = "_BaseLayout.cshtml";
 }
+@RenderPage("pv_Header.cshtml")
 
-@if (SessionHelper.Usuario == null)
-{
-    @RenderPage("pv_Header.cshtml")
-}
-else
-{
-    @RenderPage("pv_HeaderUsuario.cshtml")
+    <div class="h-100">
+        @RenderBody()
+        @RenderPage("~/Views/Shared/pv_Footer.cshtml")
+    </div>
 
-}
-
-<div>
-    @RenderBody()
-</div>
-
-@RenderPage("~/Views/Shared/pv_Footer.cshtml")

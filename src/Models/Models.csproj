@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Models</RootNamespace>
     <AssemblyName>Models</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,6 +43,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,38 +52,42 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Denuncia.cs">
+    <Compile Include="Denuncias.cs">
       <DependentUpon>SolidamEntityDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DonacionHorasTrabajo.cs">
+    <Compile Include="DonacionesHorasTrabajo.cs">
       <DependentUpon>SolidamEntityDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DonacionInsumo.cs">
+    <Compile Include="DonacionesInsumos.cs">
       <DependentUpon>SolidamEntityDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DonacionMonetaria.cs">
+    <Compile Include="DonacionesMonetarias.cs">
       <DependentUpon>SolidamEntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Metadata\DonacionesMonetarias.cs" />
+    <Compile Include="Metadata\UsuariosLogin.cs" />
+    <Compile Include="Metadata\UsuariosMetadata.cs" />
+    <Compile Include="Metadata\UsuariosRegister.cs" />
     <Compile Include="MotivoDenuncia.cs">
       <DependentUpon>SolidamEntityDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Propuesta.cs">
+    <Compile Include="Propuestas.cs">
       <DependentUpon>SolidamEntityDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PropuestaDonacionHorasTrabajo.cs">
+    <Compile Include="PropuestasDonacionesHorasTrabajo.cs">
       <DependentUpon>SolidamEntityDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PropuestaDonacionInsumo.cs">
+    <Compile Include="PropuestasDonacionesInsumos.cs">
       <DependentUpon>SolidamEntityDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PropuestaDonacionMonetaria.cs">
+    <Compile Include="PropuestasDonacionesMonetarias.cs">
       <DependentUpon>SolidamEntityDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PropuestaReferencia.cs">
+    <Compile Include="PropuestasReferencias.cs">
       <DependentUpon>SolidamEntityDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PropuestaValoracion.cs">
+    <Compile Include="PropuestasValoraciones.cs">
       <DependentUpon>SolidamEntityDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SolidamEntityDataModel.Context.cs">
@@ -99,11 +105,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SolidamEntityDataModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Usuario.cs">
+    <Compile Include="Usuarios.cs">
       <DependentUpon>SolidamEntityDataModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="SolidamEntityDataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SolidamEntityDataModel.edmx</DependentUpon>
+      <LastGenOutput>SolidamEntityDataModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="SolidamEntityDataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SolidamEntityDataModel.edmx</DependentUpon>
+      <LastGenOutput>SolidamEntityDataModel.cs</LastGenOutput>
+    </Content>
     <None Include="App.Config" />
     <Content Include="connections.config" />
     <None Include="packages.config" />
@@ -119,22 +135,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SolidamEntityDataModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SolidamEntityDataModel.edmx</DependentUpon>
-      <LastGenOutput>SolidamEntityDataModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="SolidamEntityDataModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SolidamEntityDataModel.edmx</DependentUpon>
-      <LastGenOutput>SolidamEntityDataModel.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Abstractions\Abstractions.csproj">
       <Project>{94405298-E0A8-4DAF-91B7-661789CB4ED3}</Project>
       <Name>Abstractions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Utils\Utils.csproj">
+      <Project>{0FD79276-C521-4C8F-9D68-C83CCE59399C}</Project>
+      <Name>Utils</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

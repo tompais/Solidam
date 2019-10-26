@@ -1,11 +1,16 @@
-﻿@using Helpers
+﻿@using System.Globalization
+@using System.Runtime.InteropServices
+@using Enums
+@using Helpers
+@using Models
+@using Services
 @Styles.Render("~/Content/Views/Inicio/inicio.css")
 @Styles.Render("~/Content/Views/Inicio/inicioResponsive.css")
 
 @{
     ViewBag.Title = "Inicio";
 }
-
+@model Solidam.ViewModel.InicioViewModel
 <!-- Banner -->
 
 <section class="home_banner_area">
@@ -23,7 +28,7 @@
                         <a class="main_btn mr-10" href=@Url.Action("Registrar","Seguridad")>Registrarme</a>
                         <a class="white_bg_btn" href=@Url.Action("Iniciar","Seguridad")>Iniciar Sesion</a>
                     }
-                    
+
                 </div>
             </div>
         </div>
@@ -34,7 +39,7 @@
 
 <div id="causes" class="section">
     <div class="container mt-5">
-        ]        <div class="row">
+        <div class="row">
 
             <div class="col-md-12 col-md-offset-2 mb-5">
                 <div class="section-title text-center">
@@ -42,160 +47,28 @@
                     <p class="sub-title">Aca se muestran las ultimas causas mas valoradas por los usuarios del sitio.</p>
                 </div>
             </div>
-
-            <div class="col-md-4">
-                <div class="causes">
-                    <div class="causes-img">
-                        <a href="single-cause.html">
-                            <img src="@Url.Content("~/Images/Views/Inicio/post-1.jpg")" alt="">
-                        </a>
-                    </div>
-                    <div class="causes-progress">
-                        <div class="causes-progress-bar">
-                            <div style="width: 64%;">
-                                <span>64%</span>
-                            </div>
+            @foreach (Propuestas propuesta in Model.Propuestas)
+            {
+                <div class="col-md-4">
+                    <div class="card p-4 causes">
+                        <div class="causes-img">
+                            <a href="javascript:void(0);">
+                                <img src="@Url.Content("~/Images/Views/Inicio/post-1.jpg")" alt="">
+                            </a>
                         </div>
-                        <div>
-                            <span class="causes-raised">Obtenido: <strong>52.000$</strong></span>
-                            <span class="causes-goal">Meta: <strong>90.000$</strong></span>
+                        <div class="causes-content">
+                            <h3>@propuesta.Nombre</h3>
+                            <span class="mr-3">Usuario: </span><span>@propuesta.Usuarios.Apellido, @propuesta.Usuarios.Nombre</span><br />
+                            <span class="mr-3">Aceptacion: (@propuesta.Valoracion%)</span><br />
+                            <span class="mr-3"> Disponible hasta: <strong>@propuesta.FechaFin.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</strong></span>
                         </div>
-                    </div>
-                    <div class="causes-content">
-                        <h3><a href="single-cause.html">Possit nostro aeterno eu vis, ut cum quem reque</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <a href="single-cause.html" class="primary-button causes-donate">Donar ahora</a>
+                        <div class="d-flex justify-content-between mt-3">
+                            <a class="btn btn-primary text-white" href="@Url.Action("Detalle","Propuesta",new {id = @propuesta.IdPropuesta })">Ver detalle</a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-md-4">
-                <div class="causes">
-                    <div class="causes-img">
-                        <a href="single-cause.html">
-                            <img src="@Url.Content("~/Images/Views/Inicio/post-2.jpg")" alt="">
-                        </a>
-                    </div>
-                    <div class="causes-progress">
-                        <div class="causes-progress-bar">
-                            <div style="width: 72%;">
-                                <span>72%</span>
-                            </div>
-                        </div>
-                        <div>
-                            <span class="causes-raised">Obtenido: <strong>52.000$</strong></span>
-                            <span class="causes-goal">Meta: <strong>90.000$</strong></span>
-                        </div>
-                    </div>
-                    <div class="causes-content">
-                        <h3><a href="single-cause.html">Vix fuisset tibique facilisis cu. Justo accusata ius at</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <a href="single-cause.html" class="primary-button causes-donate">Donar ahora</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="causes">
-                    <div class="causes-img">
-                        <a href="single-cause.html">
-                            <img src="@Url.Content("~/Images/Views/Inicio/post-3.jpg")" alt="">
-                        </a>
-                    </div>
-                    <div class="causes-progress">
-                        <div class="causes-progress-bar">
-                            <div style="width: 53%;">
-                                <span>53%</span>
-                            </div>
-                        </div>
-                        <div>
-                            <span class="causes-raised">Obtenido: <strong>52.000$</strong></span>
-                            <span class="causes-goal">Meta: <strong>90.000$</strong></span>
-                        </div>
-                    </div>
-                    <div class="causes-content">
-                        <h3><a href="single-cause.html">Possit nostro aeterno eu vis, ut cum quem reque</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <a href="single-cause.html" class="primary-button causes-donate">Donar ahora</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="causes">
-                    <div class="causes-img">
-                        <a href="single-cause.html">
-                            <img src="@Url.Content("~/Images/Views/Inicio/post-6.jpg")" alt="">
-                        </a>
-                    </div>
-                    <div class="causes-progress">
-                        <div class="causes-progress-bar">
-                            <div style="width: 72%;">
-                                <span>72%</span>
-                            </div>
-                        </div>
-                        <div>
-                            <span class="causes-raised">Obtenido: <strong>52.000$</strong></span>
-                            <span class="causes-goal">Meta: <strong>90.000$</strong></span>
-                        </div>
-                    </div>
-                    <div class="causes-content">
-                        <h3><a href="single-cause.html">Vix fuisset tibique facilisis cu. Justo accusata ius at</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <a href="single-cause.html" class="primary-button causes-donate">Donar ahora</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="causes">
-                    <div class="causes-img">
-                        <a href="single-cause.html">
-                            <img src="@Url.Content("~/Images/Views/Inicio/post-5.jpg")" alt="">
-                        </a>
-                    </div>
-                    <div class="causes-progress">
-                        <div class="causes-progress-bar">
-                            <div style="width: 100%;">
-                            </div>
-                        </div>
-                        <div>
-                            <span class="causes-raised">Objetivo: <strong>Mano de Obra</strong></span>
-                        </div>
-                    </div>
-                    <div class="causes-content">
-                        <h3><a href="single-cause.html">Vix fuisset tibique facilisis cu. Justo accusata ius at</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <a href="single-cause.html" class="primary-button causes-donate">Donar ahora</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="causes">
-                    <div class="causes-img">
-                        <a href="single-cause.html">
-                            <img src="@Url.Content("~/Images/Views/Inicio/post-4.jpg")" alt="">
-                        </a>
-                    </div>
-                    <div class="causes-progress">
-                        <div class="causes-progress-bar">
-                            <div style="width: 72%;">
-                                <span>72%</span>
-                            </div>
-                        </div>
-                        <div>
-                            <span class="causes-raised">Objetivo: <strong>52.000$</strong></span>
-                            <span class="causes-goal">Meta: <strong>90.000$</strong></span>
-                        </div>
-                    </div>
-                    <div class="causes-content">
-                        <h3><a href="single-cause.html">Vix fuisset tibique facilisis cu. Justo accusata ius at</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <a href="single-cause.html" class="primary-button causes-donate">Donar ahora</a>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
     </div>
 </div>

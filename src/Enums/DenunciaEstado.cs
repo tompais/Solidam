@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Enums
 {
-    enum DenunciaEstado
+    public enum DenunciaEstado
     {
         EnRevision = 0,
-        Denunciada
+        Desestimada
     }
 }

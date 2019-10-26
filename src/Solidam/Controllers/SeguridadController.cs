@@ -1,41 +1,49 @@
-﻿using Helpers;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using Helpers;
 using Models;
 using Services;
 using System.Linq;
 using System.Web.Mvc;
+using Solidam.ViewModel;
 using Utils;
+using System.Collections.Generic;
+using Castle.Components.DictionaryAdapter.Xml;
+using System.Globalization;
 
 namespace Solidam.Controllers
 {
     public class SeguridadController : Controller
     {
+        [Route("/login")]
         public ActionResult Iniciar()
         {
             return View();
         }
 
-        [HttpGet]
-        public ActionResult IniciarSesion(Usuario usuario)
+        [HttpPost]
+        public ActionResult Iniciar(UsuariosLogin model)
         {
-            usuario.Password = Sha1.GetSHA1(usuario.Password);
+            var inicioViewModel = new InicioViewModel();
 
-            var usuarioIniciar = SeguridadService.Instance.Get(usuario).FirstOrDefault();
-
-            if (usuarioIniciar == null)
+            if (!ModelState.IsValid)
             {
-                usuarioIniciar = new Usuario { Error = "Email y/o Contraseña inválidos" };
-                return View("Iniciar", usuarioIniciar);
+                return View("Iniciar", model);
             }
 
-            if (usuarioIniciar.Activo.ToString().Equals("False"))
-            {
-                usuarioIniciar = new Usuario { Error = "Su usuario está inactivo. Actívelo desde el email recibido" };
-                return View("Iniciar", usuarioIniciar);
-            }
+            var usuarioLoguear = SeguridadService.Instance.Get(new Usuarios() { Email = model.Email, Password = model.Password }).FirstOrDefault();
 
-            SessionHelper.Usuario = usuarioIniciar;
+            SessionHelper.Usuario = usuarioLoguear;
+
+            if (TempData["pendingRoute"] != null)
+            {
+                var rutaPendiente = TempData["pendingRoute"].ToString();
+                TempData["pendingRoute"] = null;
+                return Redirect(rutaPendiente);
+            }
 
             return RedirectToAction("Inicio", "Inicio");
+
         }
 
         public ActionResult Registrar()
@@ -44,13 +52,20 @@ namespace Solidam.Controllers
         }
 
         [HttpPost]
-        public ActionResult RegistrarUsuario(Usuario usuario)
+        public ActionResult Registrar(UsuariosRegister model)
         {
-            var usuarioEvaluado = SeguridadService.Instance.Post(usuario);
 
-            if (usuarioEvaluado == null) return View("Registrar", usuarioEvaluado);
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var usuarioEvaluado = SeguridadService.Instance.Post(new Usuarios() { Email = model.Email, Password = model.Password, FechaNacimiento = model.FechaNacimiento });
+
             SeguridadService.Instance.EnviarCorreo(usuarioEvaluado.Token, usuarioEvaluado.Email);
+
             return View("RegistroExitoso");
+
         }
 
         public ActionResult RegistroExitoso()
@@ -61,7 +76,7 @@ namespace Solidam.Controllers
         [HttpGet]
         public ActionResult Activar(string token)
         {
-            SeguridadService.Instance.Put(new Usuario { Token = token, Activo = true });
+            SeguridadService.Instance.Put(new Usuarios { Token = token, Activo = true });
 
             return View("ActivacionExitosa");
         }

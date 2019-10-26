@@ -18,7 +18,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Solidam</RootNamespace>
     <AssemblyName>Solidam</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -30,6 +30,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TypeScriptToolsVersion>3.5</TypeScriptToolsVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -142,6 +143,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Diagnostics.FileVersionInfo, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Diagnostics.FileVersionInfo.4.3.0\lib\net46\System.Diagnostics.FileVersionInfo.dll</HintPath>
       <Private>True</Private>
@@ -265,8 +267,7 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
@@ -288,9 +289,7 @@
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
@@ -301,6 +300,7 @@
     </Reference>
     <Reference Include="System.Net.Http.WebRequest">
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml.ReaderWriter, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Xml.ReaderWriter.4.3.1\lib\net46\System.Xml.ReaderWriter.dll</HintPath>
       <Private>True</Private>
@@ -330,13 +330,21 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\DonacionesMonetariasController.cs" />
+    <Compile Include="Controllers\DonacionesHorasTrabajoController.cs" />
+    <Compile Include="Controllers\DonacionInsumoController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
-    <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Controllers\PropuestaController.cs" />
+    <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\SeguridadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\DenunciaViewModel.cs" />
+    <Compile Include="ViewModel\DonarViewModel.cs" />
+    <Compile Include="ViewModel\InicioViewModel.cs" />
+    <Compile Include="ViewModel\PropuestaDetalleViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\alertifyjs\alertify.css" />
@@ -578,6 +586,7 @@
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="Content\Views\Inicio\inicio.css" />
     <Content Include="Content\Views\Inicio\inicioResponsive.css" />
+    <Content Include="Content\Views\Propuestas\Detalle.css" />
     <Content Include="Content\Views\Shared\pv_Footer.css" />
     <Content Include="Content\Views\Shared\pv_Header.css" />
     <Content Include="Content\Views\Seguridad\IniciarRegistrar.css" />
@@ -1010,11 +1019,12 @@
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Scripts\utils.js" />
     <Content Include="Scripts\Views\Inicio\inicio.js" />
+    <Content Include="Scripts\Views\Propuesta\Crear.js" />
     <Content Include="Images\Views\Seguridad\logoBordeBlanco.png" />
+    <Content Include="Scripts\Views\Propuesta\Donar.js" />
     <Content Include="Scripts\Views\Seguridad\Iniciar.js" />
     <Content Include="Scripts\Views\Seguridad\Registrar.js" />
     <Content Include="Scripts\Views\Seguridad\RegistroExitoso.js" />
-    <Content Include="Scripts\Views\Usuario\MiPerfil.js" />
     <Content Include="Views\Seguridad\Email.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -1050,14 +1060,20 @@
     <Content Include="Views\Shared\pv_Header.cshtml" />
     <Content Include="Views\Seguridad\Iniciar.cshtml" />
     <Content Include="Views\Seguridad\Registrar.cshtml" />
-    <Content Include="Views\Shared\pv_HeaderUsuario.cshtml" />
     <Content Include="Views\Seguridad\RegistroExitoso.cshtml" />
     <Content Include="Views\Seguridad\ActivacionExitosa.cshtml" />
-    <Content Include="Views\Usuario\MiPerfil.cshtml" />
+    <Content Include="Views\Perfil\MiPerfil.cshtml" />
+    <Content Include="Views\Propuesta\CrearPropuesta.cshtml" />
+    <Content Include="Views\Propuesta\Detalle.cshtml" />
+    <Content Include="Views\Propuesta\Denunciar.cshtml" />
+    <Content Include="Views\Propuesta\Donar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\layouts\" />
+    <Folder Include="Content\UploadedFiles\" />
+    <Folder Include="Images\Views\Propuesta\" />
+    <Folder Include="Views\DonacionInsumo\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -1078,7 +1094,7 @@
       <Name>Abstractions</Name>
     </ProjectReference>
     <ProjectReference Include="..\Enums\Enums.csproj">
-      <Project>{37AE37B0-3F43-45DF-B0A7-4ADCF6B18E48}</Project>
+      <Project>{37ae37b0-3f43-45df-b0a7-4adcf6b18e48}</Project>
       <Name>Enums</Name>
     </ProjectReference>
     <ProjectReference Include="..\Exceptions\Exceptions.csproj">
@@ -1094,7 +1110,7 @@
       <Name>Helpers</Name>
     </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
-      <Project>{1FF4A6BF-D3AB-4713-A221-20D664737687}</Project>
+      <Project>{1ff4a6bf-d3ab-4713-a221-20d664737687}</Project>
       <Name>Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\Services\Services.csproj">
@@ -1104,6 +1120,10 @@
     <ProjectReference Include="..\Utils\Utils.csproj">
       <Project>{0fd79276-c521-4c8f-9d68-c83cce59399c}</Project>
       <Name>Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ViewModels\ViewModels.csproj">
+      <Project>{bfb013a9-d0d5-4c03-a2a8-6d9cbd88d693}</Project>
+      <Name>ViewModels</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
