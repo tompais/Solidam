@@ -28,5 +28,6 @@ namespace Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DonacionesInsumos> DonacionesInsumos { get; set; }
         public virtual Propuestas Propuestas { get; set; }
+
     }
 }

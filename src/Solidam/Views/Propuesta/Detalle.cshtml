@@ -50,8 +50,8 @@
                         @if (Model.Propuesta.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario)
                         {
                             <div class="d-flex justify-content-between mt-3">
-                                <a href="#" class="btn btn-primary text-white">Donar</a>
-                                <a href="@Url.Action("Denunciar","Propuesta",new { id = @Model.Propuesta.IdPropuesta})" class="btn btn-danger text-white @(Model.Denuncie ? "disabled" : "")">Denunciar</a>
+                                <a href="@Url.Action("Donar","Propuesta",new {id = Model.Propuesta.IdPropuesta})" class="btn btn-primary text-white">Donar</a>
+                                <a href="@Url.Action("Denunciar","Propuesta",new { id = Model.Propuesta.IdPropuesta})" class="btn btn-danger text-white @(Model.Denuncie ? "disabled" : "")">Denunciar</a>
                                 <form action="@Url.Action("Valorar", "Propuesta")" method="post">
                                     <input type="hidden" name="IdPropuesta" value="@Model.Propuesta.IdPropuesta" />
                                     <div class="d-flex justify-content-center align-items-center">
@@ -104,7 +104,7 @@
                         @if (Model.Propuesta.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario)
                         {
                             <div class="d-flex justify-content-between mt-3">
-                                <a href="#" class="btn btn-primary text-white">Donar</a>
+                                <a href="@Url.Action("Donar","Propuesta",new {id = Model.Propuesta.IdPropuesta})" class="btn btn-primary text-white">Donar</a>
                                 <a href="@Url.Action("Denunciar","Propuesta",new { id = @Model.Propuesta.IdPropuesta})" class="btn btn-danger text-white @(Model.Denuncie ? "disabled" : "")">Denunciar</a>
                                 <form action="@Url.Action("Valorar", "Propuesta")" method="post">
                                     <input type="hidden" name="IdPropuesta" value="@Model.Propuesta.IdPropuesta" />

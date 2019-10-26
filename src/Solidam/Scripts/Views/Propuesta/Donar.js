@@ -6,13 +6,20 @@
     }
 });
 
-$("#btnConfirmar").click(function() {
+$("#btnConfirmar").click(function () {
+    var donaciones = [];
     $(".check:checked").each(function (index, value) {
-        var donaciones = [];
         var donacionInsumo = {};
         donacionInsumo.idPropuestaDonacionInsumo = $(value).attr("don-id");
         donacionInsumo.cantidad = $(value).parent().parent().find("input[type=number]").val();
         donaciones.push(donacionInsumo);
     });
-    //$.ajax()
+    $.ajax({
+        url: window.pathCrearDonacionInsumo,
+        data: { donaciones: donaciones },
+        type: 'POST',
+        success: function(data) {
+            window.location.reload();
+        }
+    });
 });
