@@ -16,7 +16,7 @@ namespace Solidam.Controllers
         }
 
         [HttpPost]
-        public ActionResult Iniciar(UsuariosLogin model)
+        public ActionResult Loguear(UsuariosLogin model)
         {
             var inicioViewModel = new InicioViewModel();
 
