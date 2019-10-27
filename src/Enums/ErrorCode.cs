@@ -9,6 +9,8 @@
         TokenInvalido,
         UsurioInexistente,
         AccesoNoAutorizado,
-        PerfilInvalido
+        PerfilInvalido,
+        IdNoValido,
+        EntidadNoEncontrada
     }
 }
