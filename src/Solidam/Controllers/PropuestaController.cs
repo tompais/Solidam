@@ -8,6 +8,7 @@ using Utils;
 using Enums;
 using Solidam.ViewModel;
 using MotivoDenuncia = Models.MotivoDenuncia;
+using System.Collections.Generic;
 
 namespace Solidam.Controllers
 {
@@ -15,12 +16,29 @@ namespace Solidam.Controllers
     {
         public ActionResult CrearPropuesta()
         {
+            if(PropuestaService.TotalPropuestasActivas() == 3)
+                return RedirectToAction("Inicio", "Inicio");
+
+            List<SelectListItem> lst = new List<SelectListItem>();
+
+            lst.Add(new SelectListItem() { Text = "Seleccionar", Value = "0", Disabled = true, Selected = true });
+            lst.Add(new SelectListItem() { Text = "Monetaria", Value = "1" });
+            lst.Add(new SelectListItem() { Text = "Insumos", Value = "2" });
+            lst.Add(new SelectListItem() { Text = "Horas de trabajo", Value = "3" });
+
+            ViewBag.Opciones = lst;
+
             return View();
         }
 
         [HttpPost]
         public ActionResult Crear(Propuestas p, System.Web.HttpPostedFileBase foto)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(p);
+            }
+
             string path = Server.MapPath("~/Images/Views/Propuesta/");
 
             p.Foto = System.IO.Path.GetFileName(foto.FileName);
