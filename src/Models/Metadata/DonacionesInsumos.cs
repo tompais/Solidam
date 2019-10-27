@@ -10,5 +10,6 @@ namespace Models
     [MetadataType(typeof(DonacionesInsumosMetadata))]
     public partial class DonacionesInsumos
     {
+        public bool Seleccionado { get; set; }
     }
 }

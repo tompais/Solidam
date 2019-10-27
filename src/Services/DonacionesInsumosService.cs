@@ -29,7 +29,6 @@ namespace Services
 
             return donaciones;
         }
-
         private static void Validar(DonacionesInsumos model)
         {
             var objetivo = Db.PropuestasDonacionesInsumos
@@ -40,5 +39,11 @@ namespace Services
             if(model.Cantidad > restante || model.Cantidad <= 0)
                 throw new Exception();
         }
+
+        public static List<PropuestasDonacionesInsumos> GetByPropuestaId(int idPropuesta)
+        {
+            return Db.PropuestasDonacionesInsumos.Where(p => p.IdPropuesta == idPropuesta).ToList();
+        }
+
     }
 }
