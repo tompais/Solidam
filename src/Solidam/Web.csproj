@@ -1134,13 +1134,13 @@
     <Content Include="Views\Propuesta\MisPropuestas.cshtml" />
     <Content Include="Views\Usuario\MiPerfil.cshtml" />
     <Content Include="Views\Shared\pv_CompletarPerfil.cshtml" />
+    <Content Include="Views\DonacionesInsumo\SolicitarCantidades.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\layouts\" />
     <Folder Include="Content\UploadedFiles\" />
     <Folder Include="Images\Views\Propuesta\" />
-    <Folder Include="Views\DonacionInsumo\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -1159,6 +1159,10 @@
     <ProjectReference Include="..\Abstractions\Abstractions.csproj">
       <Project>{94405298-E0A8-4DAF-91B7-661789CB4ED3}</Project>
       <Name>Abstractions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DTO\DTO.csproj">
+      <Project>{4F770DA6-DF5E-417F-A7E8-F1C04D785935}</Project>
+      <Name>DTO</Name>
     </ProjectReference>
     <ProjectReference Include="..\Enums\Enums.csproj">
       <Project>{37ae37b0-3f43-45df-b0a7-4adcf6b18e48}</Project>
