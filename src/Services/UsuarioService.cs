@@ -28,7 +28,7 @@ namespace Services
 
         public Usuarios GetById(ulong id)
         {
-            if (id <= 0) throw new IdNoValidoException(typeof(Usuarios));
+            if (id <= 0) throw new IdNoValidoException(typeof(Usuarios), id);
             return Db.Usuarios.FirstOrDefault(usuario => usuario.IdUsuario == (int) id);
         }
     }
