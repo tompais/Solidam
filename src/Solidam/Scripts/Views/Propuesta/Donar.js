@@ -10,7 +10,8 @@ $("#btnConfirmar").click(function () {
     var donaciones = [];
     var validacion = true;
     $(".check:checked").each(function (index, value) {
-        if(!validarNumero(parseInt($(value).parent().parent().find("input[type=number]").val()),$(value))) validacion = false;
+        if (!validarNumero(parseInt($(value).parent().parent().find("input[type=number]").val()), $(value))) validacion = false;
+        validacion = true;
         var donacionInsumo = {};
         donacionInsumo.idPropuestaDonacionInsumo = $(value).attr("don-id");
         donacionInsumo.cantidad = $(value).parent().parent().find("input[type=number]").val();
