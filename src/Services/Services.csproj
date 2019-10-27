@@ -65,7 +65,6 @@
     <Compile Include="PropuestasDonacionesInsumosService.cs" />
     <Compile Include="PropuestasValoracionesService.cs" />
     <Compile Include="PropuestaService.cs" />
-    <Compile Include="TestService.cs" />
     <Compile Include="SeguridadService.cs" />
   </ItemGroup>
   <ItemGroup>
