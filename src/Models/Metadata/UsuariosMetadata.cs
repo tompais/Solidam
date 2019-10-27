@@ -17,14 +17,7 @@ namespace Models
             return existeEmail ? new ValidationResult($"El Email {usuario.Email} ya está siendo usado.") : ValidationResult.Success;
         }
 
-        public static ValidationResult ValidarMayoriaEdad(object value, ValidationContext context)
-        {
-            var usuario = context.ObjectInstance as UsuariosRegister;
-
-            var edad = DateTime.Now.Year - usuario.FechaNacimiento.Year;
-
-            return edad < 18 ? new ValidationResult("Debes tener mas de 18 años") : ValidationResult.Success;
-        }
+        public static ValidationResult ValidarMayoriaEdad(object value, ValidationContext context) => context.ObjectInstance is UsuariosRegister usuario && (default(DateTime) + (DateTime.Now - usuario.FechaNacimiento)).Year - 1 < 18 ? new ValidationResult("Debes tener más de 18 años") : ValidationResult.Success;
 
         public static ValidationResult ValidarLogueo(object value, ValidationContext context)
         {
@@ -42,7 +35,5 @@ namespace Models
 
             return usuarioCorrecto.Activo == false ? new ValidationResult("Su usuario está inactivo. Actívelo desde el email recibido") : ValidationResult.Success;
         }
-
-
     }
 }

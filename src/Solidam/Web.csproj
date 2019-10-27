@@ -57,6 +57,9 @@
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>packages\Castle.Core.4.4.0\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Cropper, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Cropper.0.1.1\lib\net40\Cropper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.3.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -334,7 +337,7 @@
     <Compile Include="Controllers\DonacionesHorasTrabajoController.cs" />
     <Compile Include="Controllers\DonacionesInsumoController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
-    <Compile Include="Controllers\PerfilController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\PropuestaController.cs" />
     <Compile Include="Controllers\SeguridadController.cs" />
     <Compile Include="Global.asax.cs">
@@ -590,6 +593,7 @@
     <Content Include="Content\Views\Shared\pv_Footer.css" />
     <Content Include="Content\Views\Shared\pv_Header.css" />
     <Content Include="Content\Views\Seguridad\IniciarRegistrar.css" />
+    <Content Include="Content\Views\Usuario\MiPerfil.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
@@ -866,17 +870,76 @@
     <Content Include="Scripts\bootstrap-select.min.js.map" />
     <Content Include="Scripts\bootstrap-select.js.map" />
     <Content Include="Content\bootstrap-select.css.map" />
+    <Content Include="NLog.log" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\i18n\defaults-zh_TW.min.js" />
+    <Content Include="Scripts\inputmask\bindings\inputmask.binding.js" />
+    <Content Include="Scripts\inputmask\dependencyLibs\inputmask.dependencyLib.jqlite.js" />
+    <Content Include="Scripts\inputmask\dependencyLibs\inputmask.dependencyLib.jquery.js" />
+    <Content Include="Scripts\inputmask\dependencyLibs\inputmask.dependencyLib.js" />
+    <Content Include="Scripts\inputmask\global\window.js" />
+    <Content Include="Scripts\inputmask\inputmask.date.extensions.js" />
+    <Content Include="Scripts\inputmask\inputmask.extensions.js" />
+    <Content Include="Scripts\inputmask\inputmask.js" />
+    <Content Include="Scripts\inputmask\inputmask.numeric.extensions.js" />
+    <Content Include="Scripts\inputmask\jquery.inputmask.js" />
+    <Content Include="Scripts\inputmask\min\bindings\inputmask.binding.min.js" />
+    <Content Include="Scripts\inputmask\min\dependencyLibs\inputmask.dependencyLib.jqlite.min.js" />
+    <Content Include="Scripts\inputmask\min\dependencyLibs\inputmask.dependencyLib.jquery.min.js" />
+    <Content Include="Scripts\inputmask\min\dependencyLibs\inputmask.dependencyLib.min.js" />
+    <Content Include="Scripts\inputmask\min\global\window.min.js" />
+    <Content Include="Scripts\inputmask\min\inputmask.date.extensions.min.js" />
+    <Content Include="Scripts\inputmask\min\inputmask.extensions.min.js" />
+    <Content Include="Scripts\inputmask\min\inputmask.min.js" />
+    <Content Include="Scripts\inputmask\min\inputmask.numeric.extensions.min.js" />
+    <Content Include="Scripts\inputmask\min\jquery.inputmask.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="Scripts\jQuery-Mask-Plugin\.gitignore" />
+    <Content Include="Scripts\jQuery-Mask-Plugin\dist\jquery.mask.js" />
+    <Content Include="Scripts\jQuery-Mask-Plugin\dist\jquery.mask.min.js" />
+    <Content Include="Scripts\jQuery-Mask-Plugin\Gruntfile.js" />
+    <Content Include="Scripts\jQuery-Mask-Plugin\package.js" />
+    <Content Include="Scripts\jQuery-Mask-Plugin\src\jquery.mask.js" />
+    <Content Include="Scripts\jQuery-Mask-Plugin\test\jquery.mask.test.js" />
+    <Content Include="Scripts\jQuery-Mask-Plugin\test\qunit.css" />
+    <Content Include="Scripts\jQuery-Mask-Plugin\test\qunit.js" />
+    <Content Include="Scripts\jQuery-Mask-Plugin\test\sinon-1.10.3.js" />
+    <Content Include="Scripts\jQuery-Mask-Plugin\test\sinon-qunit-1.0.0.js" />
+    <Content Include="Scripts\jQuery-Mask-Plugin\test\sinon-qunit.js" />
+    <Content Include="Scripts\jQuery-Mask-Plugin\test\test-for-jquery-1.11.1.html" />
+    <Content Include="Scripts\jQuery-Mask-Plugin\test\test-for-jquery-1.7.2.html" />
+    <Content Include="Scripts\jQuery-Mask-Plugin\test\test-for-jquery-1.8.3.html" />
+    <Content Include="Scripts\jQuery-Mask-Plugin\test\test-for-jquery-1.9.1.html" />
+    <Content Include="Scripts\jQuery-Mask-Plugin\test\test-for-jquery-2.1.1.html" />
+    <Content Include="Scripts\jQuery-Mask-Plugin\test\test-for-jquery-3.0.0.html" />
+    <Content Include="Scripts\jQuery-Mask-Plugin\test\test-for-zepto.html" />
+    <Content Include="Scripts\jQuery-Mask-Plugin\test\zepto\data.js" />
+    <Content Include="Scripts\jQuery-Mask-Plugin\test\zepto\event.js" />
+    <Content Include="Scripts\jQuery-Mask-Plugin\test\zepto\zepto.min.js" />
     <Content Include="Scripts\jquery-mousewheel\bower.json" />
     <Content Include="Scripts\jquery-mousewheel\ChangeLog.md" />
     <Content Include="Scripts\jquery-mousewheel\package-lock.json" />
     <Content Include="Scripts\jquery-mousewheel\package.json" />
     <Content Include="Scripts\jquery-mousewheel\README.md" />
+    <Content Include="Scripts\jQuery-Mask-Plugin\.jshintrc" />
+    <Content Include="Scripts\jQuery-Mask-Plugin\.ruby-version" />
+    <Content Include="Scripts\jQuery-Mask-Plugin\.travis.yml" />
+    <Content Include="Scripts\jQuery-Mask-Plugin\bower.json" />
+    <Content Include="Scripts\jQuery-Mask-Plugin\CHANGELOG.md" />
+    <Content Include="Scripts\jQuery-Mask-Plugin\component.json" />
+    <Content Include="Scripts\jQuery-Mask-Plugin\composer.json" />
+    <Content Include="Scripts\jQuery-Mask-Plugin\CONTRIBUTING.md" />
+    <Content Include="Scripts\jQuery-Mask-Plugin\deploy.rb" />
+    <Content Include="Scripts\jQuery-Mask-Plugin\docker-compose.yml" />
+    <Content Include="Scripts\jQuery-Mask-Plugin\Dockerfile" />
+    <Content Include="Scripts\jQuery-Mask-Plugin\ISSUE_TEMPLATE.md" />
+    <Content Include="Scripts\jQuery-Mask-Plugin\LICENSE" />
+    <Content Include="Scripts\jQuery-Mask-Plugin\package-lock.json" />
+    <Content Include="Scripts\jQuery-Mask-Plugin\package.json" />
+    <Content Include="Scripts\jQuery-Mask-Plugin\README.md" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-mousewheel\.eslintrc.js" />
     <Content Include="Scripts\jquery-mousewheel\.gitignore" />
@@ -1025,7 +1088,7 @@
     <Content Include="Scripts\Views\Seguridad\Iniciar.js" />
     <Content Include="Scripts\Views\Seguridad\Registrar.js" />
     <Content Include="Scripts\Views\Seguridad\RegistroExitoso.js" />
-    <Content Include="Scripts\Views\Usuario\MiPerfil.js" />
+    <Content Include="Scripts\Views\Usuario\CompletarPerfil.js" />
     <Content Include="Views\Seguridad\Email.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -1070,6 +1133,7 @@
     <Content Include="Views\Propuesta\PropuestasBuscadas.cshtml" />
     <Content Include="Views\Propuesta\MisPropuestas.cshtml" />
     <Content Include="Views\Usuario\MiPerfil.cshtml" />
+    <Content Include="Views\Shared\pv_CompletarPerfil.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

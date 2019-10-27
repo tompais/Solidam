@@ -65,8 +65,8 @@
     <Compile Include="PropuestasDonacionesInsumosService.cs" />
     <Compile Include="PropuestasValoracionesService.cs" />
     <Compile Include="PropuestaService.cs" />
-    <Compile Include="TestService.cs" />
     <Compile Include="SeguridadService.cs" />
+    <Compile Include="UsuarioService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Abstractions\Abstractions.csproj">
