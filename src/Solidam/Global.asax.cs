@@ -1,5 +1,4 @@
-﻿using Filters;
-using Helpers;
+﻿using Helpers;
 using System;
 using System.Web;
 using System.Web.Mvc;
@@ -29,16 +28,7 @@ namespace Solidam
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             LoggingHelper.Configure(typeof(MvcApplication));
-            ConfigureFirstChanceExceptionsHandler();
             ConfigureUnhandledExceptionsHandler();
-        }
-
-        private static void ConfigureFirstChanceExceptionsHandler()
-        {
-            AppDomain.CurrentDomain.FirstChanceException += (sender, eventArgs) =>
-            {
-                LoggingHelper.LogException(eventArgs.Exception);
-            };
         }
 
         private static void ConfigureUnhandledExceptionsHandler()
@@ -61,11 +51,6 @@ namespace Solidam
         protected void Application_Error(object sender, EventArgs e)
         {
             LoggingHelper.LogException(Server.GetLastError());
-        }
-
-        public static void RegisterGlobalFilters(GlobalFilterCollection filters)
-        {
-            filters.Add(new GlobalExceptionHandlerAttribute());
         }
     }
 }

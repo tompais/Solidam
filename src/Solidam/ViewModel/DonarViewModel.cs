@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using DTO;
 using Models;
 
 namespace Solidam.ViewModel
@@ -14,6 +15,6 @@ namespace Solidam.ViewModel
         public List<DonacionesInsumos> DonacionesInsumos { get; set; }
         public DonacionesMonetarias DonacionMonetaria { get; set; }
         public DonacionesHorasTrabajo DonacionHorasTrabajo { get; set; }
-        public DonacionesInsumos DonacionInsumos { get; set; }
+        public List<DonacionesInsumoDto> DonacionInsumos { get; set; }
     }
 }

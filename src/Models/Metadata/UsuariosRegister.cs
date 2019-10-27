@@ -28,6 +28,7 @@ namespace Models
 
         [Required(ErrorMessage = "Ingrese su fecha de nacimiento")]
         [CustomValidation(typeof(UsuariosMetadata), "ValidarMayoriaEdad")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime FechaNacimiento { get; set; }
 
 
