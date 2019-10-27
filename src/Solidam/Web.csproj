@@ -334,6 +334,7 @@
     <Compile Include="Controllers\DonacionesHorasTrabajoController.cs" />
     <Compile Include="Controllers\DonacionesInsumoController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
+    <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\PropuestaController.cs" />
     <Compile Include="Controllers\SeguridadController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1024,6 +1025,7 @@
     <Content Include="Scripts\Views\Seguridad\Iniciar.js" />
     <Content Include="Scripts\Views\Seguridad\Registrar.js" />
     <Content Include="Scripts\Views\Seguridad\RegistroExitoso.js" />
+    <Content Include="Scripts\Views\Usuario\MiPerfil.js" />
     <Content Include="Views\Seguridad\Email.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -1067,6 +1069,7 @@
     <Content Include="Views\Propuesta\Donar.cshtml" />
     <Content Include="Views\Propuesta\PropuestasBuscadas.cshtml" />
     <Content Include="Views\Propuesta\MisPropuestas.cshtml" />
+    <Content Include="Views\Usuario\MiPerfil.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
