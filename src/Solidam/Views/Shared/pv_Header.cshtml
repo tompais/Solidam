@@ -8,7 +8,7 @@
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
 
-                <a class="navbar-brand" href="../Inicio/index.html">
+                <a class="navbar-brand" href="@Url.Action("Inicio","Inicio")">
                     <img src="@Url.Content("~/Images/Views/Inicio/LogoAlt2.png")" alt="">
                 </a>
 
@@ -20,13 +20,12 @@
                 </button>
 
                 <div class="col-12 col-lg-6 col-md-4" id="divBuscar">
-                    <div class="input-group">
-                        <input type="text" id="inputBuscar" class="form-control"
-                               placeholder="Buscar...">
+                    <form class="input-group" method="get" action=@Url.Action("Buscar","Propuesta") >
+                        <input type="text" id="inputBuscar" class="form-control" placeholder="Buscar..." name="nombre">
                         <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" id="btnBuscar" type="button"><i class="fa fa-search"></i></button>
+                            <button class="btn btn-outline-secondary" id="btnBuscar" type="submit"><i class="fa fa-search"></i></button>
                         </div>
-                    </div>
+                    </form>
                 </div>
 
                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
@@ -55,16 +54,16 @@
                                         <a class="nav-link" href="../Inicio/contact.html">Contacto</a>
                                     </li>
                                     <li class="nav-item submenu dropdown">
-                                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user mr-2"></i> Cuenta <i class="ml-3 fa fa-caret-down"></i></a>
+                                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-circle mr-1"></i>Cuenta <i class="ml-3 fa fa-caret-down"></i></a>
                                         <ul class="dropdown-menu">
                                             <li class="nav-item">
-                                                <a class="nav-link" href="blog.html"><i class="fa fa-user mr-1"></i> Mi Perfil</a>
+                                                <a class="nav-link" href="@Url.Action("MiPerfil", "Usuario")"><i class="fa fa-user mr-1"></i>Mi Perfil</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="@Url.Action("CrearPropuesta","Propuesta")"><i class="fa fa-user mr-1"></i> Crear propuesta</a>
+                                                <a class="nav-link" href="@Url.Action("MiPropuestas","Propuesta")"><i class="fa fa-id-card mr-1"></i>Mis Propuestas</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="@Url.Action("CerrarSession","Seguridad")"><i class="fa fa-sign-out-alt"></i> Salir</a>
+                                                <a class="nav-link" href="@Url.Action("CerrarSession","Seguridad")"><i class="fa fa-sign-out mr-1"></i>Salir</a>
                                             </li>
                                         </ul>
                                     </li>

@@ -6,25 +6,23 @@
 @Styles.Render("~/Content/Views/Inicio/inicio.css")
 @Styles.Render("~/Content/Views/Inicio/inicioResponsive.css")
 @using Models
+@using NUnit.Framework
 @model Solidam.ViewModel.DenunciaViewModel
 <div class="container mb-0">
     <h2 class="mt-4">Denunciar propuesta @Model.NombrePropuesta</h2>
-        <form action="@Url.Action("Denunciar","Propuesta")" method="post" class="my-5">
-            <div class="form-group">
-                <label>Motivo de la denuncia:</label>
-                <select name="IdMotivo" class="form-control">
-                    <option value="0" selected disabled>Seleccione un motivo</option>
-                    @foreach (MotivoDenuncia motivo in Model.MotivoDenuncia)
-                    {
-                        <option value="@motivo.IdMotivoDenuncia">@motivo.Descripcion</option>
-                    }
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Comentarios: </label>
-                <textarea class="form-control" name="Comentarios" rows="5"></textarea>
-            </div>
-            <input type="hidden" name="IdPropuesta" value="@Model.IdPropuesta" />
-            <button type="submit" class="btn btn-primary">Enviar</button>
-        </form>
+    <form action="@Url.Action("Denunciar","Propuesta")" method="post" class="my-5">
+        <div class="form-group">
+            <label>Motivo de la denuncia:</label>
+            @Html.DropDownListFor(model => model.Denuncia.IdMotivo, Model.MotivoDenuncia, new { @class = "form-control" } )
+            <div class="errorSolidam"><b>@Html.ValidationMessageFor(model => model.Denuncia.IdMotivo, "", new { @class = "text-danger" })</b></div>
+        </div>
+        <div class="form-group">
+            <label>Comentarios: </label>
+            @Html.TextAreaFor(model => model.Denuncia.Comentarios, new { @class = "form-control", placeholder = "Ingrese su comentario", rows = "5" })
+            <div class="errorSolidam"><b>@Html.ValidationMessageFor(model => model.Denuncia.Comentarios, "", new { @class = "text-danger" })</b></div>
+        </div>
+        <input type="hidden" name="Denuncia.IdPropuesta" value="@Model.IdPropuesta" />
+        <button type="submit" class="btn btn-primary">Enviar</button>
+        @Html.ValidationMessage("")
+    </form>
 </div>

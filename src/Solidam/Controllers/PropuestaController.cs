@@ -1,14 +1,18 @@
 ﻿using System;
+using System.IO;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using Enums;
 using Helpers;
 using Models;
 using Services;
-using System.Linq;
-using System.Web.Mvc;
-using Utils;
-using Enums;
 using Solidam.ViewModel;
+<<<<<<< HEAD
 using MotivoDenuncia = Models.MotivoDenuncia;
 using System.Collections.Generic;
+=======
+>>>>>>> 28bc4a1e0dd4987eb2e754f62d4013a8d62260a4
 
 namespace Solidam.Controllers
 {
@@ -31,21 +35,36 @@ namespace Solidam.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult Crear(Propuestas p, System.Web.HttpPostedFileBase foto)
+        public ActionResult Buscar(string nombre)
         {
+            ViewBag.palabra = nombre;
+
+            var propuestaBuscadas =  PropuestaService.ObtenerPropuestasPorNombreYUsuario(nombre);
+
+            return View("PropuestasBuscadas", propuestaBuscadas);
+        }
+
+        public ActionResult MiPropuestas() => View("MisPropuestas", PropuestaService.ObtenerPropuestasUsuario(SessionHelper.Usuario.IdUsuario));
+
+        [HttpPost]
+        public ActionResult Crear(Propuestas p, HttpPostedFileBase foto)
+        {
+<<<<<<< HEAD
             if (!ModelState.IsValid)
             {
                 return View(p);
             }
 
             string path = Server.MapPath("~/Images/Views/Propuesta/");
+=======
+            var path = Server.MapPath("~/Images/Views/Propuesta/");
+>>>>>>> 28bc4a1e0dd4987eb2e754f62d4013a8d62260a4
 
-            p.Foto = System.IO.Path.GetFileName(foto.FileName);
+            p.Foto = Path.GetFileName(foto.FileName);
 
             PropuestaService.AgregarPropuesta(p);
 
-            foto.SaveAs(path + System.IO.Path.GetFileName(foto.FileName));
+            foto.SaveAs(path + Path.GetFileName(foto.FileName));
 
             return RedirectToAction("Inicio", "Inicio");
         }
@@ -53,7 +72,7 @@ namespace Solidam.Controllers
         [HttpPost]
         public ActionResult Valorar(string mg, string nmg, PropuestasValoraciones pv)
         {
-            PropuestasValoraciones propuestasValoraciones = new PropuestasValoraciones
+            var propuestasValoraciones = new PropuestasValoraciones
             {
                 IdPropuesta = pv.IdPropuesta,
                 IdUsuario = SessionHelper.Usuario.IdUsuario,
@@ -68,11 +87,11 @@ namespace Solidam.Controllers
         {
             if (SessionHelper.Usuario == null)
             {
-                TempData["pendingRoute"] = Url.Action("Detalle", "Propuesta", new { id = id });
+                TempData["pendingRoute"] = Url.Action("Detalle", "Propuesta", new {id });
                 return RedirectToAction("Iniciar", "Seguridad");
             }
             var propuesta = PropuestaService.GetById(id);
-            PropuestaDetalleViewModel propuestaDetalleViewModel = new PropuestaDetalleViewModel
+            var propuestaDetalleViewModel = new PropuestaDetalleViewModel
             {
                 Propuesta = propuesta,
                 Denuncie = DenunciasService.Denuncie(id),
@@ -84,11 +103,23 @@ namespace Solidam.Controllers
         [HttpGet]
         public ActionResult Denunciar(int id)
         {
-            DenunciaViewModel viewModel = new DenunciaViewModel
+            var motivos = MotivoDenunciaService.GetAll().Select(m => new SelectListItem
+            {
+                Text = m.Descripcion,
+                Value = m.IdMotivoDenuncia.ToString()
+            }).ToList();
+            motivos = motivos.Prepend(new SelectListItem
+            {
+                Value = "0",
+                Text = "Seleccione un motivo",
+                Disabled = true,
+                Selected = true
+            }).ToList();
+            var viewModel = new DenunciaViewModel
             {
                 IdPropuesta = id,
-                MotivoDenuncia = MotivoDenunciaService.GetAll(),
-                NombrePropuesta = PropuestaService.GetById(id).Nombre,
+                MotivoDenuncia = motivos,
+                NombrePropuesta = PropuestaService.GetById(id).Nombre
             };
             return View(viewModel);
         }
@@ -99,6 +130,31 @@ namespace Solidam.Controllers
             denuncia.FechaCreacion = DateTime.Now;
             denuncia.IdUsuario = SessionHelper.Usuario.IdUsuario;
             denuncia.Estado = (int)DenunciaEstado.EnRevision;
+            if(DenunciasService.Denuncie(denuncia.IdPropuesta))
+                ModelState.AddModelError("","Ya existe una denuncia de esta persona para esta propuesta");
+            if (!ModelState.IsValid)
+            {
+                var motivos = MotivoDenunciaService.GetAll().Select(m => new SelectListItem
+                {
+                    Text = m.Descripcion,
+                    Value = m.IdMotivoDenuncia.ToString()
+                }).ToList();
+                motivos = motivos.Prepend(new SelectListItem
+                {
+                    Value = "0",
+                    Text = "Seleccione un motivo",
+                    Disabled = true,
+                    Selected = true
+                }).ToList();
+                var viewModel = new DenunciaViewModel
+                {
+                    IdPropuesta = denuncia.IdPropuesta,
+                    MotivoDenuncia = motivos,
+                    NombrePropuesta = PropuestaService.GetById(denuncia.IdPropuesta).Nombre
+                };
+                return View(viewModel);
+            }
+
             DenunciasService.Crear(denuncia);
             return RedirectToAction("Inicio", "Inicio");
         }
@@ -106,12 +162,12 @@ namespace Solidam.Controllers
         public ActionResult Donar(int id)
         {
             var propuesta = PropuestaService.GetById(id);
-            DonarViewModel dvm = new DonarViewModel
+            var dvm = new DonarViewModel
             {
                 Propuesta = propuesta,
-                DonacionesMonetarias = PropuestaService.GetDonacionesMonetariasById(id),
-                DonacionesHorasTrabajo = PropuestaService.GetDonacionesHorasTrabajoById(id),
-                DonacionesInsumos = PropuestaService.GetDonacionesInsumosById(id)
+                DonacionesMonetarias = DonacionesMonetariasService.GetById(id),
+                DonacionesHorasTrabajo = DonacionesHorasTrabajoService.GetById(id),
+                DonacionesInsumos = DonacionesInsumosService.GetById(id)
             };
             return View(dvm);
         }

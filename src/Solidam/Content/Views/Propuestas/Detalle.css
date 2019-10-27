@@ -3,3 +3,8 @@
     cursor: default;
     opacity: .5;
 }
+.me-gusta,.no-me-gusta {
+    background: none;
+    border: none;
+    font-size: 4vh;
+}

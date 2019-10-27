@@ -17,7 +17,7 @@
     @switch (Model.Propuesta.TipoDonacion)
     {
         case (int)TipoDonacion.Monetaria:
-            var obtenido = PropuestaService.GetDineroDonadoByPropuestaId(Model.Propuesta.IdPropuesta);
+            var obtenido = PropuestasDonacionesMonetariasService.GetDineroDonadoByPropuestaId(Model.Propuesta.IdPropuesta);
             var meta = Model.Propuesta.PropuestasDonacionesMonetarias.FirstOrDefault(pdm => pdm.IdPropuesta == Model.Propuesta.IdPropuesta)?.Dinero;
             <div class="col-md-6 mx-auto">
                 <div class="card p-4 causes">
@@ -50,18 +50,18 @@
                         @if (Model.Propuesta.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario)
                         {
                             <div class="d-flex justify-content-between mt-3">
-                                <a href="#" class="btn btn-primary text-white">Donar</a>
-                                <a href="@Url.Action("Denunciar","Propuesta",new { id = @Model.Propuesta.IdPropuesta})" class="btn btn-danger text-white @(Model.Denuncie ? "disabled" : "")">Denunciar</a>
+                                <a href="@Url.Action("Donar","Propuesta",new {id = Model.Propuesta.IdPropuesta})" class="btn btn-primary text-white">Donar</a>
+                                <a href="@Url.Action("Denunciar","Propuesta",new { id = Model.Propuesta.IdPropuesta})" class="btn btn-danger text-white @(Model.Denuncie ? "disabled" : "")">Denunciar</a>
                                 <form action="@Url.Action("Valorar", "Propuesta")" method="post">
                                     <input type="hidden" name="IdPropuesta" value="@Model.Propuesta.IdPropuesta" />
                                     <div class="d-flex justify-content-center align-items-center">
                                         <div class="mr-1">
-                                            <button type="submit" name="mg">
+                                            <button type="submit" class="me-gusta" name="mg">
                                                 <i class="fa fa-thumbs-up @(Model.Valoracion == null ? "" : (Model.Valoracion.Valoracion ? "text-success" : ""))" aria-hidden="true"></i>
                                             </button>
                                         </div>
                                         <div>
-                                            <button type="submit" name="nmg">
+                                            <button type="submit" class="no-me-gusta" name="nmg">
                                                 <i class="fa fa-thumbs-down @(Model.Valoracion == null ? "" : (!Model.Valoracion.Valoracion ? "text-danger" : ""))" aria-hidden="true"></i>
                                             </button>
                                         </div>
@@ -104,18 +104,18 @@
                         @if (Model.Propuesta.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario)
                         {
                             <div class="d-flex justify-content-between mt-3">
-                                <a href="#" class="btn btn-primary text-white">Donar</a>
+                                <a href="@Url.Action("Donar","Propuesta",new {id = Model.Propuesta.IdPropuesta})" class="btn btn-primary text-white">Donar</a>
                                 <a href="@Url.Action("Denunciar","Propuesta",new { id = @Model.Propuesta.IdPropuesta})" class="btn btn-danger text-white @(Model.Denuncie ? "disabled" : "")">Denunciar</a>
                                 <form action="@Url.Action("Valorar", "Propuesta")" method="post">
                                     <input type="hidden" name="IdPropuesta" value="@Model.Propuesta.IdPropuesta" />
                                     <div class="d-flex justify-content-center align-items-center">
                                         <div class="mr-1">
-                                            <button type="submit" name="mg">
+                                            <button type="submit" class="me-gusta" name="mg">
                                                 <i class="fa fa-thumbs-up @(Model.Valoracion == null ? "" : (Model.Valoracion.Valoracion ? "text-success" : ""))" aria-hidden="true"></i>
                                             </button>
                                         </div>
                                         <div>
-                                            <button type="submit" name="nmg">
+                                            <button type="submit" class="no-me-gusta" name="nmg">
                                                 <i class="fa fa-thumbs-down @(Model.Valoracion == null ? "" : (!Model.Valoracion.Valoracion ? "text-danger" : ""))" aria-hidden="true"></i>
                                             </button>
                                         </div>
@@ -164,12 +164,12 @@
                                     <input type="hidden" name="IdPropuesta" value="@Model.Propuesta.IdPropuesta" />
                                     <div class="d-flex justify-content-center align-items-center">
                                         <div class="mr-1">
-                                            <button type="submit" name="mg">
+                                            <button type="submit" class="me-gusta" name="mg">
                                                 <i class="fa fa-thumbs-up @(Model.Valoracion == null ? "" : (Model.Valoracion.Valoracion ? "text-success" : ""))" aria-hidden="true"></i>
                                             </button>
                                         </div>
                                         <div>
-                                            <button type="submit" name="nmg">
+                                            <button type="submit" class="no-me-gusta"  name="nmg">
                                                 <i class="fa fa-thumbs-down @(Model.Valoracion == null ? "" : (!Model.Valoracion.Valoracion ? "text-danger" : ""))" aria-hidden="true"></i>
                                             </button>
                                         </div>
