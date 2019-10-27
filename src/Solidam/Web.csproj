@@ -596,6 +596,7 @@
     <Content Include="Content\Views\Seguridad\IniciarRegistrar.css" />
     <Content Include="Content\Views\Usuario\CompletarPerfil.css" />
     <Content Include="Content\Views\Usuario\MiPerfil.css" />
+    <Content Include="Content\Views\Usuario\VerPerfil.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Images\Views\Inicio\about.jpg" />
