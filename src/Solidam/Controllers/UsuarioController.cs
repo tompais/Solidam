@@ -24,11 +24,15 @@ namespace Solidam.Controllers
         {
             if (!ModelState.IsValid) throw new PerfilInvalidoException();
 
-            SessionHelper.Usuario.Nombre = perfil.Nombre;
-            SessionHelper.Usuario.Apellido = perfil.Apellido;
-            SessionHelper.Usuario.FechaNacimiento = perfil.FechaNacimiento;
-
-            SessionHelper.Usuario = UsuarioService.Instance.Put(SessionHelper.Usuario);
+            SessionHelper.Usuario = UsuarioService.Instance.Put(new Usuarios
+            {
+                IdUsuario = SessionHelper.Usuario.IdUsuario,
+                Nombre = perfil.Nombre,
+                Apellido = perfil.Apellido,
+                FechaNacimiento = perfil.FechaNacimiento,
+                Foto = FileHelper.GuardarArchivo(perfil.ProfilePicFile),
+                UserName = UsuarioService.Instance.GenerarUserName(perfil.Nombre, perfil.Apellido)
+            });
 
             return RedirectToAction("MiPerfil");
         }
