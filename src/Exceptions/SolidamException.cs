@@ -8,7 +8,7 @@ namespace Exceptions
     [Serializable]
     public class SolidamException : Exception
     {
-        protected virtual ErrorCode ErrorCode { get; }
+        public virtual ErrorCode ErrorCode { get; }
         public HttpStatusCode HttpStatusCode { get; } = HttpStatusCode.InternalServerError;
 
         public SolidamException()

@@ -12,7 +12,7 @@ namespace Exceptions
     {
         private string Url { get; set; }
         public override string Message => $"No se ha podido acceder a la Url '{(string.IsNullOrEmpty(Url) ? "(Desconocida)" : Url)}'. Su acceso no está autorizado.";
-        protected override ErrorCode ErrorCode => ErrorCode.AccesoNoAutorizado;
+        public override ErrorCode ErrorCode => ErrorCode.AccesoNoAutorizado;
 
         public AccesoNoAutorizadoException(string url)
         {
