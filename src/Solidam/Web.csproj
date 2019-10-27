@@ -1088,7 +1088,7 @@
     <Content Include="Scripts\Views\Seguridad\Iniciar.js" />
     <Content Include="Scripts\Views\Seguridad\Registrar.js" />
     <Content Include="Scripts\Views\Seguridad\RegistroExitoso.js" />
-    <Content Include="Scripts\Views\Usuario\MiPerfil.js" />
+    <Content Include="Scripts\Views\Usuario\CompletarPerfil.js" />
     <Content Include="Views\Seguridad\Email.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -1133,6 +1133,7 @@
     <Content Include="Views\Propuesta\PropuestasBuscadas.cshtml" />
     <Content Include="Views\Propuesta\MisPropuestas.cshtml" />
     <Content Include="Views\Usuario\MiPerfil.cshtml" />
+    <Content Include="Views\Shared\pv_CompletarPerfil.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
