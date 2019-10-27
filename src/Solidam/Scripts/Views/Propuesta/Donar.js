@@ -8,18 +8,35 @@
 
 $("#btnConfirmar").click(function () {
     var donaciones = [];
+    var validacion = true;
     $(".check:checked").each(function (index, value) {
+        if (!validarNumero(parseInt($(value).parent().parent().find("input[type=number]").val()), $(value))) validacion = false;
+        validacion = true;
         var donacionInsumo = {};
         donacionInsumo.idPropuestaDonacionInsumo = $(value).attr("don-id");
         donacionInsumo.cantidad = $(value).parent().parent().find("input[type=number]").val();
         donaciones.push(donacionInsumo);
     });
-    $.ajax({
-        url: window.pathCrearDonacionInsumo,
-        data: { donaciones: donaciones },
-        type: 'POST',
-        success: function(data) {
-            window.location.reload();
-        }
-    });
+    if (validacion) {
+        $.ajax({
+            url: window.pathCrearDonacionInsumo,
+            data: { donaciones: donaciones },
+            type: 'POST',
+            success: function(data) {
+                window.location.reload();
+            }
+        });
+    }
 });
+
+function validarNumero(cantidad,element) {
+    var restante = element.parent().parent().find(".rest").text();
+    if (cantidad > restante || cantidad <= 0) {
+        element.parent().parent().find(".error").text("No se puede ingresar esa cantidad");
+        element.parent().parent().find(".error").removeClass("d-none");
+        return false;
+    } else {
+        element.parent().parent().find(".error").addClass("d-none");
+        return true;
+    }
+}
