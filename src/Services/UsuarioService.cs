@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Globalization;
+using System.Linq;
+using System.Text;
 using Exceptions;
 using Interfaces;
 using Models;
@@ -20,10 +23,28 @@ namespace Services
             usuarioAModificar.Nombre = model.Nombre;
             usuarioAModificar.Apellido = model.Apellido;
             usuarioAModificar.FechaNacimiento = model.FechaNacimiento;
+            usuarioAModificar.Foto = model.Foto;
+            usuarioAModificar.UserName = model.UserName;
 
             Db.SaveChanges();
 
             return usuarioAModificar;
+        }
+
+        public string GenerarUserName(string nombre, string apellido)
+        {
+            var userName = new string($"{nombre.Trim().ToUpper()}.{apellido.Trim().ToUpper()}.".Normalize(NormalizationForm.FormD)
+                .Where(c => CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
+                .ToArray()).Normalize(NormalizationForm.FormC);
+
+            var similarUser = Db.Usuarios.Where(u => u.UserName.StartsWith(userName)).OrderByDescending(u => u.UserName).ToList().LastOrDefault();
+
+            if (similarUser != null)
+                userName += int.Parse(similarUser.UserName.Replace(userName, string.Empty)) + 1;
+            else
+                userName += 1;
+
+            return userName;
         }
 
         public Usuarios GetById(ulong id)
