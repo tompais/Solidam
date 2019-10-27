@@ -6,7 +6,8 @@
 @Styles.Render("~/Content/Views/Inicio/inicio.css")
 @Styles.Render("~/Content/Views/Inicio/inicioResponsive.css")
 <script>
-    var pathCrearDonacionInsumo = '@Url.Action("","")';
+    var pathCrearDonacionInsumo = '@Url.Action("Crear","DonacionesInsumo")';
+    var pathInicio = '@Url.Action("Inicio","Inicio")';
 </script>
 @using Enums
 @model Solidam.ViewModel.DonarViewModel
@@ -15,42 +16,55 @@
     @switch (Model.Propuesta.TipoDonacion)
     {
         case (int)TipoDonacion.Monetaria:
-            var requerido = Model.Propuesta.PropuestasDonacionesMonetarias?.FirstOrDefault(pdm => pdm.IdPropuesta == Model.Propuesta.IdPropuesta)?.Dinero;
+            var propuestaMonetaria = Model.Propuesta.PropuestasDonacionesMonetarias?.FirstOrDefault(pdm => pdm.IdPropuesta == Model.Propuesta.IdPropuesta);
+            var requerido = propuestaMonetaria?.Dinero;
             var restante = requerido - Model.DonacionesMonetarias?.Sum(dm => dm.Dinero);
             <div class="card">
                 <div class="card-header">
                     Donación monetaria
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">Requerido: <strong>$ @requerido</strong></h5>
-                    <h3 class="card-title">Restante: <strong>$ @restante</strong></h3>
-                    <div class="form-group">
-                        <label>Ingrese la cantidad de dinero que donará</label>
-                        <input class="form-control" type="text" name="Dinero" />
-                    </div>
-                    <div class="form-group">
-                        <label>Adjunte el comprobante de la transferencia</label>
-                        <input class="form-control" type="file" />
-                    </div>
-                    <a href="#" class="btn btn-primary mt-5">Confirmar</a>
+                    <form method="post" enctype="multipart/form-data" id="form" action="@Url.Action("Crear","DonacionesMonetarias")">
+                        <h5 class="card-title">Requerido: <strong>$ @requerido</strong></h5>
+                        <h3 class="card-title">Restante: <strong>$ @restante</strong></h3>
+                        <div class="form-group">
+                            <label>Ingrese la cantidad de dinero que donará</label>
+                            @Html.EditorFor(model => model.DonacionMonetaria.Dinero, new { htmlAttributes = new { type = "number", @class = "form-control" } })
+                            <div class="errorSolidam"><b>@Html.ValidationMessageFor(model => model.DonacionMonetaria.Dinero, "", new { @class = "text-danger" })</b></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Adjunte el comprobante de la transferencia</label>
+                            @Html.TextBoxFor(model => model.DonacionMonetaria.File, new { type = "file", @class = "form-control" })
+                            <div class="errorSolidam"><b>@Html.ValidationMessageFor(model => model.DonacionMonetaria.File, "", new { @class = "text-danger" })</b></div>
+                        </div>
+                        <input type="hidden" value="@(propuestaMonetaria?.IdPropuestaDonacionMonetaria)" name="DonacionMonetaria.IdPropuestaDonacionMonetaria" />
+                        <input type="hidden" value="@(propuestaMonetaria?.IdPropuesta)" name="Propuesta.IdPropuesta" />
+                        <button type="submit" class="btn btn-primary mt-5">Confirmar</button>
+                    </form>
                 </div>
             </div>
             break;
         case (int)TipoDonacion.HorasDeTrabajo:
-            var horasRequeridas = Model.Propuesta.PropuestasDonacionesHorasTrabajo?.FirstOrDefault(pdm => pdm.IdPropuesta == Model.Propuesta.IdPropuesta)?.CantidadHoras;
+            var propuesta = Model.Propuesta.PropuestasDonacionesHorasTrabajo?.FirstOrDefault(pdm => pdm.IdPropuesta == Model.Propuesta.IdPropuesta);
+            var horasRequeridas = propuesta?.CantidadHoras;
             var horasRestantes = horasRequeridas - Model.DonacionesHorasTrabajo?.Sum(dm => dm.Cantidad);
             <div class="card">
                 <div class="card-header">
                     Donación de horas de trabajo (@(Model.Propuesta.PropuestasDonacionesHorasTrabajo?.FirstOrDefault(pdm => pdm.IdPropuesta == Model.Propuesta.IdPropuesta)?.Profesion))
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">Requerido: <strong>@horasRequeridas hs</strong></h5>
-                    <h3 class="card-title">Restante: <strong>@horasRestantes hs</strong></h3>
-                    <div class="form-group">
-                        <label>Ingrese la cantidad de horas que trabajará</label>
-                        <input class="form-control" type="number" name="Cantidad" />
-                    </div>
-                    <a href="#" class="btn btn-primary mt-5">Confirmar</a>
+                    <form method="post" action="@Url.Action("Crear","DonacionesHorasTrabajo")">
+                        <h5 class="card-title">Requerido: <strong>@horasRequeridas hs</strong></h5>
+                        <h3 class="card-title">Restante: <strong>@horasRestantes hs</strong></h3>
+                        <div class="form-group">
+                            <label>Ingrese la cantidad de horas que trabajará</label>
+                            @Html.EditorFor(m => m.DonacionHorasTrabajo.Cantidad, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                            <div class="errorSolidam"><b>@Html.ValidationMessageFor(model => model.DonacionHorasTrabajo.Cantidad, "", new { @class = "text-danger" })</b></div>
+                        </div>
+                        <input type="hidden" value="@(propuesta?.IdPropuestaDonacionHorasTrabajo)" name="DonacionHorasTrabajo.IdPropuestaDonacionHorasTrabajo" />
+                        <input type="hidden" value="@(propuesta?.IdPropuesta)" name="Propuesta.IdPropuesta" />
+                        <button type="submit" class="btn btn-primary mt-5">Confirmar</button>
+                    </form>
                 </div>
             </div>
             break;
@@ -64,22 +78,21 @@
                     <div class="d-flex flex-column">
                         @foreach (var itemRequerido in Model.Propuesta.PropuestasDonacionesInsumos)
                         {
-                            var cantidadObtenida = Model.DonacionesInsumos?.Where(di => di.IdPropuestaDonacionInsumo == itemRequerido.IdPropuestaDonacionInsumo).Sum(d => d.Cantidad);
-                            if (cantidadObtenida == null)
-                            {
-                                cantidadObtenida = 0;
-                            }
+                            var contador = 0;
+                            var cantidadObtenida = Model.DonacionesInsumos?.Where(di => di.IdPropuestaDonacionInsumo == itemRequerido.IdPropuestaDonacionInsumo).Sum(d => d.Cantidad) ?? 0;
                             if (itemRequerido.Cantidad != cantidadObtenida)
                             {
                                 <div class="d-flex align-items-center">
                                     <div class="mr-3">
                                         <input type="checkbox" don-id="@itemRequerido.IdPropuestaDonacionInsumo" class="check" />
                                     </div>
-                                    <div>
-                                        <strong>(@itemRequerido.Cantidad)</strong> @itemRequerido.Nombre <span class="ml-4">Restantes: @(itemRequerido.Cantidad - cantidadObtenida) unidades</span>
+                                    <div class="d-flex flex-column">
+                                        <div><strong>(@itemRequerido.Cantidad)</strong> @itemRequerido.Nombre <span class="ml-4">Restantes: <span class="rest">@(itemRequerido.Cantidad - cantidadObtenida)</span> unidades</span></div>
                                     </div>
                                     <div class="ml-4">
-                                        <input type="number" class="form-control d-none" />
+                                        <input type="number" name="" class="form-control d-none" />
+                                        @*<div class="errorSolidam"><b>@Html.ValidationMessageFor(model => model.DonacionInsumos.Cantidad, "", new { @class = "text-danger" })</b></div>*@
+                                        <div class="error text-danger d-none"></div>
                                     </div>
                                 </div>
                             }
@@ -87,10 +100,11 @@
                             {
                                 <div class="d-flex align-items-center">
                                     <div style="text-decoration: line-through">
-                                        <strong>(@itemRequerido.Cantidad)</strong> @itemRequerido.Nombre <span class="ml-4">Restantes: @(itemRequerido.Cantidad - cantidadObtenida) unidades</span>
+                                        - @itemRequerido.Nombre <span class="ml-4">Restantes: @(itemRequerido.Cantidad - cantidadObtenida) unidades</span>
                                     </div>
                                 </div>
                             }
+                            contador++;
                         }
                     </div>
                     <a href="#" id="btnConfirmar" class="btn btn-primary mt-5">Confirmar</a>

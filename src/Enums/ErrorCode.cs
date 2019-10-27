@@ -7,6 +7,7 @@
         FechaNacimientoInvalida,
         TipoUsuarioInvalido,
         TokenInvalido,
-        UsurioInexistente
+        UsurioInexistente,
+        AccesoNoAutorizado
     }
 }

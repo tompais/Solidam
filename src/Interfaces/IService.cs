@@ -1,6 +1,6 @@
 ﻿namespace Interfaces
 {
-    public interface IService<T> : IGetService<T>, IPostService<T>, IPutService<T>, IDeleteService<T> where T : class
+    public interface IService<T> : IFullGetService<T>, IPostService<T>, IPutService<T>, IFullDeleteService<T> where T : class
     {
     }
 }
