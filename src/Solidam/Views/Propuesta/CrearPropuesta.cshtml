@@ -1,13 +1,19 @@
-﻿@Styles.Render("~/Content/bootstrap-datepicker3.min.css")
-@Scripts.Render("~/Scripts/bootstrap-datepicker.min.js")
-
-@{
+﻿@{
     ViewBag.Title = "CrearPropuesta";
     Layout = "~/Views/Shared/_PropuestasLayout.cshtml";
+
+    List<SelectListItem> lst = new List<SelectListItem>();
+
+    lst.Add(new SelectListItem() { Text = "Seleccionar", Value = "0", Disabled = true, Selected = true });
+    lst.Add(new SelectListItem() { Text = "Monetaria", Value = "1" });
+    lst.Add(new SelectListItem() { Text = "Insumos", Value = "2" });
+    lst.Add(new SelectListItem() { Text = "Horas de trabajo", Value = "3" });
 }
 
 @Styles.Render("~/Content/Views/Inicio/inicio.css")
 @Styles.Render("~/Content/Views/Inicio/inicioResponsive.css")
+@Styles.Render("~/Content/bootstrap-datepicker3.min.css")
+
 @model Models.Propuestas
 
 <div class="container">
@@ -21,15 +27,15 @@
 
         <div class="form-group">
             <label for="descripcionPropuesta">Descripción de la propuesta</label>
-            @Html.TextAreaFor(model => model.Descripcion, new { @class = "form-control", @rows = 3 , @id = "descripcionPropuesta"} )
+            @Html.TextAreaFor(model => model.Descripcion, new { @class = "form-control", @rows = 3, @id = "descripcionPropuesta" })
             <div class="errorSolidam"><b>@Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })</b></div>
         </div>
 
         <div class="form-group">
             <label for="fechaFin">Fecha de finalización</label>
             <div class="input-group date" data-provide="datepicker" id="fechaFin">
-                @Html.EditorFor(model => model.FechaFin, new { htmlAttributes = new { @class = "form-control", @type = "text" } })
-                
+                @Html.EditorFor(model => model.FechaFin, new { htmlAttributes = new { @id = "inputFechaFin", @class = "form-control", @type = "text", autocomplete = "off" } })
+
                 <div class="input-group-addon">
                     <span class="fa"></span>
                 </div>
@@ -45,8 +51,8 @@
 
         <div class="form-group">
             <label for="tipoDonacion">Tipo de donación</label>
-            @Html.DropDownListFor(model => model.TipoDonacion, (IEnumerable<SelectListItem>)ViewBag.Opciones, new { @class = "form-control", @id = "tipoDonacion"})
-            <div class="errorSolidam"><b>@Html.ValidationMessageFor(model => model.TipoDonacion, "", new { @class = "text-danger"})</b></div>
+            @Html.DropDownListFor(model => model.TipoDonacion, (IEnumerable<SelectListItem>)lst, new { @class = "form-control", @id = "tipoDonacion" })
+            <div class="errorSolidam"><b>@Html.ValidationMessageFor(model => model.TipoDonacion, "", new { @class = "text-danger" })</b></div>
         </div>
 
         <div id="datosDonacion" class="form-group"></div>
@@ -77,4 +83,6 @@
     </form>
 </div>
 
+@Scripts.Render("~/Scripts/bootstrap-datepicker.min.js")
+@Scripts.Render("~/Scripts/locales/bootstrap-datepicker.es.min.js")
 @Scripts.Render("~/Scripts/Views/Propuesta/Crear.js")

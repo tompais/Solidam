@@ -7,10 +7,16 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class CustomRangoFecha : RangeAttribute
+    public class CustomRangoFecha : ValidationAttribute
     {
-        public CustomRangoFecha() : base(typeof(DateTime), DateTime.Today.AddDays(1).ToString()
-            , DateTime.Today.AddYears(200).ToString())
-        { }
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            DateTime fecha = (DateTime)value;
+
+            if (fecha.Date <= DateTime.Today)
+                return new ValidationResult("Debe ser una fecha superior a la actual");
+
+            return ValidationResult.Success;
+        }
     }
 }

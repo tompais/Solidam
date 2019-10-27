@@ -8,11 +8,8 @@ using Helpers;
 using Models;
 using Services;
 using Solidam.ViewModel;
-<<<<<<< HEAD
 using MotivoDenuncia = Models.MotivoDenuncia;
 using System.Collections.Generic;
-=======
->>>>>>> 28bc4a1e0dd4987eb2e754f62d4013a8d62260a4
 
 namespace Solidam.Controllers
 {
@@ -22,15 +19,6 @@ namespace Solidam.Controllers
         {
             if(PropuestaService.TotalPropuestasActivas() == 3)
                 return RedirectToAction("Inicio", "Inicio");
-
-            List<SelectListItem> lst = new List<SelectListItem>();
-
-            lst.Add(new SelectListItem() { Text = "Seleccionar", Value = "0", Disabled = true, Selected = true });
-            lst.Add(new SelectListItem() { Text = "Monetaria", Value = "1" });
-            lst.Add(new SelectListItem() { Text = "Insumos", Value = "2" });
-            lst.Add(new SelectListItem() { Text = "Horas de trabajo", Value = "3" });
-
-            ViewBag.Opciones = lst;
 
             return View();
         }
@@ -49,16 +37,13 @@ namespace Solidam.Controllers
         [HttpPost]
         public ActionResult Crear(Propuestas p, HttpPostedFileBase foto)
         {
-<<<<<<< HEAD
             if (!ModelState.IsValid)
             {
-                return View(p);
+                var errors = ModelState.Values.SelectMany(v => v.Errors);
+                return View("CrearPropuesta");
             }
 
             string path = Server.MapPath("~/Images/Views/Propuesta/");
-=======
-            var path = Server.MapPath("~/Images/Views/Propuesta/");
->>>>>>> 28bc4a1e0dd4987eb2e754f62d4013a8d62260a4
 
             p.Foto = Path.GetFileName(foto.FileName);
 

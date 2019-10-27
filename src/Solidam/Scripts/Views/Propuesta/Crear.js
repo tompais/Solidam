@@ -1,9 +1,7 @@
-﻿$(function () {
-    $("#inputFechaFin").parent().datepicker({
-        format: 'dd/mm/yyyy',
-        language: 'es',
-        autoclose: true
-    });
+﻿$("#inputFechaFin").parent().datepicker({
+    format: 'dd/mm/yyyy',
+    language: 'es',
+    autoclose: true
 });
 
 var i = 0;
