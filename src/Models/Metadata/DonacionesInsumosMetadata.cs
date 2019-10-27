@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class DonacionesInsumosMetadata
+    public class DonacionesInsumosMetadata : BaseMetadata
     {
         [Required(ErrorMessage = "Debe ingresar una cantidad")]
         [CustomValidation(typeof(DonacionesInsumosMetadata),"ValidarCantidadObjetos")]
@@ -15,6 +15,7 @@ namespace Models
 
         public static ValidationResult ValidarCantidadObjetos(object value, ValidationContext context)
         {
+            var donacion = context.ObjectInstance as DonacionesInsumos;
             return ValidationResult.Success;
         }
     }

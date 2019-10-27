@@ -13,12 +13,11 @@ namespace Solidam.Controllers
     {
         // GET: DonacionInsumo
         [HttpPost]
-        public JsonResult Crear(List<DonarViewModel> donaciones)
+        public JsonResult Crear(List<DonacionesInsumos> donaciones)
         {
             foreach (var donacion in donaciones)
             {
-                DonacionesInsumosService.Crear(donacion.DonacionInsumos);
-                //PropuestasDonacionesInsumosService.Update(donacion);
+                DonacionesInsumosService.Crear(donacion);
             }
             return Json("");
         }
