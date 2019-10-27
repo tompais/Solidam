@@ -34,5 +34,11 @@ namespace Services
             propuesta.Cantidad -= donacion.Cantidad;
             Db.SaveChanges();
         }
+
+        public static int GetPropuestaId(int idPropuestaDonacionInsumo)
+        {
+            return Db.PropuestasDonacionesInsumos
+                .FirstOrDefault(p => p.IdPropuestaDonacionInsumo == idPropuestaDonacionInsumo).IdPropuesta;
+        }
     }
 }
