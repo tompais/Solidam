@@ -1,7 +1,38 @@
-﻿@{
+﻿@model Models.UsuarioPerfil
+@{
     ViewBag.Title = "Mi Perfil";
 }
 
-<h1>Mi Perfil</h1>
+@Styles.Render("~/Content/bootstrap-datepicker.min.css")
+@Styles.Render("~/Content/Views/Usuario/MiPerfil.css")
 
+<div id="divWrapperMiPerfil" class="d-flex flex-column align-items-center justify-content-center py-5">
+    <h3 class="text-white text-center">Mi Perfil</h3>
+    @using (Html.BeginForm("GuardarPerfil", "Usuario", FormMethod.Post, new { id = "formGuardarPerfil", @class = "rounded shadow bg-white w-25 p-5 mt-3" }))
+    {
+        @Html.ValidationSummary(true)
+        <fieldset>
+            <div class="form-group">
+                @Html.LabelFor(usuario => usuario.Nombre, new { @for = "inputNombre" })
+                @Html.EditorFor(usuario => usuario.Nombre, new { htmlAttributes = new { id = "inputNombre", name = "nombre", @class = "form-control", type = "text", placeholder = "Ej: Facundo", required = "required" } })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(usuario => usuario.Apellido, "Fecha de Nacimiento", new { @for = "inputApellido" })
+                @Html.EditorFor(usuario => usuario.Apellido, new { htmlAttributes = new { id = "inputApellido", name = "apellido", @class = "form-control", type = "text", placeholder = "Ej: Pérez", required = "required" } })
+            </div>
+            <div>
+                @Html.LabelFor(usuario => usuario.FechaNacimiento, new { @for = "inputFechaNacimiento" })
+                <div class="input-group date" data-provide="datepicker">
+                    @Html.EditorFor(usuario => usuario.FechaNacimiento, new { htmlAttributes = new { id = "inputFechaNacimiento", name = "fechaNacimiento", @class = "form-control", placeholder = "Ej: 10/02/1995", required = "required", type = "text", autocomplete = "off", value = $"{Model.FechaNacimiento:dd/MM/yyyy}" } })
+                    <div class="input-group-addon">
+                        <span class="fa"></span>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    }
+</div>
+
+@Scripts.Render("~/Scripts/bootstrap-datepicker.min.js")
+@Scripts.Render("~/Scripts/locales/bootstrap-datepicker.es.min.js")
 @Scripts.Render("~/Scripts/Views/Usuario/MiPerfil.js")
