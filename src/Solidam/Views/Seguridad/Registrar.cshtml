@@ -1,14 +1,10 @@
-﻿@Styles.Render("~/Content/bootstrap-datepicker.min.css")
-
-@{
+﻿@{
     ViewBag.Title = "Registrarse";
     Layout = "~/Views/Shared/_AnonimoLayout.cshtml";
 }
 @model Models.UsuariosRegister
 
-@Scripts.Render("~/Scripts/bootstrap-datepicker.min.js")
-@Scripts.Render("~/Scripts/locales/bootstrap-datepicker.es.min.js")
-@Scripts.Render("~/Scripts/Views/Seguridad/Registrar.js")
+@Styles.Render("~/Content/bootstrap-datepicker.min.css")
 
 <div class="container">
     <div class="row justify-content-md-center">
@@ -66,3 +62,6 @@
 </div>
 
 
+@Scripts.Render("~/Scripts/bootstrap-datepicker.min.js")
+@Scripts.Render("~/Scripts/locales/bootstrap-datepicker.es.min.js")
+@Scripts.Render("~/Scripts/Views/Seguridad/Registrar.js")
