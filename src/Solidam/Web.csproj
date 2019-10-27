@@ -334,7 +334,7 @@
     <Compile Include="Controllers\DonacionesHorasTrabajoController.cs" />
     <Compile Include="Controllers\DonacionesInsumoController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
-    <Compile Include="Controllers\PerfilController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\PropuestaController.cs" />
     <Compile Include="Controllers\SeguridadController.cs" />
     <Compile Include="Global.asax.cs">
@@ -590,6 +590,7 @@
     <Content Include="Content\Views\Shared\pv_Footer.css" />
     <Content Include="Content\Views\Shared\pv_Header.css" />
     <Content Include="Content\Views\Seguridad\IniciarRegistrar.css" />
+    <Content Include="Content\Views\Usuario\MiPerfil.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
