@@ -22,7 +22,7 @@ namespace Solidam
                       "~/Scripts/bootstrap.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.min.css", "~/Content/font-awesome.css", "~/Content/alertifyjs/alertify.min.css", "~/Content/alertifyjs/themes/bootstrap.min.css"));
+                      "~/Content/bootstrap.min.css", "~/Content/fontawesome/css/all.min.css", "~/Content/alertifyjs/alertify.min.css", "~/Content/alertifyjs/themes/bootstrap.min.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/moment").Include("~/Scripts/moment.min.js", "~/Scripts/moment-timezone-with-data.min.js"));
 
@@ -31,6 +31,8 @@ namespace Solidam
             bundles.Add(new ScriptBundle("~/bundles/jquery.mousewheel").Include("~/Scripts/jquery-mousewheel/jquery.mousewheel.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/base64").Include("~/Scripts/js-base64/base64.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/fontawesome").Include("~/Scripts/fontawesome/js/all.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/consts").Include("~/Scripts/consts.js"));
 
