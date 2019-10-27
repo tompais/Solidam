@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Web;
 
 namespace Models
 {
@@ -14,15 +16,13 @@ namespace Models
         [CustomValidation(typeof(UsuariosMetadata), "ValidarMayoriaEdad")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime FechaNacimiento { get; set; }
-        [Required(ErrorMessage = "Ingrese una Foto de Perfil")]
         public string Foto { get; set; }
+        [NotMapped]
+        [Required(ErrorMessage = "Ingrese una Foto de Perfil")]
+        public HttpPostedFileBase ProfilePicFile { get; set; }
 
-        public UsuarioPerfil(string nombre, string apellido, DateTime fechaNacimiento, string foto)
+        public UsuarioPerfil()
         {
-            Nombre = nombre;
-            Apellido = apellido;
-            FechaNacimiento = fechaNacimiento;
-            Foto = foto;
         }
 
         public UsuarioPerfil(Usuarios usuario)
