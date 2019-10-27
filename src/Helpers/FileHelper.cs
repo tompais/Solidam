@@ -10,17 +10,18 @@ namespace Helpers
 {
     public class FileHelper
     {
-        public static void GuardarArchivo(HttpPostedFileBase archivoTransferencia)
+        public static string GuardarArchivo(HttpPostedFileBase archivoTransferencia)
         {
-            if (archivoTransferencia != null)
+            var path = HttpContext.Current.Server.MapPath("~/Content/UploadedFiles/");
+            if (!Directory.Exists(path))
             {
-                string path = HttpContext.Current.Server.MapPath("~/Content/UploadedFiles/");
-                if (!Directory.Exists(path))
-                {
-                    Directory.CreateDirectory(path);
-                }
-                archivoTransferencia.SaveAs(path + Path.GetFileName(archivoTransferencia.FileName));
+                Directory.CreateDirectory(path);
             }
+
+            var extension = Path.GetExtension(archivoTransferencia.FileName);
+            var newFileName = $"{RandomTokenGenerator.GetTokenBySize(16)}{extension}";
+            archivoTransferencia.SaveAs($"{path}{newFileName}");
+            return newFileName;
         }
     }
 }

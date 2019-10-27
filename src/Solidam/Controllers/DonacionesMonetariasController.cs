@@ -28,8 +28,7 @@ namespace Solidam.Controllers
                 };
                 return View("~/Views/Propuesta/Donar.cshtml",dvm);
             }
-            donacion.DonacionMonetaria.ArchivoTransferencia = donacion.DonacionMonetaria.File.FileName;
-            FileHelper.GuardarArchivo(donacion.DonacionMonetaria.File);
+            donacion.DonacionMonetaria.ArchivoTransferencia = FileHelper.GuardarArchivo(donacion.DonacionMonetaria.File);
             DonacionesMonetariasService.Crear(donacion.DonacionMonetaria);
             return RedirectToAction("Donar","Propuesta",new {id = donacion.DonacionMonetaria.PropuestasDonacionesMonetarias.IdPropuesta});
         }
