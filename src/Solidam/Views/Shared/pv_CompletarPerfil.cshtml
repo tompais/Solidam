@@ -3,9 +3,9 @@
 @Styles.Render("~/Scripts/Croppie/croppie.css")
 @Styles.Render("~/Content/Views/Usuario/CompletarPerfil.css")
 
-<div id="divWrapperMiPerfil" class="d-flex flex-column align-items-center justify-content-center py-5">
+<div id="divWrapperMiPerfil" class="d-flex flex-column align-items-center justify-content-center p-4 px-md-0 py-md-5">
     <h3 class="text-white text-center">Complete su Perfil</h3>
-    @using (Html.BeginForm("GuardarPerfil", "Usuario", FormMethod.Post, new { id = "formGuardarPerfil", @class = "rounded shadow bg-white w-25 p-5 mt-3", enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("GuardarPerfil", "Usuario", FormMethod.Post, new { id = "formGuardarPerfil", @class = "col-md-3 align-items-center justify-content-center rounded shadow bg-white p-5 mt-3", enctype = "multipart/form-data" }))
     {
         @Html.ValidationSummary(true)
         <fieldset>

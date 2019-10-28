@@ -23,5 +23,5 @@ namespace Services
             return Db.PropuestasDonacionesMonetarias.Include("DonacionesMonetarias").FirstOrDefault(pdm => pdm.IdPropuesta == idPropuesta)
                 ?.DonacionesMonetarias.ToList();
         }
-    }
+        }
 }
