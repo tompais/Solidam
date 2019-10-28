@@ -3,9 +3,9 @@
 
 @Styles.Render("~/Content/Views/Usuario/VerPerfil.css")
 
-<div id="divWrapperMiPerfil" class="d-flex flex-column justify-content-center align-items-center py-5">
+<div id="divWrapperMiPerfil" class="d-flex flex-column justify-content-center align-items-center p-4 px-md-0 py-md-5">
     <h2 class="text-white text-center">Mi Perfil</h2>
-    <div class="d-flex flex-column align-items-center justify-content-center bg-white p-4 mt-4 w-25 rounded shadow">
+    <div class="col-md-3 align-items-center justify-content-center bg-white p-4 mt-4 rounded shadow">
         <img src="@Url.Content($"~/Content/UploadedFiles/{Model.Foto}")" class="rounded-circle mx-auto d-block" alt="Foto de Perfil" width="150" height="150">
         <div class="d-flex flex-column justify-content-center align-items-center">
             <div class="d-flex flex-column justify-content-center align-items-center mt-3">
