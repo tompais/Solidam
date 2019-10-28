@@ -15,6 +15,11 @@ namespace Helpers
 
             set => CurrentSession["usuario"] = value;
         }
+        public static int IdPropuestaCompletada
+        {
+            get => int.Parse(CurrentSession["idPropuestaCompletada"].ToString());
+            set => CurrentSession["idPropuestaCompletada"] = value;
+        }
 
     }
 }

@@ -51,7 +51,7 @@ namespace Solidam.Controllers
 
             foto.SaveAs(path + Path.GetFileName(foto.FileName));
 
-            return RedirectToAction("Inicio", "Inicio");
+            return RedirectToAction("MiPropuestas", "Propuesta");
         }
 
         [HttpPost]
@@ -155,6 +155,11 @@ namespace Solidam.Controllers
                 DonacionesInsumos = DonacionesInsumosService.GetById(id)
             };
             return View(dvm);
+        }
+
+        public ActionResult Completada()
+        {
+            return View(PropuestaService.GetById(SessionHelper.IdPropuestaCompletada));
         }
     }
 }
