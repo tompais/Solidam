@@ -145,5 +145,10 @@ namespace Solidam.Controllers
             };
             return View(dvm);
         }
+
+        public ActionResult Completada()
+        {
+            return View(PropuestaService.GetById(SessionHelper.IdPropuestaCompletada));
+        }
     }
 }
