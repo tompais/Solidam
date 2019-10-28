@@ -2798,6 +2798,7 @@
     <Content Include="Views\Shared\pv_CompletarPerfil.cshtml" />
     <Content Include="Views\DonacionesInsumo\SolicitarCantidades.cshtml" />
     <Content Include="Views\Shared\pv_VerPerfil.cshtml" />
+    <Content Include="Views\Propuesta\Completada.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

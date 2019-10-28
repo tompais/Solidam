@@ -74,5 +74,11 @@ namespace Services
             return misPropuestas.ToList();
         }
 
+        public static void Finalizar(int idPropuesta)
+        {
+            var donacion = GetById(idPropuesta);
+            donacion.Estado = (int) PropuestaEstado.Cerrada;
+            Db.SaveChanges();
+        }
     }
 }

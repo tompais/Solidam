@@ -30,6 +30,12 @@ namespace Solidam.Controllers
             }
             donacion.DonacionMonetaria.ArchivoTransferencia = FileHelper.GuardarArchivo(donacion.DonacionMonetaria.File);
             DonacionesMonetariasService.Crear(donacion.DonacionMonetaria);
+            if (PropuestasDonacionesMonetariasService.EsCompletada(donacion.DonacionMonetaria))
+            {
+                SessionHelper.IdPropuestaCompletada = donacion.Propuesta.IdPropuesta;
+                return RedirectToAction("Completada", "Propuesta");
+            }
+
             return RedirectToAction("Donar","Propuesta",new {id = donacion.DonacionMonetaria.PropuestasDonacionesMonetarias.IdPropuesta});
         }
     }
