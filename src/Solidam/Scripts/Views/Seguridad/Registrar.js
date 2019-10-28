@@ -4,6 +4,7 @@
     autoclose: true
 });
 
+
 $(function () {
 
     $("input[type='password'][data-eye]").each(function (i) {

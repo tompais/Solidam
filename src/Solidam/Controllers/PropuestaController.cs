@@ -40,7 +40,7 @@ namespace Solidam.Controllers
 
             foto.SaveAs(path + Path.GetFileName(foto.FileName));
 
-            return RedirectToAction("Inicio", "Inicio");
+            return RedirectToAction("MiPropuestas", "Propuesta");
         }
 
         [HttpPost]
