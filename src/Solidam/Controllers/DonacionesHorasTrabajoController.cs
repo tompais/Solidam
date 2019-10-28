@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Helpers;
 using Models;
 using Services;
 using Solidam.ViewModel;
@@ -28,6 +29,11 @@ namespace Solidam.Controllers
                 return View("~/Views/Propuesta/Donar.cshtml", dvm);
             }
             DonacionesHorasTrabajoService.Crear(donacion.DonacionHorasTrabajo);
+            if (PropuestasDonacionesHorasTrabajoService.EsCompletada(donacion.DonacionHorasTrabajo))
+            {
+                SessionHelper.IdPropuestaCompletada = donacion.Propuesta.IdPropuesta;
+                return RedirectToAction("Completada", "Propuesta");
+            }
             return RedirectToAction("Donar","Propuesta",new {id = donacion.DonacionHorasTrabajo.PropuestasDonacionesHorasTrabajo.IdPropuesta});
         }
     }

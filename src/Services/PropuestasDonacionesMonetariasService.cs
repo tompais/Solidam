@@ -40,5 +40,17 @@ namespace Services
             if (!donaciones.Any()) return 0;
             return donaciones.Sum(dm => dm.Dinero);
         }
+        public static bool EsCompletada(DonacionesMonetarias donacionMonetaria)
+        {
+            var propuesta = Db.PropuestasDonacionesMonetarias.FirstOrDefault(p =>
+                p.IdPropuestaDonacionMonetaria == donacionMonetaria.IdPropuestaDonacionMonetaria);
+            var dineroObjetivo = propuesta?.Dinero;
+            var dineroObtenido = Db.DonacionesMonetarias
+                .Where(d => d.IdPropuestaDonacionMonetaria == donacionMonetaria.IdPropuestaDonacionMonetaria)
+                .Sum(d => d.Dinero);
+            if (dineroObtenido != dineroObjetivo) return false;
+            PropuestaService.Finalizar(propuesta.IdPropuesta);
+            return true;
+        }
     }
 }
