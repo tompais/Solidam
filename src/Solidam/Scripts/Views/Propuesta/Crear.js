@@ -1,9 +1,8 @@
-﻿$(function () {
-    $("#inputFechaFin").parent().datepicker({
-        format: 'dd/mm/yyyy',
-        language: 'es',
-        autoclose: true
-    });
+﻿$("#inputFechaFin").parent().datepicker({
+    format: 'dd/mm/yyyy',
+    language: 'es',
+    autoclose: true,
+    minDate: moment().add('d', 1).toDate()
 });
 
 var i = 0;
@@ -16,9 +15,9 @@ $('#tipoDonacion').change(function () {
         if ($(this).val() === '1') {
             $("#datosDonacion").empty();
             $("#datosDonacion").append("<label for='monto'>Monto</label>");
-            $("#datosDonacion").append("<input type='number' step='0.01' class='form-control' id='monto' name='PropuestasDonacionesMonetarias.Dinero' />");
+            $("#datosDonacion").append("<input type='number' step='0.01' class='form-control' id='monto' name='PropuestasDonacionesMonetarias[0].Dinero' />");
             $("#datosDonacion").append("<label for='cbu'>CBU</label>");
-            $("#datosDonacion").append("<input type='text' class='form-control' id='cbu' name='PropuestasDonacionesMonetarias.CBU' />");
+            $("#datosDonacion").append("<input type='text' class='form-control' id='cbu' name='PropuestasDonacionesMonetarias[0].CBU' />");
         }
         else
             if ($(this).val() === '2') {
@@ -50,10 +49,10 @@ $('#tipoDonacion').change(function () {
             else {
                 $("#datosDonacion").empty();
                 $("#datosDonacion").append("<label for='cantHoras'>Cantidad de horas</label>");
-                $("#datosDonacion").append("<input type='number' class='form-control' id='cantHoras' name='PropuestasDonacionesHorasTrabajo.CantidadHoras' />");
+                $("#datosDonacion").append("<input type='number' class='form-control' id='cantHoras' name='PropuestasDonacionesHorasTrabajo[0].CantidadHoras' />");
                 $("#datosDonacion").append("<label for='profesion'>Profesión</label>");
 
-                var select = "<select class='form-control' id='tipoDonacion' name='PropuestasDonacionesHorasTrabajo.Profesion'><option disabled selected value''>Seleccionar</option>";
+                var select = "<select class='form-control' id='tipoDonacion' name='PropuestasDonacionesHorasTrabajo[0].Profesion'><option disabled selected value''>Seleccionar</option>";
 
                 $.each(profesiones, function (index, value) {
                     select += "<option value'" + value + "'>" + value + "</option>";

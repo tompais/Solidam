@@ -64,6 +64,9 @@
     <Compile Include="DonacionesMonetarias.cs">
       <DependentUpon>SolidamEntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Metadata\CustomRangoFecha.cs" />
+    <Compile Include="Metadata\Propuestas.cs" />
+    <Compile Include="Metadata\PropuestasMetadata.cs" />
     <Compile Include="Metadata\BaseMetadata.cs" />
     <Compile Include="Metadata\Denuncias.cs" />
     <Compile Include="Metadata\DenunciasMetadata.cs" />

@@ -19,6 +19,13 @@ namespace Services
             Db.SaveChanges();
         }
 
+        public static void Actualizar(Propuestas p)
+        {
+            Propuestas propuesta = GetById(p.IdPropuesta);
+
+            Db.SaveChanges();
+        }
+
         public static Propuestas GetById(int id)
         {
             return Db.Propuestas.Include("PropuestasDonacionesHorasTrabajo")

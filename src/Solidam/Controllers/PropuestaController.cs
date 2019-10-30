@@ -8,6 +8,8 @@ using Helpers;
 using Models;
 using Services;
 using Solidam.ViewModel;
+using MotivoDenuncia = Models.MotivoDenuncia;
+using System.Collections.Generic;
 
 namespace Solidam.Controllers
 {
@@ -15,6 +17,41 @@ namespace Solidam.Controllers
     {
         public ActionResult CrearPropuesta()
         {
+            if(PropuestaService.TotalPropuestasActivas() == 3)
+                return RedirectToAction("Inicio", "Inicio");
+
+            return View();
+        }
+
+        public ActionResult ModificarPropuesta(int id)
+        {
+            return View(PropuestaService.GetById(id));
+        }
+
+        [HttpPost]
+        public ActionResult Modificar(Propuestas p, HttpPostedFileBase foto, string fotoVieja)
+        {
+            ModelState.Remove("Foto");
+
+            if (!ModelState.IsValid)
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors);
+                return View("ModificarPropuesta");
+            }
+
+            if (foto != null && foto.ContentLength > 0)
+            {
+                string path = Server.MapPath("~/Images/Views/Propuesta/");
+
+                p.Foto = Path.GetFileName(foto.FileName);
+
+                PropuestaService.Actualizar(p);
+
+                foto.SaveAs(path + Path.GetFileName(foto.FileName));
+            }
+            else
+                PropuestaService.Actualizar(p);
+
             return View();
         }
 
@@ -32,7 +69,13 @@ namespace Solidam.Controllers
         [HttpPost]
         public ActionResult Crear(Propuestas p, HttpPostedFileBase foto)
         {
-            var path = Server.MapPath("~/Images/Views/Propuesta/");
+            if (!ModelState.IsValid)
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors);
+                return View("CrearPropuesta");
+            }
+
+            string path = Server.MapPath("~/Images/Views/Propuesta/");
 
             p.Foto = Path.GetFileName(foto.FileName);
 
