@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DTO;
+using Helpers;
 using Models;
 using Services;
 using Solidam.ViewModel;
@@ -20,14 +21,6 @@ namespace Solidam.Controllers
                 PropuestasDonacionesInsumosService.GetPropuestaId(donaciones[0].IdPropuestaDonacionInsumo);
             if (!ModelState.IsValid)
             {
-                //var propuesta = PropuestaService.GetById(propuestaId);
-                //DonarViewModel dvm = new DonarViewModel
-                //{
-                //    Propuesta = propuesta,
-                //    DonacionesMonetarias = DonacionesMonetariasService.GetById(propuestaId),
-                //    DonacionesHorasTrabajo = DonacionesHorasTrabajoService.GetById(propuestaId),
-                //    DonacionesInsumos = DonacionesInsumosService.GetById(propuestaId)
-                //};
                 ViewBag.donaciones = donaciones.Select(d => new DonacionesInsumoDto
                 {
                     IdPropuesta = propuestaId,
@@ -39,6 +32,12 @@ namespace Solidam.Controllers
             foreach (var donacion in donaciones)
             {
                 DonacionesInsumosService.Crear(donacion);
+            }
+
+            if (PropuestasDonacionesInsumosService.EsCompletada(donaciones))
+            {
+                SessionHelper.IdPropuestaCompletada = propuestaId;
+                return RedirectToAction("Completada", "Propuesta");
             }
             return RedirectToAction("Donar", "Propuesta", new { id = propuestaId });
         }

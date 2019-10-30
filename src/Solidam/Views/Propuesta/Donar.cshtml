@@ -92,10 +92,11 @@
                                         <div class="d-flex flex-column">
                                             <div><strong>(@itemRequerido.Cantidad)</strong> <span class="nombre-item">@itemRequerido.Nombre</span> <span class="ml-4">Restantes: <span class="rest">@(itemRequerido.Cantidad - cantidadObtenida)</span> unidades</span></div>
                                         </div>
-                                            <input type="hidden" value="@itemRequerido.IdPropuestaDonacionInsumo" name="donaciones[@contador].IdPropuestaDonacionInsumo"/>
-                                            <input type="hidden" value="@itemRequerido.Nombre" name="donaciones[@contador].Nombre"/>
-                                            <input type="hidden" value="@itemRequerido.IdPropuesta" name="donaciones[@contador].IdPropuesta"/>
+                                        <input type="hidden" value="@itemRequerido.IdPropuestaDonacionInsumo" name="donaciones[@contador].IdPropuestaDonacionInsumo"/>
+                                        <input type="hidden" value="@itemRequerido.Nombre" name="donaciones[@contador].Nombre"/>
+                                        <input type="hidden" value="@itemRequerido.IdPropuesta" name="donaciones[@contador].IdPropuesta"/>
                                     </div>
+                                    contador++;
                                 }
                                 else
                                 {
@@ -105,7 +106,6 @@
                                         </div>
                                     </div>
                                 }
-                                contador++;
                             }
                         </div>
                         <button type="submit" id="btnConfirmar" class="btn btn-primary mt-5">Confirmar</button>

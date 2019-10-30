@@ -33,8 +33,10 @@ namespace Services
         {
             var objetivo = Db.PropuestasDonacionesInsumos
                 .FirstOrDefault(pdi => pdi.IdPropuestaDonacionInsumo == model.IdPropuestaDonacionInsumo)?.Cantidad;
-            var obtenido = Db.DonacionesInsumos
-                .Where(di => di.IdPropuestaDonacionInsumo == model.IdPropuestaDonacionInsumo).Sum(d => d.Cantidad);
+            var donacionesObtenidas = Db.DonacionesInsumos
+                .Where(d => d.IdPropuestaDonacionInsumo == model.IdPropuestaDonacionInsumo).ToList();
+            var obtenido = 0;
+            if (donacionesObtenidas.Count != 0) obtenido = donacionesObtenidas.Sum(d => d.Cantidad);
             var restante = objetivo - obtenido;
             if(model.Cantidad > restante || model.Cantidad <= 0)
                 throw new Exception();
