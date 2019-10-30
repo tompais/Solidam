@@ -22,9 +22,9 @@ namespace Models
         {
             var donacion = context.ObjectInstance as DonacionesMonetarias;
 
-            var obtenido = Db.DonacionesMonetarias
-                .Where(dm => dm.IdPropuestaDonacionMonetaria == donacion.IdPropuestaDonacionMonetaria)
-                .Sum(d => d.Dinero);
+            var donaciones = Db.DonacionesMonetarias
+                .Where(dm => dm.IdPropuestaDonacionMonetaria == donacion.IdPropuestaDonacionMonetaria).ToList();
+            var obtenido = donaciones.Count == 0 ? 0 : donaciones.Sum(d => d.Dinero);
             var objetivo = Db.PropuestasDonacionesMonetarias
                 .FirstOrDefault(p => p.IdPropuestaDonacionMonetaria == donacion.IdPropuestaDonacionMonetaria)?.Dinero;
             var restante = objetivo - obtenido;

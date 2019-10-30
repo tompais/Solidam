@@ -19,8 +19,10 @@ namespace Models
             var donacion = context.ObjectInstance as DonacionesInsumos;
             var objetivo = Db.PropuestasDonacionesInsumos
                 .FirstOrDefault(p => p.IdPropuestaDonacionInsumo == donacion.IdPropuestaDonacionInsumo)?.Cantidad;
-            var obtenido = Db.DonacionesInsumos
-                .Where(d => d.IdPropuestaDonacionInsumo == donacion.IdPropuestaDonacionInsumo).Sum(d => d.Cantidad);
+            var donacionesObtenidas = Db.DonacionesInsumos
+                .Where(d => d.IdPropuestaDonacionInsumo == donacion.IdPropuestaDonacionInsumo).ToList();
+            var obtenido = 0;
+            if(donacionesObtenidas.Count != 0) obtenido = donacionesObtenidas.Sum(d => d.Cantidad);
             var restante = objetivo - obtenido;
             return donacion?.Cantidad > restante
                 ? new ValidationResult("No se puede donar esa cantidad de elementos")

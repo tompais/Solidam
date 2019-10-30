@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using Enums;
@@ -39,6 +40,24 @@ namespace Services
         {
             return Db.PropuestasDonacionesInsumos
                 .FirstOrDefault(p => p.IdPropuestaDonacionInsumo == idPropuestaDonacionInsumo).IdPropuesta;
+        }
+
+        public static bool EsCompletada(List<DonacionesInsumos> donaciones)
+        {
+            var idPropuesta = donaciones[0].PropuestasDonacionesInsumos.IdPropuesta;
+            var objetos = Db.PropuestasDonacionesInsumos.Where(p => p.IdPropuesta == idPropuesta).ToList();
+            foreach (PropuestasDonacionesInsumos donacion in objetos)
+            {
+                var objetivo = Db.PropuestasDonacionesInsumos
+                    .FirstOrDefault(p => p.IdPropuestaDonacionInsumo == donacion.IdPropuestaDonacionInsumo)
+                    ?.Cantidad;
+                var donacionesHechas = 
+                    Db.DonacionesInsumos.Where(d => d.IdPropuestaDonacionInsumo == donacion.IdPropuestaDonacionInsumo).ToList();
+                var obtenido = donacionesHechas.Count == 0 ? 0 : donacionesHechas.Sum(d => d.Cantidad);
+                if (objetivo != obtenido)
+                    return false;
+            }
+            return true;
         }
     }
 }
