@@ -11,6 +11,7 @@
         AccesoNoAutorizado,
         PerfilInvalido,
         IdNoValido,
-        EntidadNoEncontrada
+        EntidadNoEncontrada,
+        PerfilUsuarioCompletado
     }
 }

@@ -20,6 +20,8 @@ namespace Services
 
             if(usuarioAModificar == null) throw new EntidadNoEncontradaException(typeof(Usuarios));
 
+            if(!string.IsNullOrEmpty(usuarioAModificar.Nombre) || !string.IsNullOrEmpty(usuarioAModificar.Apellido) || !string.IsNullOrEmpty(usuarioAModificar.Foto) || !string.IsNullOrEmpty(usuarioAModificar.UserName)) throw new PerfilUsuarioCompletadoException();
+
             usuarioAModificar.Nombre = model.Nombre;
             usuarioAModificar.Apellido = model.Apellido;
             usuarioAModificar.FechaNacimiento = model.FechaNacimiento;
