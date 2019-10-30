@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq.Expressions;
+using Helpers;
 
 namespace Exceptions
 {
@@ -6,10 +8,16 @@ namespace Exceptions
     {
         public ExceptionResponse(Exception exception)
         {
-            InternalErrorCode = exception is SolidamException solidamException
-                ? (int?) solidamException.ErrorCode
-                : null;
-            Message = exception.Message;
+            if (exception is SolidamException solidamException)
+            {
+                InternalErrorCode = (int?)solidamException.ErrorCode;
+                Message = solidamException.Message;
+            }
+            else
+            {
+                InternalErrorCode = null;
+                Message = Constant.DefaultUnhandledErrorMessage;
+            }
         }
 
         public int? InternalErrorCode { get; set; }
