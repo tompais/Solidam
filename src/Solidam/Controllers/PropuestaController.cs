@@ -23,6 +23,38 @@ namespace Solidam.Controllers
             return View();
         }
 
+        public ActionResult ModificarPropuesta(int id)
+        {
+            return View(PropuestaService.GetById(id));
+        }
+
+        [HttpPost]
+        public ActionResult Modificar(Propuestas p, HttpPostedFileBase foto, string fotoVieja)
+        {
+            ModelState.Remove("Foto");
+
+            if (!ModelState.IsValid)
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors);
+                return View("ModificarPropuesta");
+            }
+
+            if (foto != null && foto.ContentLength > 0)
+            {
+                string path = Server.MapPath("~/Images/Views/Propuesta/");
+
+                p.Foto = Path.GetFileName(foto.FileName);
+
+                PropuestaService.Actualizar(p);
+
+                foto.SaveAs(path + Path.GetFileName(foto.FileName));
+            }
+            else
+                PropuestaService.Actualizar(p);
+
+            return View();
+        }
+
         public ActionResult Buscar(string nombre)
         {
             ViewBag.palabra = nombre;

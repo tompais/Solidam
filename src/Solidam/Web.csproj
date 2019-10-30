@@ -2747,6 +2747,7 @@
     <Content Include="Scripts\Views\Propuesta\Crear.js" />
     <Content Include="Images\Views\Seguridad\logoBordeBlanco.png" />
     <Content Include="Scripts\Views\Propuesta\Donar.js" />
+    <Content Include="Scripts\Views\Propuesta\Modificar.js" />
     <Content Include="Scripts\Views\Seguridad\Iniciar.js" />
     <Content Include="Scripts\Views\Seguridad\Registrar.js" />
     <Content Include="Scripts\Views\Seguridad\RegistroExitoso.js" />
@@ -2799,6 +2800,7 @@
     <Content Include="Views\DonacionesInsumo\SolicitarCantidades.cshtml" />
     <Content Include="Views\Shared\pv_VerPerfil.cshtml" />
     <Content Include="Views\Propuesta\Completada.cshtml" />
+    <Content Include="Views\Propuesta\ModificarPropuesta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

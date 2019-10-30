@@ -1,7 +1,8 @@
 ﻿$("#inputFechaFin").parent().datepicker({
     format: 'dd/mm/yyyy',
     language: 'es',
-    autoclose: true
+    autoclose: true,
+    minDate: moment().add('d', 1).toDate()
 });
 
 var i = 0;
