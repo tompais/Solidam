@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -49,8 +48,6 @@ namespace Solidam.Controllers
             if(EstaUsuarioLogueado() && !EstaPerfilUsuarioCompleto() && controllerName.Equals(Constant.PropuestaControllerName.ToLower()) && (actionName.Contains("crear") || actionName.Equals(Constant.MisPropuestasActionName.ToLower())))
                 throw new PerfilUsuarioNoCompletadoException();
 
-            throw new Exception("Todos putos");
-
         }
 
         protected override void OnException(ExceptionContext filterContext)
@@ -74,7 +71,7 @@ namespace Solidam.Controllers
                     Server.ClearError();
                     filterContext.Result = RedirectToAction("Error", "Home", new RouteValueDictionary(new Dictionary<string, object>
                     {
-                        { "codigo", error }
+                        { "ErrorCode", error }
                     }));
                     break;
             }
