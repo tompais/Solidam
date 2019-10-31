@@ -2801,6 +2801,9 @@
     <Content Include="Views\Shared\pv_VerPerfil.cshtml" />
     <Content Include="Views\Propuesta\Completada.cshtml" />
     <Content Include="Views\Propuesta\ModificarPropuesta.cshtml" />
+    <Content Include="Views\Propuesta\pv_MMonetaria.cshtml" />
+    <Content Include="Views\Propuesta\pv_MHorasTrabajo.cshtml" />
+    <Content Include="Views\Propuesta\pv_MInsumos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

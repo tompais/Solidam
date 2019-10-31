@@ -2,15 +2,13 @@
 @{
     ViewBag.Title = "ModificarPropuesta";
     Layout = "~/Views/Shared/_PropuestasLayout.cshtml";
-
-    string fecha = Model.FechaFin.ToString("dd/MM/yyyy");
 }
 
 @Styles.Render("~/Content/Views/Inicio/inicio.css")
 @Styles.Render("~/Content/Views/Inicio/inicioResponsive.css")
 @Styles.Render("~/Content/bootstrap-datepicker.min.css")
 
-
+@using Enums
 @model Models.Propuestas
 
 <div class="container">
@@ -18,20 +16,20 @@
     <form action="/Propuesta/Modificar" method="post" class="mt-4 mx-auto col-xl-7 col-sm-5" enctype="multipart/form-data">
         <div class="form-group">
             <label for="nombrePropuesta">Nombre de la propuesta</label>
-            @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", @type = "text" , @value = Model.Nombre} })
+            @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", @type = "text", @value = Model.Nombre } })
             <div class="errorSolidam"><b>@Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })</b></div>
         </div>
 
         <div class="form-group">
             <label for="descripcionPropuesta">Descripción de la propuesta</label>
-            @Html.TextAreaFor(model => model.Descripcion, new { @class = "form-control", @rows = 3, @id = "descripcionPropuesta" , @value = Model.Descripcion})
+            @Html.TextAreaFor(model => model.Descripcion, new { @class = "form-control", @rows = 3, @id = "descripcionPropuesta", @value = Model.Descripcion })
             <div class="errorSolidam"><b>@Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })</b></div>
         </div>
 
         <div class="form-group">
             <label for="fechaFin">Fecha de finalización</label>
             <div class="input-group date" data-provide="datepicker" id="fechaFin">
-                @Html.EditorFor(model => model.FechaFin, new { htmlAttributes = new { @id = "inputFechaFin", @class = "form-control", @type = "text", autocomplete = "off", @value = fecha } })
+                @Html.EditorFor(model => model.FechaFin, new { htmlAttributes = new { @id = "inputFechaFin", @class = "form-control", @type = "text", autocomplete = "off", @value = Model.FechaFin.Date.ToString("dd/MM/yyyy") } })
 
                 <div class="input-group-addon">
                     <span class="fa"></span>
@@ -46,15 +44,28 @@
             <div class="errorSolidam"><b>@Html.ValidationMessageFor(model => model.TelefonoContacto, "", new { @class = "text-danger" })</b></div>
         </div>
 
-        
+        @switch (Model.TipoDonacion)
+        {
+            case (int)TipoDonacion.Monetaria:
+                @Html.Partial("pv_MMonetaria", Model);
+                break;
+
+            case (int)TipoDonacion.Insumos:
+                @Html.Partial("pv_MInsumos", Model);
+                break;
+
+            case (int)TipoDonacion.HorasDeTrabajo:
+                @Html.Partial("pv_MHorasTrabajo", Model);
+                break;
+        }
 
         <div class="form-group">
             <label for="fotoPropuesta">Foto</label>
-            @Html.EditorFor(model => model.Foto, new { htmlAttributes = new { @class = "form-control", @type = "file"} })
-            <div class="errorSolidam"><b>@Html.ValidationMessageFor(model => model.Foto, "", new { @class = "text-danger" })</b></div>
+            <input type="file" class="form-control" name="foto" />
         </div>
 
-        <input type="hidden" value="@Model.Foto" name="fotoVieja"/>
+        <input type="hidden" value="@Model.Foto" name="fotoVieja" />
+        <input type="hidden" value="@Model.IdPropuesta" name="IdPropuesta" />
 
         <div class="form-group">
             <label for="nombreRef1">Referencia 1</label>

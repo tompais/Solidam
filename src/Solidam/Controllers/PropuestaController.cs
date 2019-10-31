@@ -47,12 +47,17 @@ namespace Solidam.Controllers
 
                 PropuestaService.Actualizar(p);
 
+                System.IO.File.Delete(path + fotoVieja);
+
                 foto.SaveAs(path + Path.GetFileName(foto.FileName));
             }
             else
+            {
+                p.Foto = null;
                 PropuestaService.Actualizar(p);
+            }
 
-            return View();
+            return RedirectToAction("MiPropuestas", "Propuesta");
         }
 
         public ActionResult Buscar(string nombre)

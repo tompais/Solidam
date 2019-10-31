@@ -2,7 +2,7 @@
     format: 'dd/mm/yyyy',
     language: 'es',
     autoclose: true,
-    minDate: moment().add('d', 1).toDate()
+    startDate: "tomorrow"
 });
 
 var i = 0;
