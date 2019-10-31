@@ -51,6 +51,7 @@
     <Compile Include="IdNoValidoException.cs" />
     <Compile Include="PerfilInvalidoException.cs" />
     <Compile Include="PerfilUsuarioCompletadoException.cs" />
+    <Compile Include="PerfilUsuarioNoCompletadoException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SolidamException.cs" />
     <Compile Include="UsuarioException.cs" />

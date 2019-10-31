@@ -12,6 +12,7 @@
         PerfilInvalido,
         IdNoValido,
         EntidadNoEncontrada,
-        PerfilUsuarioCompletado
+        PerfilUsuarioCompletado,
+        PerfilUsuarioNoCompletado
     }
 }
