@@ -6,20 +6,25 @@
 
 @model Models.Propuestas
 
-<div class="form-group">
-    <label for='cantHoras'>Cantidad de horas</label>
-    <input type='number' class='form-control' id='cantHoras' name='PropuestasDonacionesHorasTrabajo[0].CantidadHoras' value="@Model.PropuestasDonacionesHorasTrabajo.ElementAt(0).CantidadHoras" />
+    <div class="form-group">
+        <label for='cantHoras'>Cantidad de horas</label>
+        <input type='number' class='form-control' id='cantHoras' name='PropuestasDonacionesHorasTrabajo[0].CantidadHoras' value="@Model.PropuestasDonacionesHorasTrabajo.ElementAt(0).CantidadHoras" />
+        <div id="errorCantHoras" class="error">
+            <i class="fas fa-exclamation-triangle mr-2"></i><span></span>
+        </div>
 
-    <label for='profesion'>Profesión</label>
-    <select class='form-control' id='tipoDonacion' name='PropuestasDonacionesHorasTrabajo[0].Profesion'>
+        <label for='profesion'>Profesión</label>
+        <select class='form-control' id='tipoProfesion' name='PropuestasDonacionesHorasTrabajo[0].Profesion'>
 
-        @foreach (string profesion in profesiones)
-        {
-            if (Model.PropuestasDonacionesHorasTrabajo.ElementAt(0).Profesion.Equals(profesion))
-            { <option value="@profesion" selected>@profesion</option> }
-            else
-            { <option value="@profesion">@profesion</option> }
-        }
+            @foreach (string profesion in profesiones)
+            {
+                if (Model.PropuestasDonacionesHorasTrabajo.ElementAt(0).Profesion.Equals(profesion))
+                {
+                    <option value="@profesion" selected>@profesion</option> }
+                else
+                {
+                    <option value="@profesion">@profesion</option>}
+            }
 
-    </select>
-</div>
+        </select>
+    </div>

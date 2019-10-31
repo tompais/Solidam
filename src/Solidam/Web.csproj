@@ -2748,6 +2748,7 @@
     <Content Include="Images\Views\Seguridad\logoBordeBlanco.png" />
     <Content Include="Scripts\Views\Propuesta\Donar.js" />
     <Content Include="Scripts\Views\Propuesta\Modificar.js" />
+    <Content Include="Scripts\Views\Propuesta\ValidarPropuesta.js" />
     <Content Include="Scripts\Views\Seguridad\Iniciar.js" />
     <Content Include="Scripts\Views\Seguridad\Registrar.js" />
     <Content Include="Scripts\Views\Seguridad\RegistroExitoso.js" />

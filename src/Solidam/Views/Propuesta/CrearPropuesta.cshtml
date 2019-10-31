@@ -16,6 +16,8 @@
 
 @model Models.Propuestas
 
+<script> var tipoDonacion = @Model.TipoDonacion; </script>
+
 <div class="container">
     <h2>Crear Propuesta</h2>
     <form action="/Propuesta/Crear" method="post" class="mt-4 mx-auto col-xl-7 col-sm-5" enctype="multipart/form-data">
@@ -66,19 +68,31 @@
         <div class="form-group">
             <label for="nombreRef1">Referencia 1</label>
             <input type="text" class="form-control" id="nombreRef1" name="PropuestasReferencias[0].Nombre" />
+            <div id="errorRN1" class="error">
+                <i class="fas fa-exclamation-triangle mr-2"></i><span></span>
+            </div>
 
             <label for="telefonoRef1">Teléfono</label>
             <input type="text" class="form-control" id="telefonoRef1" name="PropuestasReferencias[0].Telefono" />
+            <div id="errorRT1" class="error">
+                <i class="fas fa-exclamation-triangle mr-2"></i><span></span>
+            </div>
 
             <label for="nombreRef2">Referencia 2</label>
             <input type="text" class="form-control" id="nombreRef2" name="PropuestasReferencias[1].Nombre" />
+            <div id="errorRN2" class="error">
+                <i class="fas fa-exclamation-triangle mr-2"></i><span></span>
+            </div>
 
             <label for="telefonoRef2">Teléfono</label>
             <input type="text" class="form-control" id="telefonoRef2" name="PropuestasReferencias[1].Telefono" />
+            <div id="errorRT2" class="error">
+                <i class="fas fa-exclamation-triangle mr-2"></i><span></span>
+            </div>
         </div>
 
         <div class="d-flex justify-content-center my-3">
-            <input type="submit" class="btn btn-primary col-3" value="Crear" />
+            <input type="submit" class="btn btn-primary col-3" value="Crear" id="btnEnviar" />
         </div>
     </form>
 </div>
@@ -86,3 +100,4 @@
 @Scripts.Render("~/Scripts/bootstrap-datepicker.min.js")
 @Scripts.Render("~/Scripts/locales/bootstrap-datepicker.es.min.js")
 @Scripts.Render("~/Scripts/Views/Propuesta/Crear.js")
+@Scripts.Render("~/Scripts/Views/Propuesta/ValidarPropuesta.js")
