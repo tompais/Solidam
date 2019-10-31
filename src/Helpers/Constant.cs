@@ -10,5 +10,7 @@ namespace Helpers
         public const string SeguridadControllerName = "Seguridad";
         public const string InicioControllerName = "Inicio";
         public const string DefaultUnhandledErrorMessage = "Ha ocurrido un error interno no controlado en el sistema";
+        public const string PropuestaControllerName = "Propuesta";
+        public const string MisPropuestasActionName = "MisPropuestas";
     }
 }
