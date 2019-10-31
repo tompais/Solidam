@@ -55,7 +55,21 @@ namespace Services
             var cantMg = valoraciones.Count(v => v.Valoracion);
             var propuesta = GetById(id);
             propuesta.Valoracion = cantValoraciones == 0 ? 0 : cantMg * 100 / cantValoraciones;
-            Db.SaveChanges();
+            try
+            {
+                Db.SaveChanges();
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException ex)
+            {
+                foreach (var errors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in errors.ValidationErrors)
+                    {
+                        // get the error message 
+                        string errorMessage = validationError.ErrorMessage;
+                    }
+                }
+            }
         }
 
         public static List<Propuestas> ObtenerPropuestasPorNombreYUsuario(string nombre)

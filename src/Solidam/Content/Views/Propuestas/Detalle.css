@@ -8,3 +8,6 @@
     border: none;
     font-size: 4vh;
 }
+.causes-details .causes-progress {
+    background: none;
+}
