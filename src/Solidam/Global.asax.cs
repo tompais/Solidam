@@ -50,7 +50,12 @@ namespace Solidam
 
         protected void Application_Error(object sender, EventArgs e)
         {
-            LoggingHelper.LogException(Server.GetLastError());
+            var exception = Server.GetLastError();
+            LoggingHelper.LogException(exception);
+            Response.Clear();
+            var error = exception is HttpException httpException ? httpException.GetHttpCode() : 0;
+            Server.ClearError();
+            Response.Redirect($"~/home/error/?codigo={error}");
         }
     }
 }

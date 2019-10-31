@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web;
-using Helpers;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Exceptions;
+using Helpers;
 using Models;
 
 namespace Solidam.Controllers
@@ -45,8 +46,10 @@ namespace Solidam.Controllers
 
             if (!EstaUsuarioLogueado() && !controllerName.Equals(Constant.InicioControllerName.ToLower()) && !controllerName.Equals(Constant.SeguridadControllerName.ToLower()))
                 throw new AccesoNoAutorizadoException(filterContext.HttpContext.Request.Url?.AbsoluteUri);
-            else if(EstaUsuarioLogueado() && !EstaPerfilUsuarioCompleto() && controllerName.Equals(Constant.PropuestaControllerName.ToLower()) && (actionName.Contains("crear") || actionName.Equals(Constant.MisPropuestasActionName.ToLower())))
+            if(EstaUsuarioLogueado() && !EstaPerfilUsuarioCompleto() && controllerName.Equals(Constant.PropuestaControllerName.ToLower()) && (actionName.Contains("crear") || actionName.Equals(Constant.MisPropuestasActionName.ToLower())))
                 throw new PerfilUsuarioNoCompletadoException();
+
+            throw new Exception("Todos putos");
 
         }
 
@@ -71,7 +74,7 @@ namespace Solidam.Controllers
                     Server.ClearError();
                     filterContext.Result = RedirectToAction("Error", "Home", new RouteValueDictionary(new Dictionary<string, object>
                     {
-                        { "ErrorCode", error }
+                        { "codigo", error }
                     }));
                     break;
             }

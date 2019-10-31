@@ -11,9 +11,9 @@ namespace Solidam.Controllers
     {
         // GET: Error
         [Route("home/error")]
-        public ActionResult Error(HttpStatusCode error = 0)
+        public ActionResult Error(HttpStatusCode codigo = 0)
         {
-            switch (error)
+            switch (codigo)
             {
                 case HttpStatusCode.InternalServerError:
                     ViewBag.Title = "Ocurrio un error inesperado";
