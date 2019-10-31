@@ -21,5 +21,17 @@ namespace Helpers
             set => CurrentSession["idPropuestaCompletada"] = value;
         }
 
+        public static bool MostrarPopUpCompletarPerfil
+        {
+            get => CurrentSession["mostrarPopUpCompletarPerfil"] as bool? ?? false;
+            set => CurrentSession["mostrarPopUpCompletarPerfil"] = value;
+        }
+
+        public static bool MostrePopUpCompletarPerfil
+        {
+            get => CurrentSession["mostrePopUpCompletarPerfil"] as bool? ?? false;
+            set => CurrentSession["mostrePopUpCompletarPerfil"] = value;
+        }
+
     }
 }

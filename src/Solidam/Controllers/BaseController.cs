@@ -1,11 +1,31 @@
 ﻿using Helpers;
 using System.Web.Mvc;
+using System.Web.Routing;
 using Exceptions;
 
 namespace Solidam.Controllers
 {
     public class BaseController : Controller
     {
+        protected override void Initialize(RequestContext requestContext)
+        {
+            var usuarioSesion = SessionHelper.Usuario;
+            if (!SessionHelper.MostrePopUpCompletarPerfil && usuarioSesion != null &&
+                string.IsNullOrEmpty(usuarioSesion.Nombre) && string.IsNullOrEmpty(usuarioSesion.Apellido) &&
+                string.IsNullOrEmpty(usuarioSesion.Foto) && string.IsNullOrEmpty(usuarioSesion.UserName))
+            {
+                SessionHelper.MostrarPopUpCompletarPerfil = SessionHelper.MostrePopUpCompletarPerfil = true;
+            }
+            else
+            {
+                SessionHelper.MostrarPopUpCompletarPerfil = false;
+            }
+
+            base.Initialize(requestContext);
+
+            
+        }
+
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);
