@@ -8,6 +8,14 @@
         <img src="@Url.Content($"~/Content/UploadedFiles/{Model.Foto}")" class="rounded-circle mx-auto d-block" alt="Foto de Perfil" width="150" height="150">
         <div class="d-flex flex-column justify-content-center align-items-center">
             <div class="d-flex flex-column justify-content-center align-items-center mt-3">
+                <p class="p-user-label mb-0">Email:</p>
+                <strong class="strong-user-info">@Model.Email</strong>
+            </div>
+            <div class="d-flex flex-column justify-content-center align-items-center mt-3">
+                <p class="p-user-label mb-0">UserName:</p>
+                <strong class="strong-user-info">@Model.UserName</strong>
+            </div>
+            <div class="d-flex flex-column justify-content-center align-items-center mt-3">
                 <p class="p-user-label mb-0">Nombre:</p>
                 <strong class="strong-user-info">@Model.Nombre</strong>
             </div>

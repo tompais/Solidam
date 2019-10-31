@@ -21,6 +21,9 @@ namespace Models
         [Required(ErrorMessage = "Ingrese una Foto de Perfil")]
         public HttpPostedFileBase ProfilePicFile { get; set; }
 
+        public string Email { get; set; }
+        public string UserName { get; set; }
+
         public UsuarioPerfil()
         {
         }
@@ -31,6 +34,8 @@ namespace Models
             Apellido = usuario.Apellido;
             FechaNacimiento = usuario.FechaNacimiento;
             Foto = usuario.Foto;
+            Email = usuario.Email;
+            UserName = usuario.UserName;
         }
     }
 }
