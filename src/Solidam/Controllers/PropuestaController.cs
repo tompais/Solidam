@@ -64,7 +64,7 @@ namespace Solidam.Controllers
             return View("PropuestasBuscadas", propuestaBuscadas);
         }
 
-        public ActionResult MiPropuestas() => View("MisPropuestas", PropuestaService.ObtenerPropuestasUsuario(SessionHelper.Usuario.IdUsuario));
+        public ActionResult MisPropuestas() => View("MisPropuestas", PropuestaService.ObtenerPropuestasUsuario(SessionHelper.Usuario.IdUsuario));
 
         [HttpPost]
         public ActionResult Crear(Propuestas p, HttpPostedFileBase foto)
@@ -83,7 +83,7 @@ namespace Solidam.Controllers
 
             foto.SaveAs(path + Path.GetFileName(foto.FileName));
 
-            return RedirectToAction("MiPropuestas", "Propuesta");
+            return RedirectToAction("MisPropuestas", "Propuesta");
         }
 
         [HttpPost]
