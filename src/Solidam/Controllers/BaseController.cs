@@ -1,4 +1,6 @@
-﻿using Helpers;
+﻿using System.Collections.Generic;
+using System.Web;
+using Helpers;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Exceptions;
@@ -62,6 +64,15 @@ namespace Solidam.Controllers
                 case PerfilUsuarioNoCompletadoException _:
                     SessionHelper.MostrePopUpCompletarPerfil = false;
                     filterContext.Result = RedirectToAction("MiPerfil", "Usuario");
+                    break;
+                default:
+                    Response.Clear();
+                    var error = exception is HttpException httpException ? httpException.GetHttpCode() : 0;
+                    Server.ClearError();
+                    filterContext.Result = RedirectToAction("Error", "Home", new RouteValueDictionary(new Dictionary<string, object>
+                    {
+                        { "ErrorCode", error }
+                    }));
                     break;
             }
         }
