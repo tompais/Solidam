@@ -26,3 +26,7 @@
 .article .article-img {
     width: 45%;
 }
+.card-header {
+    background: green;
+    color: white;
+}

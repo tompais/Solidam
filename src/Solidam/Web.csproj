@@ -2806,7 +2806,9 @@
     <Content Include="Views\Home\Error.cshtml" />
     <Content Include="Views\Propuesta\pv_DetalleMonetaria.cshtml" />
     <Content Include="Views\Propuesta\pv_DetalleInsumos.cshtml" />
-    <Content Include="Views\Propuesta\pv_DonarMonetaria.cshtml" />
+    <Content Include="Views\DonacionesMonetarias\pv_DonarMonetaria.cshtml" />
+    <Content Include="Views\DonacionesHorasTrabajo\pv_DonarHorasTrabajo.cshtml" />
+    <Content Include="Views\DonacionesInsumo\pv_DonarInsumos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
