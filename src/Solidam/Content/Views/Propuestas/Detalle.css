@@ -22,3 +22,7 @@
     z-index: -1;
     height: 300px;
 }
+
+.article .article-img {
+    width: 45%;
+}

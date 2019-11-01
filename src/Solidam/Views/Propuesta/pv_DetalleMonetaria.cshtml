@@ -47,22 +47,28 @@
     </div>
     <!-- /article content -->
     <!-- article tags share -->
-    <div class="article-tags-share">
+    <div class="article-tags-share d-flex flex-column">
         <!-- article tags -->
         <ul class="tags">
             <li>TAGS:</li>
             <li><a href="#">Monetaria</a></li>
-        @if (Model.Propuesta.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario)
-        {
-            <li><a href="@Url.Action("Denunciar", "Propuesta", new {id = Model.Propuesta.IdPropuesta})" class="btn btn-danger text-white @(Model.Denuncie ? "disabled" : "")">Denunciar</a></li>
-        }
+            @if (Model.Propuesta.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario)
+            {
+                <li><a href="@Url.Action("Denunciar", "Propuesta", new {id = Model.Propuesta.IdPropuesta})" class="btn btn-danger text-white @(Model.Denuncie ? "disabled" : "")">Denunciar</a></li>
+            }
         </ul>
+        <div class="mr-3 d-flex">
+            <div class="mb-3">
+                @(Model.Propuesta.Valoracion ?? 0)%
+            </div>
+            <div>
+                <i class="far fa-heart"></i>
+            </div>
+        </div>
         <!-- /article tags -->
         <!-- article share -->
         <div class="d-flex align-items-center">
-            <div class="mr-3">
-                (@Model.Propuesta.Valoracion %)
-            </div>
+            
             @if (Model.Propuesta.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario)
             {
                 <div class="d-flex justify-content-between">
