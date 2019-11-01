@@ -1,7 +1,5 @@
 ﻿@Styles.Render("~/Content/Views/Inicio/inicio.css")
 @Styles.Render("~/Content/Views/Inicio/inicioResponsive.css")
-@Styles.Render("~/Content/Views/Propuestas/MisPropuestas.css")
-
 @{
     ViewBag.Title = "Mis Propuestas";
 }
@@ -17,8 +15,7 @@
             <nav class="navbar navbar-light bg-light justify-content-between w-100 bg-white">
                 <h2>Mis Propuestas<i class="fa fa-id-card ml-2"></i></h2>
 
-
-                @if (@ViewBag.propuestasCreadas >= 3)
+                @if (@Model.Count >= 3)
                 {
                     <span><i class="fa fa-exclamation-triangle mr-2"></i>No puedes poseer mas de 3 propuestas activas</span><a class="btn float-right disabled btnVerdeSolidam"><i class="fa fa-plus mr-1"></i>Crear</a>
                 }
@@ -27,23 +24,6 @@
                     <a href="@Url.Action("CrearPropuesta", "Propuesta")" class="btn btn-primary float-right btnVerdeSolidam"><i class="fa fa-plus mr-1"></i>Crear</a>
                 }
 
-                <div class="container mt-3">
-                    <h2>Activas <i class="fa fa-check-circle mr-2"></i></h2>
-                    @if (string.IsNullOrEmpty(ViewBag.Activa))
-                    {
-                        <label class="switch" for="checkbox">
-                            <input type="checkbox" id="checkbox" class="activas" />
-                            <div class="slider round"></div>
-                        </label>
-                    }
-                    else
-                    {
-                        <label class="switch" for="checkbox">
-                            <input type="checkbox" id="checkbox" class="activas" checked="checked" />
-                            <div class="slider round"></div>
-                        </label>
-                    }
-                </div>
 
             </nav>
 
@@ -83,5 +63,3 @@
         </div>
     </div>
 </div>
-
-@Scripts.Render("~/Scripts/Views/Propuesta/MisPropuestas.js")
