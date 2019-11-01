@@ -35,16 +35,22 @@ namespace Services
 
         public string GenerarUserName(string nombre, string apellido)
         {
-            var userName = new string($"{nombre.Trim().ToUpper()}.{apellido.Trim().ToUpper()}.".Normalize(NormalizationForm.FormD)
+            var userName = new string($"{nombre.Trim().ToUpper()}.{apellido.Trim().ToUpper()}".Normalize(NormalizationForm.FormD)
                 .Where(c => CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
                 .ToArray()).Normalize(NormalizationForm.FormC);
 
-            var similarUser = Db.Usuarios.Where(u => u.UserName.StartsWith(userName)).OrderByDescending(u => u.UserName).ToList().LastOrDefault();
+            var similarUser = Db.Usuarios.Where(u => u.UserName.StartsWith(userName)).ToList().LastOrDefault();
 
-            if (similarUser != null)
-                userName += int.Parse(similarUser.UserName.Replace(userName, string.Empty)) + 1;
+            if (similarUser == null) return userName;
+            userName += ".";
+            if (int.TryParse(similarUser.UserName.Replace(userName, string.Empty), out var numeroUsuario))
+            {
+                userName += ++numeroUsuario;
+            }
             else
-                userName += 1;
+            {
+                userName += 2;
+            }
 
             return userName;
         }
