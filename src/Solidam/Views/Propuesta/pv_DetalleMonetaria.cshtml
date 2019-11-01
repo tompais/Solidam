@@ -93,7 +93,7 @@
         <!-- /article title -->
         <!-- article meta -->
         <ul class="article-meta">
-            <li>@Model.Propuesta.FechaCreacion.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</li>
+            <li>@Model.Propuesta.FechaCreacion.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture) - @Model.Propuesta.FechaFin.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</li>
             <li>Por @Model.Propuesta.Usuarios.Nombre @Model.Propuesta.Usuarios.Apellido (<i>@Model.Propuesta.Usuarios.UserName</i>)</li>
         </ul>
         <!-- /article meta -->
@@ -113,27 +113,33 @@
         </ul>
         <!-- /article tags -->
         <!-- article share -->
-        @if (Model.Propuesta.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario)
-        {
-            <div class="d-flex justify-content-between mt-3">
-                <form action="@Url.Action("Valorar", "Propuesta")" method="post">
-                    <input type="hidden" name="IdPropuesta" value="@Model.Propuesta.IdPropuesta" />
-                    <div class="d-flex justify-content-center align-items-center">
-                        <div class="mr-1">
-                            <button type="submit" class="me-gusta" name="mg">
-                                <i class="fa fa-thumbs-up @(Model.Valoracion == null ? "" : (Model.Valoracion.Valoracion ? "text-success" : ""))" aria-hidden="true"></i>
-                            </button>
-                        </div>
-                        <div>
-                            <button type="submit" class="no-me-gusta" name="nmg">
-                                <i class="fa fa-thumbs-down @(Model.Valoracion == null ? "" : (!Model.Valoracion.Valoracion ? "text-danger" : ""))" aria-hidden="true"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
+        <div class="d-flex align-items-center">
+            <div class="mr-3">
+                (@Model.Propuesta.Valoracion %)
             </div>
-        }
-        <!-- /article share -->
+            @if (Model.Propuesta.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario)
+            {
+                <div class="d-flex justify-content-between">
+                    <form action="@Url.Action("Valorar", "Propuesta")" method="post">
+                        <input type="hidden" name="IdPropuesta" value="@Model.Propuesta.IdPropuesta" />
+                        <div class="d-flex justify-content-center align-items-center">
+
+                            <div class="mr-1">
+                                <button type="submit" class="me-gusta" name="mg">
+                                    <i class="fa fa-thumbs-up @(Model.Valoracion == null ? "" : (Model.Valoracion.Valoracion ? "text-success" : ""))" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                            <div>
+                                <button type="submit" class="no-me-gusta" name="nmg">
+                                    <i class="fa fa-thumbs-down @(Model.Valoracion == null ? "" : (!Model.Valoracion.Valoracion ? "text-danger" : ""))" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            }
+            <!-- /article share -->
+        </div>
     </div>
     <!-- /article tags share -->
 </div>

@@ -12,69 +12,18 @@
 @*@Styles.Render("~/Content/Views/Inicio/inicio.css")*@
 @*@Styles.Render("~/Content/Views/Inicio/inicioResponsive.css")*@
 @Styles.Render("~/Content/Views/Propuestas/Detalle.css")
-<div class="container">
+<div class="container mt-3">
     <h2>Detalle propuesta</h2>
     @switch (Model.Propuesta.TipoDonacion)
     {
-        case (int)TipoDonacion.Monetaria:
-            @Html.Partial("pv_DetalleMonetaria",Model)
-            
+        case (int) TipoDonacion.Monetaria:
+            @Html.Partial("pv_DetalleMonetaria", Model)
+
             break;
-        case (int)TipoDonacion.HorasDeTrabajo:
-            <div class="col-md-6 mx-auto">
-                <div class="card p-4 causes">
-                    <div class="causes-img">
-                        <a href="javascript:void(0);">
-                            <img src="@Url.Content($"~/Images/Views/Propuesta/{@Model.Propuesta.Foto}")" alt="">
-                        </a>
-                    </div>
-                    <div class="causes-progress">
-                        <div>
-                            <span class="causes-raised">Tipo: <strong>Mano de Obra</strong></span>
-                        </div>
-                        <ul>
-                            @foreach (PropuestasDonacionesHorasTrabajo prop in Model.Propuesta.PropuestasDonacionesHorasTrabajo)
-                            {
-                            <li class="mb-3">
-                                @prop.Profesion <strong class="ml-4">@prop.CantidadHoras hs</strong>
-                            </li>
-                            }
-                        </ul>
-                    </div>
-                    <div class="causes-content">
-                        <h3>@Model.Propuesta.Nombre</h3>
-                        <p>@Model.Propuesta.Descripcion</p>
-                        <span class="mr-3">Usuario: </span><span class="mr-3">@Model.Propuesta.Usuarios.Apellido, @Model.Propuesta.Usuarios.Nombre</span> <i>(@(Model.Propuesta.Usuarios.UserName))</i>  <br />
-                        <span class="mr-3">Aceptacion: (@Model.Propuesta.Valoracion%)</span><br />
-                        <span class="mr-3">Creada el: @Model.Propuesta.FechaCreacion.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</span><br />
-                        <span class="mr-3"> Disponible hasta: <strong>@Model.Propuesta.FechaFin.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</strong></span>
-                        @if (Model.Propuesta.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario)
-                        {
-                            <div class="d-flex justify-content-between mt-3">
-                                <a href="@Url.Action("Donar","Propuesta",new {id = Model.Propuesta.IdPropuesta})" class="btn btn-primary text-white">Donar</a>
-                                <a href="@Url.Action("Denunciar","Propuesta",new { id = @Model.Propuesta.IdPropuesta})" class="btn btn-danger text-white @(Model.Denuncie ? "disabled" : "")">Denunciar</a>
-                                <form action="@Url.Action("Valorar", "Propuesta")" method="post">
-                                    <input type="hidden" name="IdPropuesta" value="@Model.Propuesta.IdPropuesta" />
-                                    <div class="d-flex justify-content-center align-items-center">
-                                        <div class="mr-1">
-                                            <button type="submit" class="me-gusta" name="mg">
-                                                <i class="fa fa-thumbs-up @(Model.Valoracion == null ? "" : (Model.Valoracion.Valoracion ? "text-success" : ""))" aria-hidden="true"></i>
-                                            </button>
-                                        </div>
-                                        <div>
-                                            <button type="submit" class="no-me-gusta" name="nmg">
-                                                <i class="fa fa-thumbs-down @(Model.Valoracion == null ? "" : (!Model.Valoracion.Valoracion ? "text-danger" : ""))" aria-hidden="true"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        }
-                    </div>
-                </div>
-            </div>
+        case (int) TipoDonacion.HorasDeTrabajo:
+            @Html.Partial("pv_DetalleHorasTrabajo", Model)
             break;
-        case (int)TipoDonacion.Insumos:
+        case (int) TipoDonacion.Insumos:
             <div class="col-md-6 mx-auto">
                 <div class="card p-4 causes">
                     <div class="causes-img">
@@ -98,17 +47,17 @@
                     <div class="causes-content">
                         <h3>@Model.Propuesta.Nombre</h3>
                         <p>@Model.Propuesta.Descripcion</p>
-                        <span class="mr-3">Usuario: </span><span class="mr-3">@Model.Propuesta.Usuarios.Apellido, @Model.Propuesta.Usuarios.Nombre</span><i>(@(Model.Propuesta.Usuarios.UserName))</i>  <br />
-                        <span class="mr-3">Aceptacion: (@Model.Propuesta.Valoracion%)</span><br />
-                        <span class="mr-3">Creada el: @Model.Propuesta.FechaCreacion.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</span><br />
+                        <span class="mr-3">Usuario: </span><span class="mr-3">@Model.Propuesta.Usuarios.Apellido, @Model.Propuesta.Usuarios.Nombre</span><i>(@(Model.Propuesta.Usuarios.UserName))</i> <br/>
+                        <span class="mr-3">Aceptacion: (@Model.Propuesta.Valoracion%)</span><br/>
+                        <span class="mr-3">Creada el: @Model.Propuesta.FechaCreacion.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</span><br/>
                         <span class="mr-3"> Disponible hasta: <strong>@Model.Propuesta.FechaFin.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</strong></span>
                         @if (Model.Propuesta.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario)
                         {
                             <div class="d-flex justify-content-between mt-3">
-                                <a href="@Url.Action("Donar","Propuesta",new { id = @Model.Propuesta.IdPropuesta })" class="btn btn-primary text-white">Donar</a>
-                                <a href="@Url.Action("Denunciar","Propuesta",new { id = @Model.Propuesta.IdPropuesta})" class="btn btn-danger text-white @(Model.Denuncie ? "disabled" : "")">Denunciar</a>
+                                <a href="@Url.Action("Donar", "Propuesta", new {id = @Model.Propuesta.IdPropuesta})" class="btn btn-primary text-white">Donar</a>
+                                <a href="@Url.Action("Denunciar", "Propuesta", new {id = @Model.Propuesta.IdPropuesta})" class="btn btn-danger text-white @(Model.Denuncie ? "disabled" : "")">Denunciar</a>
                                 <form action="@Url.Action("Valorar", "Propuesta")" method="post">
-                                    <input type="hidden" name="IdPropuesta" value="@Model.Propuesta.IdPropuesta" />
+                                    <input type="hidden" name="IdPropuesta" value="@Model.Propuesta.IdPropuesta"/>
                                     <div class="d-flex justify-content-center align-items-center">
                                         <div class="mr-1">
                                             <button type="submit" class="me-gusta" name="mg">
@@ -116,7 +65,7 @@
                                             </button>
                                         </div>
                                         <div>
-                                            <button type="submit" class="no-me-gusta"  name="nmg">
+                                            <button type="submit" class="no-me-gusta" name="nmg">
                                                 <i class="fa fa-thumbs-down @(Model.Valoracion == null ? "" : (!Model.Valoracion.Valoracion ? "text-danger" : ""))" aria-hidden="true"></i>
                                             </button>
                                         </div>
