@@ -24,58 +24,7 @@
             @Html.Partial("pv_DetalleHorasTrabajo", Model)
             break;
         case (int) TipoDonacion.Insumos:
-            <div class="col-md-6 mx-auto">
-                <div class="card p-4 causes">
-                    <div class="causes-img">
-                        <a href="javascript:void(0);">
-                            <img src="@Url.Content($"~/Images/Views/Propuesta/{@Model.Propuesta.Foto}")" alt="">
-                        </a>
-                    </div>
-                    <div class="causes-progress">
-                        <div>
-                            <span class="causes-raised">Tipo: <strong>Insumos</strong></span>
-                        </div>
-                        <ul>
-                            @foreach (PropuestasDonacionesInsumos prop in Model.Propuesta.PropuestasDonacionesInsumos)
-                            {
-                                <li>
-                                    @prop.Nombre <strong class="ml-4">@prop.Cantidad unidades</strong>
-                                </li>
-                            }
-                        </ul>
-                    </div>
-                    <div class="causes-content">
-                        <h3>@Model.Propuesta.Nombre</h3>
-                        <p>@Model.Propuesta.Descripcion</p>
-                        <span class="mr-3">Usuario: </span><span class="mr-3">@Model.Propuesta.Usuarios.Apellido, @Model.Propuesta.Usuarios.Nombre</span><i>(@(Model.Propuesta.Usuarios.UserName))</i> <br/>
-                        <span class="mr-3">Aceptacion: (@Model.Propuesta.Valoracion%)</span><br/>
-                        <span class="mr-3">Creada el: @Model.Propuesta.FechaCreacion.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</span><br/>
-                        <span class="mr-3"> Disponible hasta: <strong>@Model.Propuesta.FechaFin.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</strong></span>
-                        @if (Model.Propuesta.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario)
-                        {
-                            <div class="d-flex justify-content-between mt-3">
-                                <a href="@Url.Action("Donar", "Propuesta", new {id = @Model.Propuesta.IdPropuesta})" class="btn btn-primary text-white">Donar</a>
-                                <a href="@Url.Action("Denunciar", "Propuesta", new {id = @Model.Propuesta.IdPropuesta})" class="btn btn-danger text-white @(Model.Denuncie ? "disabled" : "")">Denunciar</a>
-                                <form action="@Url.Action("Valorar", "Propuesta")" method="post">
-                                    <input type="hidden" name="IdPropuesta" value="@Model.Propuesta.IdPropuesta"/>
-                                    <div class="d-flex justify-content-center align-items-center">
-                                        <div class="mr-1">
-                                            <button type="submit" class="me-gusta" name="mg">
-                                                <i class="fa fa-thumbs-up @(Model.Valoracion == null ? "" : (Model.Valoracion.Valoracion ? "text-success" : ""))" aria-hidden="true"></i>
-                                            </button>
-                                        </div>
-                                        <div>
-                                            <button type="submit" class="no-me-gusta" name="nmg">
-                                                <i class="fa fa-thumbs-down @(Model.Valoracion == null ? "" : (!Model.Valoracion.Valoracion ? "text-danger" : ""))" aria-hidden="true"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        }
-                    </div>
-                </div>
-            </div>
+            @Html.Partial("pv_DetalleInsumos",Model)
             break;
 
     }
