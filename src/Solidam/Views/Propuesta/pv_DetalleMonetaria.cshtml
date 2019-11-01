@@ -1,0 +1,145 @@
+﻿@using System.Globalization
+@using Helpers
+@using Services
+@model Solidam.ViewModel.PropuestaDetalleViewModel
+@{
+    var obtenido = PropuestasDonacionesMonetariasService.GetDineroDonadoByPropuestaId(Model.Propuesta.IdPropuesta);
+    var meta = Model.Propuesta.PropuestasDonacionesMonetarias.FirstOrDefault(pdm => pdm.IdPropuesta == Model.Propuesta.IdPropuesta)?.Dinero;
+}
+@Styles.Render("~/Content/Views/Propuestas/style.css")
+
+@*<div class="col-md-6 mx-auto">
+        <div class="card p-4 causes">
+            <div class="causes-img">
+                <a href="javascript:void(0);">
+                    <img src="@Url.Content($"~/Images/Views/Propuesta/{@Model.Propuesta.Foto}")" alt="">
+                </a>
+            </div>
+            <div class="causes-progress">
+                <div class="causes-progress-bar">
+                    <div style="width: @(obtenido * 100 / meta)%;">
+                        <span>%@(obtenido * 100 / meta)</span>
+                    </div>
+                </div>
+                <div>
+                    <span class="causes-raised">Tipo: <strong>Monetaria</strong></span>
+                </div>
+                <div>
+                    <span class="causes-raised">Obtenido: <strong>$@(obtenido)</strong></span>
+                    <span class="causes-goal">Meta: <strong>$@(meta)</strong></span>
+                </div>
+            </div>
+            <div class="causes-content">
+                <h3>@Model.Propuesta.Nombre</h3>
+                <p>@Model.Propuesta.Descripcion</p>
+                <span class="mr-3">Usuario: </span><span class="mr-3">@Model.Propuesta.Usuarios.Apellido, @Model.Propuesta.Usuarios.Nombre</span><i>(@(Model.Propuesta.Usuarios.UserName))</i> <br />
+                <span class="mr-3">Aceptacion: (@Model.Propuesta.Valoracion%)</span><br />
+                <span class="mr-3">Creada el: @Model.Propuesta.FechaCreacion.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</span><br />
+                <span class="mr-3"> Disponible hasta: <strong>@Model.Propuesta.FechaFin.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</strong></span>
+                @if (Model.Propuesta.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario)
+                {
+                    <div class="d-flex justify-content-between mt-3">
+                        <a href="@Url.Action("Donar","Propuesta",new {id = Model.Propuesta.IdPropuesta})" class="btn btn-primary text-white">Donar</a>
+                        <a href="@Url.Action("Denunciar","Propuesta",new { id = Model.Propuesta.IdPropuesta})" class="btn btn-danger text-white @(Model.Denuncie ? "disabled" : "")">Denunciar</a>
+                        <form action="@Url.Action("Valorar", "Propuesta")" method="post">
+                            <input type="hidden" name="IdPropuesta" value="@Model.Propuesta.IdPropuesta" />
+                            <div class="d-flex justify-content-center align-items-center">
+                                <div class="mr-1">
+                                    <button type="submit" class="me-gusta" name="mg">
+                                        <i class="fa fa-thumbs-up @(Model.Valoracion == null ? "" : (Model.Valoracion.Valoracion ? "text-success" : ""))" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                                <div>
+                                    <button type="submit" class="no-me-gusta" name="nmg">
+                                        <i class="fa fa-thumbs-down @(Model.Valoracion == null ? "" : (!Model.Valoracion.Valoracion ? "text-danger" : ""))" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>*@
+<div class="article causes-details">
+    <!-- article img -->
+    <div class="article-img">
+        <img src="@Url.Content($"~/Images/Views/Propuesta/{Model.Propuesta.Foto}")" alt="">
+    </div>
+    <!-- article img -->
+    <!-- causes progress -->
+    <div class="clearfix">
+        <div class="causes-progress">
+            <div class="causes-progress-bar">
+                <div style="width: @(obtenido * 100 / meta)%;">
+                    <span>@((int)(obtenido * 100 / meta))%</span>
+                </div>
+            </div>
+            <div>
+                <span class="causes-raised">Obtenido: <strong>$@(obtenido)</strong></span>
+                <span class="causes-goal">Objetivo: <strong>$@meta</strong></span>
+            </div>
+        </div>
+    @if (Model.Propuesta.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario)
+    {
+        <a href="@Url.Action("Donar", "Propuesta", new {id = Model.Propuesta.IdPropuesta})" class="primary-button causes-donate">Donar ahora</a>
+    }
+                                                                                                                                     </div>
+    <!-- /causes progress -->
+    <!-- article content -->
+    <div class="article-content">
+        <!-- article title -->
+        <h2 class="article-title">@Model.Propuesta.Nombre</h2>
+        <!-- /article title -->
+        <!-- article meta -->
+        <ul class="article-meta">
+            <li>@Model.Propuesta.FechaCreacion.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture) - @Model.Propuesta.FechaFin.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</li>
+            <li>Por @Model.Propuesta.Usuarios.Nombre @Model.Propuesta.Usuarios.Apellido (<i>@Model.Propuesta.Usuarios.UserName</i>)</li>
+        </ul>
+        <!-- /article meta -->
+        <p>@Model.Propuesta.Descripcion</p>
+    </div>
+    <!-- /article content -->
+    <!-- article tags share -->
+    <div class="article-tags-share">
+        <!-- article tags -->
+        <ul class="tags">
+            <li>TAGS:</li>
+            <li><a href="#">Monetaria</a></li>
+        @if (Model.Propuesta.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario)
+        {
+            <li><a href="@Url.Action("Denunciar", "Propuesta", new {id = Model.Propuesta.IdPropuesta})" class="btn btn-danger text-white @(Model.Denuncie ? "disabled" : "")">Denunciar</a></li>
+        }
+        </ul>
+        <!-- /article tags -->
+        <!-- article share -->
+        <div class="d-flex align-items-center">
+            <div class="mr-3">
+                (@Model.Propuesta.Valoracion %)
+            </div>
+            @if (Model.Propuesta.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario)
+            {
+                <div class="d-flex justify-content-between">
+                    <form action="@Url.Action("Valorar", "Propuesta")" method="post">
+                        <input type="hidden" name="IdPropuesta" value="@Model.Propuesta.IdPropuesta" />
+                        <div class="d-flex justify-content-center align-items-center">
+
+                            <div class="mr-1">
+                                <button type="submit" class="me-gusta" name="mg">
+                                    <i class="fa fa-thumbs-up @(Model.Valoracion == null ? "" : (Model.Valoracion.Valoracion ? "text-success" : ""))" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                            <div>
+                                <button type="submit" class="no-me-gusta" name="nmg">
+                                    <i class="fa fa-thumbs-down @(Model.Valoracion == null ? "" : (!Model.Valoracion.Valoracion ? "text-danger" : ""))" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            }
+            <!-- /article share -->
+        </div>
+    </div>
+    <!-- /article tags share -->
+</div>
