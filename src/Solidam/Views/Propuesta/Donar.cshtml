@@ -12,37 +12,11 @@
 @using Enums
 @model Solidam.ViewModel.DonarViewModel
 <div class="container h-100">
-    <h2>Donar para @Model.Propuesta.Nombre</h2>
+    <h2 class="text-center mb-5">Donar para @Model.Propuesta.Nombre</h2>
     @switch (Model.Propuesta.TipoDonacion)
     {
         case (int)TipoDonacion.Monetaria:
-            var propuestaMonetaria = Model.Propuesta.PropuestasDonacionesMonetarias?.FirstOrDefault(pdm => pdm.IdPropuesta == Model.Propuesta.IdPropuesta);
-            var requerido = propuestaMonetaria?.Dinero;
-            var restante = requerido - Model.DonacionesMonetarias?.Sum(dm => dm.Dinero);
-            <div class="card">
-                <div class="card-header">
-                    Donación monetaria
-                </div>
-                <div class="card-body">
-                    <form method="post" enctype="multipart/form-data" id="form" action="@Url.Action("Crear","DonacionesMonetarias")">
-                        <h5 class="card-title">Requerido: <strong>$ @requerido</strong></h5>
-                        <h3 class="card-title">Restante: <strong>$ @restante</strong></h3>
-                        <div class="form-group">
-                            <label>Ingrese la cantidad de dinero que donará</label>
-                            @Html.EditorFor(model => model.DonacionMonetaria.Dinero, new { htmlAttributes = new { type = "number", @class = "form-control" } })
-                            <div class="errorSolidam"><b>@Html.ValidationMessageFor(model => model.DonacionMonetaria.Dinero, "", new { @class = "text-danger" })</b></div>
-                        </div>
-                        <div class="form-group">
-                            <label>Adjunte el comprobante de la transferencia</label>
-                            @Html.TextBoxFor(model => model.DonacionMonetaria.File, new { type = "file", @class = "form-control" })
-                            <div class="errorSolidam"><b>@Html.ValidationMessageFor(model => model.DonacionMonetaria.File, "", new { @class = "text-danger" })</b></div>
-                        </div>
-                        <input type="hidden" value="@(propuestaMonetaria?.IdPropuestaDonacionMonetaria)" name="DonacionMonetaria.IdPropuestaDonacionMonetaria" />
-                        <input type="hidden" value="@(propuestaMonetaria?.IdPropuesta)" name="Propuesta.IdPropuesta" />
-                        <button type="submit" class="btn btn-primary mt-5">Confirmar</button>
-                    </form>
-                </div>
-            </div>
+            @Html.Partial("~/Views/Propuesta/pv_DonarMonetaria.cshtml",Model)
             break;
         case (int)TipoDonacion.HorasDeTrabajo:
             var propuesta = Model.Propuesta.PropuestasDonacionesHorasTrabajo?.FirstOrDefault(pdm => pdm.IdPropuesta == Model.Propuesta.IdPropuesta);

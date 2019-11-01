@@ -14,7 +14,7 @@ namespace Services
             p.IdUsuarioCreador = SessionHelper.Usuario.IdUsuario;
             p.Estado = 0;
             p.FechaCreacion = DateTime.Today;
-
+            p.Valoracion = 0;
             Db.Propuestas.Add(p);
             Db.SaveChanges();
         }

@@ -592,6 +592,7 @@
     <Content Include="Content\Views\Inicio\inicio.css" />
     <Content Include="Content\Views\Inicio\inicioResponsive.css" />
     <Content Include="Content\Views\Propuestas\Detalle.css" />
+    <Content Include="Content\Views\Propuestas\pv_Donar.css" />
     <Content Include="Content\Views\Shared\pv_Footer.css" />
     <Content Include="Content\Views\Shared\pv_Header.css" />
     <Content Include="Content\Views\Seguridad\IniciarRegistrar.css" />
@@ -2805,6 +2806,7 @@
     <Content Include="Views\Home\Error.cshtml" />
     <Content Include="Views\Propuesta\pv_DetalleMonetaria.cshtml" />
     <Content Include="Views\Propuesta\pv_DetalleInsumos.cshtml" />
+    <Content Include="Views\Propuesta\pv_DonarMonetaria.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

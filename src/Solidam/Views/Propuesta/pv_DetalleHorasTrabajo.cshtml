@@ -3,7 +3,7 @@
 @using Services
 @model Solidam.ViewModel.PropuestaDetalleViewModel
 @{
-    var obtenido = PropuestasDonacionesHorasTrabajoService.GetHorasDonadasByPropuestaId(Model.Propuesta.IdPropuesta);
+    var obtenido = PropuestasDonacionesHorasTrabajoService.GetHorasDonadasByPropuestaId(Model.Propuesta.PropuestasDonacionesHorasTrabajo.FirstOrDefault().IdPropuestaDonacionHorasTrabajo);
     var meta = Model.Propuesta.PropuestasDonacionesHorasTrabajo.FirstOrDefault(pdm => pdm.IdPropuesta == Model.Propuesta.IdPropuesta)?.CantidadHoras;
 }
 @Styles.Render("~/Content/Views/Propuestas/style.css")
