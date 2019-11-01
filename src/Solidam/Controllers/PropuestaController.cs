@@ -64,10 +64,25 @@ namespace Solidam.Controllers
             return View("PropuestasBuscadas", propuestaBuscadas);
         }
 
-        
+
         public ActionResult MisPropuestas()
         {
-            return View("MisPropuestas", PropuestaService.ObtenerPropuestasUsuario(SessionHelper.Usuario.IdUsuario, null));
+
+            var misPropuestas = PropuestaService.ObtenerPropuestasUsuario(SessionHelper.Usuario.IdUsuario, null);
+
+            var cont = 0;
+
+            foreach (var propuesta in misPropuestas)
+            {
+                if (propuesta.Estado == 0)
+                {
+                    cont++;
+                }
+            }
+
+            ViewBag.propuestasCreadas = cont;
+
+            return View("MisPropuestas", misPropuestas);
         }
 
         public ActionResult MisPropuestasActivas()
@@ -76,7 +91,21 @@ namespace Solidam.Controllers
 
             ViewBag.Activa = activa;
 
-            return View("MisPropuestas", PropuestaService.ObtenerPropuestasUsuario(SessionHelper.Usuario.IdUsuario, activa));
+            var misPropuestasActivas = PropuestaService.ObtenerPropuestasUsuario(SessionHelper.Usuario.IdUsuario, activa);
+
+            var cont = 0;
+
+            foreach (var propuesta in misPropuestasActivas)
+            {
+                if (propuesta.Estado == 0)
+                {
+                    cont++;
+                }
+            }
+
+            ViewBag.propuestasCreadas = cont;
+
+            return View("MisPropuestas", misPropuestasActivas);
         }
 
         [HttpPost]

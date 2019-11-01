@@ -18,7 +18,7 @@
                 <h2>Mis Propuestas<i class="fa fa-id-card ml-2"></i></h2>
 
 
-                @if (@Model.Count >= 3)
+                @if (@ViewBag.propuestasCreadas >= 3)
                 {
                     <span><i class="fa fa-exclamation-triangle mr-2"></i>No puedes poseer mas de 3 propuestas activas</span><a class="btn float-right disabled btnVerdeSolidam"><i class="fa fa-plus mr-1"></i>Crear</a>
                 }
