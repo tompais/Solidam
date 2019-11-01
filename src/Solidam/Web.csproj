@@ -592,6 +592,7 @@
     <Content Include="Content\Views\Inicio\inicio.css" />
     <Content Include="Content\Views\Inicio\inicioResponsive.css" />
     <Content Include="Content\Views\Propuestas\Detalle.css" />
+    <Content Include="Content\Views\Propuestas\MisPropuestas.css" />
     <Content Include="Content\Views\Propuestas\pv_Donar.css" />
     <Content Include="Content\Views\Propuestas\style.css" />
     <Content Include="Content\Views\Shared\pv_Footer.css" />
@@ -2750,6 +2751,7 @@
     <Content Include="Scripts\Views\Propuesta\Crear.js" />
     <Content Include="Images\Views\Seguridad\logoBordeBlanco.png" />
     <Content Include="Scripts\Views\Propuesta\Donar.js" />
+    <Content Include="Scripts\Views\Propuesta\MisPropuestas.js" />
     <Content Include="Scripts\Views\Propuesta\Modificar.js" />
     <Content Include="Scripts\Views\Seguridad\Iniciar.js" />
     <Content Include="Scripts\Views\Seguridad\Registrar.js" />
