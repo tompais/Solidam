@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq.Expressions;
-using Helpers;
 
 namespace Exceptions
 {
@@ -16,7 +15,7 @@ namespace Exceptions
             else
             {
                 InternalErrorCode = null;
-                Message = Constant.DefaultUnhandledErrorMessage;
+                Message = "Ha ocurrido un error interno no controlado en el sistema";
             }
         }
 
