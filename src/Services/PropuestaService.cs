@@ -85,15 +85,22 @@ namespace Services
             return propuestas.ToList();
         }
 
-        public static List<Propuestas> ObtenerPropuestasUsuario(int id)
+        public static List<Propuestas> ObtenerPropuestasUsuario(int id, String activa)
         {
             var misPropuestas = Db.Propuestas.AsQueryable();
 
             if (SessionHelper.Usuario != null)
                 misPropuestas = misPropuestas.Where(u => u.Usuarios.IdUsuario == SessionHelper.Usuario.IdUsuario);
 
+            if (!string.IsNullOrEmpty(activa))
+            {
+                misPropuestas = misPropuestas.Where(p => p.Estado == 0);
+            }
+
             return misPropuestas.ToList();
         }
+
+
 
         public static void Finalizar(int idPropuesta)
         {
