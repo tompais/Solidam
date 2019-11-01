@@ -11,5 +11,6 @@ namespace Helpers
         public const string InicioControllerName = "Inicio";
         public const string PropuestaControllerName = "Propuesta";
         public const string MisPropuestasActionName = "MisPropuestas";
+        public const string BuscarPropuestaActionName = "Buscar";
     }
 }

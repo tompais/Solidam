@@ -10,7 +10,7 @@ namespace Exceptions
 {
     public class AccesoNoAutorizadoException : SolidamException
     {
-        private string Url { get; set; }
+        public string Url { get; set; }
         public override string Message => $"No se ha podido acceder a la Url '{(string.IsNullOrEmpty(Url) ? "(Desconocida)" : Url)}'. Su acceso no está autorizado.";
         public override ErrorCode ErrorCode => ErrorCode.AccesoNoAutorizado;
 

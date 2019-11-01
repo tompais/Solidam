@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -36,6 +38,10 @@ namespace Solidam.Controllers
             !string.IsNullOrEmpty(UsuarioSesion.Apellido) &&
             !string.IsNullOrEmpty(UsuarioSesion.Foto) && !string.IsNullOrEmpty(UsuarioSesion.UserName);
 
+        private static bool EsBusquedaDePropuesta(string controllerName, string actionName) =>
+            controllerName.Equals(Constant.PropuestaControllerName) &&
+            actionName.Equals(Constant.BuscarPropuestaActionName);
+
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);
@@ -43,7 +49,7 @@ namespace Solidam.Controllers
             var controllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName.ToLower();
             var actionName = filterContext.ActionDescriptor.ActionName.ToLower();
 
-            if (!EstaUsuarioLogueado() && !controllerName.Equals(Constant.InicioControllerName.ToLower()) && !controllerName.Equals(Constant.SeguridadControllerName.ToLower()))
+            if (!EstaUsuarioLogueado() && !controllerName.Equals(Constant.InicioControllerName.ToLower()) && !controllerName.Equals(Constant.SeguridadControllerName.ToLower()) && !EsBusquedaDePropuesta(controllerName, actionName))
                 throw new AccesoNoAutorizadoException(filterContext.HttpContext.Request.Url?.AbsoluteUri);
             if(EstaUsuarioLogueado() && !EstaPerfilUsuarioCompleto() && controllerName.Equals(Constant.PropuestaControllerName.ToLower()) && (actionName.Contains("crear") || actionName.Equals(Constant.MisPropuestasActionName.ToLower())))
                 throw new PerfilUsuarioNoCompletadoException();
@@ -58,8 +64,8 @@ namespace Solidam.Controllers
 
             switch (exception)
             {
-                case AccesoNoAutorizadoException _:
-                    filterContext.Result = RedirectToAction("Iniciar", "Seguridad");
+                case AccesoNoAutorizadoException ex:
+                    filterContext.Result = RedirectToAction("Iniciar", "Seguridad", new { pr = Convert.ToBase64String(Encoding.ASCII.GetBytes(ex.Url)) });
                     break;
                 case PerfilUsuarioNoCompletadoException _:
                     SessionHelper.MostrePopUpCompletarPerfil = false;
