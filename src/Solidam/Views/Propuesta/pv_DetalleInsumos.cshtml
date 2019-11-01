@@ -51,10 +51,6 @@
         <ul class="tags">
             <li>TAGS:</li>
             <li><a href="#">Insumos</a></li>
-            @if (Model.Propuesta.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario)
-            {
-                <li><a href="@Url.Action("Denunciar", "Propuesta", new {id = Model.Propuesta.IdPropuesta})" class="btn btn-danger text-white @(Model.Denuncie ? "disabled" : "")">Denunciar</a></li>
-            }
         </ul>
         <div class="mr-3 d-flex">
             <div class="mb-3">
@@ -87,6 +83,7 @@
                         </div>
                     </form>
                 </div>
+                <div class="ml-5"><a href="@Url.Action("Denunciar", "Propuesta", new {id = Model.Propuesta.IdPropuesta})" class="btn btn-danger text-white @(Model.Denuncie ? "disabled" : "")"><i class="fa fa-flag mr-3" aria-hidden="true"></i>Denunciar</a></div>
             }
             <!-- /article share -->
         </div>
