@@ -3,20 +3,20 @@
 @using Services
 @model Solidam.ViewModel.PropuestaDetalleViewModel
 @{
-    var obtenido = PropuestasDonacionesHorasTrabajoService.GetHorasDonadasByPropuestaId(Model.Propuesta.PropuestasDonacionesHorasTrabajo.FirstOrDefault().IdPropuestaDonacionHorasTrabajo);
+    var obtenido = PropuestasDonacionesHorasTrabajoService.GetHorasDonadasByPropuestaId(Model.Propuesta.IdPropuesta);
     var meta = Model.Propuesta.PropuestasDonacionesHorasTrabajo.FirstOrDefault(pdm => pdm.IdPropuesta == Model.Propuesta.IdPropuesta)?.CantidadHoras;
 }
 @Styles.Render("~/Content/Views/Propuestas/style.css")
 
-<div class="article causes-details mx-auto mt-5 col col-8 card p-4">
+<div class="article causes-details">
     <!-- article img -->
-    <div class="article-img mx-auto">
-        <img width="50%" height="50%" src="@Url.Content($"~/Images/Views/Propuesta/{Model.Propuesta.Foto}")" alt="">
+    <div class="article-img">
+        <img src="@Url.Content($"~/Images/Views/Propuesta/{Model.Propuesta.Foto}")" alt="">
     </div>
     <!-- article img -->
     <!-- causes progress -->
     <div class="clearfix">
-        <div class="causes-progress w-100">
+        <div class="causes-progress">
             <div class="causes-progress-bar">
                 <div style="width: @(obtenido * 100 / meta)%;">
                     <span>@((int)(obtenido * 100 / meta))%</span>
@@ -48,23 +48,22 @@
     </div>
     <!-- /article content -->
     <!-- article tags share -->
-    <div class="article-tags-share d-flex flex-column">
+    <div class="article-tags-share">
         <!-- article tags -->
         <ul class="tags">
             <li>TAGS:</li>
             <li><a href="#">Horas de trabajo</a></li>
+            @if (Model.Propuesta.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario)
+            {
+                <li><a href="@Url.Action("Denunciar", "Propuesta", new {id = Model.Propuesta.IdPropuesta})" class="btn btn-danger text-white @(Model.Denuncie ? "disabled" : "")">Denunciar</a></li>
+            }
         </ul>
-        <div class="ml-auto d-flex">
-            <div class="mb-3 mr-3">
-                @(Model.Propuesta.Valoracion ?? 0)%
-            </div>
-            <div>
-                <i class="far fa-heart"></i>
-            </div>
-        </div>
         <!-- /article tags -->
         <!-- article share -->
-        <div class="d-flex align-items-center justify-content-end">
+        <div class="d-flex align-items-center">
+            <div class="mr-3">
+                (@Model.Propuesta.Valoracion %)
+            </div>
             @if (Model.Propuesta.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario)
             {
                 <div class="d-flex justify-content-between">
@@ -85,7 +84,6 @@
                         </div>
                     </form>
                 </div>
-                <div class="ml-5"><a href="@Url.Action("Denunciar", "Propuesta", new {id = Model.Propuesta.IdPropuesta})" class="btn btn-danger text-white @(Model.Denuncie ? "disabled" : "")"><i class="fa fa-flag mr-3" aria-hidden="true"></i>Denunciar</a></div>
             }
             <!-- /article share -->
         </div>

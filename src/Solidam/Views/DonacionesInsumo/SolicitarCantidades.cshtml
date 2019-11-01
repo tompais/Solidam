@@ -2,7 +2,6 @@
 @{
     ViewBag.Title = "SolicitarCantidades";
 }
-@Styles.Render("~/Content/Views/Propuestas/Detalle.css")
 @model List<Models.DonacionesInsumos>
     <div class="container h-100">
         <h2>Ingresar cantides</h2>
@@ -23,7 +22,7 @@
                         @Html.HiddenFor(m => m[contador].IdPropuestaDonacionInsumo, new { Value = itemRequerido.IdPropuestaDonacionInsumo })
                         contador++;
                     }
-                    <button type="submit" class="btn btn-success mt-5">Confirmar</button>
+                    <button type="submit" class="btn btn-primary mt-5">Confirmar</button>
                 </form>
             </div>
         </div>

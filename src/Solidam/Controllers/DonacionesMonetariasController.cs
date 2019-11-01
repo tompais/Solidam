@@ -16,11 +16,6 @@ namespace Solidam.Controllers
         [HttpPost]
         public ActionResult Crear(DonarViewModel donacion)
         {
-            ModelState.Remove("Propuesta.Nombre");
-            ModelState.Remove("Propuesta.Descripcion");
-            ModelState.Remove("Propuesta.FechaFin");
-            ModelState.Remove("Propuesta.TelefonoContacto");
-            ModelState.Remove("Propuesta.Foto");
             if (!ModelState.IsValid)
             {
                 var propuesta = PropuestaService.GetById(donacion.Propuesta.IdPropuesta);

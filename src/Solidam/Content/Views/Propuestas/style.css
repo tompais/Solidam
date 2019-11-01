@@ -192,6 +192,17 @@ textarea.input {
   padding: 60px 0px;
 }
 
+.section-bg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+}
+
 .section-title {
   margin-bottom: 60px;
 }
