@@ -17,7 +17,7 @@ namespace Solidam.Controllers
     {
         public ActionResult CrearPropuesta()
         {
-            if (PropuestaService.TotalPropuestasActivas() == 3)
+            if(PropuestaService.TotalPropuestasActivas() == 3)
                 return RedirectToAction("Inicio", "Inicio");
 
             return View();
@@ -59,54 +59,12 @@ namespace Solidam.Controllers
         {
             ViewBag.palabra = nombre;
 
-            var propuestaBuscadas = PropuestaService.ObtenerPropuestasPorNombreYUsuario(nombre);
+            var propuestaBuscadas =  PropuestaService.ObtenerPropuestasPorNombreYUsuario(nombre);
 
             return View("PropuestasBuscadas", propuestaBuscadas);
         }
 
-
-        public ActionResult MisPropuestas()
-        {
-
-            var misPropuestas = PropuestaService.ObtenerPropuestasUsuario(SessionHelper.Usuario.IdUsuario, null);
-
-            var cont = 0;
-
-            foreach (var propuesta in misPropuestas)
-            {
-                if (propuesta.Estado == 0)
-                {
-                    cont++;
-                }
-            }
-
-            ViewBag.propuestasCreadas = cont;
-
-            return View("MisPropuestas", misPropuestas);
-        }
-
-        public ActionResult MisPropuestasActivas()
-        {
-            var activa = "activa";
-
-            ViewBag.Activa = activa;
-
-            var misPropuestasActivas = PropuestaService.ObtenerPropuestasUsuario(SessionHelper.Usuario.IdUsuario, activa);
-
-            var cont = 0;
-
-            foreach (var propuesta in misPropuestasActivas)
-            {
-                if (propuesta.Estado == 0)
-                {
-                    cont++;
-                }
-            }
-
-            ViewBag.propuestasCreadas = cont;
-
-            return View("MisPropuestas", misPropuestasActivas);
-        }
+        public ActionResult MisPropuestas() => View("MisPropuestas", PropuestaService.ObtenerPropuestasUsuario(SessionHelper.Usuario.IdUsuario));
 
         [HttpPost]
         public ActionResult Crear(Propuestas p, HttpPostedFileBase foto)
@@ -146,7 +104,7 @@ namespace Solidam.Controllers
         {
             if (SessionHelper.Usuario == null)
             {
-                TempData["pendingRoute"] = Url.Action("Detalle", "Propuesta", new { id });
+                TempData["pendingRoute"] = Url.Action("Detalle", "Propuesta", new {id });
                 return RedirectToAction("Iniciar", "Seguridad");
             }
             var propuesta = PropuestaService.GetById(id);
@@ -189,8 +147,8 @@ namespace Solidam.Controllers
             denuncia.FechaCreacion = DateTime.Now;
             denuncia.IdUsuario = SessionHelper.Usuario.IdUsuario;
             denuncia.Estado = (int)DenunciaEstado.EnRevision;
-            if (DenunciasService.Denuncie(denuncia.IdPropuesta))
-                ModelState.AddModelError("", "Ya existe una denuncia de esta persona para esta propuesta");
+            if(DenunciasService.Denuncie(denuncia.IdPropuesta))
+                ModelState.AddModelError("","Ya existe una denuncia de esta persona para esta propuesta");
             if (!ModelState.IsValid)
             {
                 var motivos = MotivoDenunciaService.GetAll().Select(m => new SelectListItem
