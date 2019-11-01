@@ -54,8 +54,8 @@
             <li>TAGS:</li>
             <li><a href="#">Horas de trabajo</a></li>
         </ul>
-        <div class="mr-3 d-flex">
-            <div class="mb-3">
+        <div class="ml-auto d-flex">
+            <div class="mb-3 mr-3">
                 @(Model.Propuesta.Valoracion ?? 0)%
             </div>
             <div>
@@ -64,7 +64,7 @@
         </div>
         <!-- /article tags -->
         <!-- article share -->
-        <div class="d-flex align-items-center">
+        <div class="d-flex align-items-center justify-content-end">
             @if (Model.Propuesta.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario)
             {
                 <div class="d-flex justify-content-between">
