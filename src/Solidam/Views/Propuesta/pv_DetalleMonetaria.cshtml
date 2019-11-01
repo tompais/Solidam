@@ -7,9 +7,9 @@
     var meta = Model.Propuesta.PropuestasDonacionesMonetarias.FirstOrDefault(pdm => pdm.IdPropuesta == Model.Propuesta.IdPropuesta)?.Dinero;
 }
 @Styles.Render("~/Content/Views/Propuestas/style.css")
-<div class="article causes-details">
+<div class="article causes-details mx-auto mt-5 col col-8 card p-4">
     <!-- article img -->
-    <div class="article-img">
+    <div class="article-img mx-auto">
         <img src="@Url.Content($"~/Images/Views/Propuesta/{Model.Propuesta.Foto}")" alt="">
     </div>
     <!-- article img -->

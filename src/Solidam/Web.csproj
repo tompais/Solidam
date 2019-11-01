@@ -593,6 +593,7 @@
     <Content Include="Content\Views\Inicio\inicioResponsive.css" />
     <Content Include="Content\Views\Propuestas\Detalle.css" />
     <Content Include="Content\Views\Propuestas\pv_Donar.css" />
+    <Content Include="Content\Views\Propuestas\style.css" />
     <Content Include="Content\Views\Shared\pv_Footer.css" />
     <Content Include="Content\Views\Shared\pv_Header.css" />
     <Content Include="Content\Views\Seguridad\IniciarRegistrar.css" />
