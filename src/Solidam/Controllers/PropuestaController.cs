@@ -17,13 +17,8 @@ namespace Solidam.Controllers
     {
         public ActionResult CrearPropuesta()
         {
-<<<<<<< HEAD
             if(PropuestaService.TotalPropuestasActivas() == 3)
                 return RedirectToAction("MiPropuestas", "Propuesta");
-=======
-            if (PropuestaService.TotalPropuestasActivas() == 3)
-                return RedirectToAction("Inicio", "Inicio");
->>>>>>> 2c76a2e284bd8880bb345f580ba9c7f9cf27bfb2
 
             return View();
         }

@@ -2806,11 +2806,9 @@
     <Content Include="Views\Shared\pv_VerPerfil.cshtml" />
     <Content Include="Views\Propuesta\Completada.cshtml" />
     <Content Include="Views\Propuesta\ModificarPropuesta.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Propuesta\pv_MMonetaria.cshtml" />
     <Content Include="Views\Propuesta\pv_MHorasTrabajo.cshtml" />
     <Content Include="Views\Propuesta\pv_MInsumos.cshtml" />
-=======
     <Content Include="Views\Propuesta\pv_DetalleHorasTrabajo.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
     <Content Include="Views\Propuesta\pv_DetalleMonetaria.cshtml" />
@@ -2818,7 +2816,6 @@
     <Content Include="Views\DonacionesMonetarias\pv_DonarMonetaria.cshtml" />
     <Content Include="Views\DonacionesHorasTrabajo\pv_DonarHorasTrabajo.cshtml" />
     <Content Include="Views\DonacionesInsumo\pv_DonarInsumos.cshtml" />
->>>>>>> 2c76a2e284bd8880bb345f580ba9c7f9cf27bfb2
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
