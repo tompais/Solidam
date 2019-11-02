@@ -339,6 +339,7 @@
     <Compile Include="Controllers\DonacionesMonetariasController.cs" />
     <Compile Include="Controllers\DonacionesHorasTrabajoController.cs" />
     <Compile Include="Controllers\DonacionesInsumoController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\PropuestaController.cs" />
@@ -591,6 +592,9 @@
     <Content Include="Content\Views\Inicio\inicio.css" />
     <Content Include="Content\Views\Inicio\inicioResponsive.css" />
     <Content Include="Content\Views\Propuestas\Detalle.css" />
+    <Content Include="Content\Views\Propuestas\MisPropuestas.css" />
+    <Content Include="Content\Views\Propuestas\pv_Donar.css" />
+    <Content Include="Content\Views\Propuestas\style.css" />
     <Content Include="Content\Views\Shared\pv_Footer.css" />
     <Content Include="Content\Views\Shared\pv_Header.css" />
     <Content Include="Content\Views\Seguridad\IniciarRegistrar.css" />
@@ -2747,6 +2751,7 @@
     <Content Include="Scripts\Views\Propuesta\Crear.js" />
     <Content Include="Images\Views\Seguridad\logoBordeBlanco.png" />
     <Content Include="Scripts\Views\Propuesta\Donar.js" />
+    <Content Include="Scripts\Views\Propuesta\MisPropuestas.js" />
     <Content Include="Scripts\Views\Propuesta\Modificar.js" />
     <Content Include="Scripts\Views\Propuesta\ValidarPropuesta.js" />
     <Content Include="Scripts\Views\Seguridad\Iniciar.js" />
@@ -2763,7 +2768,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper-utils.min.js.map" />
@@ -2802,9 +2806,19 @@
     <Content Include="Views\Shared\pv_VerPerfil.cshtml" />
     <Content Include="Views\Propuesta\Completada.cshtml" />
     <Content Include="Views\Propuesta\ModificarPropuesta.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Propuesta\pv_MMonetaria.cshtml" />
     <Content Include="Views\Propuesta\pv_MHorasTrabajo.cshtml" />
     <Content Include="Views\Propuesta\pv_MInsumos.cshtml" />
+=======
+    <Content Include="Views\Propuesta\pv_DetalleHorasTrabajo.cshtml" />
+    <Content Include="Views\Home\Error.cshtml" />
+    <Content Include="Views\Propuesta\pv_DetalleMonetaria.cshtml" />
+    <Content Include="Views\Propuesta\pv_DetalleInsumos.cshtml" />
+    <Content Include="Views\DonacionesMonetarias\pv_DonarMonetaria.cshtml" />
+    <Content Include="Views\DonacionesHorasTrabajo\pv_DonarHorasTrabajo.cshtml" />
+    <Content Include="Views\DonacionesInsumo\pv_DonarInsumos.cshtml" />
+>>>>>>> 2c76a2e284bd8880bb345f580ba9c7f9cf27bfb2
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

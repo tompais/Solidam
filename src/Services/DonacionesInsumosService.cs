@@ -47,5 +47,11 @@ namespace Services
             return Db.PropuestasDonacionesInsumos.Where(p => p.IdPropuesta == idPropuesta).ToList();
         }
 
+        public static int GetCantidadDonadaByObjeto(int idPropuestaDonacionInsumo)
+        {
+            var donaciones = Db.DonacionesInsumos.Where(d => d.IdPropuestaDonacionInsumo == idPropuestaDonacionInsumo)
+                .ToList();
+            return donaciones.Count == 0 ? 0 : donaciones.Sum(d => d.Cantidad);
+        }
     }
 }

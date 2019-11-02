@@ -14,7 +14,7 @@ namespace Services
             p.IdUsuarioCreador = SessionHelper.Usuario.IdUsuario;
             p.Estado = 0;
             p.FechaCreacion = DateTime.Today;
-
+            p.Valoracion = 0;
             Db.Propuestas.Add(p);
             Db.SaveChanges();
         }
@@ -87,7 +87,21 @@ namespace Services
             var cantMg = valoraciones.Count(v => v.Valoracion);
             var propuesta = GetById(id);
             propuesta.Valoracion = cantValoraciones == 0 ? 0 : cantMg * 100 / cantValoraciones;
-            Db.SaveChanges();
+            try
+            {
+                Db.SaveChanges();
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException ex)
+            {
+                foreach (var errors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in errors.ValidationErrors)
+                    {
+                        // get the error message 
+                        string errorMessage = validationError.ErrorMessage;
+                    }
+                }
+            }
         }
 
         public static List<Propuestas> ObtenerPropuestasPorNombreYUsuario(string nombre)
@@ -103,15 +117,22 @@ namespace Services
             return propuestas.ToList();
         }
 
-        public static List<Propuestas> ObtenerPropuestasUsuario(int id)
+        public static List<Propuestas> ObtenerPropuestasUsuario(int id, String activa)
         {
             var misPropuestas = Db.Propuestas.AsQueryable();
 
             if (SessionHelper.Usuario != null)
                 misPropuestas = misPropuestas.Where(u => u.Usuarios.IdUsuario == SessionHelper.Usuario.IdUsuario);
 
+            if (!string.IsNullOrEmpty(activa))
+            {
+                misPropuestas = misPropuestas.Where(p => p.Estado == 0);
+            }
+
             return misPropuestas.ToList();
         }
+
+
 
         public static void Finalizar(int idPropuesta)
         {

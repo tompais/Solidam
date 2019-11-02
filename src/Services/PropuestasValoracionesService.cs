@@ -19,7 +19,22 @@ namespace Services
                 var valore = Valore(model.IdPropuesta);
                 if(valore != null) Db.PropuestasValoraciones.Remove(valore);
                 if(valore == null || valore.Valoracion != model.Valoracion) Db.PropuestasValoraciones.Add(model);
-                Db.SaveChanges();
+
+                try
+                {
+                    Db.SaveChanges();
+                }
+                catch (System.Data.Entity.Validation.DbEntityValidationException ex)
+                {
+                    foreach (var errors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in errors.ValidationErrors)
+                        {
+                            // get the error message 
+                            string errorMessage = validationError.ErrorMessage;
+                        }
+                    }
+                }
             }
         }
 
