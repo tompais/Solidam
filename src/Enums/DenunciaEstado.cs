@@ -9,6 +9,7 @@ namespace Enums
     public enum DenunciaEstado
     {
         EnRevision = 0,
-        Desestimada
+        Desestimada,
+        Aceptada
     }
 }
