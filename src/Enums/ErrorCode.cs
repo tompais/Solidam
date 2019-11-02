@@ -8,7 +8,7 @@
         TipoUsuarioInvalido,
         TokenInvalido,
         UsurioInexistente,
-        AccesoNoAutorizado,
+        UsuarioNoLogueado,
         PerfilInvalido,
         IdNoValido,
         EntidadNoEncontrada,

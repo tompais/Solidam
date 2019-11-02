@@ -11,7 +11,7 @@ using Solidam.ViewModel;
 
 namespace Solidam.Controllers
 {
-    public class DonacionesInsumoController : Controller
+    public class DonacionesInsumoController : BaseController
     {
         // GET: DonacionInsumo
         [HttpPost]

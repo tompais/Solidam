@@ -39,8 +39,8 @@ namespace Solidam.Controllers
             !string.IsNullOrEmpty(UsuarioSesion.Foto) && !string.IsNullOrEmpty(UsuarioSesion.UserName);
 
         private static bool EsBusquedaDePropuesta(string controllerName, string actionName) =>
-            controllerName.Equals(Constant.PropuestaControllerName) &&
-            actionName.Equals(Constant.BuscarPropuestaActionName);
+            controllerName.Equals(Constant.PropuestaControllerName.ToLower()) &&
+            actionName.Equals(Constant.BuscarPropuestaActionName.ToLower());
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
@@ -49,11 +49,19 @@ namespace Solidam.Controllers
             var controllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName.ToLower();
             var actionName = filterContext.ActionDescriptor.ActionName.ToLower();
 
-            if(EstaUsuarioLogueado() && controllerName.Equals(Constant.SeguridadControllerName.ToLower()))
+            if(EstaUsuarioLogueado() 
+               && controllerName.Equals(Constant.SeguridadControllerName.ToLower()))
                 throw new UsuarioLogueadoException();
-            if (!EstaUsuarioLogueado() && !controllerName.Equals(Constant.InicioControllerName.ToLower()) && !controllerName.Equals(Constant.SeguridadControllerName.ToLower()) && !EsBusquedaDePropuesta(controllerName, actionName))
-                throw new AccesoNoAutorizadoException(filterContext.HttpContext.Request.Url?.AbsoluteUri);
-            if(EstaUsuarioLogueado() && !EstaPerfilUsuarioCompleto() && controllerName.Equals(Constant.PropuestaControllerName.ToLower()) && (actionName.Contains("crear") || actionName.Equals(Constant.MisPropuestasActionName.ToLower())))
+            if (!EstaUsuarioLogueado() 
+                && !controllerName.Equals(Constant.InicioControllerName.ToLower()) 
+                && !controllerName.Equals(Constant.SeguridadControllerName.ToLower()) 
+                && !EsBusquedaDePropuesta(controllerName, actionName))
+                throw new UsuarioNoLogueadoException(filterContext.HttpContext.Request.Url?.AbsoluteUri);
+            if(EstaUsuarioLogueado() 
+               && !EstaPerfilUsuarioCompleto() 
+               && (controllerName.Equals(Constant.PropuestaControllerName.ToLower()) 
+               && (actionName.Contains("crear") || actionName.Equals(Constant.MisPropuestasActionName.ToLower()))
+               || controllerName.Contains("donaciones")))
                 throw new PerfilUsuarioNoCompletadoException();
 
         }
@@ -66,7 +74,7 @@ namespace Solidam.Controllers
 
             switch (exception)
             {
-                case AccesoNoAutorizadoException ex:
+                case UsuarioNoLogueadoException ex:
                     filterContext.Result = RedirectToAction("Iniciar", "Seguridad", new { pr = Convert.ToBase64String(Encoding.ASCII.GetBytes(ex.Url)) });
                     break;
                 case PerfilUsuarioNoCompletadoException _:
