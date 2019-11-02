@@ -25,7 +25,7 @@ INSERT INTO [dbo].[Usuarios]
            ,'01/02/1978'
            ,'admin'
            ,'admin@test.com'
-           ,'12121212'
+           ,'07b61d74beda5fee4b834db3c966f0a635a33953' -- Admin2019 --
            ,''
            ,1
            ,getdate()
