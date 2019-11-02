@@ -13,7 +13,7 @@ namespace Solidam.Controllers
     public class UsuarioController : BaseController
     {
         // GET: Perfil
-        [Route("miPerfil")]
+        [Route("perfil")]
         public ActionResult MiPerfil()
         {
             return View(new UsuarioPerfil(SessionHelper.Usuario));

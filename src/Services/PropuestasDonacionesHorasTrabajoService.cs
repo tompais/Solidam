@@ -47,5 +47,12 @@ namespace Services
             PropuestaService.Finalizar(propuesta.IdPropuesta);
             return true;
         }
+
+        public static int GetHorasDonadasByPropuestaId(int propuestaIdPropuesta)
+        {
+            var donaciones = Db.DonacionesHorasTrabajo.Where(d =>
+                d.IdPropuestaDonacionHorasTrabajo == propuestaIdPropuesta).ToList();
+            return donaciones.Count == 0 ? 0 : donaciones.Sum(d => d.Cantidad);
+        }
     }
 }

@@ -5,113 +5,25 @@
 }
 @Styles.Render("~/Content/Views/Inicio/inicio.css")
 @Styles.Render("~/Content/Views/Inicio/inicioResponsive.css")
+@Styles.Render("~/Content/Views/Propuestas/pv_Donar.css")
 <script>
     var pathCrearDonacionInsumo = '@Url.Action("Crear","DonacionesInsumo")';
     var pathInicio = '@Url.Action("Inicio","Inicio")';
 </script>
 @using Enums
 @model Solidam.ViewModel.DonarViewModel
-<div class="container h-100">
-    <h2>Donar para @Model.Propuesta.Nombre</h2>
+<div class="container h-100 mb-5">
+    <h2 class="text-center mb-5">Donar para @Model.Propuesta.Nombre</h2>
     @switch (Model.Propuesta.TipoDonacion)
     {
         case (int)TipoDonacion.Monetaria:
-            var propuestaMonetaria = Model.Propuesta.PropuestasDonacionesMonetarias?.FirstOrDefault(pdm => pdm.IdPropuesta == Model.Propuesta.IdPropuesta);
-            var requerido = propuestaMonetaria?.Dinero;
-            var restante = requerido - Model.DonacionesMonetarias?.Sum(dm => dm.Dinero);
-            <div class="card">
-                <div class="card-header">
-                    Donación monetaria
-                </div>
-                <div class="card-body">
-                    <form method="post" enctype="multipart/form-data" id="form" action="@Url.Action("Crear","DonacionesMonetarias")">
-                        <h5 class="card-title">Requerido: <strong>$ @requerido</strong></h5>
-                        <h3 class="card-title">Restante: <strong>$ @restante</strong></h3>
-                        <div class="form-group">
-                            <label>Ingrese la cantidad de dinero que donará</label>
-                            @Html.EditorFor(model => model.DonacionMonetaria.Dinero, new { htmlAttributes = new { type = "number", @class = "form-control" } })
-                            <div class="errorSolidam"><b>@Html.ValidationMessageFor(model => model.DonacionMonetaria.Dinero, "", new { @class = "text-danger" })</b></div>
-                        </div>
-                        <div class="form-group">
-                            <label>Adjunte el comprobante de la transferencia</label>
-                            @Html.TextBoxFor(model => model.DonacionMonetaria.File, new { type = "file", @class = "form-control" })
-                            <div class="errorSolidam"><b>@Html.ValidationMessageFor(model => model.DonacionMonetaria.File, "", new { @class = "text-danger" })</b></div>
-                        </div>
-                        <input type="hidden" value="@(propuestaMonetaria?.IdPropuestaDonacionMonetaria)" name="DonacionMonetaria.IdPropuestaDonacionMonetaria" />
-                        <input type="hidden" value="@(propuestaMonetaria?.IdPropuesta)" name="Propuesta.IdPropuesta" />
-                        <button type="submit" class="btn btn-primary mt-5">Confirmar</button>
-                    </form>
-                </div>
-            </div>
+            @Html.Partial("~/Views/DonacionesMonetarias/pv_DonarMonetaria.cshtml",Model)
             break;
         case (int)TipoDonacion.HorasDeTrabajo:
-            var propuesta = Model.Propuesta.PropuestasDonacionesHorasTrabajo?.FirstOrDefault(pdm => pdm.IdPropuesta == Model.Propuesta.IdPropuesta);
-            var horasRequeridas = propuesta?.CantidadHoras;
-            var horasRestantes = horasRequeridas - Model.DonacionesHorasTrabajo?.Sum(dm => dm.Cantidad);
-            <div class="card">
-                <div class="card-header">
-                    Donación de horas de trabajo (@(Model.Propuesta.PropuestasDonacionesHorasTrabajo?.FirstOrDefault(pdm => pdm.IdPropuesta == Model.Propuesta.IdPropuesta)?.Profesion))
-                </div>
-                <div class="card-body">
-                    <form method="post" action="@Url.Action("Crear","DonacionesHorasTrabajo")">
-                        <h5 class="card-title">Requerido: <strong>@horasRequeridas hs</strong></h5>
-                        <h3 class="card-title">Restante: <strong>@horasRestantes hs</strong></h3>
-                        <div class="form-group">
-                            <label>Ingrese la cantidad de horas que trabajará</label>
-                            @Html.EditorFor(m => m.DonacionHorasTrabajo.Cantidad, new { htmlAttributes = new { @class = "form-control", type = "number" } })
-                            <div class="errorSolidam"><b>@Html.ValidationMessageFor(model => model.DonacionHorasTrabajo.Cantidad, "", new { @class = "text-danger" })</b></div>
-                        </div>
-                        <input type="hidden" value="@(propuesta?.IdPropuestaDonacionHorasTrabajo)" name="DonacionHorasTrabajo.IdPropuestaDonacionHorasTrabajo" />
-                        <input type="hidden" value="@(propuesta?.IdPropuesta)" name="Propuesta.IdPropuesta" />
-                        <button type="submit" class="btn btn-primary mt-5">Confirmar</button>
-                    </form>
-                </div>
-            </div>
+            @Html.Partial("~/Views/DonacionesHorasTrabajo/pv_DonarHorasTrabajo.cshtml",Model)
             break;
         case (int)TipoDonacion.Insumos:
-            var contador = 0;
-            <script>var propuestaId = @Model.Propuesta.IdPropuesta</script>
-            <div class="card w-50 mx-auto">
-                <div class="card-header">
-                    Donación de Insumos
-                </div>
-                <div class="card-body">
-                    <form action="@Url.Action("SolicitarCantidades","DonacionesInsumo")" method="post">
-                        <h5 class="card-title">Requerido </h5>
-                        <div class="d-flex flex-column">
-                            @Html.HiddenFor(m => m.Propuesta.IdPropuesta,new {Value = Model.Propuesta.IdPropuesta})
-                            @foreach (var itemRequerido in Model.Propuesta.PropuestasDonacionesInsumos)
-                            {
-                                var cantidadObtenida = Model.DonacionesInsumos?.Where(di => di.IdPropuestaDonacionInsumo == itemRequerido.IdPropuestaDonacionInsumo).Sum(d => d.Cantidad) ?? 0;
-                                if (itemRequerido.Cantidad != cantidadObtenida)
-                                {
-                                    <div class="d-flex align-items-center">
-                                        <div class="mr-3">
-                                            <input type="checkbox" name="donaciones[@contador].Seleccionado"/>
-                                        </div>
-                                        <div class="d-flex flex-column">
-                                            <div><strong>(@itemRequerido.Cantidad)</strong> <span class="nombre-item">@itemRequerido.Nombre</span> <span class="ml-4">Restantes: <span class="rest">@(itemRequerido.Cantidad - cantidadObtenida)</span> unidades</span></div>
-                                        </div>
-                                        <input type="hidden" value="@itemRequerido.IdPropuestaDonacionInsumo" name="donaciones[@contador].IdPropuestaDonacionInsumo"/>
-                                        <input type="hidden" value="@itemRequerido.Nombre" name="donaciones[@contador].Nombre"/>
-                                        <input type="hidden" value="@itemRequerido.IdPropuesta" name="donaciones[@contador].IdPropuesta"/>
-                                    </div>
-                                    contador++;
-                                }
-                                else
-                                {
-                                    <div class="d-flex align-items-center">
-                                        <div style="text-decoration: line-through">
-                                            - @itemRequerido.Nombre <span class="ml-4">Restantes: @(itemRequerido.Cantidad - cantidadObtenida) unidades</span>
-                                        </div>
-                                    </div>
-                                }
-                            }
-                        </div>
-                        <button type="submit" id="btnConfirmar" class="btn btn-primary mt-5">Confirmar</button>
-                    </form>
-                </div>
-            </div>
+            @Html.Partial("~/Views/DonacionesInsumo/pv_DonarInsumos.cshtml",Model)
             break;
     }
 </div>

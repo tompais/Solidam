@@ -24,15 +24,16 @@ namespace Filters
             var response = filterContext.HttpContext.Response;
             response.ContentType = Constant.ApplicationJsonUtf8ContentType;
             if (filterContext.Exception is SolidamException) response.StatusCode = (int)HttpStatusCode.InternalServerError;
+            var exceptionResponse = new ExceptionResponse(exception);
             if (filterContext.HttpContext.Request.IsAjaxRequest())
             {
                 filterContext.Result = new JsonResult
                 {
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet,
-                    Data = new ExceptionResponse(exception)
+                    Data = exceptionResponse
                 };
             }
-            var jsonResponse = JsonConvert.SerializeObject(new ExceptionResponse(exception),
+            var jsonResponse = JsonConvert.SerializeObject(exceptionResponse,
                 new JsonSerializerSettings
                 {
                     ContractResolver = new CamelCasePropertyNamesContractResolver()
