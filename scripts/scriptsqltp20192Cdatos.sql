@@ -34,10 +34,10 @@ INSERT INTO [dbo].[Usuarios]
 GO
 
 /****** Inserto datos en usuario y propuestas  ******/
-INSERT INTO Usuarios values ('NOMBRE1','APELLIDO1','19800816','NOMBRE1.APELLIDO1','emailnombre1@gmail.com',123456,null,2,getdate(),1,'ESTEESMITOKEN1'),
-('NOMBRE2','APELLIDO2','19800817','NOMBRE2.APELLIDO2','emailnombre2@gmail.com',123456,null,2,'20191018',1,'ESTEESMITOKEN2'),
-('NOMBRE3','APELLIDO3','19800818','NOMBRE3.APELLIDO3','emailnombre3@gmail.com',123456,null,2,'20191018',1,'ESTEESMITOKEN3'),
-('NOMBRE4','APELLIDO4','19800819','NOMBRE4.APELLIDO4','emailnombre4@gmail.com',123456,null,2,'20191018',1,'ESTEESMITOKEN4')
+INSERT INTO Usuarios values ('Martin','Gallego','19800816','MARTIN.GALLEGO','mgallego@gmail.com','a8dfb6a119f1577637876c472c8922c8190fd923',null,2,getdate(),1,'ESTEESMITOKEN1'), -- Pass Mgallego1234
+('Juan','Alberto','19800817','JUAN.ALBERTO','jalberto@gmail.com','7dc43d4f66157297aa95baf8b3a3fae72178615e',null,2,'20191018',1,'ESTEESMITOKEN2'), -- Pass Jalberto1234
+('Ezequiel','Rojas','19800818','EZEQUIEL.ROJAS','erojas@gmail.com','99741c1697426292ad19df50ebbc28b837449f90',null,2,'20191018',1,'ESTEESMITOKEN3'), -- Pass Erojas1234
+('Esteban','Gonzalez','19800819','ESTEBAN.GONZALEZ','egonzalez@gmail.com','b1fd4792bcdfddab8f3102c4dd7924eddbf43574',null,2,'20191018',1,'ESTEESMITOKEN4') -- Pass Egonzalez1234
 GO
 
 select * from Propuestas
