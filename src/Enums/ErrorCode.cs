@@ -13,6 +13,7 @@
         IdNoValido,
         EntidadNoEncontrada,
         PerfilUsuarioCompletado,
-        PerfilUsuarioNoCompletado
+        PerfilUsuarioNoCompletado,
+        UsuarioLogueado
     }
 }

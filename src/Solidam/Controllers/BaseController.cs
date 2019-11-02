@@ -49,6 +49,8 @@ namespace Solidam.Controllers
             var controllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName.ToLower();
             var actionName = filterContext.ActionDescriptor.ActionName.ToLower();
 
+            if(EstaUsuarioLogueado() && controllerName.Equals(Constant.SeguridadControllerName.ToLower()))
+                throw new UsuarioLogueadoException();
             if (!EstaUsuarioLogueado() && !controllerName.Equals(Constant.InicioControllerName.ToLower()) && !controllerName.Equals(Constant.SeguridadControllerName.ToLower()) && !EsBusquedaDePropuesta(controllerName, actionName))
                 throw new AccesoNoAutorizadoException(filterContext.HttpContext.Request.Url?.AbsoluteUri);
             if(EstaUsuarioLogueado() && !EstaPerfilUsuarioCompleto() && controllerName.Equals(Constant.PropuestaControllerName.ToLower()) && (actionName.Contains("crear") || actionName.Equals(Constant.MisPropuestasActionName.ToLower())))
@@ -70,6 +72,9 @@ namespace Solidam.Controllers
                 case PerfilUsuarioNoCompletadoException _:
                     SessionHelper.MostrePopUpCompletarPerfil = false;
                     filterContext.Result = RedirectToAction("MiPerfil", "Usuario");
+                    break;
+                case UsuarioLogueadoException _:
+                    filterContext.Result = RedirectToAction("Inicio", "Inicio");
                     break;
                 default:
                     Response.Clear();
