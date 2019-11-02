@@ -14,7 +14,7 @@ namespace Models
         [Required(ErrorMessage = "Debe poner una descripción")]
         public string Descripcion { get; set; }
         [Required(ErrorMessage = "Debe poner una fecha de finalización")]
-        [CustomRangoFecha(ErrorMessage = "Debe ser una fecha superior a la actual")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyy}")]
         public DateTime FechaFin { get; set; }
         [Required(ErrorMessage = "Debe poner un teléfono de contacto")]
         public string TelefonoContacto { get; set; }
