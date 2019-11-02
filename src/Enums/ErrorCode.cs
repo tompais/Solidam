@@ -14,6 +14,7 @@
         EntidadNoEncontrada,
         PerfilUsuarioCompletado,
         PerfilUsuarioNoCompletado,
-        UsuarioLogueado
+        UsuarioLogueado,
+        UsuarioNoAutorizado
     }
 }

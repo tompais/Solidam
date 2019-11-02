@@ -7,7 +7,7 @@ using Services;
 
 namespace Solidam.Controllers
 {
-    public class DenunciasController : Controller
+    public class DenunciasController : BaseController
     {
         // GET: Denuncias
         [Route("denuncias")]
