@@ -17,15 +17,19 @@ namespace Solidam.Controllers
     {
         public ActionResult CrearPropuesta()
         {
-            if (PropuestaService.TotalPropuestasActivas() == 3)
-                return RedirectToAction("Inicio", "Inicio");
+            if(PropuestaService.TotalPropuestasActivas() == 3)
+                return RedirectToAction("MiPropuestas", "Propuesta");
 
             return View();
         }
 
         public ActionResult ModificarPropuesta(int id)
         {
-            return View(PropuestaService.GetById(id));
+            Propuestas p = PropuestaService.GetById(id);
+
+            ViewBag.fecha = p.FechaFin < DateTime.Today ? false : true;
+
+            return View(p);
         }
 
         [HttpPost]
@@ -47,12 +51,17 @@ namespace Solidam.Controllers
 
                 PropuestaService.Actualizar(p);
 
+                System.IO.File.Delete(path + fotoVieja);
+
                 foto.SaveAs(path + Path.GetFileName(foto.FileName));
             }
             else
+            {
+                p.Foto = null;
                 PropuestaService.Actualizar(p);
+            }
 
-            return View();
+            return RedirectToAction("MiPropuestas", "Propuesta");
         }
 
         public ActionResult Buscar(string nombre)

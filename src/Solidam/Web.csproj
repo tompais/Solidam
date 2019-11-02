@@ -2753,6 +2753,7 @@
     <Content Include="Scripts\Views\Propuesta\Donar.js" />
     <Content Include="Scripts\Views\Propuesta\MisPropuestas.js" />
     <Content Include="Scripts\Views\Propuesta\Modificar.js" />
+    <Content Include="Scripts\Views\Propuesta\ValidarPropuesta.js" />
     <Content Include="Scripts\Views\Seguridad\Iniciar.js" />
     <Content Include="Scripts\Views\Seguridad\Registrar.js" />
     <Content Include="Scripts\Views\Seguridad\RegistroExitoso.js" />
@@ -2805,6 +2806,9 @@
     <Content Include="Views\Shared\pv_VerPerfil.cshtml" />
     <Content Include="Views\Propuesta\Completada.cshtml" />
     <Content Include="Views\Propuesta\ModificarPropuesta.cshtml" />
+    <Content Include="Views\Propuesta\pv_MMonetaria.cshtml" />
+    <Content Include="Views\Propuesta\pv_MHorasTrabajo.cshtml" />
+    <Content Include="Views\Propuesta\pv_MInsumos.cshtml" />
     <Content Include="Views\Propuesta\pv_DetalleHorasTrabajo.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
     <Content Include="Views\Propuesta\pv_DetalleMonetaria.cshtml" />
