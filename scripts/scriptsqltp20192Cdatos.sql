@@ -41,41 +41,41 @@ INSERT INTO Usuarios values ('NOMBRE1','APELLIDO1','19800816','NOMBRE1.APELLIDO1
 GO
 
 select * from Propuestas
-INSERT INTO Propuestas values('Nombre propuesta 1',
+INSERT INTO Propuestas values('Construir refugio de Animales',
 't is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text',
-'20191017','20191224','1112333333',1,'',2,0,8)
+'20191017','20191224','1112333333',1,'RefugioAnimales.jpg',2,0,8)
 GO
 
 INSERT INTO PropuestasDonacionesMonetarias values (1,300000,'552543245432')
 GO
 
-INSERT INTO Propuestas values('Nombre propuesta 2',
+INSERT INTO Propuestas values('Juntos Somos Bosque',
 't is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text',
-'20191017','20191224','1112312121',1,'',1,0,6)
+'20191017','20191224','1112312121',1,'JuntosSomosBosque.jpg',1,0,6)
 GO
 
 INSERT INTO PropuestasDonacionesMonetarias values (2,34575,'132132123321')
 GO
 
-INSERT INTO Propuestas values('Nombre propuesta 3',
+INSERT INTO Propuestas values('Perchero Solidario',
 't is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text',
-'20191017','20191224','112457545',2,'',3,0,7)
+'20191017','20191224','112457545',2,'PercheroSolidario.jpg',3,0,7)
 GO
 
 INSERT INTO PropuestasDonacionesInsumos values (3,'object',20)
 GO
 
-INSERT INTO Propuestas values('Nombre propuesta 4',
+INSERT INTO Propuestas values('Reforma del Centro de Salud 98',
 't is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text',
-'20191017','20191224','1112345678',3,'',4,0,9)
+'20191017','20191224','1112345678',3,'ReformaCentroDeSalud.jpg',4,0,9)
 GO
 
 INSERT INTO PropuestasDonacionesHorasTrabajo values(4,36,'Carpintero')
 GO
 
-INSERT INTO Propuestas values('Nombre propuesta 5',
+INSERT INTO Propuestas values('Ayuda a Venezuela',
 't is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text',
-'20191017','20191224','123575554',2,'',1,0,5)
+'20191017','20191224','123575554',2,'AyudaVenezuela.jpg',1,0,5)
 GO
 
 INSERT INTO PropuestasDonacionesInsumos values (5,'object2',1000)
