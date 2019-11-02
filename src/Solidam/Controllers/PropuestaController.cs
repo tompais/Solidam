@@ -18,14 +18,18 @@ namespace Solidam.Controllers
         public ActionResult CrearPropuesta()
         {
             if(PropuestaService.TotalPropuestasActivas() == 3)
-                return RedirectToAction("Inicio", "Inicio");
+                return RedirectToAction("MiPropuestas", "Propuesta");
 
             return View();
         }
 
         public ActionResult ModificarPropuesta(int id)
         {
-            return View(PropuestaService.GetById(id));
+            Propuestas p = PropuestaService.GetById(id);
+
+            ViewBag.fecha = p.FechaFin < DateTime.Today ? false : true;
+
+            return View(p);
         }
 
         [HttpPost]

@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "CrearPropuesta";
+    ViewBag.Title = "Crear Propuesta";
     Layout = "~/Views/Shared/_PropuestasLayout.cshtml";
 
     List<SelectListItem> lst = new List<SelectListItem>();
@@ -16,11 +16,9 @@
 
 @model Models.Propuestas
 
-<script> var tipoDonacion = @Model.TipoDonacion; </script>
-
 <div class="container">
     <h2>Crear Propuesta</h2>
-    <form action="/Propuesta/Crear" method="post" class="mt-4 mx-auto col-xl-7 col-sm-5" enctype="multipart/form-data">
+    <form action="/Propuesta/Crear" id="formPropuesta" method="post" class="mt-4 mx-auto col-xl-7 col-sm-5" enctype="multipart/form-data">
         <div class="form-group">
             <label for="nombrePropuesta">Nombre de la propuesta</label>
             @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", @type = "text" } })
@@ -68,26 +66,26 @@
         <div class="form-group">
             <label for="nombreRef1">Referencia 1</label>
             <input type="text" class="form-control" id="nombreRef1" name="PropuestasReferencias[0].Nombre" />
-            <div id="errorRN1" class="error">
-                <i class="fas fa-exclamation-triangle mr-2"></i><span></span>
+            <div id="errorRN1" class="error text-danger">
+                <span></span>
             </div>
 
             <label for="telefonoRef1">Teléfono</label>
             <input type="text" class="form-control" id="telefonoRef1" name="PropuestasReferencias[0].Telefono" />
-            <div id="errorRT1" class="error">
-                <i class="fas fa-exclamation-triangle mr-2"></i><span></span>
+            <div id="errorRT1" class="error text-danger">
+                <span></span>
             </div>
 
             <label for="nombreRef2">Referencia 2</label>
             <input type="text" class="form-control" id="nombreRef2" name="PropuestasReferencias[1].Nombre" />
-            <div id="errorRN2" class="error">
-                <i class="fas fa-exclamation-triangle mr-2"></i><span></span>
+            <div id="errorRN2" class="error text-danger">
+                <span></span>
             </div>
 
             <label for="telefonoRef2">Teléfono</label>
             <input type="text" class="form-control" id="telefonoRef2" name="PropuestasReferencias[1].Telefono" />
-            <div id="errorRT2" class="error">
-                <i class="fas fa-exclamation-triangle mr-2"></i><span></span>
+            <div id="errorRT2" class="error text-danger">
+                <span></span>
             </div>
         </div>
 

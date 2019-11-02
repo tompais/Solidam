@@ -1,5 +1,7 @@
 ﻿@model Models.Propuestas
 
+<script> var i = @Model.PropuestasDonacionesInsumos.Count(); </script>
+
 <div class="form-group">
     <div class="row">
         @for (int i = 0; i < Model.PropuestasDonacionesInsumos.Count(); i++)
@@ -14,8 +16,8 @@
                 <input type='number' class='form-control' id='cantInsumos-@i' name='PropuestasDonacionesInsumos[@i].Cantidad' value="@Model.PropuestasDonacionesInsumos.ElementAt(i).Cantidad" />
             </div>
         }
-        <div id="errorInsumos" class="error">
-            <i class="fas fa-exclamation-triangle mr-2"></i><span></span>
-        </div>
+    </div>
+    <div id="errorInsumos" class="error text-danger">
+        <span></span>
     </div>
 </div>
