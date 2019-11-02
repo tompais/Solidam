@@ -144,11 +144,6 @@ namespace Solidam.Controllers
 
         public ActionResult Detalle(int id)
         {
-            if (SessionHelper.Usuario == null)
-            {
-                TempData["pendingRoute"] = Url.Action("Detalle", "Propuesta", new { id });
-                return RedirectToAction("Iniciar", "Seguridad");
-            }
             var propuesta = PropuestaService.GetById(id);
             var propuestaDetalleViewModel = new PropuestaDetalleViewModel
             {

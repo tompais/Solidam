@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Text;
 using System.Web.Mvc;
 using Helpers;
 using Models;
@@ -10,13 +12,14 @@ namespace Solidam.Controllers
     public class SeguridadController : Controller
     {
         [Route("login")]
-        public ActionResult Iniciar()
+        public ActionResult Iniciar(string pr)
         {
+            ViewBag.PendingRoute = pr;
             return View();
         }
 
         [HttpPost]
-        public ActionResult Loguear(UsuariosLogin model)
+        public ActionResult Loguear(UsuariosLogin model, string pr)
         {
             var inicioViewModel = new InicioViewModel();
 
@@ -29,10 +32,8 @@ namespace Solidam.Controllers
 
             SessionHelper.Usuario = usuarioLoguear;
 
-            if (TempData["pendingRoute"] == null) return RedirectToAction("Inicio", "Inicio");
-            var rutaPendiente = TempData["pendingRoute"].ToString();
-            TempData["pendingRoute"] = null;
-            return Redirect(rutaPendiente);
+            if (pr == null) return RedirectToAction("Inicio", "Inicio");
+            return Redirect( Encoding.ASCII.GetString(Convert.FromBase64String(pr)));
 
         }
 
