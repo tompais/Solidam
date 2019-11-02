@@ -8,9 +8,9 @@
 }
 @Styles.Render("~/Content/Views/Propuestas/style.css")
 
-<div class="article causes-details">
+<div class="article causes-details mx-auto mt-5 col col-8 card p-4">
     <!-- article img -->
-    <div class="article-img">
+    <div class="article-img mx-auto">
         <img src="@Url.Content($"~/Images/Views/Propuesta/{Model.Propuesta.Foto}")" alt="">
     </div>
     <!-- article img -->
@@ -39,6 +39,7 @@
             {
                 var objetosDonados = DonacionesInsumosService.GetCantidadDonadaByObjeto(prop.IdPropuestaDonacionInsumo);
                 <li>
+                    @if(objetosDonados == prop.Cantidad) {<i class="fa fa-check mr-3" aria-hidden="true"></i> }
                     @prop.Nombre: <strong class="ml-4"> @objetosDonados objetos donados de @prop.Cantidad unidades</strong>
                 </li>
             }
@@ -46,22 +47,23 @@
     </div>
     <!-- /article content -->
     <!-- article tags share -->
-    <div class="article-tags-share">
+    <div class="article-tags-share d-flex flex-column">
         <!-- article tags -->
         <ul class="tags">
             <li>TAGS:</li>
             <li><a href="#">Insumos</a></li>
-            @if (Model.Propuesta.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario)
-            {
-                <li><a href="@Url.Action("Denunciar", "Propuesta", new {id = Model.Propuesta.IdPropuesta})" class="btn btn-danger text-white @(Model.Denuncie ? "disabled" : "")">Denunciar</a></li>
-            }
         </ul>
+        <div class="ml-auto d-flex">
+            <div class="mb-3 mr-3">
+                @(Model.Propuesta.Valoracion ?? 0)%
+            </div>
+            <div>
+                <i class="far fa-heart"></i>
+            </div>
+        </div>
         <!-- /article tags -->
         <!-- article share -->
-        <div class="d-flex align-items-center">
-            <div class="mr-3">
-                (@Model.Propuesta.Valoracion %)
-            </div>
+        <div class="d-flex align-items-center justify-content-end">
             @if (Model.Propuesta.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario)
             {
                 <div class="d-flex justify-content-between">
@@ -82,6 +84,7 @@
                         </div>
                     </form>
                 </div>
+                <div class="ml-5"><a href="@Url.Action("Denunciar", "Propuesta", new {id = Model.Propuesta.IdPropuesta})" class="btn btn-danger text-white @(Model.Denuncie ? "disabled" : "")"><i class="fa fa-flag mr-3" aria-hidden="true"></i>Denunciar</a></div>
             }
             <!-- /article share -->
         </div>
