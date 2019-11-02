@@ -336,6 +336,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\DenunciasController.cs" />
     <Compile Include="Controllers\DonacionesMonetariasController.cs" />
     <Compile Include="Controllers\DonacionesHorasTrabajoController.cs" />
     <Compile Include="Controllers\DonacionesInsumoController.cs" />
@@ -2816,6 +2817,7 @@
     <Content Include="Views\DonacionesMonetarias\pv_DonarMonetaria.cshtml" />
     <Content Include="Views\DonacionesHorasTrabajo\pv_DonarHorasTrabajo.cshtml" />
     <Content Include="Views\DonacionesInsumo\pv_DonarInsumos.cshtml" />
+    <Content Include="Views\Denuncias\Gestion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
