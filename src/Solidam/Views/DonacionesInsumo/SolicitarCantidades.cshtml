@@ -11,7 +11,7 @@
                 Donación de insumos
             </div>
             <div class="card-body">
-                <form method="post" id="form" action="@Url.Action("Crear", "DonacionesInsumo")">
+                <form method="post" id="form" action="@Url.Action("Donar", "DonacionesInsumo")">
                     @{ var contador = 0; }
                     @foreach (var itemRequerido in ViewBag.donaciones)
                     {

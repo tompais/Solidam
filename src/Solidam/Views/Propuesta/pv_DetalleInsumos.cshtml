@@ -18,7 +18,7 @@
     <div class="clearfix">
         @if (Model.Propuesta.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario)
         {
-            <a href="@Url.Action("Donar", "Propuesta", new {id = Model.Propuesta.IdPropuesta})" class="primary-button causes-donate">Donar ahora</a>
+            <a href="@Url.Action("Donar", "DonacionesInsumo", new {id = Model.Propuesta.IdPropuesta})" class="primary-button causes-donate">Donar ahora</a>
         }
     </div>
     <!-- /causes progress -->

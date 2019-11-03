@@ -15,7 +15,7 @@ namespace Solidam.Controllers
     {
         // GET: DonacionInsumo
         [HttpPost]
-        public ActionResult Crear(List<DonacionesInsumos> donaciones)
+        public ActionResult Donar(List<DonacionesInsumos> donaciones)
         {
             var propuestaId =
                 PropuestasDonacionesInsumosService.GetPropuestaId(donaciones[0].IdPropuestaDonacionInsumo);
@@ -39,9 +39,21 @@ namespace Solidam.Controllers
                 SessionHelper.IdPropuestaCompletada = propuestaId;
                 return RedirectToAction("Completada", "Propuesta");
             }
-            return RedirectToAction("Donar", "Propuesta", new { id = propuestaId });
+            return RedirectToAction("Donar", "DonacionesInsumo", new { id = propuestaId });
         }
-
+        [HttpGet]
+        public ActionResult Donar(int id)
+        {
+            var propuesta = PropuestaService.GetById(id);
+            DonarViewModel dvm = new DonarViewModel
+            {
+                Propuesta = propuesta,
+                DonacionesMonetarias = DonacionesMonetariasService.GetById(id),
+                DonacionesHorasTrabajo = DonacionesHorasTrabajoService.GetById(id),
+                DonacionesInsumos = DonacionesInsumosService.GetById(id)
+            };
+            return View("~/Views/Propuesta/Donar.cshtml", dvm);
+        }
         [HttpPost]
         public ActionResult SolicitarCantidades(List<DonacionesInsumoDto> donaciones)
         {

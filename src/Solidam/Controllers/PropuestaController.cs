@@ -223,18 +223,24 @@ namespace Solidam.Controllers
             return RedirectToAction("Inicio", "Inicio");
         }
 
-        public ActionResult Donar(int id)
-        {
-            var propuesta = PropuestaService.GetById(id);
-            var dvm = new DonarViewModel
-            {
-                Propuesta = propuesta,
-                DonacionesMonetarias = DonacionesMonetariasService.GetById(id),
-                DonacionesHorasTrabajo = DonacionesHorasTrabajoService.GetById(id),
-                DonacionesInsumos = DonacionesInsumosService.GetById(id)
-            };
-            return View(dvm);
-        }
+        //public ActionResult Donar(int id)
+        //{
+        //    var propuesta = PropuestaService.GetById(id);
+            
+        //    var dvm = new DonarViewModel
+        //    {
+        //        Propuesta = propuesta,
+        //        DonacionesMonetarias = DonacionesMonetariasService.GetById(id),
+        //        DonacionesHorasTrabajo = DonacionesHorasTrabajoService.GetById(id),
+        //        DonacionesInsumos = DonacionesInsumosService.GetById(id)
+        //    };
+        //    switch (propuesta.TipoDonacion)
+        //    {
+        //        case (int)TipoDonacion.Monetaria:
+        //            return RedirectToAction("Crear", "DonacionesMonetarias", new {dvm = dvm});
+        //    }
+        //    return View(dvm);
+        //}
 
         public ActionResult Completada()
         {
