@@ -244,6 +244,7 @@ namespace Solidam.Controllers
 
         public ActionResult Completada()
         {
+            PropuestaService.Finalizar(SessionHelper.IdPropuestaCompletada);
             return View(PropuestaService.GetById(SessionHelper.IdPropuestaCompletada));
         }
     }
