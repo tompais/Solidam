@@ -219,6 +219,7 @@ namespace Solidam.Controllers
             }
 
             DenunciasService.Crear(denuncia);
+            PropuestaService.Instance.PonerPropuestaEnRevision(denuncia.IdPropuesta);
             return RedirectToAction("Inicio", "Inicio");
         }
 

@@ -1,4 +1,5 @@
-﻿@using Helpers
+﻿@using Enums
+@using Helpers
 @Styles.Render("~/Content/Views/Shared/pv_Header.css")
 
 <!-- Header Por Defecto -->
@@ -63,6 +64,12 @@
                                             {
                                                 <li class="nav-item">
                                                     <a class="nav-link" href="@Url.Action("MisPropuestas","Propuesta")"><i class="fa fa-id-card mr-1"></i>Mis Propuestas</a>
+                                                </li>
+                                            }
+                                            @if (SessionHelper.Usuario.TipoUsuario == (int)TipoUsuario.Administrador)
+                                            {
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="@Url.Action("Gestion","Denuncias")"><i class="fas fa-tasks mr-1"></i>Denuncias</a>
                                                 </li>
                                             }
                                             <li class="nav-item">

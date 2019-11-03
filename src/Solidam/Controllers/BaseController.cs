@@ -4,6 +4,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Enums;
 using Exceptions;
 using Helpers;
 using Models;
@@ -32,6 +33,8 @@ namespace Solidam.Controllers
         }
 
         private static bool EstaUsuarioLogueado() => UsuarioSesion != null;
+
+        private static bool EsUsuarioAdministrador() => UsuarioSesion.TipoUsuario == (int) TipoUsuario.Administrador;
 
         private static bool EstaPerfilUsuarioCompleto() =>
             !string.IsNullOrEmpty(UsuarioSesion.Nombre) &&
@@ -63,6 +66,7 @@ namespace Solidam.Controllers
                && (actionName.Contains("crear") || actionName.Equals(Constant.MisPropuestasActionName.ToLower()))
                || controllerName.Contains("donaciones")))
                 throw new PerfilUsuarioNoCompletadoException();
+            if(EstaUsuarioLogueado() && !EsUsuarioAdministrador() && controllerName.Equals(Constant.DenunciasControllerName.ToLower())) throw new UsuarioNoAutorizadoException();
 
         }
 
@@ -82,6 +86,7 @@ namespace Solidam.Controllers
                     filterContext.Result = RedirectToAction("MiPerfil", "Usuario");
                     break;
                 case UsuarioLogueadoException _:
+                case UsuarioNoAutorizadoException _:
                     filterContext.Result = RedirectToAction("Inicio", "Inicio");
                     break;
                 default:

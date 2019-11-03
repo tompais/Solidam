@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UsuarioNoAutorizadoException.cs" />
     <Compile Include="UsuarioNoLogueadoException.cs" />
     <Compile Include="EntidadNoEncontradaException.cs" />
     <Compile Include="ExceptionResponse.cs" />
