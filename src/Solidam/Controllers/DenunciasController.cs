@@ -43,5 +43,12 @@ namespace Solidam.Controllers
             var recordsTotal = DenunciasService.Instance.Get(null).Count;
             return Json(new {draw, recordsFiltered, recordsTotal, data });
         }
+
+        [HttpPost]
+        public JsonResult ModificarEstadoDenuncia(Denuncias denuncia)
+        {
+            DenunciasService.Instance.Put(denuncia);
+            return Json(string.Empty);
+        }
     }
 }

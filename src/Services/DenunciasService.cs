@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web;
 using DTO;
 using Enums;
+using Exceptions;
 using Helpers;
 using Interfaces;
 using Models;
@@ -14,7 +15,7 @@ using MotivoDenuncia = Models.MotivoDenuncia;
 
 namespace Services
 {
-    public class DenunciasService : BaseService<DenunciasService>, IGetService<Denuncias>
+    public class DenunciasService : BaseService<DenunciasService>, IFullGetService<Denuncias>, IPutService<Denuncias>
     {
         private DenunciasService()
         {
@@ -34,7 +35,7 @@ namespace Services
 
         public List<Denuncias> Get(Denuncias model)
         {
-            var denuncias = Db.Denuncias.Where(denuncia => denuncia.Propuestas.Estado != (int) PropuestaEstado.Bloqueada && (denuncia.Propuestas.Estado != (int)PropuestaEstado.Cerrada || DateTime.Now <= denuncia.Propuestas.FechaFin));
+            var denuncias = Db.Denuncias.Where(denuncia => denuncia.Estado == (int) DenunciaEstado.EnRevision && denuncia.Propuestas.Estado != (int) PropuestaEstado.Bloqueada && (denuncia.Propuestas.Estado != (int)PropuestaEstado.Cerrada || DateTime.Now <= denuncia.Propuestas.FechaFin)).ToList().AsQueryable();
 
             if (model == null) return denuncias.ToList();
             if (model.MotivoDenuncia != null && !string.IsNullOrEmpty(model.MotivoDenuncia.Descripcion))
@@ -56,7 +57,7 @@ namespace Services
                 Comentarios = denuncia.Comentarios,
                 FechaCreacion = denuncia.FechaCreacion,
                 Motivo = denuncia.MotivoDenuncia.Descripcion,
-                Propuesta = $"{Constant.PropuestaControllerName}/Detalle?id={denuncia.Propuestas.IdPropuesta}"
+                Propuesta = $"/{Constant.PropuestaControllerName}/Detalle?id={denuncia.Propuestas.IdPropuesta}"
             });
 
             if (!string.IsNullOrEmpty(sortColumn) && !string.IsNullOrEmpty(sortDir))
@@ -68,6 +69,25 @@ namespace Services
                 denunciasDTO = denunciasDTO.Skip((int) pager.Start).Take((int) pager.Size);
 
             return denunciasDTO.ToList();
+        }
+
+        public Denuncias Put(Denuncias model)
+        {
+            var denuncia = GetById((ulong) model.IdDenuncia);
+            if(denuncia == null) throw new IdNoValidoException(typeof(Denuncias), (ulong) model.IdDenuncia);
+            if (model.Estado >= 0)
+            {
+                if (model.Estado == (int) DenunciaEstado.Aceptada)
+                    denuncia.Propuestas.Estado = (int) PropuestaEstado.Bloqueada;
+                denuncia.Estado = model.Estado;
+            }
+            Db.SaveChanges();
+            return denuncia;
+        }
+
+        public Denuncias GetById(ulong id)
+        {
+            return Db.Denuncias.FirstOrDefault(denuncia => denuncia.IdDenuncia == (int) id);
         }
     }
 }

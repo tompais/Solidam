@@ -1,6 +1,6 @@
 ﻿var tableDenuncias = $("#tableDenuncias");
 
-tableDenuncias.dataTable({
+var dataTable = tableDenuncias.DataTable({
     "processing": true,
     "serverSide": true,
     "filter": true,
@@ -50,7 +50,7 @@ tableDenuncias.dataTable({
             "name": "Propuesta",
             "autoWidth": true,
             "render": function (data, type, full, meta) {
-                var url = window.location.protocol + '//' + window.location.host + '/' + full.Propuesta;
+                var url = window.location.protocol + '//' + window.location.host + full.Propuesta;
                 var anchorPropuesta = $("<a href='" + url + "'>").text(url);
                 return anchorPropuesta.prop("outerHTML");
             }
@@ -65,8 +65,10 @@ tableDenuncias.dataTable({
             "name": "Acciones",
             "render": function(data, type, full, meta) {
                 var divAcciones = $("<div class='d-flex justify-content-around align-items-center'>");
-                var btnDesestimar = $("<button type='button' class='btn btn-success'>").text("Desestimar");
-                var btnAceptar = $("<button type='button' class='btn btn-danger'>").text("Aceptar");
+                var btnDesestimar = $("<button type='button' class='btn btn-success desestimar-btn' id-denuncia='" + full.IdDenuncia + "'>").text("Desestimar");
+                var btnAceptar = $("<button type='button' class='btn btn-danger aceptar-btn' id-denuncia='" + full.IdDenuncia + "'>").text("Aceptar").click(function() {
+                    modificarEstadoDenuncia(full.IdDenuncia, 2);
+                });
                 divAcciones.append(btnDesestimar);
                 divAcciones.append(btnAceptar);
                 return divAcciones.prop('outerHTML');
@@ -75,5 +77,30 @@ tableDenuncias.dataTable({
     ],
     "language": {
         "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+    },
+    "drawCallback": function (settings) {
+        $(".desestimar-btn").click(function() {
+            modificarEstadoDenuncia(parseInt($(this).attr("id-denuncia")), 1);
+        });
+
+        $(".aceptar-btn").click(function () {
+            modificarEstadoDenuncia(parseInt($(this).attr("id-denuncia")), 2);
+        });
     }
 }); 
+
+function modificarEstadoDenuncia(idDenuncia, estado) {
+    $.ajax({
+        contentType: 'application/json; charset=UTF-8',
+        cache: false,
+        data: JSON.stringify({
+            idDenuncia: idDenuncia,
+            estado: estado
+        }),
+        method: "POST",
+        url: "/Denuncias/ModificarEstadoDenuncia",
+        success: function (data, extStatus, jqXHR) {
+            dataTable.ajax.reload();
+        }
+    });
+}
