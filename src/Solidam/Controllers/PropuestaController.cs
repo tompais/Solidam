@@ -18,7 +18,7 @@ namespace Solidam.Controllers
         public ActionResult CrearPropuesta()
         {
             if(PropuestaService.TotalPropuestasActivas() == 3)
-                return RedirectToAction("MiPropuestas", "Propuesta");
+                return RedirectToAction("MisPropuestas", "Propuesta");
 
             return View();
         }
@@ -61,7 +61,7 @@ namespace Solidam.Controllers
                 PropuestaService.Actualizar(p);
             }
 
-            return RedirectToAction("MiPropuestas", "Propuesta");
+            return RedirectToAction("MisPropuestas", "Propuesta");
         }
 
         public ActionResult Buscar(string nombre)
