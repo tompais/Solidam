@@ -1,11 +1,21 @@
-﻿.footer-area {
-    background: #000000;
+﻿.footerSolidam {
+    background-color: black;
+    color: white;
 }
 
-    .footer-area .copyright {
-        margin-bottom: 0;
+@media (min-width: 1000px) {
+    .footerAlt {
+        background-color: black;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        color: white;
     }
+}
 
-        .footer-area .copyright a {
-            color: #ea2c58;
-        }
+@media (min-width: 400px) {
+    .footerAlt {
+        background-color: black;
+        color: white;
+    }
+}
