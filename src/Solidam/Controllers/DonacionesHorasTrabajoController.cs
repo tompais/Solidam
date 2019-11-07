@@ -39,7 +39,7 @@ namespace Solidam.Controllers
                 SessionHelper.IdPropuestaCompletada = donacion.Propuesta.IdPropuesta;
                 return RedirectToAction("Completada", "Propuesta");
             }
-            return RedirectToAction("Donar","DonacionesHorasTrabajo",new {id = donacion.DonacionHorasTrabajo.PropuestasDonacionesHorasTrabajo.IdPropuesta});
+            return RedirectToAction("Detalle","Propuesta",new {id = donacion.DonacionHorasTrabajo.PropuestasDonacionesHorasTrabajo.IdPropuesta});
         }
         [HttpGet]
         public ActionResult Donar(int id)

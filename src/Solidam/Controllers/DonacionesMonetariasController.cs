@@ -41,7 +41,7 @@ namespace Solidam.Controllers
                 return RedirectToAction("Completada", "Propuesta");
             }
 
-            return RedirectToAction("Donar","DonacionesMonetarias",new {id = donacion.DonacionMonetaria.PropuestasDonacionesMonetarias.IdPropuesta});
+            return RedirectToAction("Detalle","Propuesta",new {id = donacion.DonacionMonetaria.PropuestasDonacionesMonetarias.IdPropuesta});
         }
 
         [HttpGet]
