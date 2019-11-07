@@ -70,6 +70,8 @@ namespace Solidam.Controllers
 
             var propuestaBuscadas = PropuestaService.ObtenerPropuestasPorNombreYUsuario(nombre);
 
+            ViewBag.Cantidad = propuestaBuscadas.Count;
+
             return View("PropuestasBuscadas", propuestaBuscadas);
         }
 
