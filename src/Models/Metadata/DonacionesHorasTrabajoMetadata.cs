@@ -11,6 +11,7 @@ namespace Models
     {
         [Required(ErrorMessage = "Debe ingresar la cantidad de horas")]
         [CustomValidation(typeof(DonacionesHorasTrabajoMetadata),"ValidarCantidadHoras")]
+        [Range(1, int.MaxValue, ErrorMessage = "El valor mínimo debe ser 1")]
         public int Cantidad { get; set; }
 
         public static ValidationResult ValidarCantidadHoras(object value, ValidationContext context)

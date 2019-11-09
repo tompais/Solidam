@@ -13,6 +13,7 @@ namespace Models
     {
         [Required(ErrorMessage = "Debe ingresar una cantidad")]
         [CustomValidation(typeof(DonacionesMonetariasMetadata), "ValidarDineroDonado")]
+        [Range(1,int.MaxValue,ErrorMessage = "El valor mínimo debe ser 1")]
         public decimal Dinero { get; set; }
 
         [Required(ErrorMessage = "Debe ingresar su comprobante de transferencia")]
