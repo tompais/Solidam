@@ -59,6 +59,7 @@
     <Compile Include="RandomTokenGenerator.cs" />
     <Compile Include="RegexType.cs" />
     <Compile Include="SessionHelper.cs" />
+    <Compile Include="Sorter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

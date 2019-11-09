@@ -61,6 +61,7 @@
     <Compile Include="DonacionesMonetariasService.cs" />
     <Compile Include="DonacionesHorasTrabajoService.cs" />
     <Compile Include="DonacionesInsumosService.cs" />
+    <Compile Include="DonacionesService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MotivoDenunciaService.cs" />
     <Compile Include="PropuestasDonacionesMonetariasService.cs" />
