@@ -1,6 +1,7 @@
 ﻿.footerSolidam {
     background-color: black;
     color: white;
+    height: 50px;
 }
 
 @media (min-width: 1000px) {
@@ -8,6 +9,7 @@
         background-color: black;
         position: absolute;
         bottom: 0;
+        height: 50px;
         width: 100%;
         color: white;
     }
@@ -17,5 +19,6 @@
     .footerAlt {
         background-color: black;
         color: white;
+        height: 50px;
     }
 }
