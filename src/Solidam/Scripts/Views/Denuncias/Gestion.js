@@ -1,6 +1,7 @@
 ﻿var tableDenuncias = $("#tableDenuncias");
 
 var dataTable = tableDenuncias.DataTable({
+    "responsive": true,
     "processing": true,
     "serverSide": true,
     "filter": true,
@@ -51,7 +52,7 @@ var dataTable = tableDenuncias.DataTable({
             "autoWidth": true,
             "render": function (data, type, full, meta) {
                 var url = window.location.protocol + '//' + window.location.host + full.Propuesta;
-                var anchorPropuesta = $("<a href='" + url + "'>").text(url);
+                var anchorPropuesta = $("<a href='" + url + "' class='btn btn-success' >").text("Detalle");
                 return anchorPropuesta.prop("outerHTML");
             }
         },
@@ -63,6 +64,7 @@ var dataTable = tableDenuncias.DataTable({
         {
             "data": "Acciones",
             "name": "Acciones",
+            "autoWidth": true,
             "render": function(data, type, full, meta) {
                 var divAcciones = $("<div class='d-flex justify-content-around align-items-center'>");
                 var btnDesestimar = $("<button type='button' class='btn btn-success desestimar-btn' id-denuncia='" + full.IdDenuncia + "'>").text("Desestimar");
