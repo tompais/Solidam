@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DenunciaDTO.cs" />
+    <Compile Include="DonacionDTO.cs" />
     <Compile Include="DonacionesInsumoDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
