@@ -348,6 +348,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DenunciasController.cs" />
     <Compile Include="Controllers\DonacionesApiController.cs" />
+    <Compile Include="Controllers\DonacionesController.cs" />
     <Compile Include="Controllers\DonacionesMonetariasController.cs" />
     <Compile Include="Controllers\DonacionesHorasTrabajoController.cs" />
     <Compile Include="Controllers\DonacionesInsumoController.cs" />
@@ -602,6 +603,7 @@
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="Content\Views\Denuncias\Gestion.css" />
+    <Content Include="Content\Views\Donaciones\Historial.css" />
     <Content Include="Content\Views\Inicio\inicio.css" />
     <Content Include="Content\Views\Inicio\inicioResponsive.css" />
     <Content Include="Content\Views\Propuestas\Denunciar.css" />
@@ -2762,6 +2764,7 @@
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Scripts\utils.js" />
     <Content Include="Scripts\Views\Denuncias\Gestion.js" />
+    <Content Include="Scripts\Views\Donaciones\Historial.js" />
     <Content Include="Scripts\Views\Inicio\inicio.js" />
     <Content Include="Scripts\Views\Propuesta\Crear.js" />
     <Content Include="Images\Views\Seguridad\logoBordeBlanco.png" />
@@ -2773,6 +2776,7 @@
     <Content Include="Scripts\Views\Seguridad\Registrar.js" />
     <Content Include="Scripts\Views\Seguridad\RegistroExitoso.js" />
     <Content Include="Scripts\Views\Usuario\CompletarPerfil.js" />
+    <Content Include="Scripts\Views\Usuario\VerPerfil.js" />
     <Content Include="Views\Seguridad\Email.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -2832,6 +2836,7 @@
     <Content Include="Views\DonacionesHorasTrabajo\pv_DonarHorasTrabajo.cshtml" />
     <Content Include="Views\DonacionesInsumo\pv_DonarInsumos.cshtml" />
     <Content Include="Views\Denuncias\Gestion.cshtml" />
+    <Content Include="Views\Donaciones\Historial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
