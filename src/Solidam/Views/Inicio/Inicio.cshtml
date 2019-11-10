@@ -3,6 +3,7 @@
 @using Models
 @Styles.Render("~/Content/Views/Inicio/inicio.css")
 @Styles.Render("~/Content/Views/Inicio/inicioResponsive.css")
+@Styles.Render("~/Content/Views/Inicio/ShowMore.css")
 
 @{
     ViewBag.Title = "Inicio";
@@ -74,10 +75,10 @@
 </div>
 
 <div id="causes" class="section">
-    <div class="container mt-5">
+    <div class="container">
         <div class="row">
 
-            <div class="col-md-12 col-md-offset-2 mb-5">
+            <div class="col-md-12">
                 <div class="section-title text-center">
                     <h2 class="title">Causas Activas</h2>
                     <p class="sub-title">Aca se muestran las causas activas de solidam.</p>
@@ -89,7 +90,7 @@
             </div>
             @foreach (var propuesta in Model.PropuestasActivas)
             {
-                <div class="col-md-4">
+                <div class="col-md-4 causa">
                     <div class="card p-4 causes">
                         <div class="causes-img">
                             <a href="javascript:void(0);">
@@ -107,8 +108,14 @@
                         </div>
                     </div>
                 </div>
-
             }
+            
+            <div class="container text-center mb-3">
+                <button class="btn btnVerdeSolidam load-more"><i class="fas fa-plus mr-2"></i>Ver mas</button>
+            </div>
+
         </div>
     </div>
 </div>
+
+@Scripts.Render("~/Scripts/Views/Inicio/inicio.js")

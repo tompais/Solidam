@@ -606,6 +606,7 @@
     <Content Include="Content\Views\Donaciones\Historial.css" />
     <Content Include="Content\Views\Inicio\inicio.css" />
     <Content Include="Content\Views\Inicio\inicioResponsive.css" />
+    <Content Include="Content\Views\Inicio\ShowMore.css" />
     <Content Include="Content\Views\Propuestas\Denunciar.css" />
     <Content Include="Content\Views\Propuestas\Detalle.css" />
     <Content Include="Content\Views\Propuestas\MisPropuestas.css" />
