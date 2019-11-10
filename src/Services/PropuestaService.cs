@@ -70,6 +70,11 @@ namespace Services
                 .FirstOrDefault(p => p.IdPropuesta == id);
         }
 
+        public static List<Propuestas> TodasLasPropuestasActivas()
+        {
+            return Db.Propuestas.Where(p => p.Estado == 0).ToList();
+        }
+
         public static int TotalPropuestasActivas()
         {
             return Db.Propuestas.Count(x => x.Estado == 0 && x.IdUsuarioCreador == SessionHelper.Usuario.IdUsuario);
