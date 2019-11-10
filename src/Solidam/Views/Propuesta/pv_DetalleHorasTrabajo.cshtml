@@ -13,6 +13,11 @@
     <div class="article-img mx-auto">
         <img width="50%" height="50%" src="@Url.Content($"~/Images/Views/Propuesta/{Model.Propuesta.Foto}")" alt="">
     </div>
+    @if (Model.Propuesta.FechaFin < DateTime.Today)
+    {
+        <h5 class="text-center mt-2"><i>La propuesta ha finalizado</i></h5>
+    }
+
     <!-- article img -->
     <!-- causes progress -->
     <div class="clearfix">
@@ -27,7 +32,7 @@
                 <span class="causes-goal">Objetivo: <strong>@meta hs</strong></span>
             </div>
         </div>
-        @if (Model.Propuesta.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario)
+        @if (Model.Propuesta.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario && Model.Propuesta.FechaFin > DateTime.Today)
         {
             <a href="@Url.Action("Donar", "DonacionesHorasTrabajo", new {id = Model.Propuesta.IdPropuesta})" class="primary-button causes-donate">Donar ahora</a>
         }
@@ -85,7 +90,10 @@
                         </div>
                     </form>
                 </div>
-                <div class="ml-5"><a href="@Url.Action("Denunciar", "Propuesta", new {id = Model.Propuesta.IdPropuesta})" class="btn btn-danger text-white @(Model.Denuncie ? "disabled" : "")"><i class="fa fa-flag mr-3" aria-hidden="true"></i>Denunciar</a></div>
+                if (Model.Propuesta.FechaFin > DateTime.Today)
+                {
+                    <div class="ml-5"><a href="@Url.Action("Denunciar", "Propuesta", new {id = Model.Propuesta.IdPropuesta})" class="btn btn-danger text-white @(Model.Denuncie ? "disabled" : "")"><i class="fa fa-flag mr-3" aria-hidden="true"></i>Denunciar</a></div>
+                }
             }
             <!-- /article share -->
         </div>

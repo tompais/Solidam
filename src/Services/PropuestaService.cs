@@ -81,7 +81,7 @@ namespace Services
                 .Include("PropuestasDonacionesInsumos")
                 .Include("PropuestasDonacionesMonetarias")
                 .Include("Usuarios")
-                .Where(p => p.Estado == (int)PropuestaEstado.Abierta).OrderByDescending(p => p.Valoracion).Take(5).ToList();
+                .Where(p => p.Estado == (int)PropuestaEstado.Abierta && p.FechaFin > DateTime.Today).OrderByDescending(p => p.Valoracion).Take(5).ToList();
         }
 
         public static void PutPorcentajeAceptacion(int id)
@@ -110,7 +110,7 @@ namespace Services
 
         public static List<Propuestas> ObtenerPropuestasPorNombreYUsuario(string nombre)
         {
-            var propuestas = Db.Propuestas.AsQueryable();
+            var propuestas = Db.Propuestas.Where(p => p.Estado == (int)PropuestaEstado.Abierta && p.FechaFin > DateTime.Today).AsQueryable();
 
             if (!string.IsNullOrEmpty(nombre))
                 propuestas = propuestas.Where(p => p.Nombre.Contains(nombre));

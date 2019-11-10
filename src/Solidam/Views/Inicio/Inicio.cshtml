@@ -42,6 +42,10 @@
                     <h2 class="title">Causas mas Populares</h2>
                     <p class="sub-title">Aca se muestran las ultimas causas mas valoradas por los usuarios del sitio.</p>
                 </div>
+                @if (!Model.Propuestas.Any())
+                {
+                    <h3 class="text-center"><b>No hay propuestas disponibles para mostrar</b></h3>
+                }
             </div>
             @foreach (var propuesta in Model.Propuestas)
             {
