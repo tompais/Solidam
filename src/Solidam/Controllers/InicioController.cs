@@ -22,5 +22,11 @@ namespace Solidam.Controllers
         {
             return View("Inicio");
         }
+
+        [Route("acerca-de")]
+        public ActionResult AcercaDe()
+        {
+            return View("");
+        }
     }
 }

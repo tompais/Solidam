@@ -3972,9 +3972,9 @@ h6 {
         margin-top: 15px;
     }
 
-    .causes-content a {
-        color: black;
-    }
+.causes-content a {
+    color: black;
+}
 
 .causes-details .causes-progress {
     width: 75%;
@@ -3986,13 +3986,17 @@ h6 {
 .causes-details .causes-donate {
     float: right;
     margin-top: 30px;
-
 }
-body,html {
+
+body, html {
     height: 100%;
 }
 
 .btnVerdeSolidam {
     background-color: #028817;
     border-color: white;
+}
+
+#bannerAcerca {
+    background: url(../../../Images/Views/Inicio/charity2.jpg);
 }

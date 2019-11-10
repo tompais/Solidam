@@ -2837,6 +2837,7 @@
     <Content Include="Views\DonacionesInsumo\pv_DonarInsumos.cshtml" />
     <Content Include="Views\Denuncias\Gestion.cshtml" />
     <Content Include="Views\Donaciones\Historial.cshtml" />
+    <Content Include="Views\Inicio\AcercaDe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
