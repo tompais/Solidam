@@ -130,7 +130,7 @@ namespace Services
 
             if (!string.IsNullOrEmpty(activa))
             {
-                misPropuestas = misPropuestas.Where(p => p.Estado == 0);
+                misPropuestas = misPropuestas.Where(p => p.Estado == (int)PropuestaEstado.Abierta && p.FechaFin > DateTime.Today);
             }
 
             return misPropuestas.ToList();
