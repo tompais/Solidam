@@ -64,11 +64,11 @@ namespace Solidam.Controllers
             return RedirectToAction("MisPropuestas", "Propuesta");
         }
 
-        public ActionResult Buscar(string nombre)
+        public ActionResult Buscar(string palabra)
         {
-            ViewBag.palabra = nombre;
+            ViewBag.palabra = palabra;
 
-            var propuestaBuscadas = PropuestaService.ObtenerPropuestasPorNombreYUsuario(nombre);
+            var propuestaBuscadas = PropuestaService.ObtenerPropuestasPorNombreYUsuario(palabra);
 
             ViewBag.Cantidad = propuestaBuscadas.Count;
 

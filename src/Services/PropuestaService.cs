@@ -44,15 +44,15 @@ namespace Services
                     propuesta.PropuestasDonacionesMonetarias.ElementAt(0).CBU = p.PropuestasDonacionesMonetarias.ElementAt(0).CBU;
                     break;
                 case (int)TipoDonacion.Insumos:
-                {
-                    for(var i = 0; i < p.PropuestasDonacionesInsumos.Count; i++)
                     {
-                        propuesta.PropuestasDonacionesInsumos.ElementAt(i).Nombre = p.PropuestasDonacionesInsumos.ElementAt(i).Nombre;
-                        propuesta.PropuestasDonacionesInsumos.ElementAt(i).Cantidad = p.PropuestasDonacionesInsumos.ElementAt(i).Cantidad;
-                    }
+                        for (var i = 0; i < p.PropuestasDonacionesInsumos.Count; i++)
+                        {
+                            propuesta.PropuestasDonacionesInsumos.ElementAt(i).Nombre = p.PropuestasDonacionesInsumos.ElementAt(i).Nombre;
+                            propuesta.PropuestasDonacionesInsumos.ElementAt(i).Cantidad = p.PropuestasDonacionesInsumos.ElementAt(i).Cantidad;
+                        }
 
-                    break;
-                }
+                        break;
+                    }
                 default:
                     propuesta.PropuestasDonacionesHorasTrabajo.ElementAt(0).CantidadHoras = p.PropuestasDonacionesHorasTrabajo.ElementAt(0).CantidadHoras;
                     propuesta.PropuestasDonacionesHorasTrabajo.ElementAt(0).Profesion = p.PropuestasDonacionesHorasTrabajo.ElementAt(0).Profesion;
@@ -108,15 +108,20 @@ namespace Services
             }
         }
 
-        public static List<Propuestas> ObtenerPropuestasPorNombreYUsuario(string nombre)
+        public static List<Propuestas> ObtenerPropuestasPorNombreYUsuario(string palabra)
         {
             var propuestas = Db.Propuestas.Where(p => p.Estado == (int)PropuestaEstado.Abierta && p.FechaFin > DateTime.Today).AsQueryable();
 
-            if (!string.IsNullOrEmpty(nombre))
-                propuestas = propuestas.Where(p => p.Nombre.Contains(nombre));
+            if (Db.Propuestas.Any(p => p.Nombre.Contains(palabra)))
+                propuestas = propuestas.Where(p => p.Nombre.Contains(palabra));
+
+            if (Db.Propuestas.Any(p => p.Usuarios.Nombre.Contains(palabra)))
+                propuestas = propuestas.Where(p => p.Usuarios.Nombre.Contains(palabra));
 
             if (SessionHelper.Usuario != null)
                 propuestas = propuestas.Where(u => u.Usuarios.IdUsuario != SessionHelper.Usuario.IdUsuario);
+
+            propuestas.OrderBy(p => p.FechaFin).ThenBy(p => p.Valoracion);
 
             return propuestas.ToList();
         }
@@ -141,7 +146,7 @@ namespace Services
         public static void Finalizar(int idPropuesta)
         {
             var donacion = GetById(idPropuesta);
-            donacion.Estado = (int) PropuestaEstado.Cerrada;
+            donacion.Estado = (int)PropuestaEstado.Cerrada;
             Db.SaveChanges();
         }
 
@@ -153,8 +158,8 @@ namespace Services
         public void PonerPropuestaEnRevision(int idPropuesta)
         {
             var propuesta = GetById(idPropuesta);
-            if (propuesta.Denuncias.Count(denuncia => denuncia.Estado == (int) DenunciaEstado.EnRevision) < 5 ||
-                propuesta.Denuncias.Any(denuncia => denuncia.Estado == (int) DenunciaEstado.Aceptada)) return;
+            if (propuesta.Denuncias.Count(denuncia => denuncia.Estado == (int)DenunciaEstado.EnRevision) < 5 ||
+                propuesta.Denuncias.Any(denuncia => denuncia.Estado == (int)DenunciaEstado.Aceptada)) return;
             propuesta.Estado = (int)PropuestaEstado.EnRevision;
             Db.SaveChanges();
 
