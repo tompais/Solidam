@@ -4,7 +4,7 @@
 @model Solidam.ViewModel.PropuestaDetalleViewModel
 @{
     var obtenido = PropuestasDonacionesHorasTrabajoService.GetHorasDonadasByPropuestaId(Model.Propuesta.PropuestasDonacionesHorasTrabajo.FirstOrDefault().IdPropuestaDonacionHorasTrabajo);
-    var meta = Model.Propuesta.PropuestasDonacionesHorasTrabajo.FirstOrDefault(pdm => pdm.IdPropuesta == Model.Propuesta.IdPropuesta)?.CantidadHoras;
+    var meta = Model.Propuesta.PropuestasDonacionesHorasTrabajo.FirstOrDefault()?.CantidadHoras;
 }
 @Styles.Render("~/Content/Views/Propuestas/style.css")
 
@@ -57,7 +57,7 @@
         <!-- article tags -->
         <ul class="tags">
             <li>TAGS:</li>
-            <li><a href="#">Horas de trabajo</a></li>
+            <li><a href="#">Horas de trabajo</a> | <span>@(Model.Propuesta.PropuestasDonacionesHorasTrabajo.FirstOrDefault()?.Profesion)</span></li>
         </ul>
         <div class="ml-auto d-flex">
             <div class="mb-3 mr-3">

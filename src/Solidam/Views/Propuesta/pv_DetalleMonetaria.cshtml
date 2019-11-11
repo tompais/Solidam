@@ -4,7 +4,7 @@
 @model Solidam.ViewModel.PropuestaDetalleViewModel
 @{
     var obtenido = PropuestasDonacionesMonetariasService.GetDineroDonadoByPropuestaId(Model.Propuesta.PropuestasDonacionesMonetarias.FirstOrDefault().IdPropuestaDonacionMonetaria);
-    var meta = Model.Propuesta.PropuestasDonacionesMonetarias.FirstOrDefault(pdm => pdm.IdPropuesta == Model.Propuesta.IdPropuesta)?.Dinero;
+    var meta = Model.Propuesta.PropuestasDonacionesMonetarias.FirstOrDefault()?.Dinero;
 }
 @Styles.Render("~/Content/Views/Propuestas/style.css")
     <div class="article causes-details mx-auto mt-5 col col-8 card p-4">

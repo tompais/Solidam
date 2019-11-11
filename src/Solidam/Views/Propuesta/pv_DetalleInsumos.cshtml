@@ -3,9 +3,6 @@
 @using Models
 @using Services
 @model Solidam.ViewModel.PropuestaDetalleViewModel
-@{
-    var meta = Model.Propuesta.PropuestasDonacionesHorasTrabajo.FirstOrDefault(pdm => pdm.IdPropuesta == Model.Propuesta.IdPropuesta)?.CantidadHoras;
-}
 @Styles.Render("~/Content/Views/Propuestas/style.css")
 
     <div class="article causes-details mx-auto mt-5 col col-8 card p-4">
