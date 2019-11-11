@@ -28,7 +28,7 @@ namespace Solidam.Controllers
         {
             Propuestas p = PropuestaService.GetById(id);
 
-            ViewBag.fecha = p.FechaFin < DateTime.Today ? false : true;
+            ViewBag.fecha = p.FechaFin < DateTime.Today || p.Estado == (int)PropuestaEstado.Cerrada ? false : true;
 
             return View(p);
         }
@@ -41,7 +41,7 @@ namespace Solidam.Controllers
             if (!ModelState.IsValid)
             {
                 var errors = ModelState.Values.SelectMany(v => v.Errors);
-                return View("ModificarPropuesta");
+                return RedirectToAction("ModificarPropuesta", "Propuesta", new { id = p.IdPropuesta});
             }
 
             if (foto != null && foto.ContentLength > 0)
