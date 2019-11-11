@@ -14,7 +14,7 @@ namespace Services
         public static void AgregarPropuesta(Propuestas p)
         {
             p.IdUsuarioCreador = SessionHelper.Usuario.IdUsuario;
-            p.Estado = 0;
+            p.Estado = (int)PropuestaEstado.Abierta;
             p.FechaCreacion = DateTime.Today;
             p.Valoracion = 0;
             Db.Propuestas.Add(p);

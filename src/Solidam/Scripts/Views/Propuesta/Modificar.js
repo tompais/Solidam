@@ -27,9 +27,8 @@ $(document).ready(function ($) {
 
 });
 
-console.log(window.fecha);
+
 if (fecha == false) {
-    console.log("entre");
     $("#formPropuesta input").prop('disabled', true);
     $("#descripcionPropuesta").prop('disabled', true);
     $("#tipoProfesion").prop('disabled', true);
