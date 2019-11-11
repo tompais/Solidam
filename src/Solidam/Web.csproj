@@ -619,6 +619,7 @@
     <Content Include="Content\Views\Propuestas\MisPropuestas.css" />
     <Content Include="Content\Views\Propuestas\pv_Donar.css" />
     <Content Include="Content\Views\Propuestas\style.css" />
+    <Content Include="Content\Views\Shared\footer_2.css" />
     <Content Include="Content\Views\Shared\pv_Footer.css" />
     <Content Include="Content\Views\Shared\pv_Header.css" />
     <Content Include="Content\Views\Seguridad\IniciarRegistrar.css" />
