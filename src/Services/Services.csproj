@@ -44,6 +44,9 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Linq.Dynamic, Version=1.0.6132.35681, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\Solidam\packages\System.Linq.Dynamic.1.0.7\lib\net40\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -58,6 +61,7 @@
     <Compile Include="DonacionesMonetariasService.cs" />
     <Compile Include="DonacionesHorasTrabajoService.cs" />
     <Compile Include="DonacionesInsumosService.cs" />
+    <Compile Include="DonacionesService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MotivoDenunciaService.cs" />
     <Compile Include="PropuestasDonacionesMonetariasService.cs" />
@@ -72,6 +76,10 @@
     <ProjectReference Include="..\Abstractions\Abstractions.csproj">
       <Project>{94405298-E0A8-4DAF-91B7-661789CB4ED3}</Project>
       <Name>Abstractions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DTO\DTO.csproj">
+      <Project>{4F770DA6-DF5E-417F-A7E8-F1C04D785935}</Project>
+      <Name>DTO</Name>
     </ProjectReference>
     <ProjectReference Include="..\Enums\Enums.csproj">
       <Project>{37ae37b0-3f43-45df-b0a7-4adcf6b18e48}</Project>

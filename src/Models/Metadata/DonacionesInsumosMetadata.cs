@@ -11,7 +11,7 @@ namespace Models
     {
         [Required(ErrorMessage = "Debe ingresar una cantidad")]
         [CustomValidation(typeof(DonacionesInsumosMetadata),"ValidarCantidadObjetos")]
-        [Range(1,int.MaxValue,ErrorMessage="El valor mínimo de elementos es uno (1)")]
+        [Range(1,int.MaxValue,ErrorMessage="El valor mínimo de elementos es 1")]
         public int Cantidad { get; set; }
 
         public static ValidationResult ValidarCantidadObjetos(object value, ValidationContext context)

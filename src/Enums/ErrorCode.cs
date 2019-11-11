@@ -8,11 +8,13 @@
         TipoUsuarioInvalido,
         TokenInvalido,
         UsurioInexistente,
-        AccesoNoAutorizado,
+        UsuarioNoLogueado,
         PerfilInvalido,
         IdNoValido,
         EntidadNoEncontrada,
         PerfilUsuarioCompletado,
-        PerfilUsuarioNoCompletado
+        PerfilUsuarioNoCompletado,
+        UsuarioLogueado,
+        UsuarioNoAutorizado
     }
 }

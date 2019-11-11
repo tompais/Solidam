@@ -33,7 +33,7 @@ namespace Solidam.Controllers
             SessionHelper.Usuario = usuarioLoguear;
 
             if (pr == null) return RedirectToAction("Inicio", "Inicio");
-            return Redirect( Encoding.ASCII.GetString(Convert.FromBase64String(pr)));
+            return Redirect(Encoding.ASCII.GetString(Convert.FromBase64String(pr)));
 
         }
 

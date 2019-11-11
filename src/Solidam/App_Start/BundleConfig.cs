@@ -39,6 +39,10 @@ namespace Solidam
             bundles.Add(new ScriptBundle("~/bundles/utils").Include("~/Scripts/utils.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/baseLayout").Include("~/Scripts/Layouts/BaseLayout.js"));
+
+            bundles.Add(new StyleBundle("~/bundles/dataTablesStyles").Include("~/Content/DataTables/css/dataTables.bootstrap4.min.css", "~/Content/DataTables/css/responsive.bootstrap4.min.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/dataTablesScripts").Include("~/Scripts/DataTables/jquery.dataTables.min.js", "~/Scripts/DataTables/dataTables.bootstrap4.min.js"));
         }
     }
 }

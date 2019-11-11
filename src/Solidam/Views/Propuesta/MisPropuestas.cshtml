@@ -11,7 +11,7 @@
 @model List<Models.Propuestas>
 
 <div id="causes" class="section">
-    <div class="container mt-5">
+    <div class="container mt-5 mb-5">
         <div class="row">
 
             <nav class="navbar navbar-light bg-light justify-content-between w-100 bg-white">
@@ -27,7 +27,7 @@
                     <a href="@Url.Action("CrearPropuesta", "Propuesta")" class="btn btn-primary float-right btnVerdeSolidam"><i class="fa fa-plus mr-1"></i>Crear</a>
                 }
 
-                <div class="container mt-3">
+                <div class="container mt-3 d-flex justify-content-end">
                     <h2>Activas <i class="fa fa-check-circle mr-2"></i></h2>
                     @if (string.IsNullOrEmpty(ViewBag.Activa))
                     {
@@ -76,7 +76,7 @@
             }
             else
             {
-                <div class="col-md-12 mt-3">
+                <div class="col-md-12 mt-3 mb-5">
                     <div class="text-center">
                         <h2 class="title">No posees ninguna propuesta</h2>
                         <p class="">Si deseas crear una nueva propuesta presiona el boton de crear.</p>

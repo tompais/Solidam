@@ -18,7 +18,7 @@ namespace Solidam.Controllers
         public ActionResult CrearPropuesta()
         {
             if(PropuestaService.TotalPropuestasActivas() == 3)
-                return RedirectToAction("MiPropuestas", "Propuesta");
+                return RedirectToAction("MisPropuestas", "Propuesta");
 
             return View();
         }
@@ -61,14 +61,16 @@ namespace Solidam.Controllers
                 PropuestaService.Actualizar(p);
             }
 
-            return RedirectToAction("MiPropuestas", "Propuesta");
+            return RedirectToAction("MisPropuestas", "Propuesta");
         }
 
-        public ActionResult Buscar(string nombre)
+        public ActionResult Buscar(string palabra)
         {
-            ViewBag.palabra = nombre;
+            ViewBag.palabra = palabra;
 
-            var propuestaBuscadas = PropuestaService.ObtenerPropuestasPorNombreYUsuario(nombre);
+            var propuestaBuscadas = PropuestaService.ObtenerPropuestasPorNombreYUsuario(palabra);
+
+            ViewBag.Cantidad = propuestaBuscadas.Count;
 
             return View("PropuestasBuscadas", propuestaBuscadas);
         }
@@ -219,24 +221,32 @@ namespace Solidam.Controllers
             }
 
             DenunciasService.Crear(denuncia);
+            PropuestaService.Instance.PonerPropuestaEnRevision(denuncia.IdPropuesta);
             return RedirectToAction("Inicio", "Inicio");
         }
 
-        public ActionResult Donar(int id)
-        {
-            var propuesta = PropuestaService.GetById(id);
-            var dvm = new DonarViewModel
-            {
-                Propuesta = propuesta,
-                DonacionesMonetarias = DonacionesMonetariasService.GetById(id),
-                DonacionesHorasTrabajo = DonacionesHorasTrabajoService.GetById(id),
-                DonacionesInsumos = DonacionesInsumosService.GetById(id)
-            };
-            return View(dvm);
-        }
+        //public ActionResult Donar(int id)
+        //{
+        //    var propuesta = PropuestaService.GetById(id);
+            
+        //    var dvm = new DonarViewModel
+        //    {
+        //        Propuesta = propuesta,
+        //        DonacionesMonetarias = DonacionesMonetariasService.GetById(id),
+        //        DonacionesHorasTrabajo = DonacionesHorasTrabajoService.GetById(id),
+        //        DonacionesInsumos = DonacionesInsumosService.GetById(id)
+        //    };
+        //    switch (propuesta.TipoDonacion)
+        //    {
+        //        case (int)TipoDonacion.Monetaria:
+        //            return RedirectToAction("Crear", "DonacionesMonetarias", new {dvm = dvm});
+        //    }
+        //    return View(dvm);
+        //}
 
         public ActionResult Completada()
         {
+            PropuestaService.Finalizar(SessionHelper.IdPropuestaCompletada);
             return View(PropuestaService.GetById(SessionHelper.IdPropuestaCompletada));
         }
     }

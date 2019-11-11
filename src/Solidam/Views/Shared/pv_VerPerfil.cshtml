@@ -27,6 +27,11 @@
                 <p class="p-user-label mb-0">Fecha de Nacimiento:</p>
                 <strong class="strong-user-info">@Model.FechaNacimiento.ToString("dd/MM/yyyy")</strong>
             </div>
+            <div class="d-flex justify-content-center align-items-center mt-3">
+                <button type="button" id="btnHistorialDonaciones" class="btn btn-success">Historial de Donaciones</button>
+            </div>
         </div>
     </div>
 </div>
+
+@Scripts.Render("~/Scripts/Views/Usuario/VerPerfil.js")

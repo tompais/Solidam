@@ -13,7 +13,8 @@ namespace Solidam.Controllers
             //var a = TestService.Get();
             var inicioViewModel = new InicioViewModel
             {
-                Propuestas = PropuestaService.GetPropuestasMasValoradas()
+                PropuestasTop5 = PropuestaService.GetPropuestasMasValoradas(),
+                PropuestasActivas = PropuestaService.TodasLasPropuestasActivas()
             };
             return View(inicioViewModel);
         }
@@ -21,6 +22,12 @@ namespace Solidam.Controllers
         public ActionResult IniciarSesion()
         {
             return View("Inicio");
+        }
+
+        [Route("acerca-de")]
+        public ActionResult AcercaDe()
+        {
+            return View("");
         }
     }
 }

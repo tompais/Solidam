@@ -10,11 +10,11 @@ using Solidam.ViewModel;
 
 namespace Solidam.Controllers
 {
-    public class DonacionesHorasTrabajoController : Controller
+    public class DonacionesHorasTrabajoController : BaseController
     {
         // GET: DonacionInsumo
         [HttpPost]
-        public ActionResult Crear(DonarViewModel donacion)
+        public ActionResult Donar(DonarViewModel donacion)
         {
             ModelState.Remove("Propuesta.Nombre");
             ModelState.Remove("Propuesta.Descripcion");
@@ -39,7 +39,21 @@ namespace Solidam.Controllers
                 SessionHelper.IdPropuestaCompletada = donacion.Propuesta.IdPropuesta;
                 return RedirectToAction("Completada", "Propuesta");
             }
-            return RedirectToAction("Donar","Propuesta",new {id = donacion.DonacionHorasTrabajo.PropuestasDonacionesHorasTrabajo.IdPropuesta});
+            return RedirectToAction("Detalle","Propuesta",new {id = donacion.DonacionHorasTrabajo.PropuestasDonacionesHorasTrabajo.IdPropuesta});
+        }
+        [HttpGet]
+        public ActionResult Donar(int id)
+        {
+            var propuesta = PropuestaService.GetById(id);
+
+            var dvm = new DonarViewModel
+            {
+                Propuesta = propuesta,
+                DonacionesMonetarias = DonacionesMonetariasService.GetById(id),
+                DonacionesHorasTrabajo = DonacionesHorasTrabajoService.GetById(id),
+                DonacionesInsumos = DonacionesInsumosService.GetById(id)
+            };
+            return View("~/Views/Propuesta/Donar.cshtml", dvm);
         }
     }
 }

@@ -194,6 +194,9 @@
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Memory.4.5.3\lib\netstandard2.0\System.Memory.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
@@ -274,6 +277,12 @@
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
     </Reference>
@@ -335,7 +344,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\DenunciasController.cs" />
+    <Compile Include="Controllers\DonacionesApiController.cs" />
+    <Compile Include="Controllers\DonacionesController.cs" />
     <Compile Include="Controllers\DonacionesMonetariasController.cs" />
     <Compile Include="Controllers\DonacionesHorasTrabajoController.cs" />
     <Compile Include="Controllers\DonacionesInsumoController.cs" />
@@ -589,8 +602,12 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Content\Views\Denuncias\Gestion.css" />
+    <Content Include="Content\Views\Donaciones\Historial.css" />
     <Content Include="Content\Views\Inicio\inicio.css" />
     <Content Include="Content\Views\Inicio\inicioResponsive.css" />
+    <Content Include="Content\Views\Inicio\ShowMore.css" />
+    <Content Include="Content\Views\Propuestas\Denunciar.css" />
     <Content Include="Content\Views\Propuestas\Detalle.css" />
     <Content Include="Content\Views\Propuestas\MisPropuestas.css" />
     <Content Include="Content\Views\Propuestas\pv_Donar.css" />
@@ -2747,6 +2764,8 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Scripts\utils.js" />
+    <Content Include="Scripts\Views\Denuncias\Gestion.js" />
+    <Content Include="Scripts\Views\Donaciones\Historial.js" />
     <Content Include="Scripts\Views\Inicio\inicio.js" />
     <Content Include="Scripts\Views\Propuesta\Crear.js" />
     <Content Include="Images\Views\Seguridad\logoBordeBlanco.png" />
@@ -2758,6 +2777,7 @@
     <Content Include="Scripts\Views\Seguridad\Registrar.js" />
     <Content Include="Scripts\Views\Seguridad\RegistroExitoso.js" />
     <Content Include="Scripts\Views\Usuario\CompletarPerfil.js" />
+    <Content Include="Scripts\Views\Usuario\VerPerfil.js" />
     <Content Include="Views\Seguridad\Email.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -2816,6 +2836,9 @@
     <Content Include="Views\DonacionesMonetarias\pv_DonarMonetaria.cshtml" />
     <Content Include="Views\DonacionesHorasTrabajo\pv_DonarHorasTrabajo.cshtml" />
     <Content Include="Views\DonacionesInsumo\pv_DonarInsumos.cshtml" />
+    <Content Include="Views\Denuncias\Gestion.cshtml" />
+    <Content Include="Views\Donaciones\Historial.cshtml" />
+    <Content Include="Views\Inicio\AcercaDe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

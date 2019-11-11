@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using Enums;
 using Helpers;
+using Interfaces;
 using Models;
 
 namespace Services
 {
-    public class PropuestaService : BaseService<PropuestaService>
+    public class PropuestaService : BaseService<PropuestaService>, IPutService<Propuestas>
     {
         public static void AgregarPropuesta(Propuestas p)
         {
@@ -21,7 +23,7 @@ namespace Services
 
         public static void Actualizar(Propuestas p)
         {
-            Propuestas propuesta = GetById(p.IdPropuesta);
+            var propuesta = GetById(p.IdPropuesta);
 
             propuesta.Nombre = p.Nombre;
             propuesta.Descripcion = p.Descripcion;
@@ -35,24 +37,26 @@ namespace Services
             if (p.Foto != null)
                 propuesta.Foto = p.Foto;
 
-            if (propuesta.TipoDonacion == (int)TipoDonacion.Monetaria)
+            switch (propuesta.TipoDonacion)
             {
-                propuesta.PropuestasDonacionesMonetarias.ElementAt(0).Dinero = p.PropuestasDonacionesMonetarias.ElementAt(0).Dinero;
-                propuesta.PropuestasDonacionesMonetarias.ElementAt(0).CBU = p.PropuestasDonacionesMonetarias.ElementAt(0).CBU;
-            }
-            else
-                if(propuesta.TipoDonacion == (int)TipoDonacion.Insumos)
-            {
-                for(int i = 0; i < p.PropuestasDonacionesInsumos.Count(); i++)
-                {
-                    propuesta.PropuestasDonacionesInsumos.ElementAt(i).Nombre = p.PropuestasDonacionesInsumos.ElementAt(i).Nombre;
-                    propuesta.PropuestasDonacionesInsumos.ElementAt(i).Cantidad = p.PropuestasDonacionesInsumos.ElementAt(i).Cantidad;
-                }
-            }
-            else
-            {
-                propuesta.PropuestasDonacionesHorasTrabajo.ElementAt(0).CantidadHoras = p.PropuestasDonacionesHorasTrabajo.ElementAt(0).CantidadHoras;
-                propuesta.PropuestasDonacionesHorasTrabajo.ElementAt(0).Profesion = p.PropuestasDonacionesHorasTrabajo.ElementAt(0).Profesion;
+                case (int)TipoDonacion.Monetaria:
+                    propuesta.PropuestasDonacionesMonetarias.ElementAt(0).Dinero = p.PropuestasDonacionesMonetarias.ElementAt(0).Dinero;
+                    propuesta.PropuestasDonacionesMonetarias.ElementAt(0).CBU = p.PropuestasDonacionesMonetarias.ElementAt(0).CBU;
+                    break;
+                case (int)TipoDonacion.Insumos:
+                    {
+                        for (var i = 0; i < p.PropuestasDonacionesInsumos.Count; i++)
+                        {
+                            propuesta.PropuestasDonacionesInsumos.ElementAt(i).Nombre = p.PropuestasDonacionesInsumos.ElementAt(i).Nombre;
+                            propuesta.PropuestasDonacionesInsumos.ElementAt(i).Cantidad = p.PropuestasDonacionesInsumos.ElementAt(i).Cantidad;
+                        }
+
+                        break;
+                    }
+                default:
+                    propuesta.PropuestasDonacionesHorasTrabajo.ElementAt(0).CantidadHoras = p.PropuestasDonacionesHorasTrabajo.ElementAt(0).CantidadHoras;
+                    propuesta.PropuestasDonacionesHorasTrabajo.ElementAt(0).Profesion = p.PropuestasDonacionesHorasTrabajo.ElementAt(0).Profesion;
+                    break;
             }
 
             Db.SaveChanges();
@@ -66,6 +70,11 @@ namespace Services
                 .FirstOrDefault(p => p.IdPropuesta == id);
         }
 
+        public static List<Propuestas> TodasLasPropuestasActivas()
+        {
+            return Db.Propuestas.Where(p => p.Estado == 0).ToList();
+        }
+
         public static int TotalPropuestasActivas()
         {
             return Db.Propuestas.Count(x => x.Estado == 0 && x.IdUsuarioCreador == SessionHelper.Usuario.IdUsuario);
@@ -77,7 +86,7 @@ namespace Services
                 .Include("PropuestasDonacionesInsumos")
                 .Include("PropuestasDonacionesMonetarias")
                 .Include("Usuarios")
-                .Where(p => p.Estado == (int)PropuestaEstado.Abierta).OrderByDescending(p => p.Valoracion).Take(5).ToList();
+                .Where(p => p.Estado == (int)PropuestaEstado.Abierta && p.FechaFin > DateTime.Today).OrderByDescending(p => p.Valoracion).Take(5).ToList();
         }
 
         public static void PutPorcentajeAceptacion(int id)
@@ -98,26 +107,31 @@ namespace Services
                     foreach (var validationError in errors.ValidationErrors)
                     {
                         // get the error message 
-                        string errorMessage = validationError.ErrorMessage;
+                        var errorMessage = validationError.ErrorMessage;
                     }
                 }
             }
         }
 
-        public static List<Propuestas> ObtenerPropuestasPorNombreYUsuario(string nombre)
+        public static List<Propuestas> ObtenerPropuestasPorNombreYUsuario(string palabra)
         {
-            var propuestas = Db.Propuestas.AsQueryable();
+            var propuestas = Db.Propuestas.Where(p => p.Estado == (int)PropuestaEstado.Abierta && p.FechaFin > DateTime.Today).AsQueryable();
 
-            if (!string.IsNullOrEmpty(nombre))
-                propuestas = propuestas.Where(p => p.Nombre.Contains(nombre));
+            if (Db.Propuestas.Any(p => p.Nombre.Contains(palabra)))
+                propuestas = propuestas.Where(p => p.Nombre.Contains(palabra));
+
+            if (Db.Propuestas.Any(p => p.Usuarios.Nombre.Contains(palabra)))
+                propuestas = propuestas.Where(p => p.Usuarios.Nombre.Contains(palabra));
 
             if (SessionHelper.Usuario != null)
                 propuestas = propuestas.Where(u => u.Usuarios.IdUsuario != SessionHelper.Usuario.IdUsuario);
 
+            propuestas.OrderBy(p => p.FechaFin).ThenBy(p => p.Valoracion);
+
             return propuestas.ToList();
         }
 
-        public static List<Propuestas> ObtenerPropuestasUsuario(int id, String activa)
+        public static List<Propuestas> ObtenerPropuestasUsuario(int id, string activa)
         {
             var misPropuestas = Db.Propuestas.AsQueryable();
 
@@ -126,7 +140,7 @@ namespace Services
 
             if (!string.IsNullOrEmpty(activa))
             {
-                misPropuestas = misPropuestas.Where(p => p.Estado == 0);
+                misPropuestas = misPropuestas.Where(p => p.Estado == (int)PropuestaEstado.Abierta && p.FechaFin > DateTime.Today);
             }
 
             return misPropuestas.ToList();
@@ -137,8 +151,23 @@ namespace Services
         public static void Finalizar(int idPropuesta)
         {
             var donacion = GetById(idPropuesta);
-            donacion.Estado = (int) PropuestaEstado.Cerrada;
+            donacion.Estado = (int)PropuestaEstado.Cerrada;
             Db.SaveChanges();
+        }
+
+        public Propuestas Put(Propuestas model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void PonerPropuestaEnRevision(int idPropuesta)
+        {
+            var propuesta = GetById(idPropuesta);
+            if (propuesta.Denuncias.Count(denuncia => denuncia.Estado == (int)DenunciaEstado.EnRevision) < 5 ||
+                propuesta.Denuncias.Any(denuncia => denuncia.Estado == (int)DenunciaEstado.Aceptada)) return;
+            propuesta.Estado = (int)PropuestaEstado.EnRevision;
+            Db.SaveChanges();
+
         }
     }
 }
