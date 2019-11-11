@@ -8,7 +8,8 @@
     </div>
     <div class="card-body">
         <form action="@Url.Action("SolicitarCantidades","DonacionesInsumo")" method="post">
-            <h5 class="card-title">Requerido </h5>
+            <h5 class="card-title">Objetos requeridos</h5>
+            <p>Por favor, seleccione qué items desea donar</p>
             <div class="d-flex flex-column">
                 @Html.HiddenFor(m => m.Propuesta.IdPropuesta, new { Value = Model.Propuesta.IdPropuesta })
                 @foreach (var itemRequerido in Model.Propuesta.PropuestasDonacionesInsumos)
