@@ -1,0 +1,7 @@
+﻿.footerAlt {
+    background-color: black;
+    position: static !important;
+    height: 50px;
+    width: 100%;
+    color: white;
+}
