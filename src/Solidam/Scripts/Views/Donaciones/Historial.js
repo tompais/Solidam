@@ -30,7 +30,7 @@ var dataTable = tableHistorialDonaciones.DataTable({
             "name": "FechaDonacion",
             "autoWidth": true,
             "render": function (data, type, full, meta) {
-                return isStringNullOrEmpty(full.FechaDonacion) ? "Sin información" : moment(full.FechaDonacion).format('DD/MM/YYYY');
+                return isStringNullOrEmpty(full.FechaDonacion) ? "Sin información" : moment(full.FechaDonacion, 'DD/MM/YYYY').format('DD/MM/YYYY');
             }
         },
         { "data": "Nombre", "name": "Nombre", "autoWidth": true },

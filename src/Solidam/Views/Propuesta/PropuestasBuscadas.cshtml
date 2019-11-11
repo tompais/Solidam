@@ -1,12 +1,14 @@
 ﻿@Styles.Render("~/Content/Views/Inicio/inicio.css")
 @Styles.Render("~/Content/Views/Inicio/inicioResponsive.css")
+
 @{
     ViewBag.Title = "Resultados";
 }
 
 @using System.Globalization
 @using Models
-@model List<Models.Propuestas>
+@using PagedList.Mvc
+@model PagedList.IPagedList<Propuestas>
 
 <div id="causes" class="section">
     <div class="container mt-5">
@@ -41,6 +43,11 @@
                         </div>
                     </div>
                 }
+                <div class="container text-center">
+                    
+                        @Html.PagedListPager(Model, page => Url.Action("Buscar", new { page , palabra = ViewBag.palabra }))
+                    
+                </div>
             }
             else
             {

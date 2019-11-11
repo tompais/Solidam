@@ -115,20 +115,41 @@ namespace Services
 
         public static List<Propuestas> ObtenerPropuestasPorNombreYUsuario(string palabra)
         {
-            var propuestas = Db.Propuestas.Where(p => p.Estado == (int)PropuestaEstado.Abierta && p.FechaFin > DateTime.Today).AsQueryable();
+            var propuestasQuery = Db.Propuestas.Where(p => p.Estado == (int)PropuestaEstado.Abierta && p.FechaFin > DateTime.Today).AsQueryable();
+            bool propuestaEncontrada = false;
+            List<Propuestas> propuestas;
 
-            if (Db.Propuestas.Any(p => p.Nombre.Contains(palabra)))
-                propuestas = propuestas.Where(p => p.Nombre.Contains(palabra));
+            if (!String.IsNullOrEmpty(palabra)) 
+            {
+                if (Db.Propuestas.Any(p => p.Nombre.Contains(palabra)))
+                {
+                    propuestasQuery = propuestasQuery.Where(p => p.Nombre.Contains(palabra));
+                    propuestaEncontrada = true;
+                }
 
-            if (Db.Propuestas.Any(p => p.Usuarios.Nombre.Contains(palabra)))
-                propuestas = propuestas.Where(p => p.Usuarios.Nombre.Contains(palabra));
+                if (Db.Propuestas.Any(p => p.Usuarios.Nombre.Contains(palabra)))
+                {
+                    propuestasQuery = propuestasQuery.Where(p => p.Usuarios.Nombre.Contains(palabra));
+                    propuestaEncontrada = true;
+                }
 
-            if (SessionHelper.Usuario != null)
-                propuestas = propuestas.Where(u => u.Usuarios.IdUsuario != SessionHelper.Usuario.IdUsuario);
+                if (SessionHelper.Usuario != null)
+                    propuestasQuery =
+                        propuestasQuery.Where(u => u.Usuarios.IdUsuario != SessionHelper.Usuario.IdUsuario);
+            }
 
-            propuestas.OrderBy(p => p.FechaFin).ThenBy(p => p.Valoracion);
+            if (propuestaEncontrada)
+            {
+                propuestasQuery.OrderBy(p => p.FechaFin).ThenBy(p => p.Valoracion);
+                propuestas = propuestasQuery.ToList();
+            }
+            else
+            {
+                propuestas = new List<Propuestas>();
+            }
 
-            return propuestas.ToList();
+
+            return propuestas;
         }
 
         public static List<Propuestas> ObtenerPropuestasUsuario(int id, string activa)

@@ -16,7 +16,7 @@
                     @foreach (var itemRequerido in ViewBag.donaciones)
                     {
                         <div class="form-group">
-                            <label>Ingrese la cantidad de <b>@itemRequerido.Nombre</b></label>
+                            <label>Ingrese la cantidad de <b class="font-weight-bold">@itemRequerido.Nombre</b></label>
                             @Html.EditorFor(model => model[contador].Cantidad, new { htmlAttributes = new { type = "number", @class = "form-control" } })
                             <div class="errorSolidam"><b>@Html.ValidationMessageFor(model => model[contador].Cantidad, "", new { @class = "text-danger" })</b></div>
                         </div>
