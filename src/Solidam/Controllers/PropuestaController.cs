@@ -10,6 +10,7 @@ using Services;
 using Solidam.ViewModel;
 using MotivoDenuncia = Models.MotivoDenuncia;
 using System.Collections.Generic;
+using PagedList;
 
 namespace Solidam.Controllers
 {
@@ -17,7 +18,7 @@ namespace Solidam.Controllers
     {
         public ActionResult CrearPropuesta()
         {
-            if(PropuestaService.TotalPropuestasActivas() == 3)
+            if (PropuestaService.TotalPropuestasActivas() == 3)
                 return RedirectToAction("MisPropuestas", "Propuesta");
 
             return View();
@@ -64,15 +65,14 @@ namespace Solidam.Controllers
             return RedirectToAction("MisPropuestas", "Propuesta");
         }
 
-        public ActionResult Buscar(string palabra)
+        public ActionResult Buscar(string palabra, int? page)
         {
             ViewBag.palabra = palabra;
 
             var propuestaBuscadas = PropuestaService.ObtenerPropuestasPorNombreYUsuario(palabra);
 
             ViewBag.Cantidad = propuestaBuscadas.Count;
-
-            return View("PropuestasBuscadas", propuestaBuscadas);
+            return View("PropuestasBuscadas", propuestaBuscadas.ToPagedList(page ?? 1, 3));
         }
 
         public ActionResult MisPropuestas()
@@ -225,24 +225,6 @@ namespace Solidam.Controllers
             return RedirectToAction("Inicio", "Inicio");
         }
 
-        //public ActionResult Donar(int id)
-        //{
-        //    var propuesta = PropuestaService.GetById(id);
-            
-        //    var dvm = new DonarViewModel
-        //    {
-        //        Propuesta = propuesta,
-        //        DonacionesMonetarias = DonacionesMonetariasService.GetById(id),
-        //        DonacionesHorasTrabajo = DonacionesHorasTrabajoService.GetById(id),
-        //        DonacionesInsumos = DonacionesInsumosService.GetById(id)
-        //    };
-        //    switch (propuesta.TipoDonacion)
-        //    {
-        //        case (int)TipoDonacion.Monetaria:
-        //            return RedirectToAction("Crear", "DonacionesMonetarias", new {dvm = dvm});
-        //    }
-        //    return View(dvm);
-        //}
 
         public ActionResult Completada()
         {
