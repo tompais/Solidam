@@ -2774,6 +2774,7 @@
     <Content Include="Scripts\utils.js" />
     <Content Include="Scripts\Views\Denuncias\Gestion.js" />
     <Content Include="Scripts\Views\Donaciones\Historial.js" />
+    <Content Include="Scripts\Views\Donaciones\donarInsumos.js" />
     <Content Include="Scripts\Views\Inicio\inicio.js" />
     <Content Include="Scripts\Views\Propuesta\Crear.js" />
     <Content Include="Images\Views\Seguridad\logoBordeBlanco.png" />
