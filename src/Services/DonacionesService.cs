@@ -116,10 +116,10 @@ namespace Services
             {
                 Propuesta = $"/{Constant.PropuestaControllerName}/Detalle?id={di.PropuestasDonacionesInsumos.Propuestas.IdPropuesta}",
                 Estado = GetEstadoString((PropuestaEstado) di.PropuestasDonacionesInsumos.Propuestas.Estado),
-                MiDonacion = di.Cantidad.ToString(),
+                MiDonacion = di.PropuestasDonacionesInsumos.Cantidad + $" ({di.PropuestasDonacionesInsumos.Nombre})",
                 Nombre = di.PropuestasDonacionesInsumos.Propuestas.Nombre,
                 TipoDonacion = GetTipoDonacionString(di.GetType()),
-                TotalRecaudado = GetRecaudacionTotal(di.PropuestasDonacionesInsumos.Propuestas.IdPropuesta, di.GetType())
+                TotalRecaudado = GetRecaudacionTotal(di.PropuestasDonacionesInsumos.IdPropuestaDonacionInsumo, di.GetType())
             }));
             donacionesDTO.AddRange(Get(new DonacionesMonetarias()).Select(dm => new DonacionDTO
             {
@@ -159,7 +159,10 @@ namespace Services
             }
             else
             {
-                recaudacionTotal = Db.DonacionesInsumos.Where(di => di.PropuestasDonacionesInsumos.Propuestas.IdPropuesta == idPropuesta).Sum(di => di.Cantidad).ToString();
+                var donaciones = Db.DonacionesInsumos.Where(d => d.IdPropuestaDonacionInsumo == idPropuesta)
+                    .ToList();
+                var insumos = (donaciones.Count == 0 ? 0 : donaciones.Sum(d => d.Cantidad));
+                recaudacionTotal = insumos == 1 ? insumos + " unidad" : insumos + " unidades";
             }
 
             return recaudacionTotal;
