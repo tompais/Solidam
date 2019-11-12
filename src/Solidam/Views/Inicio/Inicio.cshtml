@@ -24,7 +24,6 @@
                     @if (SessionHelper.Usuario == null)
                     {
                         <a class="main_btn mr-10" href=@Url.Action("Registrar","Seguridad")>Registrarme</a>
-                        <a class="white_bg_btn" href=@Url.Action("Iniciar","Seguridad")>Iniciar Sesion</a>
                     }
                 </div>
             </div>
@@ -59,9 +58,21 @@
                         </div>
                         <div class="causes-content">
                             <h3>@propuesta.Nombre</h3>
-                            <span class="mr-3">Usuario: </span><span>@propuesta.Usuarios.Apellido, @propuesta.Usuarios.Nombre</span><br />
-                            <span class="mr-3">Aceptacion: (@propuesta.Valoracion%)</span><br />
-                            <span class="mr-3"> Disponible hasta: <strong>@propuesta.FechaFin.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</strong></span>
+                            <span>Usuario: </span><span class="font-weight-bold text-dark">@propuesta.Usuarios.Apellido, @propuesta.Usuarios.Nombre</span><br />
+                            <span class="mr-3">Aceptacion: <strong class="text-dark">@propuesta.Valoracion%</strong></span><br />
+                            <span class="mr-3"> Disponible hasta: <strong class="text-dark">@propuesta.FechaFin.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</strong></span><br />
+                            @if (propuesta.TipoDonacion == 1)
+                            {
+                                <span class="mr-3">Tag: <i class="fas fa-dollar-sign text-dark"></i></span>
+                            }
+                            else if (propuesta.TipoDonacion == 2)
+                            {
+                                <span class="mr-3">Tag: <i class="fas fa-people-carry text-dark"></i></span>
+                            }
+                            else
+                            {
+                                <span class="mr-3">Tag: <i class="fas fa-briefcase text-dark"></i></span>
+                            }
                         </div>
                         <div class="d-flex justify-content-between mt-3">
                             <a class="btn text-white btnVerdeSolidam" href="@Url.Action("Detalle","Propuesta",new {id = @propuesta.IdPropuesta })"><i class="fas fa-eye mr-2"></i>Ver detalle</a>
@@ -99,9 +110,21 @@
                         </div>
                         <div class="causes-content">
                             <h3>@propuesta.Nombre</h3>
-                            <span class="mr-3">Usuario: </span><span>@propuesta.Usuarios.Apellido, @propuesta.Usuarios.Nombre</span><br />
-                            <span class="mr-3">Aceptacion: (@propuesta.Valoracion%)</span><br />
-                            <span class="mr-3"> Disponible hasta: <strong>@propuesta.FechaFin.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</strong></span>
+                            <span>Usuario: </span><span class="font-weight-bold text-dark">@propuesta.Usuarios.Apellido, @propuesta.Usuarios.Nombre</span><br />
+                            <span class="mr-3">Aceptacion: <strong class="text-dark">@propuesta.Valoracion%</strong></span><br />
+                            <span class="mr-3"> Disponible hasta: <strong class="text-dark">@propuesta.FechaFin.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</strong></span><br/>
+                            @if (propuesta.TipoDonacion == 1)
+                            {
+                                <span class="mr-3">Tag: <i class="fas fa-dollar-sign text-dark"></i></span>
+                            }
+                            else if (propuesta.TipoDonacion == 2)
+                            {
+                                <span class="mr-3">Tag: <i class="fas fa-people-carry text-dark"></i></span>
+                            }
+                            else
+                            {
+                                <span class="mr-3">Tag: <i class="fas fa-briefcase text-dark"></i></span>
+                            }
                         </div>
                         <div class="d-flex justify-content-between mt-3">
                             <a class="btn text-white btnVerdeSolidam" href="@Url.Action("Detalle","Propuesta",new {id = @propuesta.IdPropuesta })"><i class="fas fa-eye mr-2"></i>Ver detalle</a>
@@ -109,7 +132,7 @@
                     </div>
                 </div>
             }
-            
+
             <div class="container text-center mb-3">
                 <button class="btn btnVerdeSolidam load-more"><i class="fas fa-plus mr-2"></i>Ver mas</button>
             </div>

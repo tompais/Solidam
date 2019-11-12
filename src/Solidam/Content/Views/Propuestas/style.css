@@ -119,20 +119,20 @@ blockquote:after {
 \*----------------------------*/
 
 .primary-button {
-  position: relative;
-  display: inline-block;
-  padding: 0px 30px;
-  background: #83ba09;
-  color: #FFF;
-  font-weight: 400;
-  height: 45px;
-  line-height: 45px;
-  border: none;
-  border-radius: 25px;
-  overflow: hidden;
-  opacity: 0.9;
-  -webkit-transition: 0.6s all;
-  transition: 0.6s all;
+    position: relative;
+    display: inline-block;
+    padding: 0px 30px;
+    background: #028817;
+    color: #FFF;
+    font-weight: 400;
+    height: 45px;
+    line-height: 45px;
+    border: none;
+    border-radius: 25px;
+    overflow: hidden;
+    opacity: 0.9;
+    -webkit-transition: 0.6s all;
+    transition: 0.6s all;
 }
 
 .primary-button:after {
@@ -746,42 +746,42 @@ textarea.input {
   margin-bottom: 10px;
 }
 
-.causes-progress .causes-progress-bar>div {
-  position: absolute;
-  left: 0;
-  top: 0;
-  background-color: #83ba09;
-  bottom: 0;
-  border-radius: 10px;
-}
+    .causes-progress .causes-progress-bar > div {
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-color: #1e7e34;
+        bottom: 0;
+        border-radius: 10px;
+    }
 
-.causes-progress .causes-progress-bar>div span {
-  position: absolute;
-  right: 5px;
-  top: -3px;
-  -webkit-transform: translate(50%, -100%);
-  -ms-transform: translate(50%, -100%);
-  transform: translate(50%, -100%);
-  padding: 2px 10px;
-  background: #83ba09;
-  color: #FFF;
-  font-weight: 400;
-  border-radius: 10px;
-  font-size: 12px;
-}
+        .causes-progress .causes-progress-bar > div span {
+            position: absolute;
+            right: 5px;
+            top: -3px;
+            -webkit-transform: translate(50%, -100%);
+            -ms-transform: translate(50%, -100%);
+            transform: translate(50%, -100%);
+            padding: 2px 10px;
+            background: #1e7e34;
+            color: #FFF;
+            font-weight: 400;
+            border-radius: 10px;
+            font-size: 12px;
+        }
 
-.causes-progress .causes-progress-bar>div span:after {
-  content: "";
-  position: absolute;
-  background-color: #83ba09;
-  height: 3px;
-  bottom: 0;
-  -webkit-transform: translate(-50%, 100%);
-  -ms-transform: translate(-50%, 100%);
-  transform: translate(-50%, 100%);
-  width: 3px;
-  left: 50%;
-}
+    .causes-progress .causes-progress-bar > div span:after {
+        content: "";
+        position: absolute;
+        background-color: #1e7e34;
+        height: 3px;
+        bottom: 0;
+        -webkit-transform: translate(-50%, 100%);
+        -ms-transform: translate(-50%, 100%);
+        transform: translate(-50%, 100%);
+        width: 3px;
+        left: 50%;
+    }
 
 .causes-progress .causes-goal {
   float: right;

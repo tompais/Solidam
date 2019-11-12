@@ -1,13 +1,13 @@
 ﻿body, html {
     height: 100%;
+    background: url(../../../Images/Views/Seguridad/login3.jpg) no-repeat center;
 }
 
 .my-login-page {
     font-size: 14px;
-    background: url(../../../Images/Views/Seguridad/login3.jpg)
 }
 
-    .my-login-page .brand {
+.my-login-page .brand {
         width: 90px;
         height: 90px;
         overflow: hidden;

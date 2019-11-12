@@ -1,7 +1,8 @@
 ﻿$('#inputFecha').parent().datepicker({
     format: 'dd/mm/yyyy',
     language: 'es',
-    autoclose: true
+    autoclose: true,
+    endDate: new Date()
 });
 
 

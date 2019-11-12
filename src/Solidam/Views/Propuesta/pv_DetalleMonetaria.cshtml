@@ -21,7 +21,7 @@
         <div class="clearfix">
             <div class="causes-progress w-100">
                 <div class="causes-progress-bar">
-                    <div style="width: @(obtenido * 100 / meta)%;">
+                    <div style="width: @((int)(obtenido * 100 / meta))%;">
                         <span>@((int)(obtenido * 100 / meta))%</span>
                     </div>
                 </div>
@@ -53,9 +53,8 @@
         <!-- article tags share -->
         <div class="article-tags-share d-flex flex-column">
             <!-- article tags -->
-            <ul class="tags">
-                <li>TAGS:</li>
-                <li><a href="#">Monetaria</a></li>
+            <ul>
+                <li>TAGS: <i class="fas fa-tags mr-2"></i> <a href="#">Monetaria</a></li>
             </ul>
             <div class="ml-auto d-flex">
                 <div class="mb-3 mr-3">
