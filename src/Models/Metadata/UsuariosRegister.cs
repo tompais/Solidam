@@ -19,6 +19,7 @@ namespace Models
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Ingrese su Contraseña")]
+        [CustomValidation(typeof(UsuariosMetadata), "ValidarPass")]
         public string Password { get; set; }
 
         [NotMapped]
