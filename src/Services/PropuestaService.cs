@@ -116,40 +116,21 @@ namespace Services
         public static List<Propuestas> ObtenerPropuestasPorNombreYUsuario(string palabra)
         {
             var propuestasQuery = Db.Propuestas.Where(p => p.Estado == (int)PropuestaEstado.Abierta && p.FechaFin > DateTime.Today).AsQueryable();
-            bool propuestaEncontrada = false;
-            List<Propuestas> propuestas;
 
-            if (!String.IsNullOrEmpty(palabra)) 
+            if (!String.IsNullOrEmpty(palabra))
             {
-                if (Db.Propuestas.Any(p => p.Nombre.Contains(palabra)))
-                {
-                    propuestasQuery = propuestasQuery.Where(p => p.Nombre.Contains(palabra));
-                    propuestaEncontrada = true;
-                }
 
-                if (Db.Propuestas.Any(p => p.Usuarios.Nombre.Contains(palabra)))
-                {
-                    propuestasQuery = propuestasQuery.Where(p => p.Usuarios.Nombre.Contains(palabra));
-                    propuestaEncontrada = true;
-                }
+                propuestasQuery = propuestasQuery
+                    .Where(p => p.Nombre.ToLower().Contains(palabra) || p.Usuarios.Nombre.ToLower().Contains(palabra.ToLower()) || p.Usuarios.Apellido.ToLower().Contains(palabra.ToLower()))
+                    .OrderBy(p => p.FechaFin).ThenBy(p => p.Valoracion);
 
                 if (SessionHelper.Usuario != null)
                     propuestasQuery =
                         propuestasQuery.Where(u => u.Usuarios.IdUsuario != SessionHelper.Usuario.IdUsuario);
             }
 
-            if (propuestaEncontrada)
-            {
-                propuestasQuery.OrderBy(p => p.FechaFin).ThenBy(p => p.Valoracion);
-                propuestas = propuestasQuery.ToList();
-            }
-            else
-            {
-                propuestas = new List<Propuestas>();
-            }
+            return propuestasQuery.ToList();
 
-
-            return propuestas;
         }
 
         public static List<Propuestas> ObtenerPropuestasUsuario(int id, string activa)

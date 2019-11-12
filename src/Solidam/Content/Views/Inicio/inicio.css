@@ -242,7 +242,8 @@ a {
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/
 .home_banner_area {
-    background: url(../../../Images/Views/Inicio/background-1.jpg) no-repeat center bottom;
+    background: url(../../../Images/Views/Inicio/background-3.jpg);
+    background-size: cover;
     position: relative;
     z-index: 1;
     height: 900px;
@@ -3817,7 +3818,15 @@ h6 {
 .recent_event .single_event:hover .title a {
     color: #ea2c58;
 }
-
+.sec {
+    height: 500px !important;
+}
+.sec2 {
+    height: 460px !important;
+}
+.sec3 {
+    height: 600px !important;
+}
 .recent_event .single_event:hover img {
     -webkit-transform: scale(1.2);
     -moz-transform: scale(1.2);
