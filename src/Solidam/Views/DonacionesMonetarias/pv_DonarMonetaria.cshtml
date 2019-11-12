@@ -5,6 +5,8 @@
     var restante = requerido - Model.DonacionesMonetarias?.Sum(dm => dm.Dinero);
 }
 @Styles.Render("~/Content/Views/Propuestas/pv_Donar.css")
+@Styles.Render("~/Content/Views/Shared/footer_2.css")
+
 <div class="card w-50 mx-auto">
     <div class="card-header">
         Donación monetaria
@@ -30,4 +32,3 @@
     </div>
 </div>
 
-    

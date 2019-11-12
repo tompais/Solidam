@@ -12,4 +12,5 @@
         $("form").submit();
     } else
         $(".error").removeClass("d-none");
+    //
 });
