@@ -10,7 +10,7 @@
 @using PagedList.Mvc
 @model PagedList.IPagedList<Propuestas>
 
-<div id="causes" class="section">
+<div id="causes" class="section @(!Model.Any() ? "sec2" : "")">
     <div class="container mt-5">
         <div class="row">
 
