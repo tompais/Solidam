@@ -1,10 +1,10 @@
-﻿.footerSolidam {
+﻿.footerAlt,.footerSolidam {
     background-color: black;
     color: white;
     height: 125px;
 }
 
-@media (min-width: 1000px) {
+/*@media (min-width: 1000px) {
     .footerAlt {
         background-color: black;
         position: absolute;
@@ -21,4 +21,4 @@
         color: white;
         height: 125px;
     }
-}
+}*/
