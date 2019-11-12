@@ -9,7 +9,7 @@ using Solidam.ViewModel;
 
 namespace Solidam.Controllers
 {
-    public class SeguridadController : Controller
+    public class SeguridadController : BaseController
     {
         [Route("login")]
         public ActionResult Iniciar(string pr)

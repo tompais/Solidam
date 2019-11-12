@@ -53,7 +53,7 @@ namespace Solidam.Controllers
             var actionName = filterContext.ActionDescriptor.ActionName.ToLower();
 
             if(EstaUsuarioLogueado() 
-               && controllerName.Equals(Constant.SeguridadControllerName.ToLower()))
+               && controllerName.Equals(Constant.SeguridadControllerName.ToLower()) && !actionName.Equals("cerrarsession"))
                 throw new UsuarioLogueadoException();
             if (!EstaUsuarioLogueado() 
                 && !controllerName.Equals(Constant.InicioControllerName.ToLower()) 
