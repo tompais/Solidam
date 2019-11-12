@@ -5,11 +5,11 @@
     var restante = requerido - Model.DonacionesMonetarias?.Sum(dm => dm.Dinero);
 }
 @Styles.Render("~/Content/Views/Propuestas/pv_Donar.css")
-<div class="card w-50 mx-auto mb-5">
+<div class="card w-50 mx-auto">
     <div class="card-header">
         Donación monetaria
     </div>
-    <div class="card-body">
+    <div class="card-body mb-2">
         <form method="post" enctype="multipart/form-data" id="form" action="@Url.Action("Donar","DonacionesMonetarias")">
             <h5 class="card-title">Requerido: <strong>$ @requerido</strong></h5>
             <h3 class="card-title">Restante: <strong>$ @restante</strong></h3>
@@ -21,13 +21,13 @@
             <div class="form-group">
                 <label>Adjunte el comprobante de la transferencia</label>
                 @Html.TextBoxFor(model => model.DonacionMonetaria.File, new { type = "file", @class = "form-control" })
-                <div class="errorSolidam"><b>@Html.ValidationMessageFor(model => model.DonacionMonetaria.File, "", new { @class = "text-danger" })</b></div>
+                <div class="errorSolidam"><b>@Html.ValidationMessageFor(model => model.DonacionMonetaria.File, "", new { @class = "text-danger mt-2" })</b></div>
             </div>
             <input type="hidden" value="@(propuestaMonetaria?.IdPropuestaDonacionMonetaria)" name="DonacionMonetaria.IdPropuestaDonacionMonetaria" />
             <input type="hidden" value="@(propuestaMonetaria?.IdPropuesta)" name="Propuesta.IdPropuesta" />
-            <button type="submit" class="btn btn-success mt-5">Confirmar</button>
+            <button type="submit" class="btn btn-success mt-2">Confirmar</button>
         </form>
     </div>
 </div>
-@Styles.Render("~/Content/Views/Shared/footer_2.css")
 
+    
