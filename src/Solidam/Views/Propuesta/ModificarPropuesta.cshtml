@@ -14,6 +14,7 @@
 <script>
     var tipoDonacion = @Model.TipoDonacion; 
     var fecha = @Html.Raw(Json.Encode(ViewBag.fecha));
+    var maximo = @int.MaxValue;
     console.log(fecha);
 </script>
 
