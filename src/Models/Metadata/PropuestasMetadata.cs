@@ -10,6 +10,7 @@ namespace Models
     public class PropuestasMetadata
     {
         [Required(ErrorMessage = "Debe ponerle un nombre a la propuesta")]
+        [MaxLength(50, ErrorMessage = "El máximo de caracteres permitido es de 50")]
         public string Nombre { get; set; }
         [Required(ErrorMessage = "Debe poner una descripción")]
         public string Descripcion { get; set; }
@@ -17,6 +18,7 @@ namespace Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyy}")]
         public DateTime FechaFin { get; set; }
         [Required(ErrorMessage = "Debe poner un teléfono de contacto")]
+        [MaxLength(30, ErrorMessage = "El máximo de caracteres permitido es de 30")]
         public string TelefonoContacto { get; set; }
         [Required(ErrorMessage = "Debe elegir una de las opciones")]
         public int TipoDonacion { get; set; }
