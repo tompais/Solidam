@@ -33,7 +33,7 @@ namespace Services
                 pdi.IdPropuestaDonacionInsumo == donacion.IdPropuestaDonacionInsumo);
             if(propuesta == null) throw new Exception();
             propuesta.Cantidad -= donacion.Cantidad;
-            Db.SaveChanges();
+            Db.CustomSaveChanges();
         }
 
         public static int GetPropuestaId(int idPropuestaDonacionInsumo)

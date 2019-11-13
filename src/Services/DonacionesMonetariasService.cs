@@ -15,7 +15,7 @@ namespace Services
             model.IdUsuario = SessionHelper.Usuario.IdUsuario;
             model.FechaCreacion = DateTime.Now;
             Db.DonacionesMonetarias.Add(model);
-            Db.SaveChanges();
+            Db.CustomSaveChanges();
         }
 
         public static List<DonacionesMonetarias> GetById(int idPropuesta)

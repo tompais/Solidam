@@ -18,7 +18,7 @@ namespace Services
             p.FechaCreacion = DateTime.Today;
             p.Valoracion = 0;
             Db.Propuestas.Add(p);
-            Db.SaveChanges();
+            Db.CustomSaveChanges();
         }
 
         public static void Actualizar(Propuestas p)
@@ -59,7 +59,7 @@ namespace Services
                     break;
             }
 
-            Db.SaveChanges();
+            Db.CustomSaveChanges();
         }
 
         public static Propuestas GetById(int id)
@@ -98,7 +98,7 @@ namespace Services
             propuesta.Valoracion = cantValoraciones == 0 ? 0 : cantMg * 100 / cantValoraciones;
             try
             {
-                Db.SaveChanges();
+                Db.CustomSaveChanges();
             }
             catch (System.Data.Entity.Validation.DbEntityValidationException ex)
             {
@@ -154,7 +154,7 @@ namespace Services
         {
             var donacion = GetById(idPropuesta);
             donacion.Estado = (int)PropuestaEstado.Cerrada;
-            Db.SaveChanges();
+            Db.CustomSaveChanges();
         }
 
         public Propuestas Put(Propuestas model)
@@ -168,7 +168,7 @@ namespace Services
             if (propuesta.Denuncias.Count(denuncia => denuncia.Estado == (int)DenunciaEstado.EnRevision) < 5 ||
                 propuesta.Denuncias.Any(denuncia => denuncia.Estado == (int)DenunciaEstado.Aceptada)) return;
             propuesta.Estado = (int)PropuestaEstado.EnRevision;
-            Db.SaveChanges();
+            Db.CustomSaveChanges();
 
         }
     }

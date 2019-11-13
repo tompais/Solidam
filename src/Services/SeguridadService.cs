@@ -55,7 +55,7 @@ namespace Services
             model.Password = Sha1.GetSHA1(model.Password);
 
             Db.Usuarios.Add(model);
-            Db.SaveChanges();
+            Db.CustomSaveChanges();
 
             return model;
         }
@@ -80,7 +80,7 @@ namespace Services
             }
             
 
-            Db.SaveChanges();
+            Db.CustomSaveChanges();
 
             return usuarioAModificar;
         }

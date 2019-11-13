@@ -14,7 +14,7 @@ namespace Services
         {
             model.IdUsuario = SessionHelper.Usuario.IdUsuario;
             Db.DonacionesHorasTrabajo.Add(model);
-            Db.SaveChanges();
+            Db.CustomSaveChanges();
         }
 
         public static List<DonacionesHorasTrabajo> GetById(int idPropuesta)
