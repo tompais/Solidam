@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Utils;
 
 namespace Models
@@ -15,6 +16,20 @@ namespace Models
             var existeEmail = Db.Usuarios.Any(o => o.Email == usuario.Email);
 
             return existeEmail ? new ValidationResult($"El Email {usuario.Email} ya está siendo usado.") : ValidationResult.Success;
+        }
+
+        public static ValidationResult ValidarPass(object value, ValidationContext context)
+        {
+            var usuario = context.ObjectInstance as UsuariosRegister;
+
+            var password = usuario.Password;
+
+            if (!(password.Any(char.IsUpper) && password.Any(char.IsDigit) && usuario.Password.Length >= 8))
+            {
+                return new ValidationResult("Su contraseña debe tener 8 caracteres, una mayuscula y un numero");
+            }
+
+            return ValidationResult.Success;
         }
 
         public static ValidationResult ValidarMayoriaEdad(object value, ValidationContext context) => context.ObjectInstance is UsuariosRegister usuario && (default(DateTime) + (DateTime.Now - usuario.FechaNacimiento)).Year - 1 < 18 ? new ValidationResult("Debes tener más de 18 años") : ValidationResult.Success;

@@ -16,7 +16,7 @@ namespace Services
             Validar(model);
             model.IdUsuario = SessionHelper.Usuario.IdUsuario;
             Db.DonacionesInsumos.Add(model);
-            Db.SaveChanges();
+            Db.CustomSaveChanges();
         }
         public static List<DonacionesInsumos> GetById(int idPropuesta)
         {

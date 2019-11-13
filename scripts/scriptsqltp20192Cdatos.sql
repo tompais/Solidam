@@ -62,7 +62,7 @@ INSERT INTO Propuestas values('Perchero Solidario',
 '20191017','20191224','112457545',2,'PercheroSolidario.jpg',3,0,7)
 GO
 
-INSERT INTO PropuestasDonacionesInsumos values (3,'object',20)
+INSERT INTO PropuestasDonacionesInsumos values (3,'Ropas',20)
 GO
 
 INSERT INTO Propuestas values('Reforma del Centro de Salud 98',
@@ -78,5 +78,6 @@ INSERT INTO Propuestas values('Ayuda a Venezuela',
 '20191017','20191224','123575554',2,'AyudaVenezuela.jpg',1,0,5)
 GO
 
-INSERT INTO PropuestasDonacionesInsumos values (5,'object2',1000)
+INSERT INTO PropuestasDonacionesInsumos values (5,'Alimentos',1000)
+INSERT INTO PropuestasDonacionesInsumos values (5,'Ropas',500)
 GO

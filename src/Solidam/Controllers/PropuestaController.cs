@@ -72,6 +72,7 @@ namespace Solidam.Controllers
             var propuestaBuscadas = PropuestaService.ObtenerPropuestasPorNombreYUsuario(palabra);
 
             ViewBag.Cantidad = propuestaBuscadas.Count;
+
             return View("PropuestasBuscadas", propuestaBuscadas.ToPagedList(page ?? 1, 3));
         }
 

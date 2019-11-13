@@ -28,7 +28,7 @@ namespace Services
             usuarioAModificar.Foto = model.Foto;
             usuarioAModificar.UserName = model.UserName;
 
-            Db.SaveChanges();
+            Db.CustomSaveChanges();
 
             return usuarioAModificar;
         }

@@ -3,9 +3,6 @@
 @using Models
 @using Services
 @model Solidam.ViewModel.PropuestaDetalleViewModel
-@{
-    var meta = Model.Propuesta.PropuestasDonacionesHorasTrabajo.FirstOrDefault(pdm => pdm.IdPropuesta == Model.Propuesta.IdPropuesta)?.CantidadHoras;
-}
 @Styles.Render("~/Content/Views/Propuestas/style.css")
 
     <div class="article causes-details mx-auto mt-5 col col-8 card p-4">
@@ -54,9 +51,8 @@
         <!-- article tags share -->
         <div class="article-tags-share d-flex flex-column">
             <!-- article tags -->
-            <ul class="tags">
-                <li>TAGS:</li>
-                <li><a href="#">Insumos</a></li>
+            <ul>
+                <li>TAGS: <i class="fas fa-tags mr-2"></i> Insumos</li>
             </ul>
             <div class="ml-auto d-flex">
                 <div class="mb-3 mr-3">

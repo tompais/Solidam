@@ -25,7 +25,7 @@ namespace Services
         {
             if (model.IdUsuario == 0) return;
             Db.Denuncias.Add(model);
-            Db.SaveChanges();
+            Db.CustomSaveChanges();
         }
 
         public static bool Denuncie(int idPropuesta)
@@ -81,7 +81,7 @@ namespace Services
                     denuncia.Propuestas.Estado = (int) PropuestaEstado.Bloqueada;
                 denuncia.Estado = model.Estado;
             }
-            Db.SaveChanges();
+            Db.CustomSaveChanges();
             return denuncia;
         }
 

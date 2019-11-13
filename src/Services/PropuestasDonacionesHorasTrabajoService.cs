@@ -32,7 +32,7 @@ namespace Services
                 pdi.IdPropuestaDonacionHorasTrabajo == donacion.IdPropuestaDonacionHorasTrabajo);
             if(propuesta == null) throw new Exception();
             propuesta.CantidadHoras -= donacion.Cantidad;
-            Db.SaveChanges();
+            Db.CustomSaveChanges();
         }
 
         public static bool EsCompletada(DonacionesHorasTrabajo donacion)

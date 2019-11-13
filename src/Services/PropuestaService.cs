@@ -18,7 +18,7 @@ namespace Services
             p.FechaCreacion = DateTime.Today;
             p.Valoracion = 0;
             Db.Propuestas.Add(p);
-            Db.SaveChanges();
+            Db.CustomSaveChanges();
         }
 
         public static void Actualizar(Propuestas p)
@@ -59,7 +59,7 @@ namespace Services
                     break;
             }
 
-            Db.SaveChanges();
+            Db.CustomSaveChanges();
         }
 
         public static Propuestas GetById(int id)
@@ -98,7 +98,7 @@ namespace Services
             propuesta.Valoracion = cantValoraciones == 0 ? 0 : cantMg * 100 / cantValoraciones;
             try
             {
-                Db.SaveChanges();
+                Db.CustomSaveChanges();
             }
             catch (System.Data.Entity.Validation.DbEntityValidationException ex)
             {
@@ -116,40 +116,21 @@ namespace Services
         public static List<Propuestas> ObtenerPropuestasPorNombreYUsuario(string palabra)
         {
             var propuestasQuery = Db.Propuestas.Where(p => p.Estado == (int)PropuestaEstado.Abierta && p.FechaFin > DateTime.Today).AsQueryable();
-            bool propuestaEncontrada = false;
-            List<Propuestas> propuestas;
 
-            if (!String.IsNullOrEmpty(palabra)) 
+            if (!String.IsNullOrEmpty(palabra))
             {
-                if (Db.Propuestas.Any(p => p.Nombre.Contains(palabra)))
-                {
-                    propuestasQuery = propuestasQuery.Where(p => p.Nombre.Contains(palabra));
-                    propuestaEncontrada = true;
-                }
 
-                if (Db.Propuestas.Any(p => p.Usuarios.Nombre.Contains(palabra)))
-                {
-                    propuestasQuery = propuestasQuery.Where(p => p.Usuarios.Nombre.Contains(palabra));
-                    propuestaEncontrada = true;
-                }
+                propuestasQuery = propuestasQuery
+                    .Where(p => p.Nombre.ToLower().Contains(palabra) || p.Usuarios.Nombre.ToLower().Contains(palabra.ToLower()) || p.Usuarios.Apellido.ToLower().Contains(palabra.ToLower()))
+                    .OrderBy(p => p.FechaFin).ThenBy(p => p.Valoracion);
 
                 if (SessionHelper.Usuario != null)
                     propuestasQuery =
                         propuestasQuery.Where(u => u.Usuarios.IdUsuario != SessionHelper.Usuario.IdUsuario);
             }
 
-            if (propuestaEncontrada)
-            {
-                propuestasQuery.OrderBy(p => p.FechaFin).ThenBy(p => p.Valoracion);
-                propuestas = propuestasQuery.ToList();
-            }
-            else
-            {
-                propuestas = new List<Propuestas>();
-            }
+            return propuestasQuery.ToList();
 
-
-            return propuestas;
         }
 
         public static List<Propuestas> ObtenerPropuestasUsuario(int id, string activa)
@@ -173,7 +154,7 @@ namespace Services
         {
             var donacion = GetById(idPropuesta);
             donacion.Estado = (int)PropuestaEstado.Cerrada;
-            Db.SaveChanges();
+            Db.CustomSaveChanges();
         }
 
         public Propuestas Put(Propuestas model)
@@ -187,7 +168,7 @@ namespace Services
             if (propuesta.Denuncias.Count(denuncia => denuncia.Estado == (int)DenunciaEstado.EnRevision) < 5 ||
                 propuesta.Denuncias.Any(denuncia => denuncia.Estado == (int)DenunciaEstado.Aceptada)) return;
             propuesta.Estado = (int)PropuestaEstado.EnRevision;
-            Db.SaveChanges();
+            Db.CustomSaveChanges();
 
         }
     }

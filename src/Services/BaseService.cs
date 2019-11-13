@@ -9,6 +9,6 @@ namespace Services
         {
         }
 
-        protected static SolidamEntities Db => SolidamContext.Instance;
+        protected static SolidamContext Db => SolidamContext.Instance;
     }
 }
