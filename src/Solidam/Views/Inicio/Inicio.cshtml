@@ -1,0 +1,144 @@
+﻿@using System.Globalization
+@using Helpers
+@using Models
+@Styles.Render("~/Content/Views/Inicio/inicio.css")
+@Styles.Render("~/Content/Views/Inicio/inicioResponsive.css")
+@Styles.Render("~/Content/Views/Inicio/ShowMore.css")
+
+@{
+    ViewBag.Title = "Inicio";
+}
+@model Solidam.ViewModel.InicioViewModel
+<!-- Banner -->
+
+<section class="home_banner_area">
+    <div class="overlay"></div>
+    <div class="banner_inner d-flex align-items-center">
+        <div class="container">
+            <div class="banner_content row">
+                <div class="offset-lg-2 col-lg-8">
+                    <img class="img-fluid" src="@Url.Content("~/Images/Views/Inicio/logo2.png")" alt="">
+                    <p>
+                        Donde reina la caridad, y abunda la felicidad
+                    </p>
+                    @if (SessionHelper.Usuario == null)
+                    {
+                        <a class="main_btn mr-10" href=@Url.Action("Registrar","Seguridad")>Registrarme</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Causas -->
+
+<div id="causes" class="section">
+    <div class="container mt-5">
+        <div class="row">
+
+            <div class="col-md-12 col-md-offset-2 mb-5">
+                <div class="section-title text-center">
+                    <h2 class="title">Causas mas Populares</h2>
+                    <p class="sub-title">Aca se muestran las ultimas causas mas valoradas por los usuarios del sitio.</p>
+                </div>
+                @if (!Model.PropuestasTop5.Any())
+                {
+                    <h3 class="text-center"><b>No hay propuestas disponibles para mostrar</b></h3>
+                }
+            </div>
+            @foreach (var propuesta in Model.PropuestasTop5)
+            {
+                <div class="col-md-4">
+                    <div class="card p-4 causes">
+                        <div class="causes-img">
+                            <a href="javascript:void(0);">
+                                <img src="@Url.Content($"~/Images/Views/Propuesta/{propuesta.Foto}")" alt="">
+                            </a>
+                        </div>
+                        <div class="causes-content">
+                            <h3>@propuesta.Nombre</h3>
+                            <span>Usuario: </span><span class="font-weight-bold text-dark">@propuesta.Usuarios.Apellido, @propuesta.Usuarios.Nombre</span><br />
+                            <span class="mr-3">Aceptacion: <strong class="text-dark">@propuesta.Valoracion%</strong></span><br />
+                            <span class="mr-3"> Disponible hasta: <strong class="text-dark">@propuesta.FechaFin.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</strong></span><br />
+                            @if (propuesta.TipoDonacion == 1)
+                            {
+                                <span class="mr-3">Tag: <i class="fas fa-dollar-sign text-dark"></i></span>
+                            }
+                            else if (propuesta.TipoDonacion == 2)
+                            {
+                                <span class="mr-3">Tag: <i class="fas fa-people-carry text-dark"></i></span>
+                            }
+                            else
+                            {
+                                <span class="mr-3">Tag: <i class="fas fa-briefcase text-dark"></i></span>
+                            }
+                        </div>
+                        <div class="d-flex justify-content-between mt-3">
+                            <a class="btn text-white btnVerdeSolidam" href="@Url.Action("Detalle","Propuesta",new {id = @propuesta.IdPropuesta })"><i class="fas fa-eye mr-2"></i>Ver detalle</a>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+</div>
+
+<div id="causes" class="section">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="section-title text-center">
+                    <h2 class="title">Causas Activas</h2>
+                    <p class="sub-title">Aca se muestran las causas activas de solidam.</p>
+                </div>
+                @if (!Model.PropuestasActivas.Any())
+                {
+                    <h3 class="text-center"><b>No hay propuestas disponibles para mostrar</b></h3>
+                }
+            </div>
+            @foreach (var propuesta in Model.PropuestasActivas)
+            {
+                <div class="col-md-4 causa">
+                    <div class="card p-4 causes">
+                        <div class="causes-img">
+                            <a href="javascript:void(0);">
+                                <img src="@Url.Content($"~/Images/Views/Propuesta/{propuesta.Foto}")" alt="">
+                            </a>
+                        </div>
+                        <div class="causes-content">
+                            <h3>@propuesta.Nombre</h3>
+                            <span>Usuario: </span><span class="font-weight-bold text-dark">@propuesta.Usuarios.Apellido, @propuesta.Usuarios.Nombre</span><br />
+                            <span class="mr-3">Aceptacion: <strong class="text-dark">@propuesta.Valoracion%</strong></span><br />
+                            <span class="mr-3"> Disponible hasta: <strong class="text-dark">@propuesta.FechaFin.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</strong></span><br/>
+                            @if (propuesta.TipoDonacion == 1)
+                            {
+                                <span class="mr-3">Tag: <i class="fas fa-dollar-sign text-dark"></i></span>
+                            }
+                            else if (propuesta.TipoDonacion == 2)
+                            {
+                                <span class="mr-3">Tag: <i class="fas fa-people-carry text-dark"></i></span>
+                            }
+                            else
+                            {
+                                <span class="mr-3">Tag: <i class="fas fa-briefcase text-dark"></i></span>
+                            }
+                        </div>
+                        <div class="d-flex justify-content-between mt-3">
+                            <a class="btn text-white btnVerdeSolidam" href="@Url.Action("Detalle","Propuesta",new {id = @propuesta.IdPropuesta })"><i class="fas fa-eye mr-2"></i>Ver detalle</a>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div class="container text-center mb-3">
+                <button class="btn btnVerdeSolidam load-more"><i class="fas fa-plus mr-2"></i>Ver mas</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/Scripts/Views/Inicio/inicio.js")

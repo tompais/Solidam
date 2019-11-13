@@ -1,0 +1,15 @@
+﻿@model Models.UsuarioPerfil
+@{
+    ViewBag.Title = "Mi Perfil";
+}
+
+@Styles.Render("~/Content/Views/Usuario/MiPerfil.css")
+
+@if (string.IsNullOrEmpty(Model.Nombre) || string.IsNullOrEmpty(Model.Apellido) || string.IsNullOrEmpty(Model.Foto))
+{
+    @Html.Partial("pv_CompletarPerfil", Model)
+}
+else
+{
+    @Html.Partial("pv_VerPerfil", Model)
+}

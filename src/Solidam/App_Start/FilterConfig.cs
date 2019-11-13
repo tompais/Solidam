@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using Filters;
+using System.Web.Mvc;
 
 namespace Solidam
 {
@@ -7,6 +8,7 @@ namespace Solidam
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new GlobalExceptionHandlerAttribute());
         }
     }
 }

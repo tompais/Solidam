@@ -1,29 +1,57 @@
-﻿<!DOCTYPE html>
+﻿@using Helpers
+<!DOCTYPE html>
 
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
 <html>
-<!--<![endif]-->
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@ViewBag.Title</title>
+    <title>Solidam | @ViewBag.Title</title>
+
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/PagedList.css")
+    <link rel="icon" href="@Url.Content("~/favicon.ico")" />
 </head>
 <body>
-    <div>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        @RenderBody()
-    </div>
+
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/popper")
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", false)
+    @Scripts.Render("~/bundles/fontawesome")
+    @Scripts.Render("~/bundles/jquery.mousewheel")
+    @Scripts.Render("~/bundles/moment")
+    @Scripts.Render("~/bundles/base64")
+    @Scripts.Render("~/bundles/consts")
+    @Scripts.Render("~/bundles/utils")
+    @Scripts.Render("~/bundles/baseLayout")
+    
+@if (SessionHelper.MostrarPopUpCompletarPerfil)
+{
+    <div class="modal fade" id="modalNotificacionCompletarPerfil" tabindex="-1" role="dialog" aria-labelledby="modalNotificacionCompletarPerfilCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalNotificacionCompletarPerfilLongTitle">Complete su Perfil</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Le recordamos que para poder crear y administrar sus propias propuestas, es necesario que complete su perfil. Para ello, acceda desde el menú, seleccione "Mi Perfil" y verá los campos que debe llenar.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@RenderBody()
+
 </body>
 </html>

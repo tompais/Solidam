@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Donar";
+    Layout = "~/Views/Shared/_PropuestasLayout.cshtml";
+}
+@Styles.Render("~/Content/Views/Inicio/inicio.css")
+@Styles.Render("~/Content/Views/Inicio/inicioResponsive.css")
+@Styles.Render("~/Content/Views/Propuestas/pv_Donar.css")
+<script>
+    @*var pathCrearDonacionInsumo = '@Url.Action("Crear","DonacionesInsumo")';*@
+    var pathInicio = '@Url.Action("Inicio","Inicio")';
+</script>
+@using Enums
+@model Solidam.ViewModel.DonarViewModel
+<div class="con sec2">
+    <h2 class="text-center mb-5">Donar para @Model.Propuesta.Nombre</h2>
+    @switch (Model.Propuesta.TipoDonacion)
+    {
+        case (int)TipoDonacion.Monetaria:
+            @Html.Partial("~/Views/DonacionesMonetarias/pv_DonarMonetaria.cshtml",Model)
+            break;
+        case (int)TipoDonacion.HorasDeTrabajo:
+            @Html.Partial("~/Views/DonacionesHorasTrabajo/pv_DonarHorasTrabajo.cshtml",Model)
+            break;
+        case (int)TipoDonacion.Insumos:
+            @Html.Partial("~/Views/DonacionesInsumo/pv_DonarInsumos.cshtml",Model)
+            break;
+    }
+</div>
+@Scripts.Render("~/Scripts/Views/Propuesta/Donar.js")
+

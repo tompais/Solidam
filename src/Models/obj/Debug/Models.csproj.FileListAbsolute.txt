@@ -1,6 +1,0 @@
-C:\Proyectos\PROGRA WEB 3\solidam\src\Models\bin\Debug\Models.dll
-C:\Proyectos\PROGRA WEB 3\solidam\src\Models\bin\Debug\Models.pdb
-C:\Proyectos\PROGRA WEB 3\solidam\src\Models\obj\Debug\Models.csprojAssemblyReference.cache
-C:\Proyectos\PROGRA WEB 3\solidam\src\Models\obj\Debug\Models.csproj.CoreCompileInputs.cache
-C:\Proyectos\PROGRA WEB 3\solidam\src\Models\obj\Debug\Models.dll
-C:\Proyectos\PROGRA WEB 3\solidam\src\Models\obj\Debug\Models.pdb

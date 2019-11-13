@@ -1,0 +1,62 @@
+﻿@model Models.UsuarioPerfil
+@Styles.Render("~/Content/bootstrap-datepicker.min.css")
+@Styles.Render("~/Scripts/Croppie/croppie.css")
+@Styles.Render("~/Content/Views/Usuario/CompletarPerfil.css")
+
+<div id="divWrapperMiPerfil" class="d-flex flex-column align-items-center justify-content-center p-4 px-md-0 py-md-5">
+    <h3 class="text-white text-center">Complete su Perfil</h3>
+    @using (Html.BeginForm("GuardarPerfil", "Usuario", FormMethod.Post, new { id = "formGuardarPerfil", @class = "col-md-3 align-items-center justify-content-center rounded shadow bg-white p-5 mt-3", enctype = "multipart/form-data" }))
+    {
+        @Html.ValidationSummary(true)
+        <fieldset>
+            <div class="form-group">
+                <h3 class="text-center text-black-50 font-weight-light mb-4">Foto de Perfil</h3>
+                <div id="main-cropper"></div>
+                <div class="actions d-flex justify-content-center align-items-center">
+                    <a class="btn btn-success file-btn">
+                        <i class="fas fa-file-upload text-white mr-2"></i>
+                        <span class="text-white">Subir Foto</span>
+                        @Html.TextBoxFor(usuario => usuario.ProfilePicFile, new { type = "file", id = "upload", value = "Seleccione una imagen...", accept = "image/*" })
+                    </a>
+                </div>
+                <div class="d-flex justify-content-center align-items-center mt-2">
+                    @Html.ValidationMessageFor(usuario => usuario.ProfilePicFile, string.Empty, new {@class = "text-danger text-center font-weight-bold"})
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(usuario => usuario.Nombre, new { @for = "inputNombre" })
+                @Html.EditorFor(usuario => usuario.Nombre, new { htmlAttributes = new { id = "inputNombre", name = "nombre", @class = "form-control", type = "text", placeholder = "Ej: Facundo", required = "required" } })
+                <div class="mt-2">
+                    @Html.ValidationMessageFor(usuario => usuario.Nombre, string.Empty, new { @class = "text-danger text-center font-weight-bold" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(usuario => usuario.Apellido, "Apellido", new { @for = "inputApellido" })
+                @Html.EditorFor(usuario => usuario.Apellido, new { htmlAttributes = new { id = "inputApellido", name = "apellido", @class = "form-control", type = "text", placeholder = "Ej: Pérez", required = "required" } })
+                <div class="mt-2">
+                    @Html.ValidationMessageFor(usuario => usuario.Apellido, string.Empty, new { @class = "text-danger text-center font-weight-bold" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(usuario => usuario.FechaNacimiento, "Fecha de Nacimiento", new { @for = "inputFechaNacimiento" })
+                <div class="input-group date" data-provide="datepicker">
+                    @Html.EditorFor(usuario => usuario.FechaNacimiento, new { htmlAttributes = new { id = "inputFechaNacimiento", name = "fechaNacimiento", @class = "form-control", placeholder = "Ej: 10/02/1995", required = "required", type = "text", autocomplete = "off", value = $"{Model.FechaNacimiento:dd/MM/yyyy}" } })
+                    <div class="input-group-addon">
+                    </div>
+                </div>
+                <div class="mt-2">
+                    @Html.ValidationMessageFor(usuario => usuario.FechaNacimiento, string.Empty, new { @class = "text-danger text-center font-weight-bold" })
+                </div>
+            </div>
+            <div class="d-flex justify-content-center align-items-center mt-4">
+                <button id="btnSubmitPerfil" type="submit" class="btn btn-success">Guardar Perfil</button>
+            </div>
+        </fieldset>
+    }
+</div>
+
+@Scripts.Render("~/Scripts/bootstrap-datepicker.min.js")
+@Scripts.Render("~/Scripts/locales/bootstrap-datepicker.es.min.js")
+@Scripts.Render("~/Scripts/jQuery-Mask-Plugin/dist/jquery.mask.min.js")
+@Scripts.Render("~/Scripts/Croppie/croppie.min.js")
+@Scripts.Render("~/Scripts/Views/Usuario/CompletarPerfil.js")

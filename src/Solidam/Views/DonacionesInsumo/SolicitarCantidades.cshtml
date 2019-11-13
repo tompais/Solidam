@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Solicitar Cantidades";
+}
+@Styles.Render("~/Content/Views/Propuestas/Detalle.css")
+@model List<Models.DonacionesInsumos>
+<div class="container sec2 mb-5">
+    <h2>Ingresar cantides</h2>
+    <div class="card w-50 mx-auto ">
+        <div class="card-header">
+            Donación de insumos
+        </div>
+        <div class="card-body">
+            <form method="post" id="form" action="@Url.Action("Donar", "DonacionesInsumo")">
+                @{ var contador = 0; }
+                @foreach (var itemRequerido in ViewBag.donaciones)
+                {
+                    <div class="form-group">
+                        <label>Ingrese la cantidad de <b class="font-weight-bold">@itemRequerido.Nombre</b></label>
+                        @Html.EditorFor(model => model[contador].Cantidad, new { htmlAttributes = new { type = "number", @class = "form-control" } })
+                        <div class="errorSolidam"><b>@Html.ValidationMessageFor(model => model[contador].Cantidad, "", new { @class = "text-danger" })</b></div>
+                    </div>
+                    @Html.HiddenFor(m => m[contador].IdPropuestaDonacionInsumo, new { Value = itemRequerido.IdPropuestaDonacionInsumo })
+                    contador++;
+                }
+                <button type="submit" id="btnConfirmar" class="btn btn-success mt-5">Confirmar</button>
+            </form>
+        </div>
+    </div>
+</div>
+

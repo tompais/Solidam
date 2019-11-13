@@ -1,0 +1,49 @@
+﻿@model Solidam.ViewModel.DonarViewModel
+@{ var contador = 0; }
+@*@Styles.Render("~/Content/Views/Shared/footer_2.css")*@
+<script>var propuestaId = @Model.Propuesta.IdPropuesta</script>
+
+<div class="card w-50 mx-auto">
+    <div class="card-header">
+        Donación de Insumos
+    </div>
+    <div class="card-body">
+        <form action="@Url.Action("SolicitarCantidades","DonacionesInsumo")" method="post">
+            <h5 class="card-title">Objetos requeridos</h5>
+            <p>Por favor, seleccione qué items desea donar</p>
+            <div class="d-flex flex-column">
+                @Html.HiddenFor(m => m.Propuesta.IdPropuesta, new { Value = Model.Propuesta.IdPropuesta })
+                @foreach (var itemRequerido in Model.Propuesta.PropuestasDonacionesInsumos)
+                {
+                    var cantidadObtenida = Model.DonacionesInsumos?.Where(di => di.IdPropuestaDonacionInsumo == itemRequerido.IdPropuestaDonacionInsumo).Sum(d => d.Cantidad) ?? 0;
+                    if (itemRequerido.Cantidad != cantidadObtenida)
+                    {
+                        <div class="d-flex align-items-center">
+                            <div class="mr-3">
+                                <input type="checkbox" class="check" name="donaciones[@contador].Seleccionado" />
+                            </div>
+                            <div class="d-flex flex-column">
+                                <div><strong>(@itemRequerido.Cantidad)</strong> <span class="nombre-item font-weight-bold">@itemRequerido.Nombre</span> <span class="ml-4">Restantes: <span class="rest">@(itemRequerido.Cantidad - cantidadObtenida)</span> unidades</span></div>
+                            </div>
+                            <input type="hidden" value="@itemRequerido.IdPropuestaDonacionInsumo" name="donaciones[@contador].IdPropuestaDonacionInsumo" />
+                            <input type="hidden" value="@itemRequerido.Nombre" name="donaciones[@contador].Nombre" />
+                            <input type="hidden" value="@itemRequerido.IdPropuesta" name="donaciones[@contador].IdPropuesta" />
+                        </div>
+                        contador++;
+                    }
+                    else
+                    {
+                        <div class="d-flex align-items-center">
+                            <div style="text-decoration: line-through">
+                                - @itemRequerido.Nombre <span class="ml-4">Restantes: @(itemRequerido.Cantidad - cantidadObtenida) unidades</span>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+            <button type="submit" id="btnContinuarInsumos" class="btn btn-success mt-5">Continuar</button>
+            <div class="text-danger d-none error">Debe seleccionar al menos un ítem</div>
+        </form>
+    </div>
+</div>
+@Scripts.Render("~/Scripts/Views/Donaciones/donarInsumos.js")

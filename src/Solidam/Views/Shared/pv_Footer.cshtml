@@ -1,0 +1,39 @@
+﻿@Styles.Render("~/Content/Views/Shared/pv_Footer.css")
+
+<!-- Footer -->
+
+@if (ViewBag.Title == "Inicio" ||
+     ViewBag.Title == "Acerca de Solidam" ||
+     ViewBag.Title == "Detalle" ||
+     ViewBag.Title == "Mi Perfil" ||
+     ViewBag.Title == "Crear Propuesta" ||
+     ViewBag.Title == "Modificar Propuesta" ||
+     ViewBag.propuestasCreadas > 0 ||
+     ViewBag.Cantidad > 0)
+{
+    <footer class="footerSolidam section_gap mt-auto">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>
+                        Programacion Web 3 2019 2C - Grupo 5 - Martinez Alejo - Allio Ezequiel - Crescenzo Ignacio - Pais Tomas
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+}
+else
+{
+    <footer class="footerAlt section_gap mt-auto">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>
+                        Programacion Web 3 2019 2C - Grupo 5 - Martinez Alejo - Allio Ezequiel - Crescenzo Ignacio - Pais Tomas
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+}

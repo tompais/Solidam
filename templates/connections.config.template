@@ -1,0 +1,3 @@
+﻿<connectionStrings>
+  <add name="SolidamEntities" connectionString="metadata=res://*/SolidamEntityDataModel.csdl|res://*/SolidamEntityDataModel.ssdl|res://*/SolidamEntityDataModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=DESKTOP-K2RVV4C\SQLEXPRESS;initial catalog=TP-20192C;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+</connectionStrings>

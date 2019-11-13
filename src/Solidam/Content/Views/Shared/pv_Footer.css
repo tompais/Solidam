@@ -1,0 +1,24 @@
+﻿.footerAlt,.footerSolidam {
+    background-color: black;
+    color: white;
+    height: 125px;
+}
+
+/*@media (min-width: 1000px) {
+    .footerAlt {
+        background-color: black;
+        position: absolute;
+        bottom: 0;
+        height: 50px;
+        width: 100%;
+        color: white;
+    }
+}
+
+@media (min-width: 400px) {
+    .footerAlt {
+        background-color: black;
+        color: white;
+        height: 125px;
+    }
+}*/

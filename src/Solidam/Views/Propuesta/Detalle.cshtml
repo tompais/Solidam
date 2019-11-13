@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Detalle";
+    Layout = "~/Views/Shared/_PropuestasLayout.cshtml";
+}
+@using Enums
+
+@model Solidam.ViewModel.PropuestaDetalleViewModel
+@*@Styles.Render("~/Content/Views/Inicio/inicio.css")*@
+@*@Styles.Render("~/Content/Views/Inicio/inicioResponsive.css")*@
+@Styles.Render("~/Content/Views/Propuestas/Detalle.css")
+<div class="mt-3">
+    <div class="section-bg" style="background-image: url(@Url.Content("~/Images/Views/Propuesta/background-2.jpg"));">
+        <h1 class="text-white pt-5 pl-5">Detalle de la propuesta</h1>
+    </div>
+    @switch (Model.Propuesta.TipoDonacion)
+    {
+        case (int) TipoDonacion.Monetaria:
+            @Html.Partial("pv_DetalleMonetaria", Model)
+
+            break;
+        case (int) TipoDonacion.HorasDeTrabajo:
+            @Html.Partial("pv_DetalleHorasTrabajo", Model)
+            break;
+        case (int) TipoDonacion.Insumos:
+            @Html.Partial("pv_DetalleInsumos",Model)
+            break;
+
+    }
+</div>

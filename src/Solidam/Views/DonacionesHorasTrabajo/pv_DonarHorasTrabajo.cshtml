@@ -1,0 +1,30 @@
+﻿@model Solidam.ViewModel.DonarViewModel
+@using Services
+@{
+    var propuesta = Model.Propuesta.PropuestasDonacionesHorasTrabajo?.FirstOrDefault();
+    var donado = PropuestasDonacionesHorasTrabajoService.GetHorasDonadasByPropuestaId(propuesta.IdPropuestaDonacionHorasTrabajo);
+    var horasRequeridas = propuesta?.CantidadHoras;
+    var horasRestantes = horasRequeridas - donado;
+}
+@*@Styles.Render("~/Content/Views/Shared/footer_2.css")*@
+
+<div class="card mx-auto w-50 mb-5">
+    <div class="card-header">
+        Donación de horas de trabajo (@(Model.Propuesta.PropuestasDonacionesHorasTrabajo?.FirstOrDefault(pdm => pdm.IdPropuesta == Model.Propuesta.IdPropuesta)?.Profesion))
+    </div>
+    <div class="card-body">
+        <form method="post" action="@Url.Action("Donar","DonacionesHorasTrabajo")">
+            <h5 class="card-title">Requerido: <strong>@horasRequeridas hs</strong></h5>
+            <h3 class="card-title">Restante: <strong>@horasRestantes hs</strong></h3>
+            <div class="form-group">
+                <label>Ingrese la cantidad de horas que trabajará</label>
+                @Html.EditorFor(m => m.DonacionHorasTrabajo.Cantidad, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                <div class="errorSolidam"><b>@Html.ValidationMessageFor(model => model.DonacionHorasTrabajo.Cantidad, "", new { @class = "text-danger" })</b></div>
+            </div>
+            <input type="hidden" value="@(propuesta?.IdPropuestaDonacionHorasTrabajo)" name="DonacionHorasTrabajo.IdPropuestaDonacionHorasTrabajo" />
+            <input type="hidden" value="@(propuesta?.IdPropuesta)" name="Propuesta.IdPropuesta" />
+            <button type="submit" class="btn btn-success mt-5">Confirmar</button>
+        </form>
+    </div>
+</div>
+

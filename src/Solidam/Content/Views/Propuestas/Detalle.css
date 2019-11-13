@@ -1,0 +1,32 @@
+﻿.disabled {
+    pointer-events: none;
+    cursor: default;
+    opacity: .5;
+}
+.me-gusta,.no-me-gusta {
+    background: none;
+    border: none;
+    font-size: 4vh;
+}
+.causes-details .causes-progress {
+    background: none;
+}
+.section-bg {
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    height: 300px;
+}
+
+.article .article-img {
+    width: 45%;
+}
+.card-header {
+    background: green;
+    color: white;
+}
+.card {
+    -webkit-box-shadow: 0px 0px 8px 0px rgba(110,110,110,1);
+    -moz-box-shadow: 0px 0px 8px 0px rgba(110,110,110,1);
+    box-shadow: 0px 0px 8px 0px rgba(110,110,110,1);
+}

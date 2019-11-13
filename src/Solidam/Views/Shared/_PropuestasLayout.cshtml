@@ -1,0 +1,18 @@
+﻿@using Helpers
+
+@{
+    Layout = "_BaseLayout.cshtml";
+}
+
+@Styles.Render("~/Content/Views/Inicio/inicio.css")
+@Styles.Render("~/Content/Views/Inicio/inicioResponsive.css")
+
+@RenderPage("pv_Header.cshtml")
+
+<div class="">
+    @RenderBody()
+    @RenderPage("~/Views/Shared/pv_Footer.cshtml")
+</div>
+
+
+

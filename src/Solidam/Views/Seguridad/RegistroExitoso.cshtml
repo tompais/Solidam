@@ -1,0 +1,32 @@
+﻿@Styles.Render("~/Content/Views/Seguridad/IniciarRegistrar.css")
+
+@{
+    ViewBag.Title = "Registro Exitoso";
+    Layout = "~/Views/Shared/_AnonimoLayout.cshtml";
+}
+
+<div class="container pt-5">
+
+    <div class="jumbotron bg-white">
+
+        <div class="text-center my-0">
+            <img alt="" src="@Url.Content("~/Images/Views/Inicio/Logotipo.png")">
+        </div>
+
+        <div class="text-center ">
+
+            <h2 class="mx-0 mt-3"> Gracias por registrarse en Solidam</h2>
+            <p class="lead"><strong>Por favor revisa tu Email</strong> alli recibiras un mensaje para poder activar tu cuenta. </p>
+            <hr>
+
+            <span>
+                Espera unos segundos, se te redireccionara automaticamente para inciar tu cuenta.
+            </span>
+
+        </div>
+    </div>
+
+</div>
+
+
+@Scripts.Render("~/Scripts/Views/Seguridad/RegistroExitoso.js");

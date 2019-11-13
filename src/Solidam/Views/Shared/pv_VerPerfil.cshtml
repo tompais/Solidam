@@ -1,0 +1,37 @@
+﻿@model Models.UsuarioPerfil
+
+@Styles.Render("~/Content/Views/Usuario/VerPerfil.css")
+
+<div id="divWrapperMiPerfil" class="d-flex flex-column justify-content-center align-items-center p-4 px-md-0 py-md-5">
+    <h2 class="text-white text-center">Mi Perfil</h2>
+    <div class="col-md-3 align-items-center justify-content-center bg-white p-4 mt-4 rounded shadow">
+        <img src="@Url.Content($"~/Content/UploadedFiles/{Model.Foto}")" class="rounded-circle mx-auto d-block" alt="Foto de Perfil" width="150" height="150">
+        <div class="d-flex flex-column justify-content-center align-items-center">
+            <div class="d-flex flex-column justify-content-center align-items-center mt-3">
+                <p class="p-user-label mb-0">Email:</p>
+                <strong class="strong-user-info">@Model.Email</strong>
+            </div>
+            <div class="d-flex flex-column justify-content-center align-items-center mt-3">
+                <p class="p-user-label mb-0">UserName:</p>
+                <strong class="strong-user-info">@Model.UserName</strong>
+            </div>
+            <div class="d-flex flex-column justify-content-center align-items-center mt-3">
+                <p class="p-user-label mb-0">Nombre:</p>
+                <strong class="strong-user-info">@Model.Nombre</strong>
+            </div>
+            <div class="d-flex flex-column justify-content-center align-items-center mt-3">
+                <p class="p-user-label mb-0">Apellido:</p>
+                <strong class="strong-user-info">@Model.Apellido</strong>
+            </div>
+            <div class="d-flex flex-column justify-content-center align-items-center mt-3">
+                <p class="p-user-label mb-0">Fecha de Nacimiento:</p>
+                <strong class="strong-user-info">@Model.FechaNacimiento.ToString("dd/MM/yyyy")</strong>
+            </div>
+            <div class="d-flex justify-content-center align-items-center mt-3">
+                <button type="button" id="btnHistorialDonaciones" class="btn btn-success">Historial de Donaciones</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/Scripts/Views/Usuario/VerPerfil.js")

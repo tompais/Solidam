@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Completada";
+}
+@model Models.Propuestas
+<div class="container pt-5">
+    <div class="bg-white">
+        <div class="text-center">
+            <img alt="" src="@Url.Content("~/Images/Views/Inicio/Logotipo.png")">
+        </div>
+        <div class="text-center ">
+            <h2 class="mx-0 mt-3">La propuesta <b>@Model.Nombre</b> ha sido completada!</h2>
+            <hr>
+            <p class="lead mt-3">
+                <a class="btn btn-success btn-sm" href="@Url.Action("Inicio","Inicio")">Volver al inicio</a>
+            </p>
+        </div>
+    </div>
+</div>
+@Styles.Render("~/Content/Views/Shared/footer_2.css")

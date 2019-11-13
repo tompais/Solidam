@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Denunciar";
+    Layout = "~/Views/Shared/_PropuestasLayout.cshtml";
+}
+@Styles.Render("~/Content/Views/Inicio/inicio.css")
+@Styles.Render("~/Content/Views/Inicio/inicioResponsive.css")
+@Styles.Render("~/Content/Views/Propuestas/Denunciar.css")
+@using Models
+@using NUnit.Framework
+@model Solidam.ViewModel.DenunciaViewModel
+
+<div class="card w-50 mx-auto mb-5 mt-2 sec2">
+    <div class="card-header">
+        Denunciar Propuesta: <strong>@Model.NombrePropuesta</strong>
+    </div>
+    <div class="card-body" id="bodyDenuncia">
+        <form action="@Url.Action("Denunciar","Propuesta")" method="post" class="my-2">
+            <div class="form-group">
+                <label>Motivo de la denuncia:</label>
+                @Html.DropDownListFor(model => model.Denuncia.IdMotivo, Model.MotivoDenuncia, new { @class = "form-control" })
+                <div class="errorSolidam mt-2"><b>@Html.ValidationMessageFor(model => model.Denuncia.IdMotivo, "", new { @class = "text-danger" })</b></div>
+            </div>
+            <div class="form-group">
+                <label>Comentarios: </label>
+                @Html.TextAreaFor(model => model.Denuncia.Comentarios, new { @class = "form-control", placeholder = "Ingrese su comentario", rows = "5" })
+                <div class="errorSolidam mt-2"><b>@Html.ValidationMessageFor(model => model.Denuncia.Comentarios, "", new { @class = "text-danger" })</b></div>
+            </div>
+            <input type="hidden" name="Denuncia.IdPropuesta" value="@Model.IdPropuesta" />
+            <button type="submit" class="btn btn-primary btn-block btnVerdeSolidam"><i class="fa fa-flag mr-3" aria-hidden="true"></i>Denunciar propuesta</button>
+            @Html.ValidationMessage("")
+        </form>
+    </div>
+</div>
+@*@Styles.Render("~/Content/Views/Shared/footer_2.css")*@
+
+
+

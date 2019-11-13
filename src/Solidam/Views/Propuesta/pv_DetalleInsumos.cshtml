@@ -1,0 +1,97 @@
+﻿@using System.Globalization
+@using Helpers
+@using Models
+@using Services
+@model Solidam.ViewModel.PropuestaDetalleViewModel
+@Styles.Render("~/Content/Views/Propuestas/style.css")
+
+    <div class="article causes-details mx-auto mt-5 col col-8 card p-4">
+        <!-- article img -->
+        <div class="article-img mx-auto">
+            <img src="@Url.Content($"~/Images/Views/Propuesta/{Model.Propuesta.Foto}")" alt="">
+        </div>
+        @if (Model.Propuesta.FechaFin < DateTime.Today)
+        {
+            <h5 class="text-center mt-2"><i>La propuesta ha finalizado</i></h5>
+        }
+        <!-- article img -->
+        <!-- causes progress -->
+        <div class="clearfix">
+            @if (Model.Propuesta.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario && Model.Propuesta.FechaFin > DateTime.Today)
+            {
+                <a href="@Url.Action("Donar", "DonacionesInsumo", new {id = Model.Propuesta.IdPropuesta})" class="primary-button causes-donate">Donar ahora</a>
+            }
+        </div>
+        <!-- /causes progress -->
+        <!-- article content -->
+        <div class="article-content">
+            <!-- article title -->
+            <h2 class="article-title">@Model.Propuesta.Nombre</h2>
+            <!-- /article title -->
+            <!-- article meta -->
+            <ul class="article-meta">
+                <li>@Model.Propuesta.FechaCreacion.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture) - @Model.Propuesta.FechaFin.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture)</li>
+                <li>Por @Model.Propuesta.Usuarios.Nombre @Model.Propuesta.Usuarios.Apellido (<i>@Model.Propuesta.Usuarios.UserName</i>)</li>
+            </ul>
+            <!-- /article meta -->
+            <p>@Model.Propuesta.Descripcion</p>
+            <ul>
+                @foreach (PropuestasDonacionesInsumos prop in Model.Propuesta.PropuestasDonacionesInsumos)
+                {
+                    var objetosDonados = DonacionesInsumosService.GetCantidadDonadaByObjeto(prop.IdPropuestaDonacionInsumo);
+                    <li>
+                        @if (objetosDonados == prop.Cantidad)
+                        {<i class="fa fa-check mr-3" aria-hidden="true"></i>}
+                    <b class="font-weight-bold">@prop.Nombre:</b> <strong class="ml-4"> @objetosDonados objetos donados de @prop.Cantidad unidades</strong>
+                    </li>
+                }
+            </ul>
+        </div>
+        <!-- /article content -->
+        <!-- article tags share -->
+        <div class="article-tags-share d-flex flex-column">
+            <!-- article tags -->
+            <ul>
+                <li>TAGS: <i class="fas fa-tags mr-2"></i> Insumos</li>
+            </ul>
+            <div class="ml-auto d-flex">
+                <div class="mb-3 mr-3">
+                    @(Model.Propuesta.Valoracion ?? 0)%
+                </div>
+                <div>
+                    <i class="far fa-heart"></i>
+                </div>
+            </div>
+            <!-- /article tags -->
+            <!-- article share -->
+            <div class="d-flex align-items-center justify-content-end">
+                @if (Model.Propuesta.IdUsuarioCreador != SessionHelper.Usuario.IdUsuario)
+                {
+                    <div class="d-flex justify-content-between">
+                        <form action="@Url.Action("Valorar", "Propuesta")" method="post">
+                            <input type="hidden" name="IdPropuesta" value="@Model.Propuesta.IdPropuesta" />
+                            <div class="d-flex justify-content-center align-items-center">
+
+                                <div class="mr-1">
+                                    <button type="submit" class="me-gusta" name="mg">
+                                        <i class="fa fa-thumbs-up @(Model.Valoracion == null ? "" : (Model.Valoracion.Valoracion ? "text-success" : ""))" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                                <div>
+                                    <button type="submit" class="no-me-gusta" name="nmg">
+                                        <i class="fa fa-thumbs-down @(Model.Valoracion == null ? "" : (!Model.Valoracion.Valoracion ? "text-danger" : ""))" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    if (Model.Propuesta.FechaFin > DateTime.Today)
+                    {
+                        <div class="ml-5"><a href="@Url.Action("Denunciar", "Propuesta", new {id = Model.Propuesta.IdPropuesta})" class="btn btn-danger text-white @(Model.Denuncie ? "disabled" : "")"><i class="fa fa-flag mr-3" aria-hidden="true"></i>Denunciar</a></div>
+                    }
+                }
+                <!-- /article share -->
+            </div>
+        </div>
+        <!-- /article tags share -->
+    </div>

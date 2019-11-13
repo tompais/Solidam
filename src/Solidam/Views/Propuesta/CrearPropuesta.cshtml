@@ -1,0 +1,105 @@
+﻿@{
+    ViewBag.Title = "Crear Propuesta";
+    Layout = "~/Views/Shared/_PropuestasLayout.cshtml";
+
+    List<SelectListItem> lst = new List<SelectListItem>();
+
+    lst.Add(new SelectListItem() { Text = "Seleccionar", Value = "0", Disabled = true, Selected = true });
+    lst.Add(new SelectListItem() { Text = "Monetaria", Value = "1" });
+    lst.Add(new SelectListItem() { Text = "Insumos", Value = "2" });
+    lst.Add(new SelectListItem() { Text = "Horas de trabajo", Value = "3" });
+}
+
+@Styles.Render("~/Content/Views/Inicio/inicio.css")
+@Styles.Render("~/Content/Views/Inicio/inicioResponsive.css")
+@Styles.Render("~/Content/bootstrap-datepicker.min.css")
+
+@model Models.Propuestas
+
+<script>var maximo = @int.MaxValue;</script>
+
+<div class="container">
+    <h2>Crear Propuesta</h2>
+    <div class="card mb-5">
+        <form action="/Propuesta/Crear" id="formPropuesta" method="post" class="mt-4 mx-auto col-xl-7 col-sm-5" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="nombrePropuesta">Nombre de la propuesta</label>
+                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", @type = "text" } })
+                <div class="errorSolidam"><b>@Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })</b></div>
+            </div>
+
+            <div class="form-group">
+                <label for="descripcionPropuesta">Descripción de la propuesta</label>
+                @Html.TextAreaFor(model => model.Descripcion, new { @class = "form-control", @rows = 3, @id = "descripcionPropuesta" })
+                <div class="errorSolidam"><b>@Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })</b></div>
+            </div>
+
+            <div class="form-group">
+                <label for="fechaFin">Fecha de finalización</label>
+                <div class="input-group date" data-provide="datepicker" id="fechaFin">
+                    @Html.EditorFor(model => model.FechaFin, new { htmlAttributes = new { @id = "inputFechaFin", @class = "form-control", @type = "text", autocomplete = "off" } })
+
+                    <div class="input-group-addon">
+                        <span class="fa"></span>
+                    </div>
+                </div>
+                <div class="errorSolidam"><b>@Html.ValidationMessageFor(model => model.FechaFin, "", new { @class = "text-danger" })</b></div>
+            </div>
+
+            <div class="form-group">
+                <label for="telefonoCont">Teléfono de contacto</label>
+                @Html.EditorFor(model => model.TelefonoContacto, new { htmlAttributes = new { @class = "form-control", @type = "text" } })
+                <div class="errorSolidam"><b>@Html.ValidationMessageFor(model => model.TelefonoContacto, "", new { @class = "text-danger" })</b></div>
+            </div>
+
+            <div class="form-group">
+                <label for="tipoDonacion">Tipo de donación</label>
+                @Html.DropDownListFor(model => model.TipoDonacion, (IEnumerable<SelectListItem>)lst, new { @class = "form-control", @id = "tipoDonacion" })
+                <div class="errorSolidam"><b>@Html.ValidationMessageFor(model => model.TipoDonacion, "", new { @class = "text-danger" })</b></div>
+            </div>
+
+            <div id="datosDonacion" class="form-group"></div>
+
+            <div class="form-group">
+                <label for="fotoPropuesta">Foto</label>
+                @Html.EditorFor(model => model.Foto, new { htmlAttributes = new { @class = "form-control", @type = "file" } })
+                <div class="errorSolidam"><b>@Html.ValidationMessageFor(model => model.Foto, "", new { @class = "text-danger" })</b></div>
+            </div>
+
+            <div class="form-group">
+                <label for="nombreRef1">Referencia 1</label>
+                <input type="text" class="form-control" id="nombreRef1" name="PropuestasReferencias[0].Nombre" />
+                <div id="errorRN1" class="error text-danger">
+                    <span></span>
+                </div>
+
+                <label for="telefonoRef1">Teléfono</label>
+                <input type="text" class="form-control" id="telefonoRef1" name="PropuestasReferencias[0].Telefono" />
+                <div id="errorRT1" class="error text-danger">
+                    <span></span>
+                </div>
+
+                <label for="nombreRef2">Referencia 2</label>
+                <input type="text" class="form-control" id="nombreRef2" name="PropuestasReferencias[1].Nombre" />
+                <div id="errorRN2" class="error text-danger">
+                    <span></span>
+                </div>
+
+                <label for="telefonoRef2">Teléfono</label>
+                <input type="text" class="form-control" id="telefonoRef2" name="PropuestasReferencias[1].Telefono" />
+                <div id="errorRT2" class="error text-danger">
+                    <span></span>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center my-3">
+                <input type="submit" class="btn btnVerdeSolidam col-3 text-white" value="Crear" id="btnEnviar" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@Scripts.Render("~/Scripts/bootstrap-datepicker.min.js")
+@Scripts.Render("~/Scripts/locales/bootstrap-datepicker.es.min.js")
+@Scripts.Render("~/Scripts/Views/Propuesta/Crear.js")
+@Scripts.Render("~/Scripts/Views/Propuesta/ValidarPropuesta.js")

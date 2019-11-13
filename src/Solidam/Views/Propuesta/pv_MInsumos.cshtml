@@ -1,0 +1,23 @@
+﻿@model Models.Propuestas
+
+<script> var i = @Model.PropuestasDonacionesInsumos.Count(); </script>
+
+<div class="form-group">
+    <div class="row">
+        @for (int i = 0; i < Model.PropuestasDonacionesInsumos.Count(); i++)
+        {
+            <div class="col-6">
+                <label for='nombreInsumos-@i'>Descripción</label>
+                <input type='text' class='form-control' id='nombreInsumos-@i' name='PropuestasDonacionesInsumos[@i].Nombre' value="@Model.PropuestasDonacionesInsumos.ElementAt(i).Nombre" />
+            </div>
+
+            <div class="col-6">
+                <label for='cantInsumos-@i'>Cantidad</label>
+                <input type='number' class='form-control' id='cantInsumos-@i' name='PropuestasDonacionesInsumos[@i].Cantidad' value="@Model.PropuestasDonacionesInsumos.ElementAt(i).Cantidad" min="@Model.PropuestasDonacionesInsumos.ElementAt(i).Cantidad"/>
+            </div>
+        }
+    </div>
+    <div id="errorInsumos" class="error text-danger">
+        <span></span>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+﻿@model Models.Propuestas
+
+    <div class="form-group">
+        <label for='monto'>Monto</label>
+        <input type='number' step='0.01' class='form-control' id='monto' name='PropuestasDonacionesMonetarias[0].Dinero' value="@Convert.ToDouble(Model.PropuestasDonacionesMonetarias.ElementAt(0).Dinero)" min="@Convert.ToDouble(Model.PropuestasDonacionesMonetarias.ElementAt(0).Dinero)" />
+        <div id="errorMonto" class="error text-danger">
+            <span></span>
+        </div>
+
+        <label for='cbu'>CBU</label>
+        <input type='text' class='form-control' id='cbu' name='PropuestasDonacionesMonetarias[0].CBU' value="@Model.PropuestasDonacionesMonetarias.ElementAt(0).CBU" />
+        <div id="errorCBU" class="error text-danger">
+            <span></span>
+        </div>
+    </div>

@@ -1,5 +1,0 @@
-C:\Proyectos\PROGRA WEB 3\solidam\src\ViewModels\bin\Debug\ViewModels.dll
-C:\Proyectos\PROGRA WEB 3\solidam\src\ViewModels\bin\Debug\ViewModels.pdb
-C:\Proyectos\PROGRA WEB 3\solidam\src\ViewModels\obj\Debug\ViewModels.csproj.CoreCompileInputs.cache
-C:\Proyectos\PROGRA WEB 3\solidam\src\ViewModels\obj\Debug\ViewModels.dll
-C:\Proyectos\PROGRA WEB 3\solidam\src\ViewModels\obj\Debug\ViewModels.pdb

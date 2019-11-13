@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Iniciar Sesion";
+    Layout = "~/Views/Shared/_AnonimoLayout.cshtml";
+}
+
+@model Models.UsuariosLogin
+
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="card-wrapper">
+            <div class="brand">
+                <a href="@Url.Action("Inicio","Inicio")"><img src="@Url.Content("~/Images/Views/Seguridad/logoBordeBlanco.png")" alt="logo"></a>
+            </div>
+            <div class="card fat">
+                <div class="card-body">
+                    <h4 class="card-title">Iniciar Sesion</h4>
+                    <form method="POST" class="my-login-validation" action="@Url.Action("Loguear","Seguridad", new { pr = ViewBag.PendingRoute })" id="formularioIniciar">
+
+                        <div>
+                            <label for="inputEmail">Correo Electronico</label>
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Ingrese su Email", @type = "email", @name ="Email" } })
+                            <div class="errorSolidam"><b>@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })</b></div>
+                        </div>
+
+                        <div>
+                            <label for="inputPassword">Contraseña</label>
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Ingrese su contraseña", @type = "password" } })
+                            <div class="errorSolidam"><b>@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })</b></div>
+                        </div>
+
+                        <div class="form-group my-3">
+                            <button type="submit" value="Iniciar" class="btn btn-primary btn-block">
+                                Ingresar
+                            </button>
+                        </div>
+
+                        <div class="mt-4 text-center">
+                            No tienes una cuenta? <a href="@Url.Action("Registrar","Seguridad")">Registrate</a>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@Scripts.Render("~/Scripts/Views/Seguridad/Iniciar.js")

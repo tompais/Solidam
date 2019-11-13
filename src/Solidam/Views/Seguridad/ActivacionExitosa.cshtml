@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Activacion Exitosa";
+    Layout = "~/Views/Shared/_AnonimoLayout.cshtml";
+}
+
+<div class="container pt-5">
+
+    <div class="jumbotron bg-white">
+
+        <div class="text-center">
+            <img alt="" src="@Url.Content("~/Images/Views/Inicio/Logotipo.png")">
+        </div>
+
+        <div class="text-center ">
+
+            <h2 class="mx-0 mt-3">Activacion de la cuenta exitosamente</h2>
+            <p class="lead">Ya puedes iniciar sesion en Solidam.</p>
+            <hr>
+
+            <p class="lead mt-3">
+                <a class="btn btn-primary btn-sm" id="btnContinuar" href="@Url.Action("Iniciar","Seguridad")">Iniciar Sesion</a>
+            </p>
+
+        </div>
+    </div>
+
+</div>

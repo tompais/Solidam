@@ -1,0 +1,11 @@
+﻿.causa{
+    display:none;
+}
+
+.load-more{
+    color:#fff !important;
+}
+
+.load-more:hover{
+    text-decoration:none;
+}
